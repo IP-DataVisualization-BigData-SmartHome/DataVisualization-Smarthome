@@ -12,5 +12,5 @@ Test-Datei für Erklärungszwecke in Umgang mit git
 
 a = 5
 print("Hallo")
-print("Hier wird gleich was verändert.... Jetzt hat sich die Zeile verändert")
+print("Hier wird gleich was verändert ... Jetzt hat sich die Zeile verändert")
 print(a)
