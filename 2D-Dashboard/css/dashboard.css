@@ -8,20 +8,38 @@
 }
 .helpdiv {
     text-align: right;
+    
 }
 .haus {
     font-family: 'Roboto', sans-serif;
 }
 .licht {
     background-color: #595A59;
-    border-radius: 5px;
+    border-radius: 10px;
     color: #C4C4C4;
+    text-align: center;
+    width: 170px;
 }
 .strom {
     background-color: #595A59;
-    border-radius: 5px;
+    border-radius: 10px;
     color: #C4C4C4;
+    text-align: center;
+    margin-bottom: 1rem;
+    width: 170px;
+    vertical-align: middle;
 }
 .icons-verbrauch{
-    
+    font-size: 500%;
+}
+.icons-verbrauch:before{
+    font-size: 100%;
+}
+.verbrauch-text {
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+.main-div {
+    padding-bottom: 5%;
+   
 }
