@@ -15,31 +15,42 @@
     <link href="../css/dashboard.css" rel="stylesheet">
   </head>
   <body>
-      <h1>Hallo Welt!</h1>
-      <div>Testi test, warum geht das nicht??????? Scheiß bootstrap, safe bin ich zu dumm... *Facepalm*</div>
-
-      
-      
-      <nav class="navbar fixed-bottom ">
-      
-       
+      <div class="helpdiv"><a href="#"><i class="mdi mdi-help-circle-outline helpicon"></i></a></div>
       <div class="container-fluid">
-        <div class="col">
-            <a class="nav-link" href="#"><i class="navicon mdi mdi-google-analytics"></i>Analytics</a>
+          <div class="col-3">
+            <div class="strom">
+                <div>Stromverbrauch</div>
+                <div><i class="mdi mdi-flash icons-verbrauch"></i></div>
+                <div class="stromverbrauch">200 W</div>              
+            </div>
+            <div class="licht">
+                <div>Lichtverbrauch</div>
+                <div><i class="mdi mdi-lightbulb-on"></i></div>
+                <div class="lichtverbrauch">22 W</div>
+            </div>
+          </div>
+          <div class="col-9">
+            <div><img class="haus" alt="Gebäude Grundriss" src="../dateien/Grundriss2D-01.svg"></div>
+          </div>
+      </div>
+      
+      
+      
+    <nav class="navbar fixed-bottom">   
+      <div class="container-fluid navdiv">
+        <div class="col navdiv">
+            <a class="nav-link" href="#"><i class="mdi mdi-google-analytics navicon"></i><p class="nav-text">Analytics</p></a>
          </div>
           
-            <div class="col">
-            <a class="nav-link nav-link-active" href="#"> <i class="mdi mdi-home navicon"></i>Dashboard</a>
+            <div class="col navdiv">
+            <a class="nav-link nav-link-active" href="#"> <i class="mdi mdi-home navicon"></i><p class="nav-text">Dashboard</p></a>
         </div> 
             
-            <div class="col">
-              <a class="nav-link" href="#"><i class="navicon mdi mdi-sync"></i>Optimization</a>
-        
-                </div>
-          </ul>
-      </div>
+            <div class="col navdiv">
+              <a class="nav-link" href="#"><i class="mdi mdi-sync navicon"></i><p class="nav-text">Optimization</p></a>
+            </div>
+        </div>
     </nav>
-      
       
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

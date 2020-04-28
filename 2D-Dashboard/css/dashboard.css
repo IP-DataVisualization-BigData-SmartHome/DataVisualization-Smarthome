@@ -1,0 +1,27 @@
+.helpicon:before {
+    color:  #C4C4C4;  
+    font-size: 2rem;
+    padding-top: 1rem;
+    display: inline-block;
+    padding-right: 0.2rem;
+    
+}
+.helpdiv {
+    text-align: right;
+}
+.haus {
+    font-family: 'Roboto', sans-serif;
+}
+.licht {
+    background-color: #595A59;
+    border-radius: 5px;
+    color: #C4C4C4;
+}
+.strom {
+    background-color: #595A59;
+    border-radius: 5px;
+    color: #C4C4C4;
+}
+.icons-verbrauch{
+    
+}

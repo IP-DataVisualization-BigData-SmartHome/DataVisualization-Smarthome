@@ -65,11 +65,20 @@ body{
   left: -3px
 }
 .navicon::before{
-    display: block;
-    font-size: 50px ;
+    font-size: 250%;
+    text-align: center;
+    display: grid;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
 }
 .nav-link{
     color: #C4C4C4;
+}
+.nav-text {
+    display: grid;
+    text-align: center;
+    font-size: 70%;
+    margin-bottom: 0.2rem;
 }
 .nav-link:hover{
     color: #737373;
@@ -82,6 +91,10 @@ body{
 }
 .navbar {
     background-color: #595A59;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    padding-top: 0rem;
+    padding-bottom: 0rem;
+}
+.navdiv {
+    margin-top: 0rem;
+    margin-bottom: 0px;
 }
