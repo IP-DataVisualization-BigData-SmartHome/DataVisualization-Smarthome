@@ -98,3 +98,45 @@ body{
     margin-top: 0rem;
     margin-bottom: 0px;
 }
+
+
+/* Von Simon erstellt */
+.head-design {
+    background-color: #595A59;
+    color: #BFC0BF;
+    height: 6.5vw;
+}
+
+.text-head{
+    font-size: 4vw;
+    margin-top: -0.5vw;
+}
+
+.luft-wind{
+    margin-top: 1vw;
+    font-size: 1vw;
+}
+
+#Datum{
+    font-size: 1.2vw;
+    margin-top: -1.6vw;
+}
+
+.nav-head{
+    color: #C4C4C4;
+    text-decoration: inherit;
+}
+
+.nav-head:hover{
+    color: #737373;
+    text-decoration: none; 
+}
+
+.mdi-weather-sunny{
+    font-size: 24px;
+}
+
+
+
+
+

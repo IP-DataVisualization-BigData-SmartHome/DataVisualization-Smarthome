@@ -7,6 +7,9 @@
     
 }
 .helpdiv {
+    
+/* margin-top hinzugefügt damit obere nav passt */
+    margin-top: 4.3rem;
     text-align: right;
     
 }
