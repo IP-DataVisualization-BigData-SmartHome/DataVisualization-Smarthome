@@ -18,7 +18,7 @@
     padding-left: 1rem;
     width: 350px;
     height: auto;
-    margin-left: 40px;
+    margin-left: 100px;
    
     
     
@@ -139,8 +139,8 @@
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) { 
     .haus {
-        width: 430px;
-        margin-left: 15px;
+        width: 420px;
+        margin-left: 100px;
     }
 
 }
@@ -152,7 +152,7 @@
     border-radius: 10px;
     color: #C4C4C4;
     text-align: center;
-    width: 130px;
+    width: 120px;
     font-weight: 600;
 }
 .strom {
@@ -161,7 +161,7 @@
     color: #C4C4C4;
     text-align: center;
     margin-bottom: 1rem;
-    width: 130px;
+    width: 120px;
     vertical-align: middle;
     font-weight: 600;
 }
@@ -180,7 +180,7 @@
 }
     
     .haus {
-        width: 570px;
+        width: 520px;
     }
 
 
