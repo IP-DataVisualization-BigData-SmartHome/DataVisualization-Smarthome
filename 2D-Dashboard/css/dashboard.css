@@ -30,6 +30,7 @@
     text-align: center;
     width: 110px;
     font-weight: 600;
+    margin-left: 2.5rem;
 }
 .strom {
     background-color: #595A59;
@@ -40,6 +41,7 @@
     width: 110px;
     vertical-align: middle;
     font-weight: 600;
+    margin-left: 2.5rem;
 }
 .icons-verbrauch{
     font-size: 300%;
