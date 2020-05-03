@@ -3,7 +3,7 @@
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -53,28 +53,89 @@
 
       <div class="helpdiv"><a href="#"><i class="mdi mdi-help-circle-outline helpicon"></i></a></div>
       <div class="container-fluid">
+          
           <div class="row">
-          <div class="col-2 main-div">
-            <div class="strom">
-                <div class="verbrauch-text">Stromverbrauch</div>
-                <div><i class="mdi mdi-flash icons-verbrauch"></i></div>
-                <div class="stromverbrauch verbrauch-text">200 W</div>              
-            </div>
-            <div class="licht">
-                <div class="verbrauch-text">Lichtverbrauch</div>
-                <div><i class="mdi mdi-lightbulb-on icons-verbrauch"></i></div>
-                <div class="lichtverbrauch verbrauch-text">22 W</div>
-            </div>
+          <div class="col-2 main-div relative d-flex justify-content-center">
+              <div class="sidecard">
+                <div class="strom"> <!-- Strom-Fläche -->
+                    <div class="verbrauch-text">Stromverbrauch</div>
+                    <div><i class="mdi mdi-flash icons-verbrauch"></i></div>
+                    <div class="stromverbrauch verbrauch-zahl">200 W</div> <!-- Stromverbrauch eintragen --> </div>
+                <div class="licht"> <!-- Licht-Fläche -->
+                    <div class="verbrauch-text">Lichtverbrauch</div>
+                    <div><i class="mdi mdi-lightbulb-on icons-verbrauch"></i></div>
+                    <div class="lichtverbrauch verbrauch-zahl">22 W</div> <!-- Lichtverbrauch eintragen -->
+                </div>
+              </div>
           </div>
-          <div class="col-8 main-div">
-            <div><img class="haus" alt="Gebäude Grundriss" src="../dateien/Grundriss2D-01.svg"></div>
+          <div class="col-8 main-div d-flex justify-content-center"> <!-- Grundriss -->
+              
+            <div>
+                
+                    <div class="colorwrapper bad">
+                    <div class="colorcircle">
+                    <div class="filled-bad"></div>
+                    <p>19°</p>
+                    <p>50%</p>
+                    </div></div>
+               
+                    <div class="colorwrapper arbeits">
+                    <div class="colorcircle">
+                    <div class="filled-arbeits"></div>
+                    <p>19°</p>
+                    <p>50%</p>
+                    </div></div>
+                
+                    <div class="colorwrapper schlaf">
+                    <div class="colorcircle">
+                    <div class="filled-schlaf"></div>
+                    <p>19°</p>
+                    <p>50%</p>
+                    </div></div>
+                
+                    <div class="colorwrapper wasch">
+                    <div class="colorcircle">
+                    <div class="filled-wasch"></div>
+                    <p>19°</p>
+                    <p>50%</p>
+                    </div></div>
+                
+                    <div class="colorwrapper kinder">
+                    <div class="colorcircle">
+                    <div class="filled-kinder"></div>
+                    <p>19°</p>
+                    <p>50%</p>
+                    </div></div>
+                
+                    <div class="colorwrapper buegel">
+                    <div class="colorcircle">
+                    <div class="filled-buegel"></div>
+                    <p>19°</p>
+                    <p>50%</p>
+                    </div></div>
+                
+                <div class="colorwrapper kueche">
+                    <div class="colorcircle">
+                    <div class="filled-kueche"></div>
+                    <p>19°</p>
+                    <p>50%</p>
+                    </div></div>
+                
+                <div class="colorwrapper wohn">
+                    <div class="colorcircle">
+                    <div class="filled-wohn"></div>
+                    <p>19°</p>
+                    <p>50%</p>
+                    </div></div>
+                
+                <img class="haus" alt="Gebäude Grundriss" src="../dateien/Grundriss2D-01.svg">
+            </div>                            
           </div>
-              <div class="col-2 main-div">
+              <div class="col-2 main-div"></div>
         </div>
-     </div>
     
       
-      
+   <!-- Navbar Anfang -->   
     <nav class="navbar fixed-bottom">   
       <div class="container-fluid navdiv">
         <div class="col navdiv">
@@ -90,6 +151,7 @@
             </div>
         </div>
     </nav>
+    <!-- Navbar Ende -->  
       
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

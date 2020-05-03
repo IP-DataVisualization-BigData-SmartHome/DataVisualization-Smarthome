@@ -15,36 +15,55 @@
 }
 .haus {
     font-family: 'Roboto', sans-serif;
+    padding-left: 1rem;
+    width: 350px;
+    height: auto;
+    margin-left: 100px;
+   
+    
+    
 }
 .licht {
     background-color: #595A59;
     border-radius: 10px;
     color: #C4C4C4;
     text-align: center;
-    width: 170px;
+    width: 110px;
+    font-weight: 600;
 }
 .strom {
     background-color: #595A59;
-    border-radius: 10px;
+    border-radius: 5px;
     color: #C4C4C4;
     text-align: center;
     margin-bottom: 1rem;
-    width: 170px;
+    width: 110px;
     vertical-align: middle;
+    font-weight: 600;
 }
 .icons-verbrauch{
-    font-size: 500%;
+    font-size: 300%;
 }
 .icons-verbrauch:before{
     font-size: 100%;
 }
 .verbrauch-text {
-    padding-top: 5%;
-    padding-bottom: 5%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    font-size: 0.8rem;
+  }
+.verbrauch-zahl {
+    padding-top: 1%;
+    padding-bottom: 1%;
+    font-size: 1.2rem;
 }
 .main-div {
     padding-bottom: 5%;
    
+}
+
+.main-div.relative {
+    position: relative;
 }
 
 /* Von Simon erstellt */
@@ -78,4 +97,204 @@
     font-size: 4vw;
     margin-top: -0.5vw;
     margin-right: -2vw;
+}
+
+.colorwrapper {
+    position: absolute;
+}
+
+.colorwrapper.bad {
+    left: 100px;
+    top: 18px;
+}
+.colorwrapper.arbeits {
+    left: 70px;
+    top: 88px;
+}
+
+.colorcircle {
+    width: 45px;
+    height: 45px;
+    position: absolute;
+    text-align: center;
+    background-color: #8A8B8A;
+
+    border-radius: 50%;
+    z-index: 2 !important;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.colorcircle  .filled-bad{
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 80%;
+    background-color: #3FBAFF;
+    z-index: 1 !important;
+    transition: height 600ms;
+}
+.colorcircle  .filled-arbeits{
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 50%;
+    background-color: #3FBAFF;
+    z-index: 1 !important;
+    transition: height 600ms;
+}
+.colorwrapper.schlaf {
+    left: 87px;
+    top: 178px;
+}
+.colorcircle  .filled-schlaf{
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 50%;
+    background-color: #3FBAFF;
+    z-index: 1 !important;
+    transition: height 600ms;
+}
+
+.colorwrapper.wasch {
+    left: 160px;
+    top: 28px;
+}
+.colorcircle  .filled-wasch{
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 50%;
+    background-color: #3FBAFF;
+    z-index: 1 !important;
+    transition: height 600ms;
+}
+.colorwrapper.kinder {
+    left: 230px;
+    top: 28px;
+}
+.colorcircle  .filled-kinder{
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 50%;
+    background-color: #3FBAFF;
+    z-index: 1 !important;
+    transition: height 600ms;
+}
+.colorwrapper.buegel {
+    left: 305px;
+    top: 17px;
+}
+.colorcircle  .filled-buegel{
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 50%;
+    background-color: #3FBAFF;
+    z-index: 1 !important;
+    transition: height 600ms;
+}
+.colorwrapper.kueche {
+    left: 320px;
+    top: 85px;
+}
+.colorcircle  .filled-kueche{
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 50%;
+    background-color: #3FBAFF;
+    z-index: 1 !important;
+    transition: height 600ms;
+}
+.colorwrapper.wohn {
+    left: 200px;
+    top: 170px;
+}
+.colorcircle  .filled-wohn{
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 50%;
+    background-color: #3FBAFF;
+    z-index: 1 !important;
+    transition: height 600ms;
+}
+
+.colorcircle p {
+    position: relative;
+    text-align: center;
+    line-height: 0.1rem;
+    z-index: 2;
+    font-weight: 500;
+    top: 15px;
+    font-size: 0.8rem;
+    
+}
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) { 
+    .haus {
+        width: 420px;
+        margin-left: 100px;
+    }
+
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) { 
+.licht {
+    background-color: #595A59;
+    border-radius: 10px;
+    color: #C4C4C4;
+    text-align: center;
+    width: 120px;
+    font-weight: 600;
+}
+.strom {
+    background-color: #595A59;
+    border-radius: 5px;
+    color: #C4C4C4;
+    text-align: center;
+    margin-bottom: 1rem;
+    width: 120px;
+    vertical-align: middle;
+    font-weight: 600;
+}
+.verbrauch-text {
+    padding-top: 1%;
+    padding-bottom: 1%;
+    font-size: 0.9rem;
+  }
+.verbrauch-zahl {
+    padding-top: 1%;
+    padding-bottom: 1%;
+    font-size: 1.3rem;
+}
+    .icons-verbrauch{
+    font-size: 500%;
+}
+    
+    .haus {
+        width: 520px;
+    }
+
+
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) { 
+    .haus {
+        width: 700px;
+    }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) { 
+.haus {
+        width: 850px;
+    }
+    
 }
