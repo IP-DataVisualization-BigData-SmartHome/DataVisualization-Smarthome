@@ -50,7 +50,6 @@
 /* Von Simon erstellt */
 .text-head{
     font-size: 4vw;
-    margin-top: -0.3vw;
 }
 
 .luft-wind{
@@ -61,7 +60,8 @@
 
 #Datum{
     font-size: 1.2vw;
-    margin-top: -1.6vw;
+    margin-top: -1.5vw;
+    padding-bottom: 0.3vw;
 }
 
 .nav-head{
