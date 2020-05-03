@@ -22,17 +22,11 @@
       <nav class="fixed-top">
         <div class="container-fluid head-design">
             <div class="row">
-                <div class="col-8 text-center"></div>
-                <div class="col-1 text-right head-analytics">
-                    <a>Tag</a>
+                <div class="col-4"></div>
+                <div class="col-4 text-center head-analytics">
+                    <a>Analytics</a>
                 </div>
-                <div class="col-1 text-tight head-analytics">
-                    <a>Woche</a>
-                </div>
-                <div class="col-1 text-right head-analytics">
-                    <a>Monat</a>
-                </div>
-                <div class="col-1 text-tight"></div>
+                <div class="col-4"></div>
                 
             </div>
         </div>
@@ -64,25 +58,22 @@
                       <input class="checkbox" type="checkbox" value="" id="Kinderzimmer">
                       <label class="room-selection" for="Kinderzimmer">Kinderzimmer</label>
                     </div>
-                  <div class="frame">
+                    <div class="frame">
                       <input class="checkbox" type="checkbox" value="" id="Küche">
                       <label  class="room-selection" for="Küche">Küche</label>
                     </div>
-             <div class="frame">
+                    <div class="frame">
                       <input class="checkbox" type="checkbox" value="" id="Schlafzimmer">
                       <label class="room-selection" for="Schlafzimmer">Schlafzimmer</label>
                     </div>
-                <div class="frame">
+                    <div class="frame">
                       <input class="checkbox" type="checkbox" value="" id="Waschküche">
                       <label class="room-selection" for="Waschküche">Waschküche</label>
                     </div>
-              <div class="frame">
+                    <div class="frame">
                       <input class="checkbox" type="checkbox" value="" id="Wohnzimmer">
                       <label class="room-selection" for="Wohnzimmer">Wohnzimmer</label>
                     </div>
-
-
-
                     <!--
                     <button type="button" class=" btn-lg btn-block room-selection">Alle</button>
                     <button type="button" class=" btn-lg btn-block room-selection">Arbeitszimmer</button>
@@ -96,8 +87,56 @@
                         -->
                 </div>
                 
-                <div class="col-9">Test</div>
+                <div class="col-9">
+                    <div class="graph">
+                        Test
+                    </div>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-3 "></div>
+                <div class="col-4">
+                    <div class="radio-select left">
+                        <div class="form-check-inline">
+                          <input class="checkbox" type="checkbox" name="AttSelect" id="Temp" value="">
+                          <label class="time" for="Temp">Temperatur</label>
+                            </div>
+                        <div class="form-check-inline">
+                          <input class="checkbox" type="checkbox" name="AttSelect" id="Luft" value="">
+                          <label class="time" for="Luft">Luftfeuchte</label>
+                        </div>
+                        <div class="form-check-inline">
+                          <input class="checkbox" type="checkbox" name="AttSelect" id="TempD" value="">
+                          <label class="time" for="TempD">Temp. draußen</label>
+                        </div>
+                    </div>
+                </div>
                 
+                <div class="col-2 ">Test</div>
+                
+                
+                <div class="col-3">
+                    <!--
+                    <div class="btn-group time-select" role="group" aria-label="Basic example" >
+                      <button type="button" class="btn time-select">TAG</button>
+                      <button type="button" class="btn time-select">WOCHE</button>
+                      <button type="button" class="btn time-select">MONAT</button>
+                    </div> -->
+                    <div class="radio-select">
+                        <div class="form-check-inline">
+                          <input class="checkbox" type="radio" name="TimeSelect" id="Tag" value="">
+                          <label class="time" for="Tag">TAG</label>
+                            </div>
+                        <div class="form-check-inline">
+                          <input class="checkbox" type="radio" name="TimeSelect" id="Woche" value="">
+                          <label class="time" for="Woche">WOCHE</label>
+                        </div>
+                        <div class="form-check-inline">
+                          <input class="checkbox" type="radio" name="TimeSelect" id="Monat" value="">
+                          <label class="time" for="Monat">MONAT</label>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
       
