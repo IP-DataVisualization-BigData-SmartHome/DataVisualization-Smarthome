@@ -1,5 +1,42 @@
-.text-head{
+.head-analytics{
     font-size: 2vw;
     padding-top: 1.7vw;
     padding-bottom: 1.7vw;
+}
+
+
+.main{
+    margin-top: 7vw;
+}
+
+.room-selection{
+    background-color: #595A59;
+    color: #BFC0BF;
+    border-radius: 4px;
+    padding-left: 1vw;
+    padding-top: 0.5vw;
+    padding-bottom: 0.5vw;
+    margin-right: 3vw;
+    font-size: 2vw;
+    width: 100%;
+}
+
+.checkbox{
+    visibility: hidden;
+}
+
+.room-selection:hover{
+    color: #1F897C;
+    }
+
+input[type="checkbox"]:checked + label:hover {
+   color: #1F897C;
+}
+
+input[type="checkbox"]:checked + label {
+   color: #00B1AC;
+}
+
+.frame{
+    margin-top: -2vw;
 }
