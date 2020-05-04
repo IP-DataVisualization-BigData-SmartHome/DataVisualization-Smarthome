@@ -18,7 +18,6 @@
     
     
   <body>
-      <!-- Von Simon erstellter Navhead -->
       <nav class="fixed-top">
         <div class="container-fluid head-design">
             <div class="row">
@@ -31,49 +30,51 @@
             </div>
         </div>
     </nav>
-      
-      <!-- Simon Ende -->
           
     <main>
+    <form methode="post" action="">
         <div class="container-fluid main">
             <div class="row">
                 <div class="col-3">
+                    
                     <div class="frame">
-                      <input class="checkbox" type="checkbox" value="" id="Alle">
+                      <input class="checkbox" name="room" type="checkbox" value="1" id="Alle">
                       <label class="room-selection" for="Alle">Alle</label>
                     </div>
                     <div class="frame">
-                      <input class="checkbox" type="checkbox" value="" id="Arbeitszimmer">
+                      <input class="checkbox" name="room" type="checkbox" value="2" id="Arbeitszimmer">
                       <label class="room-selection" for="Arbeitszimmer">Arbeitszimmer</label>
                     </div>
                     <div class="frame">
-                      <input class="checkbox" type="checkbox" value="" id="Badezimmer">
+                      <input class="checkbox" name="room" type="checkbox" value="3" id="Badezimmer">
                       <label class="room-selection" for="Badezimmer">Badezimmer</label>
                     </div>
                     <div class="frame">
-                      <input class="checkbox" type="checkbox" value="" id="Bügelzimmer">
+                      <input class="checkbox" name="room" type="checkbox" value="4" id="Bügelzimmer">
                       <label class="room-selection" for="Bügelzimmer">Bügelzimmer</label>
                     </div>
                     <div class="frame">
-                      <input class="checkbox" type="checkbox" value="" id="Kinderzimmer">
+                      <input class="checkbox" name="room" type="checkbox" value="5" id="Kinderzimmer">
                       <label class="room-selection" for="Kinderzimmer">Kinderzimmer</label>
                     </div>
                     <div class="frame">
-                      <input class="checkbox" type="checkbox" value="" id="Küche">
+                      <input class="checkbox" name="room" type="checkbox" value="6" id="Küche">
                       <label  class="room-selection" for="Küche">Küche</label>
                     </div>
                     <div class="frame">
-                      <input class="checkbox" type="checkbox" value="" id="Schlafzimmer">
+                      <input class="checkbox" name="room" type="checkbox" value="7" id="Schlafzimmer">
                       <label class="room-selection" for="Schlafzimmer">Schlafzimmer</label>
                     </div>
                     <div class="frame">
-                      <input class="checkbox" type="checkbox" value="" id="Waschküche">
+                      <input class="checkbox" name="room" type="checkbox" value="8" id="Waschküche">
                       <label class="room-selection" for="Waschküche">Waschküche</label>
                     </div>
                     <div class="frame">
-                      <input class="checkbox" type="checkbox" value="" id="Wohnzimmer">
+                      <input class="checkbox" name="room" type="checkbox" value="9" id="Wohnzimmer">
                       <label class="room-selection" for="Wohnzimmer">Wohnzimmer</label>
                     </div>
+                    
+                    
                     <!--
                     <button type="button" class=" btn-lg btn-block room-selection">Alle</button>
                     <button type="button" class=" btn-lg btn-block room-selection">Arbeitszimmer</button>
@@ -89,50 +90,55 @@
                 
                 <div class="col-9">
                     <div class="graph">
-                        Test
+                        Plotly Diagramm
                     </div>
                 </div>
             </div>
             <div class="row ">
-                <div class="col-3 "></div>
-                <div class="col-4">
-                    <div class="radio-select left">
+                <div class="col-3 "><input type="submit" value="Absenden"></div>
+                
+                <div class="col-9">
+                    <div class="select form-check-inline">
                         <div class="form-check-inline">
-                          <input class="checkbox" type="checkbox" name="AttSelect" id="Temp" value="">
+                          <input class="checkbox" type="checkbox" name="AttSelect" id="Temp" value="Temp">
                           <label class="time" for="Temp">Temperatur</label>
                             </div>
                         <div class="form-check-inline">
-                          <input class="checkbox" type="checkbox" name="AttSelect" id="Luft" value="">
+                          <input class="checkbox" type="checkbox" name="AttSelect" id="Luft" value="Humi">
                           <label class="time" for="Luft">Luftfeuchte</label>
                         </div>
                         <div class="form-check-inline">
-                          <input class="checkbox" type="checkbox" name="AttSelect" id="TempD" value="">
+                          <input class="checkbox" type="checkbox" name="AttSelect" id="TempD" value="TempD">
                           <label class="time" for="TempD">Temp. draußen</label>
                         </div>
                     </div>
-                </div>
+                    
+                    
                 
-                <div class="col-2 ">Test</div>
+                    <div class="select form-check-inline">
+                        <div class="form-check-inline datepicker">
+                            <label class="time">Letzter Tag: Placeholder Datepicker</label>
+                            
+                            
+
+                            </div>
+                    </div>
+               
                 
                 
-                <div class="col-3">
-                    <!--
-                    <div class="btn-group time-select" role="group" aria-label="Basic example" >
-                      <button type="button" class="btn time-select">TAG</button>
-                      <button type="button" class="btn time-select">WOCHE</button>
-                      <button type="button" class="btn time-select">MONAT</button>
-                    </div> -->
-                    <div class="radio-select">
+                
+              
+                    <div class="select form-check-inline">
                         <div class="form-check-inline">
-                          <input class="checkbox" type="radio" name="TimeSelect" id="Tag" value="">
+                          <input class="checkbox" type="radio" name="TimeFrame" id="Tag" value="D">
                           <label class="time" for="Tag">TAG</label>
                             </div>
                         <div class="form-check-inline">
-                          <input class="checkbox" type="radio" name="TimeSelect" id="Woche" value="">
+                          <input class="checkbox" type="radio" name="TimeFrame" id="Woche" value="W">
                           <label class="time" for="Woche">WOCHE</label>
                         </div>
                         <div class="form-check-inline">
-                          <input class="checkbox" type="radio" name="TimeSelect" id="Monat" value="">
+                          <input class="checkbox" type="radio" name="TimeFrame" id="Monat" value="M">
                           <label class="time" for="Monat">MONAT</label>
                         </div>
                     </div>
@@ -140,7 +146,7 @@
             </div>
         </div>
       
-      
+      </form>
       
       </main>
       
@@ -156,7 +162,7 @@
         </div> 
             
             <div class="col navdiv">
-              <a class="nav-link" href="#"><i class="mdi mdi-sync navicon"></i><p class="nav-text">Optimization</p></a>
+              <a class="nav-link" href="optimization.html"><i class="mdi mdi-sync navicon"></i><p class="nav-text">Optimization</p></a>
             </div>
         </div>
     </nav>
