@@ -59,21 +59,16 @@ input[type="checkbox"]:checked + label {
    color: #00B1AC;
 }
 
-.radio-select{
+.select{
      background-color: #595A59;
     color: #BFC0BF;
-    float: right;
     border-radius: 4px;
    font-size: 1vw;
     
 }
 
-.left{
-    float: left;
-    font-size: 1vw;
-        
-        
-        
+.datepicker{
+    margin-left: 10px;
 }
 
 .time{
