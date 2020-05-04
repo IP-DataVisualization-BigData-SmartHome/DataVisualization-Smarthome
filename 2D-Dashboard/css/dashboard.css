@@ -309,8 +309,8 @@
     font-weight: 600;
 }
 .verbrauch-text {
-    padding-top: 1%;
-    padding-bottom: 1%;
+    padding-top: 10px;
+    padding-bottom: 6px;
     font-size: 0.9rem;
   }
 .verbrauch-zahl {
@@ -373,6 +373,10 @@
 
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) and (max-width: 1199.98px) { 
+     .licht {
+        margin-top: 80px;
+    }
+    
     .haus {
         width: 700px;
     }
@@ -397,8 +401,8 @@
         top: 42px;
     }
     .colorwrapper.arbeits {
-        left: 70px;
-        top: 132px;
+        left: 80px;
+        top: 185px;
     }        
     .colorwrapper.kueche {
         left: 590px;
@@ -422,9 +426,15 @@
 
 /* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) { 
-.haus {
-        width: 850px;
+   .licht {
+        margin-top: 80px;
     }
+    .strom {
+        margin-top: 30px;
+    }
+    .haus {
+            width: 850px;
+        }
     .colorcircle {
         width: 100px;
         height: 100px;
