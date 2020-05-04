@@ -1,4 +1,4 @@
-.head-analytics{
+.head-optimization{
     font-size: 2vw;
     padding-top: 1.7vw;
     padding-bottom: 1.7vw;
@@ -8,82 +8,47 @@
     margin-top: 7vw;
 }
 
-.graph{
-    background-color: #595A59;
-    color: #BFC0BF;
-    border-radius: 4px;
-    font-size: 150%;
-    width: 100%;
-    height: 98.5%;
+.card-icon::before{
+    font-size: 6vw;
+    margin-top: 1.5vw;
 }
 
-.legend{
-    background-color: #595A59;
-    color: #BFC0BF;
-    border-radius: 4px;
-    font-size: 150%;
-    width: 100%;
-    margin-top: 10px;
-    margin-bottom: 90px;
-    height: 10vw;
-}
-
-.frame{
-    margin-top: -25px;
-}
-
-.room-selection{
-    background-color: #595A59;
-    color: #BFC0BF;
-    border-radius: 4px;
-    padding-left: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
+.card-title{
     font-size: 2vw;
-    width: 100%;
 }
 
-.checkbox{
-    visibility: hidden;
-}
-
-.room-selection:hover{
-    color: #1F897C;
-    }
-
-input[type="checkbox"]:checked + label:hover {
-   color: #1F897C;
-}
-
-input[type="checkbox"]:checked + label {
-   color: #00B1AC;
-}
-
-.select{
-     background-color: #595A59;
+.card{
+    background-color: #595A59;
     color: #BFC0BF;
+    margin-bottom: 2vw;
+}
+
+.card:last-child{
+    background-color: #595A59;
+    color: #BFC0BF;
+    margin-bottom: 100px;
+}
+
+
+.card-graph{
+    background-color: #BFC0BF;
+    color: #595A59;
     border-radius: 4px;
-   font-size: 1vw;
-    
+    font-size: 150%;
+    height: 18vw;
 }
 
-.datepicker{
-    margin-left: 10px;
+.card-text{
+    margin-top: 1vw;
 }
 
-.time{
-    padding-top: 10px;
+.card-btn{
+    background-color: #BFC0BF;
+    color: #595A59;
+    text-decoration: none;
 }
 
-.time:hover{
-    color: #1F897C;
+.card-btn:hover{
+    color: #737373;
+    background-color: #BFC0BF;
 }
-
-input[type="radio"]:checked + label:hover {
-   color: #1F897C;
-}
-
-input[type="radio"]:checked + label {
-   color: #00B1AC;
-}
-
