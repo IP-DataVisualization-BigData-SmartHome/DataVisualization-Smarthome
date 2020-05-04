@@ -18,7 +18,8 @@
     padding-left: 1rem;
     width: 350px;
     height: auto;
-    margin-left: 100px;
+    margin-left: 30px;
+   
    
     
     
@@ -106,11 +107,11 @@
 }
 
 .colorwrapper.bad {
-    left: 100px;
+    left: 90px;
     top: 18px;
 }
 .colorwrapper.arbeits {
-    left: 70px;
+    left: 58px;
     top: 88px;
 }
 
@@ -147,8 +148,8 @@
     transition: height 600ms;
 }
 .colorwrapper.schlaf {
-    left: 87px;
-    top: 178px;
+    left: 75px;
+    top: 175px;
 }
 .colorcircle  .filled-schlaf{
     position: absolute;
@@ -161,7 +162,7 @@
 }
 
 .colorwrapper.wasch {
-    left: 160px;
+    left: 148px;
     top: 28px;
 }
 .colorcircle  .filled-wasch{
@@ -174,7 +175,7 @@
     transition: height 600ms;
 }
 .colorwrapper.kinder {
-    left: 230px;
+    left: 218px;
     top: 28px;
 }
 .colorcircle  .filled-kinder{
@@ -187,7 +188,7 @@
     transition: height 600ms;
 }
 .colorwrapper.buegel {
-    left: 305px;
+    left: 295px;
     top: 17px;
 }
 .colorcircle  .filled-buegel{
@@ -200,7 +201,7 @@
     transition: height 600ms;
 }
 .colorwrapper.kueche {
-    left: 320px;
+    left: 310px;
     top: 85px;
 }
 .colorcircle  .filled-kueche{
@@ -213,8 +214,8 @@
     transition: height 600ms;
 }
 .colorwrapper.wohn {
-    left: 200px;
-    top: 170px;
+    left: 190px;
+    top: 175px;
 }
 .colorcircle  .filled-wohn{
     position: absolute;
@@ -240,7 +241,49 @@
 @media (min-width: 576px) { 
     .haus {
         width: 420px;
-        margin-left: 100px;
+        margin-left: 35px;
+    }
+    .colorcircle {
+        width: 55px;
+        height: 55px;
+   }
+    .colorwrapper.bad {
+        left: 100px;
+        top: 20px;
+    }
+    .colorwrapper.wasch {
+        left: 174px;
+        top: 32px;
+    }
+    .colorwrapper.kinder {
+        left: 255px;
+        top: 32px;
+    }
+    .colorwrapper.buegel {
+        left: 350px;
+        top: 20px;
+    }
+    .colorwrapper.arbeits {
+        left: 65px;
+        top: 102px;
+    }        
+    .colorwrapper.kueche {
+        left: 367px;
+        top: 102px;
+    }
+    .colorwrapper.wohn {
+        left: 220px;
+        top: 210px;
+    }
+    .colorwrapper.schlaf {
+    left: 87px;
+    top: 210px;
+    }
+    .colorcircle p {
+    line-height: 0.2rem;
+    font-weight: 500;
+    top: 16px;
+    font-size: 1rem;
     }
 
 }
@@ -282,6 +325,48 @@
     .haus {
         width: 520px;
     }
+    .colorcircle {
+        width: 65px;
+        height: 65px;
+   }
+    .colorwrapper.bad {
+        left: 100px;
+        top: 30px;
+    }
+    .colorwrapper.wasch {
+        left: 205px;
+        top: 50px;
+    }
+    .colorwrapper.kinder {
+        left: 310px;
+        top: 50px;
+    }
+    .colorwrapper.buegel {
+        left: 430px;
+        top: 28px;
+    }
+    .colorwrapper.arbeits {
+        left: 70px;
+        top: 132px;
+    }        
+    .colorwrapper.kueche {
+        left: 450px;
+        top: 128px;
+    }
+    .colorwrapper.wohn {
+        left: 260px;
+        top: 260px;
+    }
+    .colorwrapper.schlaf {
+    left: 100px;
+    top: 260px;
+    }
+    .colorcircle p {
+    line-height: 0.4rem;
+    font-weight: 500;
+    top: 18px;
+    font-size: 1.2rem;
+    }
 
 
 }
@@ -291,6 +376,48 @@
     .haus {
         width: 700px;
     }
+    .colorcircle {
+        width: 80px;
+        height: 80px;
+   }
+    .colorwrapper.bad {
+        left: 130px;
+        top: 45px;
+    }
+    .colorwrapper.wasch {
+        left: 265px;
+        top: 75px;
+    }
+    .colorwrapper.kinder {
+        left: 410px;
+        top: 75px;
+    }
+    .colorwrapper.buegel {
+        left: 565px;
+        top: 42px;
+    }
+    .colorwrapper.arbeits {
+        left: 70px;
+        top: 132px;
+    }        
+    .colorwrapper.kueche {
+        left: 590px;
+        top: 178px;
+    }
+    .colorwrapper.wohn {
+        left: 360px;
+        top: 360px;
+    }
+    .colorwrapper.schlaf {
+    left: 120px;
+    top: 360px;
+    }
+     .colorcircle p {
+    line-height: 0.7rem;
+    font-weight: 500;
+    top: 20px;
+    font-size: 1.4rem;
+    }
 }
 
 /* Extra large devices (large desktops, 1200px and up) */
@@ -298,5 +425,46 @@
 .haus {
         width: 850px;
     }
-    
+    .colorcircle {
+        width: 100px;
+        height: 100px;
+   }
+    .colorwrapper.bad {
+        left: 150px;
+        top: 55px;
+    }
+    .colorwrapper.wasch {
+        left: 310px;
+        top: 80px;
+    }
+    .colorwrapper.kinder {
+        left: 480px;
+        top: 80px;
+    }
+    .colorwrapper.buegel {
+        left: 675px;
+        top: 50px;
+    }
+    .colorwrapper.arbeits {
+        left: 85px;
+        top: 220px;
+    }        
+    .colorwrapper.kueche {
+        left: 700px;
+        top: 210px;
+    }
+    .colorwrapper.wohn {
+        left: 400px;
+        top: 440px;
+    }
+    .colorwrapper.schlaf {
+    left: 130px;
+    top: 440px;
+    }
+     .colorcircle p {
+    line-height: 1rem;
+    font-weight: 500;
+    top: 26px;
+    font-size: 1.6rem;
+    }
 }
