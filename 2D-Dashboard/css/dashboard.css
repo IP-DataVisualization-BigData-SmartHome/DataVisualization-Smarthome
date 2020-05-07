@@ -129,103 +129,54 @@
     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
 
-.colorcircle  .filled-bad{
+.colorcircle  .filled{
     position: absolute;
     bottom: 0; left: 0;
     width: 100%;
     height: 80%;
-    background-color: #3FBAFF;
     z-index: 1 !important;
     transition: height 600ms;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .75);
+      
+      transform: rotate(0deg);
+    background-color: hsl(191, 71%, 98%);
+   
 }
-.colorcircle  .filled-arbeits{
-    position: absolute;
-    bottom: 0; left: 0;
-    width: 100%;
-    height: 50%;
-    background-color: #3FBAFF;
-    z-index: 1 !important;
-    transition: height 600ms;
-}
+
+
+
 .colorwrapper.schlaf {
     left: 75px;
     top: 175px;
 }
-.colorcircle  .filled-schlaf{
-    position: absolute;
-    bottom: 0; left: 0;
-    width: 100%;
-    height: 50%;
-    background-color: #3FBAFF;
-    z-index: 1 !important;
-    transition: height 600ms;
-}
+
 
 .colorwrapper.wasch {
     left: 148px;
     top: 28px;
 }
-.colorcircle  .filled-wasch{
-    position: absolute;
-    bottom: 0; left: 0;
-    width: 100%;
-    height: 50%;
-    background-color: #3FBAFF;
-    z-index: 1 !important;
-    transition: height 600ms;
-}
+
 .colorwrapper.kinder {
     left: 218px;
     top: 28px;
 }
-.colorcircle  .filled-kinder{
-    position: absolute;
-    bottom: 0; left: 0;
-    width: 100%;
-    height: 50%;
-    background-color: #3FBAFF;
-    z-index: 1 !important;
-    transition: height 600ms;
-}
+
 .colorwrapper.buegel {
     left: 295px;
     top: 17px;
 }
-.colorcircle  .filled-buegel{
-    position: absolute;
-    bottom: 0; left: 0;
-    width: 100%;
-    height: 50%;
-    background-color: #3FBAFF;
-    z-index: 1 !important;
-    transition: height 600ms;
-}
+
 .colorwrapper.kueche {
     left: 310px;
     top: 85px;
 }
-.colorcircle  .filled-kueche{
-    position: absolute;
-    bottom: 0; left: 0;
-    width: 100%;
-    height: 50%;
-    background-color: #3FBAFF;
-    z-index: 1 !important;
-    transition: height 600ms;
-}
+
 .colorwrapper.wohn {
     left: 190px;
     top: 175px;
 }
-.colorcircle  .filled-wohn{
-    position: absolute;
-    bottom: 0; left: 0;
-    width: 100%;
-    height: 50%;
-    background-color: #3FBAFF;
-    z-index: 1 !important;
-    transition: height 600ms;
-}
+
 
 .colorcircle p {
     position: relative;
