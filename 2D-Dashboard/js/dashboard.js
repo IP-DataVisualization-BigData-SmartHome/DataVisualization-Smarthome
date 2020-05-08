@@ -1,3 +1,13 @@
+$(".more_info").click(function () {
+    var $title = $(this).find(".title");
+    if (!$title.length) {
+        $(this).append('<span class="title">' + $(this).attr("title") + '</span>');
+    } else {
+        $title.remove();
+    }
+});
+
+
 var rooms = [
     {name: "bad",
      data: {
@@ -65,11 +75,10 @@ function updateValues() {
         console.log(room.name);
         var ps = $("." + room.name + ' p');
         var filled = $('#' + room.name + '-fill');
-        ps[0].innerHTML = room.data.currentTemp + "°";
-        ps[1].innerHTML = room.data.currentHum + "%";
+        ps[0].innerHTML = room.data.currentTemp + "<i class='mdi mdi-temperature-celsius kreis-icon'>";
+        ps[1].innerHTML = room.data.currentHum + "<i class='mdi mdi-water-percent kreis-icon'>";
         var perc = (((room.data.currentTemp-room.data.minTemp)/(room.data.maxTemp-room.data.minTemp))*100).toFixed(0);
         var color = calcHSV(perc);
-        console.log(color);
         filled.css('background-color', 'hsl('+color[0]+', '+color[1]+'%, '+color[2]+'%)')
         filled.css("height", perc + "%");
     }
