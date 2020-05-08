@@ -1,0 +1,480 @@
+.helpicon:before {
+    color:  #C4C4C4;  
+    font-size: 2rem;
+    padding-top: 1rem;
+    display: inline-block;
+    padding-right: 0.2rem;
+    
+}
+.helpdiv {
+    
+/* margin-top hinzugefügt damit obere nav passt */
+    margin-top: 6.5vw;
+    text-align: right;
+    
+}
+.haus {
+    font-family: 'Roboto', sans-serif;
+    padding-left: 1rem;
+    width: 350px;
+    height: auto;
+    margin-left: 30px;
+   
+   
+    
+    
+}
+.licht {
+    background-color: #595A59;
+    border-radius: 10px;
+    color: #C4C4C4;
+    text-align: center;
+    width: 110px;
+    font-weight: 600;
+    margin-left: 2.5rem;
+}
+.strom {
+    background-color: #595A59;
+    border-radius: 5px;
+    color: #C4C4C4;
+    text-align: center;
+    margin-bottom: 1rem;
+    width: 110px;
+    vertical-align: middle;
+    font-weight: 600;
+    margin-left: 2.5rem;
+}
+.icons-verbrauch{
+    font-size: 300%;
+}
+.icons-verbrauch:before{
+    font-size: 100%;
+}
+.verbrauch-text {
+    padding-top: 1%;
+    padding-bottom: 1%;
+    font-size: 0.8rem;
+  }
+.verbrauch-zahl {
+    padding-top: 1%;
+    padding-bottom: 1%;
+    font-size: 1.2rem;
+}
+.main-div {
+    padding-bottom: 5%;
+   
+}
+
+.main-div.relative {
+    position: relative;
+}
+
+/* Von Simon erstellt */
+.text-head{
+    font-size: 4vw;
+}
+
+.luft-wind{
+    margin-top: 1.3vw;
+    font-size: 1vw;
+    margin-left: -1.7vw;
+}
+
+#Datum{
+    font-size: 1.2vw;
+    margin-top: -1.5vw;
+    padding-bottom: 0.3vw;
+}
+
+.nav-head{
+    color: #C4C4C4;
+    text-decoration: inherit;
+}
+
+.nav-head:hover{
+    color: #737373;
+    text-decoration: none; 
+}
+
+.headicon::before{
+    font-size: 4vw;
+    margin-top: -0.5vw;
+    margin-right: -2vw;
+}
+
+.colorwrapper {
+    position: absolute;
+}
+
+.colorwrapper.bad {
+    left: 90px;
+    top: 18px;
+}
+.colorwrapper.arbeits {
+    left: 58px;
+    top: 88px;
+}
+
+.colorcircle {
+    width: 45px;
+    height: 45px;
+    position: absolute;
+    text-align: center;
+    background-color: #8A8B8A;
+
+    border-radius: 50%;
+    z-index: 2 !important;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.colorcircle  .filled-bad{
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 80%;
+    background-color: #3FBAFF;
+    z-index: 1 !important;
+    transition: height 600ms;
+}
+.colorcircle  .filled-arbeits{
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 50%;
+    background-color: #3FBAFF;
+    z-index: 1 !important;
+    transition: height 600ms;
+}
+.colorwrapper.schlaf {
+    left: 75px;
+    top: 175px;
+}
+.colorcircle  .filled-schlaf{
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 50%;
+    background-color: #3FBAFF;
+    z-index: 1 !important;
+    transition: height 600ms;
+}
+
+.colorwrapper.wasch {
+    left: 148px;
+    top: 28px;
+}
+.colorcircle  .filled-wasch{
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 50%;
+    background-color: #3FBAFF;
+    z-index: 1 !important;
+    transition: height 600ms;
+}
+.colorwrapper.kinder {
+    left: 218px;
+    top: 28px;
+}
+.colorcircle  .filled-kinder{
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 50%;
+    background-color: #3FBAFF;
+    z-index: 1 !important;
+    transition: height 600ms;
+}
+.colorwrapper.buegel {
+    left: 295px;
+    top: 17px;
+}
+.colorcircle  .filled-buegel{
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 50%;
+    background-color: #3FBAFF;
+    z-index: 1 !important;
+    transition: height 600ms;
+}
+.colorwrapper.kueche {
+    left: 310px;
+    top: 85px;
+}
+.colorcircle  .filled-kueche{
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 50%;
+    background-color: #3FBAFF;
+    z-index: 1 !important;
+    transition: height 600ms;
+}
+.colorwrapper.wohn {
+    left: 190px;
+    top: 175px;
+}
+.colorcircle  .filled-wohn{
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 50%;
+    background-color: #3FBAFF;
+    z-index: 1 !important;
+    transition: height 600ms;
+}
+
+.colorcircle p {
+    position: relative;
+    text-align: center;
+    line-height: 0.1rem;
+    z-index: 2;
+    font-weight: 500;
+    top: 15px;
+    font-size: 0.8rem;
+    
+}
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) { 
+    .haus {
+        width: 420px;
+        margin-left: 35px;
+    }
+    .colorcircle {
+        width: 55px;
+        height: 55px;
+   }
+    .colorwrapper.bad {
+        left: 100px;
+        top: 20px;
+    }
+    .colorwrapper.wasch {
+        left: 174px;
+        top: 32px;
+    }
+    .colorwrapper.kinder {
+        left: 255px;
+        top: 32px;
+    }
+    .colorwrapper.buegel {
+        left: 350px;
+        top: 20px;
+    }
+    .colorwrapper.arbeits {
+        left: 65px;
+        top: 102px;
+    }        
+    .colorwrapper.kueche {
+        left: 367px;
+        top: 102px;
+    }
+    .colorwrapper.wohn {
+        left: 220px;
+        top: 210px;
+    }
+    .colorwrapper.schlaf {
+    left: 87px;
+    top: 210px;
+    }
+    .colorcircle p {
+    line-height: 0.2rem;
+    font-weight: 500;
+    top: 16px;
+    font-size: 1rem;
+    }
+
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) { 
+.licht {
+    background-color: #595A59;
+    border-radius: 10px;
+    color: #C4C4C4;
+    text-align: center;
+    width: 120px;
+    font-weight: 600;
+}
+.strom {
+    background-color: #595A59;
+    border-radius: 5px;
+    color: #C4C4C4;
+    text-align: center;
+    margin-bottom: 1rem;
+    width: 120px;
+    vertical-align: middle;
+    font-weight: 600;
+}
+.verbrauch-text {
+    padding-top: 10px;
+    padding-bottom: 6px;
+    font-size: 0.9rem;
+  }
+.verbrauch-zahl {
+    padding-top: 1%;
+    padding-bottom: 1%;
+    font-size: 1.3rem;
+}
+    .icons-verbrauch{
+    font-size: 500%;
+}
+    
+    .haus {
+        width: 520px;
+    }
+    .colorcircle {
+        width: 65px;
+        height: 65px;
+   }
+    .colorwrapper.bad {
+        left: 100px;
+        top: 30px;
+    }
+    .colorwrapper.wasch {
+        left: 205px;
+        top: 50px;
+    }
+    .colorwrapper.kinder {
+        left: 310px;
+        top: 50px;
+    }
+    .colorwrapper.buegel {
+        left: 430px;
+        top: 28px;
+    }
+    .colorwrapper.arbeits {
+        left: 70px;
+        top: 132px;
+    }        
+    .colorwrapper.kueche {
+        left: 450px;
+        top: 128px;
+    }
+    .colorwrapper.wohn {
+        left: 260px;
+        top: 260px;
+    }
+    .colorwrapper.schlaf {
+    left: 100px;
+    top: 260px;
+    }
+    .colorcircle p {
+    line-height: 0.4rem;
+    font-weight: 500;
+    top: 18px;
+    font-size: 1.2rem;
+    }
+
+
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) { 
+     .licht {
+        margin-top: 80px;
+    }
+    
+    .haus {
+        width: 700px;
+    }
+    .colorcircle {
+        width: 80px;
+        height: 80px;
+   }
+    .colorwrapper.bad {
+        left: 130px;
+        top: 45px;
+    }
+    .colorwrapper.wasch {
+        left: 265px;
+        top: 75px;
+    }
+    .colorwrapper.kinder {
+        left: 410px;
+        top: 75px;
+    }
+    .colorwrapper.buegel {
+        left: 565px;
+        top: 42px;
+    }
+    .colorwrapper.arbeits {
+        left: 80px;
+        top: 185px;
+    }        
+    .colorwrapper.kueche {
+        left: 590px;
+        top: 178px;
+    }
+    .colorwrapper.wohn {
+        left: 360px;
+        top: 360px;
+    }
+    .colorwrapper.schlaf {
+    left: 120px;
+    top: 360px;
+    }
+     .colorcircle p {
+    line-height: 0.7rem;
+    font-weight: 500;
+    top: 20px;
+    font-size: 1.4rem;
+    }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) { 
+   .licht {
+        margin-top: 80px;
+    }
+    .strom {
+        margin-top: 30px;
+    }
+    .haus {
+            width: 850px;
+        }
+    .colorcircle {
+        width: 100px;
+        height: 100px;
+   }
+    .colorwrapper.bad {
+        left: 150px;
+        top: 55px;
+    }
+    .colorwrapper.wasch {
+        left: 310px;
+        top: 80px;
+    }
+    .colorwrapper.kinder {
+        left: 480px;
+        top: 80px;
+    }
+    .colorwrapper.buegel {
+        left: 675px;
+        top: 50px;
+    }
+    .colorwrapper.arbeits {
+        left: 85px;
+        top: 220px;
+    }        
+    .colorwrapper.kueche {
+        left: 700px;
+        top: 210px;
+    }
+    .colorwrapper.wohn {
+        left: 400px;
+        top: 440px;
+    }
+    .colorwrapper.schlaf {
+    left: 130px;
+    top: 440px;
+    }
+     .colorcircle p {
+    line-height: 1rem;
+    font-weight: 500;
+    top: 26px;
+    font-size: 1.6rem;
+    }
+}

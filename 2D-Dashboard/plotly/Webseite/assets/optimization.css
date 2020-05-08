@@ -1,0 +1,54 @@
+.head-optimization{
+    font-size: 2vw;
+    padding-top: 1.7vw;
+    padding-bottom: 1.7vw;
+}
+
+.main{
+    margin-top: 7vw;
+}
+
+.card-icon::before{
+    font-size: 6vw;
+    margin-top: 1.5vw;
+}
+
+.card-title{
+    font-size: 2vw;
+}
+
+.card{
+    background-color: #595A59;
+    color: #BFC0BF;
+    margin-bottom: 2vw;
+}
+
+.card:last-child{
+    background-color: #595A59;
+    color: #BFC0BF;
+    margin-bottom: 100px;
+}
+
+
+.card-graph{
+    background-color: #BFC0BF;
+    color: #595A59;
+    border-radius: 4px;
+    font-size: 150%;
+    height: 18vw;
+}
+
+.card-text{
+    margin-top: 1vw;
+}
+
+.card-btn{
+    background-color: #BFC0BF;
+    color: #595A59;
+    text-decoration: none;
+}
+
+.card-btn:hover{
+    color: #737373;
+    background-color: #BFC0BF;
+}
