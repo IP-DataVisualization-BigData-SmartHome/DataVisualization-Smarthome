@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+      <link rel="stylesheet" href="https://cdn.materialdesignicons.com/5.1.45/css/materialdesignicons.min.css">
+    
+    <title>Dashboard</title>
+    <link href="../css/main.css" rel="stylesheet">
+    <link href="../css/dashboard.css" rel="stylesheet">
+  </head>
+    
+    
+    
+  <body>
+      <!-- Von Simon erstellter Navhead -->
+      <nav class="fixed-top">
+        <div class="container-fluid head-design">
+            <div class="row">
+                <div class="col-3 text-right text-head">
+                    <i class="mdi mdi-weather-sunny headicon "></i> <!-- Datensatz: Temperatur draußen -->
+                </div>
+                <div class="col-1 text-left text-head">
+                    <div>10°C</div> <!-- Datensatz: Temperatur draußen -->
+                </div>
+                <div class="col-4 text-center text-head" >
+                    <a class="nav-head" href="#"> 18:20</a> <!-- Bei Click Uhrzeitauswahl -->
+                </div>
+                <div class="col-4 text-left luft-wind">
+                    <div>Luftfeuchte: 43%</div> <!-- Datensatz: Luftfeuchte draußen -->
+                    <div>Wind: 10 km/h</div> <!-- Datensatz: Wind draußen -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4"></div>
+              
+                <div class="col-4 text-center" id="Datum">
+                     <a class="nav-head" href="#"> Montag, 17. Nov.</a> <!-- Bei Click Datumauswahl -->
+                </div>
+               
+                <div class="col-4"></div>
+            </div>
+        </div>
+    </nav>
+      
+      <!-- Simon Ende -->
+          
+
+      
+      <div class="container main">
+          
+          <div class="row">
+          <div class="col-2 main-div relative d-flex justify-content-center">
+              <div class="sidecard">
+                <div class="strom"> <!-- Strom-Fläche -->
+                    <div class="verbrauch-text">Stromverbrauch</div>
+                    <div><i class="mdi mdi-flash icons-verbrauch"></i></div>
+                    <div class="stromverbrauch verbrauch-zahl">200 W</div> <!-- Stromverbrauch eintragen --> </div>
+                <div class="licht"> <!-- Licht-Fläche -->
+                    <div class="verbrauch-text">Lichtverbrauch</div>
+                    <div><i class="mdi mdi-lightbulb-on icons-verbrauch"></i></div>
+                    <div class="lichtverbrauch verbrauch-zahl">22 W</div> <!-- Lichtverbrauch eintragen -->
+                </div>
+              </div>
+          </div>
+          <div class="col-8"> <!-- Grundriss -->
+              
+            <div class="row">
+                
+                
+                    <a class="kreise-link" href="/bad"><div class="colorwrapper bad">
+                    <div class="colorcircle">
+                        <div class="filled" id="bad-fill"></div>
+                    <p>19°</p>
+                    <p>50%</p>
+                        </div></div></a>
+               
+                    <a class="kreise-link" href="/arbeitszimmer"><div class="colorwrapper arbeits">
+                    <div class="colorcircle">
+                    <div class="filled" id="arbeits-fill"></div>
+                    <p>19°</p>
+                    <p>50%</p>
+                        </div></div></a>
+                
+                   <a class="kreise-link" href="/schlafzimmer"> <div class="colorwrapper schlaf">
+                    <div class="colorcircle">
+                    <div class="filled" id="schlaf-fill"></div>
+                    <p>19°</p>
+                    <p>50%</p>
+                       </div></div></a>
+                
+                    <a class="kreise-link" href="/waschkueche"><div class="colorwrapper wasch">
+                    <div class="colorcircle">
+                    <div class="filled" id="wasch-fill"></div>
+                    <p>19°</p>
+                    <p>50%</p>
+                        </div></div></a>
+                
+                    <a class="kreise-link" href="/kinderzimmer"><div class="colorwrapper kinder">
+                    <div class="colorcircle">
+                    <div class="filled" id="kinder-fill"></div>
+                    <p>19°</p>
+                    <p>50%</p>
+                        </div></div></a>
+                
+                    <a class="kreise-link" href="/buegelzimmer"><div class="colorwrapper buegel">
+                    <div class="colorcircle">
+                    <div class="filled" id="buegel-fill"></div>
+                    <p>19°</p>
+                    <p>50%</p>
+                        </div></div></a>
+                
+                <a class="kreise-link" href="/kueche"><div class="colorwrapper kueche">
+                    <div class="colorcircle">
+                    <div class="filled" id="kueche-fill"></div>
+                    <p>19°</p>
+                    <p>50%</p>
+                    </div></div></a>
+                
+                <a class="kreise-link" href="/wohnzimmer"><div class="colorwrapper wohn">
+                    <div class="colorcircle">
+                    <div class="filled" id="wohn-fill"></div>
+                    <p>19°</p>
+                    <p>50%</p>
+                    </div></div></a>
+            <div class="align-self-center">
+                <object class="haus" data="../dateien/Grundriss2D-01_imagemap_2-01.svg" type="image/svg+xml"> </object>
+                    </div>
+            </div>                            
+          </div>
+              <div class="col-2 main-div"> <div class="helpdiv"><span class="more_info" title="Die obere Zahl in jedem Kreis stellt die Temperatur dar, die untere Zahl zeigt die Luftfeuchtigkeit. Ein Klick auf einen Raum oder Kreis öffnet eine Übersicht über den einzelnen Raum."><i class="mdi mdi-help-circle-outline helpicon"></i></span></div></div>
+        </div>
+    
+      
+   <!-- Navbar Anfang -->   
+    <nav class="navbar fixed-bottom">   
+      <div class="container-fluid navdiv">
+        <div class="col navdiv">
+            <a class="nav-link" href="analytics.html"><i class="mdi mdi-google-analytics navicon"></i><p class="nav-text">Analytics</p></a>
+         </div>
+          
+            <div class="col navdiv">
+            <a class="nav-link nav-link-active" href="#"> <i class="mdi mdi-home navicon"></i><p class="nav-text">Dashboard</p></a>
+        </div> 
+            
+            <div class="col navdiv">
+              <a class="nav-link" href="optimization.html"><i class="mdi mdi-sync navicon"></i><p class="nav-text">Optimization</p></a>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar Ende -->  
+      
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="../js/dashboard.js"></script>
+  </body>
+    
+</html>

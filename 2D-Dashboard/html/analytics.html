@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+      <link rel="stylesheet" href="https://cdn.materialdesignicons.com/5.1.45/css/materialdesignicons.min.css">
+    
+    <title>Analytics</title>
+    <link href="../css/main.css" rel="stylesheet">
+    <link href="../css/analytics.css" rel="stylesheet">
+  </head>
+    
+    
+    
+  <body>
+      <nav class="fixed-top">
+        <div class="container-fluid head-design">
+            <div class="row">
+                <div class="col-4"></div>
+                <div class="col-4 text-center head-analytics">
+                    <a>Analytics</a>
+                </div>
+                <div class="col-4"></div>
+                
+            </div>
+        </div>
+    </nav>
+          
+    <main>
+    <form methode="post" action="">
+        <div class="container-fluid main">
+            <div class="row">
+                <div class="col-3">
+                    
+                    <div class="frame">
+                      <input class="checkbox" name="room" type="checkbox" value="1" id="Alle">
+                      <label class="room-selection" for="Alle">Alle</label>
+                    </div>
+                    <div class="frame">
+                      <input class="checkbox" name="room" type="checkbox" value="2" id="Arbeitszimmer">
+                      <label class="room-selection" for="Arbeitszimmer">Arbeitszimmer</label>
+                    </div>
+                    <div class="frame">
+                      <input class="checkbox" name="room" type="checkbox" value="3" id="Badezimmer">
+                      <label class="room-selection" for="Badezimmer">Badezimmer</label>
+                    </div>
+                    <div class="frame">
+                      <input class="checkbox" name="room" type="checkbox" value="4" id="Bügelzimmer">
+                      <label class="room-selection" for="Bügelzimmer">Bügelzimmer</label>
+                    </div>
+                    <div class="frame">
+                      <input class="checkbox" name="room" type="checkbox" value="5" id="Kinderzimmer">
+                      <label class="room-selection" for="Kinderzimmer">Kinderzimmer</label>
+                    </div>
+                    <div class="frame">
+                      <input class="checkbox" name="room" type="checkbox" value="6" id="Küche">
+                      <label  class="room-selection" for="Küche">Küche</label>
+                    </div>
+                    <div class="frame">
+                      <input class="checkbox" name="room" type="checkbox" value="7" id="Schlafzimmer">
+                      <label class="room-selection" for="Schlafzimmer">Schlafzimmer</label>
+                    </div>
+                    <div class="frame">
+                      <input class="checkbox" name="room" type="checkbox" value="8" id="Waschküche">
+                      <label class="room-selection" for="Waschküche">Waschküche</label>
+                    </div>
+                    <div class="frame">
+                      <input class="checkbox" name="room" type="checkbox" value="9" id="Wohnzimmer">
+                      <label class="room-selection" for="Wohnzimmer">Wohnzimmer</label>
+                    </div>
+                    
+                </div>
+                
+                <div class="col-9">
+                    <div class="graph">
+                        Plotly Diagramm
+                    </div>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-3 "><input type="submit" value="Absenden"></div>
+                
+                <div class="col-9">
+                    <!-- Kurz was zu den Auswahlregeln:
+                        Bei merherer Raumauswahl, kann nur die Temperatur oder Luftfeuchte ausgewhählt werden. Die Außen Temperatur kann Wahlweise dazu angezeigt werden
+
+                        Bei einzelner Raum Ansicht, kann Temperatur und Luftfeuchte und Außen Temperatur angezeigt werden.
+
+-->
+                    <div class="select form-check-inline">
+                        <div class="form-check-inline">
+                          <input class="checkbox" type="checkbox" name="AttSelect" id="Temp" value="Temp">
+                          <label class="time" for="Temp">Temperatur</label>
+                            </div>
+                        <div class="form-check-inline">
+                          <input class="checkbox" type="checkbox" name="AttSelect" id="Luft" value="Humi">
+                          <label class="time" for="Luft">Luftfeuchte</label>
+                        </div>
+                        <div class="form-check-inline">
+                          <input class="checkbox" type="checkbox" name="AttSelect" id="TempD" value="TempD">
+                          <label class="time" for="TempD">Temp. draußen</label>
+                        </div>
+                    </div>
+                    
+                    
+                
+                    <div class="select form-check-inline">
+                        <div class="form-check-inline datepicker">
+                            <label class="time">Letzter Tag: Placeholder Datepicker</label>
+                            
+                            
+
+                            </div>
+                    </div>
+               
+                
+                
+                
+              
+                    <div class="select form-check-inline">
+                        <div class="form-check-inline">
+                          <input class="checkbox" type="radio" name="TimeFrame" id="Tag" value="D">
+                          <label class="time" for="Tag">TAG</label>
+                            </div>
+                        <div class="form-check-inline">
+                          <input class="checkbox" type="radio" name="TimeFrame" id="Woche" value="W">
+                          <label class="time" for="Woche">WOCHE</label>
+                        </div>
+                        <div class="form-check-inline">
+                          <input class="checkbox" type="radio" name="TimeFrame" id="Monat" value="M">
+                          <label class="time" for="Monat">MONAT</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      
+      </form>
+      
+      </main>
+      
+      
+    <nav class="navbar fixed-bottom">   
+      <div class="container-fluid navdiv">
+        <div class="col navdiv">
+            <a class="nav-link nav-link-active" href="#"><i class="mdi mdi-google-analytics navicon"></i><p class="nav-text">Analytics</p></a>
+         </div>
+          
+            <div class="col navdiv">
+            <a class="nav-link " href="dashboard.html"> <i class="mdi mdi-home navicon"></i><p class="nav-text">Dashboard</p></a>
+        </div> 
+            
+            <div class="col navdiv">
+              <a class="nav-link" href="optimization.html"><i class="mdi mdi-sync navicon"></i><p class="nav-text">Optimization</p></a>
+            </div>
+        </div>
+    </nav>
+      
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+    
+</html>
