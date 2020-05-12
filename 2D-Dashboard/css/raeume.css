@@ -1,0 +1,86 @@
+.container-fluid.main {    
+/* margin-top hinzugefügt damit obere nav passt */
+    margin-top: 6.0vw;
+    margin-bottom: 0vw;
+    height: 100%;
+}
+.card-graph{
+    background-color: #BFC0BF;
+    color: #595A59;
+    border-radius: 4px;
+    font-size: 150%;
+    height: 18vw;
+    width: 80%;
+    margin-bottom: 1rem;
+}
+.left {
+    padding-left: 2vw;
+    padding-right: 2vw;
+    background-color: #595A59;
+    margin: 0;
+    height: 100%;
+}
+.right {
+    padding-right: 2vw;
+}
+.data {
+    
+    text-align: center;
+    line-height: 0.1rem;
+    font-weight: 500;
+    font-size: 1rem;
+}
+.data i:before {
+    font-size: 1rem;
+}
+.data-container {
+    width: 80%;
+    margin-left: 0;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+
+@media (min-width: 576px) { 
+   .data {
+    
+    text-align: center;
+    line-height: 0.1rem;
+    font-weight: 500;
+    font-size: 1.4rem;
+}
+.data i:before {
+    font-size: 1.4rem;
+} 
+}
+
+
+@media (min-width: 768px) { 
+    .data {
+    
+    text-align: center;
+    line-height: 0.1rem;
+    font-weight: 500;
+    font-size: 1.8rem;
+}
+.data i:before {
+    font-size: 1.8rem;
+} 
+}
+
+@media (min-width: 992px) { 
+    .data {
+    
+    text-align: center;
+    line-height: 0.1rem;
+    font-weight: 500;
+    font-size: 2rem;
+}
+.data i:before {
+    font-size: 2rem;
+} 
+}
+
+@media (min-width: 1200px) { 
+    
+}

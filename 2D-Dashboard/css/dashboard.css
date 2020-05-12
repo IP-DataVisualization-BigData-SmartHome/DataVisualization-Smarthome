@@ -62,45 +62,13 @@
 }
 .main-div {
     padding-bottom: 5%;
-   
 }
 
 .main-div.relative {
     position: relative;
 }
 
-/* Von Simon erstellt */
-.text-head{
-    font-size: 4vw;
-}
 
-.luft-wind{
-    margin-top: 1.3vw;
-    font-size: 1vw;
-    margin-left: -1.7vw;
-}
-
-#Datum{
-    font-size: 1.2vw;
-    margin-top: -1.5vw;
-    padding-bottom: 0.3vw;
-}
-
-.nav-head{
-    color: #C4C4C4;
-    text-decoration: inherit;
-}
-
-.nav-head:hover{
-    color: #737373;
-    text-decoration: none; 
-}
-
-.headicon::before{
-    font-size: 4vw;
-    margin-top: -0.5vw;
-    margin-right: -2vw;
-}
 
 .colorwrapper {
     position: absolute;
@@ -121,7 +89,6 @@
     position: absolute;
     text-align: center;
     background-color: #8A8B8A;
-
     border-radius: 50%;
     z-index: 2 !important;
     overflow: hidden;
@@ -183,8 +150,7 @@
     font-weight: 500;
     top: 15px;
     font-size: 0.8rem;
-  
-}
+ }
 .kreis-icon:before {
     font-size: 0.8rem;
     line-height: 0.1rem;
