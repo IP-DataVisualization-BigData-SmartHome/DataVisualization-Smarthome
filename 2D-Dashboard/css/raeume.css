@@ -1,16 +1,25 @@
+html,
+body {
+    height: 100%;
+}
 .container-fluid.main {    
 /* margin-top hinzugefügt damit obere nav passt */
-    margin-top: 6.0vw;
+    margin-top: 5.7vw;
     margin-bottom: 0vw;
     height: 100%;
+}
+.ueber {
+    text-align: center;
+    padding-right: 0%;
+    padding-top:  10px;
 }
 .card-graph{
     background-color: #BFC0BF;
     color: #595A59;
     border-radius: 4px;
     font-size: 150%;
-    height: 18vw;
-    width: 80%;
+    height: 14vw;
+    width: 100%;
     margin-bottom: 1rem;
 }
 .left {
@@ -19,6 +28,7 @@
     background-color: #595A59;
     margin: 0;
     height: 100%;
+    
 }
 .right {
     padding-right: 2vw;
@@ -28,16 +38,24 @@
     text-align: center;
     line-height: 0.1rem;
     font-weight: 500;
-    font-size: 1rem;
+    font-size: 1.8rem;
 }
 .data i:before {
-    font-size: 1rem;
+    font-size: 1.8rem;
 }
 .data-container {
-    width: 80%;
+    width: 100%;
     margin-left: 0;
-    margin-top: 1.5rem;
+    margin-right: 0;
+    margin-top: 2rem;
     margin-bottom: 1.5rem;
+    
+}
+.haus{
+    position: absolute;
+    left: 40px;
+    top: 40px;
+    width: 75%
 }
 
 
@@ -47,11 +65,12 @@
     text-align: center;
     line-height: 0.1rem;
     font-weight: 500;
-    font-size: 1.4rem;
+    font-size: 1.8rem;
 }
 .data i:before {
-    font-size: 1.4rem;
+    font-size: 1.8rem;
 } 
+    
 }
 
 
@@ -66,7 +85,9 @@
 .data i:before {
     font-size: 1.8rem;
 } 
+    
 }
+
 
 @media (min-width: 992px) { 
     .data {
@@ -76,9 +97,33 @@
     font-weight: 500;
     font-size: 2rem;
 }
-.data i:before {
+    .reihe {
+    height: 100%;
+    }
+    .data i:before {
     font-size: 2rem;
-} 
+    } 
+    .haus{
+        width: 100%
+    }
+    .data-container {
+    width: 90%;
+    
+}
+    .ueber {
+    
+    padding-right: 10%;
+}
+    .card-graph{
+    background-color: #BFC0BF;
+    color: #595A59;
+    border-radius: 4px;
+    font-size: 150%;
+    height: 14vw;
+    width: 90%;
+    margin-bottom: 1rem;
+}
+    
 }
 
 @media (min-width: 1200px) { 
