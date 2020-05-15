@@ -1,8 +1,3 @@
-.head-analytics{
-    font-size: 2vw;
-    padding-top: 1.7vw;
-    padding-bottom: 1.7vw;
-}
 
 .main{
     margin-top: 7vw;
@@ -31,6 +26,7 @@
 .frame{
     margin-top: -25px;
 }
+
 
 .room-selection{
     background-color: #595A59;
@@ -85,5 +81,16 @@ input[type="radio"]:checked + label:hover {
 
 input[type="radio"]:checked + label {
    color: #00B1AC;
+}
+
+.submit{
+    background-color: #00B1AC;
+    color: ##595A59;
+    border-radius: 4px;
+   font-size: 1vw;
+    width: 100%;
+    height: 100%;
+    border-color: #595A59;
+    border-width: 2px;
 }
 

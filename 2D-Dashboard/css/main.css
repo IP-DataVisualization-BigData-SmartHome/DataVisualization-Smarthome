@@ -106,25 +106,28 @@ body{
     color: #BFC0BF;
     padding-top: 0rem;
     padding-bottom: 0rem;
-    margin-top: -0.5vw;
+    margin-top: -10px;
+    height: 90px;
 }
 
-
-/* Von Simon erstellt */
 .text-head{
-    font-size: 4vw;
+    font-size: 350%;
+}
+
+.text-head-detail{
+    font-size: 250%;
+    margin-top: 16px;
 }
 
 .luft-wind{
-    margin-top: 1.3vw;
-    font-size: 1vw;
-    margin-left: -1.7vw;
+    margin-top: 15px;
+    font-size: 110%;
 }
 
 #Datum{
-    font-size: 1.2vw;
-    margin-top: -1.5vw;
-    padding-bottom: 0.3vw;
+    font-size: 115%;
+    margin-top: -24px;
+    padding-bottom: 3px;
 }
 
 .nav-head{
@@ -138,9 +141,7 @@ body{
 }
 
 .headicon::before{
-    font-size: 4vw;
-    margin-top: -0.5vw;
-    margin-right: -2vw;
+    font-size: 100%;
 }
 
 
