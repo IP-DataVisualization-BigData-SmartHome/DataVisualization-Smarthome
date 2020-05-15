@@ -4,7 +4,7 @@ body {
 }
 .container-fluid.main {    
 /* margin-top hinzugefügt damit obere nav passt */
-    margin-top: 5.7vw;
+    margin-top: 5rem;
     margin-bottom: 0vw;
     height: 100%;
 }
@@ -34,7 +34,6 @@ body {
     padding-right: 2vw;
 }
 .data {
-    
     text-align: center;
     line-height: 0.1rem;
     font-weight: 500;
