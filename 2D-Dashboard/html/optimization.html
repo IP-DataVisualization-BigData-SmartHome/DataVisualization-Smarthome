@@ -36,7 +36,7 @@
           
     <main>
         <div class="container-fluid main">
-            <div class="row">
+            <div class="row big"> <!-- Desktop/Tablet/TV Ansicht -->
                 <div class="col-1">
                     <i class="mdi mdi-weather-sunny"></i> <!-- Wetter Icon, noch mehr in der material Dokumentation vorhanden -->
                       <i class="mdi mdi-wind-turbine"></i> <!-- Icon für Windkraft -->
@@ -126,6 +126,32 @@
                 </div>
                 
                 <div class="col-1"></div>
+            </div>
+            
+            <div class="row small"> <!-- Mobile Ansicht -->
+                 <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-8">
+                                    <h5 class="card-title">Viel Wind</h5>
+                                </div>
+                                <div class="col-4 text-right ">
+                                   <i class="mdi mdi-wind-turbine card-icon"></i>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card-graph">
+                                        Plotly Diagramm
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="card-text">Der Bau einer Windkraftanlage würde sich lohnen</p>
+                            <a href="#" class="card-btn btn btn-sm">Mehr dazu</a> <!-- Link zu Analytics -->
+                        </div>
+                    </div> 
+                 </div>
             </div>
         </div>  
     </main>
