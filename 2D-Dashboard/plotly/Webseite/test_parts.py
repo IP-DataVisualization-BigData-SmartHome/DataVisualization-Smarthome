@@ -21,21 +21,7 @@ import dash_html_components as html
 import dash_bootstrap_components as dbc
 import dash
 
-Header = html.Nav(className='fixed-top', 
-                  children= 
-                      html.Div(className='container-fluid head-design',
-                               children= 
-                                   html.Div(className='row',
-                                            children= [                                   
-                                                        html.Div(className='col-4'),
-                                                        html.Div(className='col-4 text-center head-analytics', 
-                                                                 children= html.A('Analytics')
-                                                                 ),
-                                                        html.Div(className='col-4')
-                                                      ]
-                                            )
-                                )
-                    )
+Header = html.Button('Absenden', type='submit', )
                                             
 external_scripts = [
     {
@@ -67,7 +53,7 @@ external_stylesheets = [
 app = dash.Dash(external_stylesheets=external_stylesheets, external_scripts=external_scripts)
 app.title = 'Analytics'
 
-app.layout = Header
+app.layout = html.Div(Header)
 
 if __name__ == "__main__":
     app.run_server()
