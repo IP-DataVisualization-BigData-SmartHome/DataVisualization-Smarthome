@@ -125,7 +125,8 @@ class Dashboard:
                                                                                                                             children=
                                                                                                                                         html.Div(className='colorcircle',
                                                                                                                                                  children=[
-                                                                                                                                                             html.Div(className='filled-bad'),
+                                                                                                                                                             html.Div(className='filled',
+                                                                                                                                                                      id='bad-fill'),
                                                                                                                                                              html.P(children='19°'),
                                                                                                                                                              html.P(children='50%')
                                                                                                                                                          ]
@@ -135,7 +136,8 @@ class Dashboard:
                                                                                                                             children=
                                                                                                                                         html.Div(className='colorcircle',
                                                                                                                                                  children=[
-                                                                                                                                                             html.Div(className='filled-arbeits'),
+                                                                                                                                                             html.Div(className='filled',
+                                                                                                                                                                      id='arbeits-fill'),
                                                                                                                                                              html.P(children='19°'),
                                                                                                                                                              html.P(children='50%')
                                                                                                                                                          ]
@@ -145,7 +147,8 @@ class Dashboard:
                                                                                                                             children=
                                                                                                                                         html.Div(className='colorcircle',
                                                                                                                                                  children=[
-                                                                                                                                                             html.Div(className='filled-schlaf'),
+                                                                                                                                                             html.Div(className='filled',
+                                                                                                                                                                      id='schlaf-fill'),
                                                                                                                                                              html.P(children='19°'),
                                                                                                                                                              html.P(children='50%')
                                                                                                                                                          ]
@@ -155,7 +158,8 @@ class Dashboard:
                                                                                                                             children=
                                                                                                                                         html.Div(className='colorcircle',
                                                                                                                                                  children=[
-                                                                                                                                                             html.Div(className='filled-wasch'),
+                                                                                                                                                             html.Div(className='filled',
+                                                                                                                                                                      id='wasch-fill'),
                                                                                                                                                              html.P(children='19°'),
                                                                                                                                                              html.P(children='50%')
                                                                                                                                                          ]
@@ -165,7 +169,8 @@ class Dashboard:
                                                                                                                             children=
                                                                                                                                         html.Div(className='colorcircle',
                                                                                                                                                  children=[
-                                                                                                                                                             html.Div(className='filled-kinder'),
+                                                                                                                                                             html.Div(className='filled',
+                                                                                                                                                                      id='kinder-fill'),
                                                                                                                                                              html.P(children='19°'),
                                                                                                                                                              html.P(children='50%')
                                                                                                                                                          ]
@@ -175,7 +180,8 @@ class Dashboard:
                                                                                                                             children=
                                                                                                                                         html.Div(className='colorcircle',
                                                                                                                                                  children=[
-                                                                                                                                                             html.Div(className='filled-buegel'),
+                                                                                                                                                             html.Div(className='filled',
+                                                                                                                                                                      id='buegel-fill'),
                                                                                                                                                              html.P(children='19°'),
                                                                                                                                                              html.P(children='50%')
                                                                                                                                                          ]
@@ -185,7 +191,8 @@ class Dashboard:
                                                                                                                             children=
                                                                                                                                         html.Div(className='colorcircle',
                                                                                                                                                  children=[
-                                                                                                                                                             html.Div(className='filled-kueche'),
+                                                                                                                                                             html.Div(className='filled',
+                                                                                                                                                                      id='kueche-fill'),
                                                                                                                                                              html.P(children='19°'),
                                                                                                                                                              html.P(children='50%')
                                                                                                                                                          ]
@@ -195,7 +202,8 @@ class Dashboard:
                                                                                                                             children=
                                                                                                                                         html.Div(className='colorcircle',
                                                                                                                                                  children=[
-                                                                                                                                                            html.Div(className='filled-wohn'),
+                                                                                                                                                            html.Div(className='filled',
+                                                                                                                                                                     id='wohn-fill'),
                                                                                                                                                             html.P(children='19°'),
                                                                                                                                                             html.P(children='50%')
                                                                                                                                                             ]

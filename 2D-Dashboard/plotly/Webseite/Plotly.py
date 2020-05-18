@@ -10,6 +10,7 @@ import dash
 import dash_core_components as dcc
 import dash_html_components as html
 from Dashboard import Dashboard
+from Optimization import Optimization
 
 
 
@@ -67,6 +68,8 @@ app.layout = html.Div([
 def display_page(pathname):
     if pathname == '/startseite':
         return Dashboard().dashboard_seite()
+    elif pathname== '/optimization.html':
+        return Optimization().optimization_seite()
     else:
         return Dashboard().dashboard_seite()
         
