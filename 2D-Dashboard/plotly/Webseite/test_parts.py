@@ -59,7 +59,7 @@ external_scripts = [
 external_stylesheets = [
        
     'https://cdn.materialdesignicons.com/5.1.45/css/materialdesignicons.min.css',
-   
+    dbc.themes.BOOTSTRAP,
     '/home/lukas/Desktop/IP_Repo/DataVisualization-Smarthome/2D-Dashboard/css/analytics.css',
     '/home/lukas/Desktop/IP_Repo/DataVisualization-Smarthome/2D-Dashboard/css/main.css',
 ]

@@ -3,10 +3,47 @@
 Created on Wed May  6 15:18:10 2020
 
 @author: Mues
+
+ html.Nav(className='navbar fixed-bottom',
+                                         children= 
+                                                     html.Div(className='container-fluid navdiv',
+                                                              children= [
+                                                                              html.Div(className='col navdiv', 
+                                                                                       children = 
+                                                                                                       html.A(className='nav-link nav-link-active', href='#',
+                                                                                                              children = [
+                                                                                                                          html.I(className='mdi mdi-google-analytics navicon'),
+                                                                                                                          html.P(className='nav-text', children='Analytics')
+                                                                                                                         ]
+                                                                                                             )
+                                                                                       ),
+                                                                              html.Div(className='col navdiv', 
+                                                                                       children = 
+                                                                                                       html.A(className='nav-link', href='dashboard.html',
+                                                                                                              children = [
+                                                                                                                          html.I(className='mdi mdi-home navicon'),
+                                                                                                                          html.P(className='nav-text', children='Dashboard')
+                                                                                                                         ]
+                                                                                                             )
+                                                                                       ),
+                                                                              html.Div(className='col navdiv', 
+                                                                                       children = 
+                                                                                                       html.A(className='nav-link', href='optimization.html',
+                                                                                                              children = [
+                                                                                                                          html.I(className='mdi mdi-sync navicon'),
+                                                                                                                          html.P(className='nav-text', children='Optimization')
+                                                                                                                         ]
+                                                                                                             )
+                                                                                       )                         
+                                                                          ]                   
+                                                                )
+                                        )
+
 """
 
 import dash_html_components as html
 import dash_core_components as dcc
+import dash_bootstrap_components as dbc
 import dash
 import postgre
 
@@ -169,40 +206,50 @@ class analytics:
                                                                     )
                                             )
                                     ),
+                               
                                 html.Nav(className='navbar fixed-bottom',
-                                         children= 
-                                                     html.Div(className='container-fluid navdiv',
-                                                              children= [
-                                                                              html.Div(className='col navdiv', 
-                                                                                       children = 
-                                                                                                       html.A(className='nav-link nav-link-active', href='#',
-                                                                                                              children = [
-                                                                                                                          html.I(className='mdi mdi-google-analytics navicon'),
-                                                                                                                          html.P(className='nav-text', children='Analytics')
-                                                                                                                         ]
-                                                                                                             )
-                                                                                       ),
-                                                                              html.Div(className='col navdiv', 
-                                                                                       children = 
-                                                                                                       html.A(className='nav-link', href='dashboard.html',
-                                                                                                              children = [
-                                                                                                                          html.I(className='mdi mdi-home navicon'),
-                                                                                                                          html.P(className='nav-text', children='Dashboard')
-                                                                                                                         ]
-                                                                                                             )
-                                                                                       ),
-                                                                              html.Div(className='col navdiv', 
-                                                                                       children = 
-                                                                                                       html.A(className='nav-link', href='optimization.html',
-                                                                                                              children = [
-                                                                                                                          html.I(className='mdi mdi-sync navicon'),
-                                                                                                                          html.P(className='nav-text', children='Optimization')
-                                                                                                                         ]
-                                                                                                             )
-                                                                                       )                         
-                                                                          ]                   
-                                                                )
-                                        )
+                                                             children=
+                                                                         html.Div(className='container-fluid navdiv',
+                                                                                  children=[
+                                                                                              html.Div(className='col navdiv',
+                                                                                                       children=
+                                                                                                                   html.A(className='nav-link',
+                                                                                                                          href='analytics.html',
+                                                                                                                          children=[
+                                                                                                                                      html.I(className='mdi mdi-google-analytics navicon'),
+                                                                                                                                      html.P(className='nav-text',
+                                                                                                                                             children='Analytics'
+                                                                                                                                             )
+                                                                                                                                  ]
+                                                                                                                          )
+                                                                                                       ),
+                                                                                              html.Div(className='col navdiv',
+                                                                                                       children=
+                                                                                                                   html.A(className='nav-link nav-link-active',
+                                                                                                                          href='#',
+                                                                                                                          children=[
+                                                                                                                                      html.I(className='mdi mdi-home navicon'),
+                                                                                                                                      html.P(className='nav-text',
+                                                                                                                                             children='Dashboard'
+                                                                                                                                             )
+                                                                                                                                  ]
+                                                                                                                          )
+                                                                                                       ),
+                                                                                              html.Div(className='col navdiv',
+                                                                                                       children=
+                                                                                                                   html.A(className='nav-link ',
+                                                                                                                          href='optimization.html',
+                                                                                                                          children=[
+                                                                                                                                      html.I(className='mdi mdi-sync navicon'),
+                                                                                                                                      html.P(className='nav-text',
+                                                                                                                                             children='Optimization'
+                                                                                                                                             )
+                                                                                                                                  ]
+                                                                                                                          )
+                                                                                                       )
+                                                                                              ]
+                                                                                  )
+                                                             )
                                                                                                                                      
                         ]
                     )
@@ -227,16 +274,11 @@ external_scripts = [
 
 
 external_stylesheets = [
-        '/home/lukas/Desktop/IP_Repo/DataVisualization-Smarthome/2D-Dashboard/css/analytics.css',
-        '/home/lukas/Desktop/IP_Repo/DataVisualization-Smarthome/2D-Dashboard/css/main.css',
-        'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css',
-        'https://cdn.materialdesignicons.com/5.1.45/css/materialdesignicons.min.css',
-    {
-        ' src': 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css',
-        'integrity': 'sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN',
-        'crossorigin': 'anonymous'
-    }
-        
+       
+    'https://cdn.materialdesignicons.com/5.1.45/css/materialdesignicons.min.css',
+    dbc.themes.BOOTSTRAP,
+    '/home/lukas/Desktop/IP_Repo/DataVisualization-Smarthome/2D-Dashboard/css/analytics.css',
+    '/home/lukas/Desktop/IP_Repo/DataVisualization-Smarthome/2D-Dashboard/css/main.css',
 ]
 
 app = dash.Dash(external_stylesheets=external_stylesheets, external_scripts=external_scripts)
