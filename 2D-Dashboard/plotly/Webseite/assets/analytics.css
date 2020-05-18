@@ -1,0 +1,89 @@
+.head-analytics{
+    font-size: 2vw;
+    padding-top: 1.7vw;
+    padding-bottom: 1.7vw;
+}
+
+.main{
+    margin-top: 7vw;
+}
+
+.graph{
+    background-color: #595A59;
+    color: #BFC0BF;
+    border-radius: 4px;
+    font-size: 150%;
+    width: 100%;
+    height: 98.5%;
+}
+
+.legend{
+    background-color: #595A59;
+    color: #BFC0BF;
+    border-radius: 4px;
+    font-size: 150%;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 90px;
+    height: 10vw;
+}
+
+.frame{
+    margin-top: -25px;
+}
+
+.room-selection{
+    background-color: #595A59;
+    color: #BFC0BF;
+    border-radius: 4px;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 2vw;
+    width: 100%;
+}
+
+.checkbox{
+    visibility: hidden;
+}
+
+.room-selection:hover{
+    color: #737373;
+    }
+
+button[type="checkbox"]:checked + label:hover {
+   color: #1F897C;
+}
+
+button[type="checkbox"]:checked + label {
+   color: #00B1AC;
+}
+
+.select{
+     background-color: #595A59;
+    color: #BFC0BF;
+    border-radius: 4px;
+   font-size: 1vw;
+    
+}
+
+.datepicker{
+    margin-left: 10px;
+}
+
+.time{
+    padding-top: 10px;
+}
+
+.time:hover{
+    color: #737373;
+}
+
+button[type="radio"]:checked + label:hover {
+   color: #1F897C;
+}
+
+button[type="radio"]:checked + label {
+   color: #00B1AC;
+}
+
