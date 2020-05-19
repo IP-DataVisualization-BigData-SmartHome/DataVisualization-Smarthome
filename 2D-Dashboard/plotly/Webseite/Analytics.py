@@ -44,6 +44,7 @@ Created on Wed May  6 15:18:10 2020
 import dash_html_components as html
 import dash_core_components as dcc
 import dash_bootstrap_components as dbc
+from dash.dependencies import Input, Output
 import dash
 #import postgre
 
@@ -285,6 +286,19 @@ external_stylesheets = [
 
 app = dash.Dash(external_stylesheets=external_stylesheets, external_scripts=external_scripts)
 app.title = 'Analytics'
+
+@app.callback(
+    [Output(component_id='Alle', component_property='style'),
+     Output(component_id='Alle', component_property='value')],
+    [Input(component_id='Alle', component_property='value')]
+)
+def update_output_div(input_value):
+    if(input_value == 0):
+        return { 'color' : '#00B1AC' }, 1
+    else:
+        return { 'color' : '#BFC0BF' }, 0
+
+
 
 site = analytics()
 
