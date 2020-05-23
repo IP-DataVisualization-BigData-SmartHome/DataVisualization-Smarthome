@@ -46,18 +46,26 @@
 .checkbox{
     visibility: hidden;
 }
-/*
+
 .room-selection:hover{
     color: #737373;
     }
-*/
-button[type="checkbox"]:checked + label:hover {
-   color: #1F897C;
+
+input[type="checkbox"]:checked + label:hover {
+    color: #1F897C; 
 }
 
-button[type="checkbox"]:checked + label {
-   color: #00B1AC;
+input[type="checkbox"]:checked + label:hover {
+   color: #737373; 
+
 }
+
+input[type="checkbox"]:checked + label {
+   color: #00B1AC; 
+
+}
+
+
 
 .select{
      background-color: #595A59;
@@ -79,16 +87,6 @@ button[type="checkbox"]:checked + label {
 
 .labeltest{
     padding-top:20px;
-}
-
-input[tpye='radio']:after {
-    background-color: #00B1AC;
-	border: 2px solid white;
-}
-
-input[type="radio"]:checked:after {
-    background-color: #00B1AC;
-    padding-right: 10px;
 }
 
 .time:hover{

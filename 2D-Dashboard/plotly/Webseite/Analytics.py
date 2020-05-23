@@ -263,17 +263,7 @@ site = analytics()
 
 app.layout = site.get_site()
 
-@app.callback(
-    Output('Alle', 'style'),
-    [Input('Alle', 'n_clicks')])
-def click_all(value):
-    if value % 2 == 1:
-        site.rooms.append('hallo')
-        return { 'color' : '#00B1AC'}
-    else:
-        site.rooms = []
-        return { 'color' : '#BFC0BF'}
-
+'''
 @app.callback(
     Output('Arbeitszimmer', 'style'),
     [Input('Arbeitszimmer', 'n_clicks')])
@@ -369,6 +359,7 @@ def click_wz(value):
         if 'Wohnzimmer' in site.rooms:
             site.rooms.remove('Wohnzimmer')
         return { 'color' : '#BFC0BF'} 
+'''    
 """
 @app.callback(
     [Output('d', 'style'), Output('w', 'style'), Output('m', 'style')],
