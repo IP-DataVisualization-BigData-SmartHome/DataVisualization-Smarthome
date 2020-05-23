@@ -1,43 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-Created on Wed May  6 15:18:10 2020
+@author: Lukas Schnittcher
 
-@author: Mues
-
- html.Nav(className='navbar fixed-bottom',
-                                         children= 
-                                                     html.Div(className='container-fluid navdiv',
-                                                              children= [
-                                                                              html.Div(className='col navdiv', 
-                                                                                       children = 
-                                                                                                       html.A(className='nav-link nav-link-active', href='#',
-                                                                                                              children = [
-                                                                                                                          html.I(className='mdi mdi-google-analytics navicon'),
-                                                                                                                          html.P(className='nav-text', children='Analytics')
-                                                                                                                         ]
-                                                                                                             )
-                                                                                       ),
-                                                                              html.Div(className='col navdiv', 
-                                                                                       children = 
-                                                                                                       html.A(className='nav-link', href='dashboard.html',
-                                                                                                              children = [
-                                                                                                                          html.I(className='mdi mdi-home navicon'),
-                                                                                                                          html.P(className='nav-text', children='Dashboard')
-                                                                                                                         ]
-                                                                                                             )
-                                                                                       ),
-                                                                              html.Div(className='col navdiv', 
-                                                                                       children = 
-                                                                                                       html.A(className='nav-link', href='optimization.html',
-                                                                                                              children = [
-                                                                                                                          html.I(className='mdi mdi-sync navicon'),
-                                                                                                                          html.P(className='nav-text', children='Optimization')
-                                                                                                                         ]
-                                                                                                             )
-                                                                                       )                         
-                                                                          ]                   
-                                                                )
-                                        )
 
 """
 
@@ -70,7 +34,7 @@ class analytics:
                                                          )
                                      ),
                             html.Main(                                                    
-                                    html.Form(method='post', action = '',
+                                    html.Div(
                                               children=
                                                  html.Div(className='container-fluid main', 
                                                           children= [
@@ -81,7 +45,7 @@ class analytics:
                                                                                                                                       html.Div(className='frame', 
                                                                                                                                                children= [
                                                                                                                                                            html.Button(className='checkbox', name='room', type='checkbox', value='1', id = 'Alle'),
-                                                                                                                                                           html.Label(className='room-selection', htmlFor = 'Alle', children='Alle')
+                                                                                                                                                           html.Label(className='room-selection', htmlFor = 'Alle', children='Alle', id='test')
                                                                                                                                                          ]
                                                                                                                                                ),
                                                                                                                                       html.Div(className='frame', 
@@ -287,6 +251,12 @@ external_stylesheets = [
 app = dash.Dash(external_stylesheets=external_stylesheets, external_scripts=external_scripts)
 app.title = 'Analytics'
 
+site = analytics()
+
+app.layout = site.get_site()
+
+
+'''
 @app.callback(
     [Output(component_id='Alle', component_property='style'),
      Output(component_id='Alle', component_property='value')],
@@ -297,13 +267,17 @@ def update_output_div(input_value):
         return { 'color' : '#00B1AC' }, 1
     else:
         return { 'color' : '#BFC0BF' }, 0
+'''
+@app.callback(
+    [Output(component_id='test', component_property='children')],
+    [Input(component_id='test', component_property='n_clicks')]
+)
+def update_output(input_value):
+    return 'Changed {}'.format(input_value)
 
 
-
-site = analytics()
-
-app.layout = site.get_site()
-app.run_server(debug = True)
+if __name__ == '__main__':
+    app.run_server(debug=True)
 
 
 

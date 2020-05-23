@@ -57,12 +57,14 @@ class postgre_connector:
             dataframe = self.create_pandas_table(query, [start_day, end_day])
         
         elif mode == 'h':
-            #stunde 
-            pass
+            #stunde
+            query += ' FROM "public"."mat_view_avg_all_hour" WHERE date::date >= (%s) AND date::date <= (%s);'
+            dataframe = self.create_pandas_table(query, [start_day, end_day])
             
         elif mode == 'd':
             #mtag
-            pass
+            query += ' FROM "public"."mat_view_avg_all_days.day" WHERE date::date >= (%s) AND date::date <= (%s);'
+            dataframe = self.create_pandas_table(query, [start_day, end_day])
             
         elif mode == 'm':
             #month: Table: mat_view_avg_all_months
@@ -80,7 +82,7 @@ if __name__=='__main__':
     DB_connector = postgre_connector()
     day1 = [2016,4,12]
     day2 = [2016,4,13]
-    result = DB_connector.get_data(day1, day2, 'a', ['t1, t2, rh_1'])
+    result = DB_connector.get_data(day1, day2, 'h', ['t1, t2, rh_1'])
     print(result)
     
     
