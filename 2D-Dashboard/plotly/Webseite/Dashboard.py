@@ -6,7 +6,7 @@ Created on Wed May  6 15:18:10 2020
 """
 
 import dash_html_components as html
-
+import dash_core_components as dcc
 
 
 class Dashboard:
@@ -20,13 +20,7 @@ class Dashboard:
                                                           children=[
                                                                       html.Div(className='row',
                                                                                children=[
-                                                                                           html.Div(className='col-3 text-right text-head',
-                                                                                                    children=
-                                                                                                                html.I(className='mdi mdi-weather-sunny headicon'
-                                                                                                                       #Datensatz: Termperatur draussen
-                                                                                                                       )
-                                                                                                    ),
-                                                                                           html.Div(className='col-1 text-left text-head',
+                                                                                           html.Div(className='col-4 text-right text-head',
                                                                                                     children=
                                                                                                                 html.Div(children='10°C'
                                                                                                                          #<!-- Datensatz: Temperatur draußen -->
@@ -54,8 +48,7 @@ class Dashboard:
                                                                                ),
                                                                       html.Div(className='row',
                                                                                children=[
-                                                                                           html.Div(className='col-4'),
-                                                                                           html.Div(className='col-4 text-center',
+                                                                                           html.Div(className='col text-center',
                                                                                                     id='Datum',
                                                                                                     children=
                                                                                                                 html.A(className='nav-head',
@@ -63,21 +56,13 @@ class Dashboard:
                                                                                                                        children=' Montag, 17. Nov.'
                                                                                                                        #<!-- Bei Click Datumauswahl -->
                                                                                                                        )
-                                                                                                    ),
-                                                                                           html.Div(className='col-4')
+                                                                                                    )                                                                        
                                                                                            ]
                                                                                )
                                                               ])
-                                                 ),
-                                html.Div(className='helpdiv',
-                                         children=
-                                                     html.A(href='#',
-                                                            children=
-                                                                        html.I(className='mdi mdi-help-circle-outline helpicon')
-                                                            )
-                                         ),
-                                html.Div(className='container-fluid',
-                                         children=[
+                                                 ),       
+                                html.Div(className='container main',
+                                         children=[                                                                
                                                     html.Div(className='row',
                                                              children=[
                                                                          html.Div(className='col-2 main-div relative d-flex justify-content-center',
@@ -121,94 +106,126 @@ class Dashboard:
                                                                                   children=
                                                                                               html.Div(className='row',
                                                                                                        children=[
-                                                                                                                   html.Div(className='colorwrapper bad',
-                                                                                                                            children=
-                                                                                                                                        html.Div(className='colorcircle',
-                                                                                                                                                 children=[
-                                                                                                                                                             html.Div(className='filled',
-                                                                                                                                                                      id='bad-fill'),
-                                                                                                                                                             html.P(children='19°'),
-                                                                                                                                                             html.P(children='50%')
-                                                                                                                                                         ]
-                                                                                                                                                 )
-                                                                                                                            ),
-                                                                                                                   html.Div(className='colorwrapper arbeits',
-                                                                                                                            children=
-                                                                                                                                        html.Div(className='colorcircle',
-                                                                                                                                                 children=[
-                                                                                                                                                             html.Div(className='filled',
-                                                                                                                                                                      id='arbeits-fill'),
-                                                                                                                                                             html.P(children='19°'),
-                                                                                                                                                             html.P(children='50%')
-                                                                                                                                                         ]
-                                                                                                                                                 )
-                                                                                                                            ),
-                                                                                                                   html.Div(className='colorwrapper schlaf',
-                                                                                                                            children=
-                                                                                                                                        html.Div(className='colorcircle',
-                                                                                                                                                 children=[
-                                                                                                                                                             html.Div(className='filled',
-                                                                                                                                                                      id='schlaf-fill'),
-                                                                                                                                                             html.P(children='19°'),
-                                                                                                                                                             html.P(children='50%')
-                                                                                                                                                         ]
-                                                                                                                                                 )
-                                                                                                                            ),
-                                                                                                                   html.Div(className='colorwrapper wasch',
-                                                                                                                            children=
-                                                                                                                                        html.Div(className='colorcircle',
-                                                                                                                                                 children=[
-                                                                                                                                                             html.Div(className='filled',
-                                                                                                                                                                      id='wasch-fill'),
-                                                                                                                                                             html.P(children='19°'),
-                                                                                                                                                             html.P(children='50%')
-                                                                                                                                                         ]
-                                                                                                                                                 )
-                                                                                                                            ),
-                                                                                                                   html.Div(className='colorwrapper kinder',
-                                                                                                                            children=
-                                                                                                                                        html.Div(className='colorcircle',
-                                                                                                                                                 children=[
-                                                                                                                                                             html.Div(className='filled',
-                                                                                                                                                                      id='kinder-fill'),
-                                                                                                                                                             html.P(children='19°'),
-                                                                                                                                                             html.P(children='50%')
-                                                                                                                                                         ]
-                                                                                                                                                 )
-                                                                                                                            ),
-                                                                                                                   html.Div(className='colorwrapper buegel',
-                                                                                                                            children=
-                                                                                                                                        html.Div(className='colorcircle',
-                                                                                                                                                 children=[
-                                                                                                                                                             html.Div(className='filled',
-                                                                                                                                                                      id='buegel-fill'),
-                                                                                                                                                             html.P(children='19°'),
-                                                                                                                                                             html.P(children='50%')
-                                                                                                                                                         ]
-                                                                                                                                                 )
-                                                                                                                            ),
-                                                                                                                   html.Div(className='colorwrapper kueche',
-                                                                                                                            children=
-                                                                                                                                        html.Div(className='colorcircle',
-                                                                                                                                                 children=[
-                                                                                                                                                             html.Div(className='filled',
-                                                                                                                                                                      id='kueche-fill'),
-                                                                                                                                                             html.P(children='19°'),
-                                                                                                                                                             html.P(children='50%')
-                                                                                                                                                         ]
-                                                                                                                                                 )
-                                                                                                                            ),
-                                                                                                                   html.Div(className='colorwrapper wohn',
-                                                                                                                            children=
-                                                                                                                                        html.Div(className='colorcircle',
-                                                                                                                                                 children=[
-                                                                                                                                                            html.Div(className='filled',
-                                                                                                                                                                     id='wohn-fill'),
-                                                                                                                                                            html.P(children='19°'),
-                                                                                                                                                            html.P(children='50%')
-                                                                                                                                                            ]
-                                                                                                                                                )
-                                                                                                                            ),
+                                                                                                                   html.A(className='kreise-link',
+                                                                                                                          href='bad.html',
+                                                                                                                          children=
+                                                                                                                                   html.Div(className='colorwrapper bad',
+                                                                                                                                            children=
+                                                                                                                                                        html.Div(className='colorcircle',
+                                                                                                                                                                 children=[
+                                                                                                                                                                             html.Div(className='filled',
+                                                                                                                                                                                      id='bad-fill'),
+                                                                                                                                                                             html.P(children='19°'),
+                                                                                                                                                                             html.P(children='50%')
+                                                                                                                                                                         ]
+                                                                                                                                                                 )
+                                                                                                                                            )
+                                                                                                                           ),
+                                                                                                                   html.A(className='kreise-link',
+                                                                                                                          href='arbeit.html',
+                                                                                                                          children=                                                                                                                   
+                                                                                                                                   html.Div(className='colorwrapper arbeits',
+                                                                                                                                            children=
+                                                                                                                                                        html.Div(className='colorcircle',
+                                                                                                                                                                 children=[
+                                                                                                                                                                             html.Div(className='filled',
+                                                                                                                                                                                      id='arbeits-fill'),
+                                                                                                                                                                             html.P(children='19°'),
+                                                                                                                                                                             html.P(children='50%')
+                                                                                                                                                                         ]
+                                                                                                                                                                 )
+                                                                                                                                            ),
+                                                                                                                           ),
+                                                                                                                   html.A(className='kreise-link',
+                                                                                                                          href='schlaf.html',
+                                                                                                                          children=                                                                                                                   
+                                                                                                                                   html.Div(className='colorwrapper schlaf',
+                                                                                                                                            children=
+                                                                                                                                                        html.Div(className='colorcircle',
+                                                                                                                                                                 children=[
+                                                                                                                                                                             html.Div(className='filled',
+                                                                                                                                                                                      id='schlaf-fill'),
+                                                                                                                                                                             html.P(children='19°'),
+                                                                                                                                                                             html.P(children='50%')
+                                                                                                                                                                         ]
+                                                                                                                                                                 )
+                                                                                                                                            ),
+                                                                                                                           ),
+                                                                                                                   html.A(className='kreise-link',
+                                                                                                                          href='wasch.html',
+                                                                                                                          children=
+                                                                                                                                   html.Div(className='colorwrapper wasch',
+                                                                                                                                            children=
+                                                                                                                                                        html.Div(className='colorcircle',
+                                                                                                                                                                 children=[
+                                                                                                                                                                             html.Div(className='filled',
+                                                                                                                                                                                      id='wasch-fill'),
+                                                                                                                                                                             html.P(children='19°'),
+                                                                                                                                                                             html.P(children='50%')
+                                                                                                                                                                         ]
+                                                                                                                                                                 )
+                                                                                                                                            ),
+                                                                                                                           ),
+                                                                                                                   html.A(className='kreise-link',
+                                                                                                                          href='kinder.html',
+                                                                                                                          children=
+                                                                                                                                   html.Div(className='colorwrapper kinder',
+                                                                                                                                            children=
+                                                                                                                                                        html.Div(className='colorcircle',
+                                                                                                                                                                 children=[
+                                                                                                                                                                             html.Div(className='filled',
+                                                                                                                                                                                      id='kinder-fill'),
+                                                                                                                                                                             html.P(children='19°'),
+                                                                                                                                                                             html.P(children='50%')
+                                                                                                                                                                         ]
+                                                                                                                                                                 )
+                                                                                                                                            ),
+                                                                                                                           ),
+                                                                                                                   html.A(className='kreise-link',
+                                                                                                                          href='buegel.html',
+                                                                                                                          children=
+                                                                                                                                   html.Div(className='colorwrapper buegel',
+                                                                                                                                            children=
+                                                                                                                                                        html.Div(className='colorcircle',
+                                                                                                                                                                 children=[
+                                                                                                                                                                             html.Div(className='filled',
+                                                                                                                                                                                      id='buegel-fill'),
+                                                                                                                                                                             html.P(children='19°'),
+                                                                                                                                                                             html.P(children='50%')
+                                                                                                                                                                         ]
+                                                                                                                                                                 )
+                                                                                                                                            ),
+                                                                                                                           ),
+                                                                                                                   html.A(className='kreise-link',
+                                                                                                                          href='kueche.html',
+                                                                                                                          children=
+                                                                                                                                   html.Div(className='colorwrapper kueche',
+                                                                                                                                            children=
+                                                                                                                                                        html.Div(className='colorcircle',
+                                                                                                                                                                 children=[
+                                                                                                                                                                             html.Div(className='filled',
+                                                                                                                                                                                      id='kueche-fill'),
+                                                                                                                                                                             html.P(children='19°'),
+                                                                                                                                                                             html.P(children='50%')
+                                                                                                                                                                         ]
+                                                                                                                                                                 )
+                                                                                                                                            ),
+                                                                                                                           ),
+                                                                                                                   html.A(className='kreise-link',
+                                                                                                                          href='wohn.html',
+                                                                                                                          children=
+                                                                                                                                   html.Div(className='colorwrapper wohn',
+                                                                                                                                            children=
+                                                                                                                                                        html.Div(className='colorcircle',
+                                                                                                                                                                 children=[
+                                                                                                                                                                            html.Div(className='filled',
+                                                                                                                                                                                     id='wohn-fill'),
+                                                                                                                                                                            html.P(children='19°'),
+                                                                                                                                                                            html.P(children='50%')
+                                                                                                                                                                            ]
+                                                                                                                                                                )
+                                                                                                                                            ),
+                                                                                                                           ),
                                                                                                                    html.Div(className='align-self-center',
                                                                                                                             children=
                                                                                                                                         html.Img(src='/assets/Grundriss2D-01_imagemap_2-01.svg', className='haus')

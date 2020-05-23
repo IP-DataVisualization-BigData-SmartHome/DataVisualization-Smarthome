@@ -1,7 +1,7 @@
 body{
     background-color: #8A8B8A;
     font-family: 'Roboto', sans-serif;
-    
+    color: #C4C4C4;
 }
 
 .m-b-10 { margin-bottom: 10px; }
@@ -106,11 +106,43 @@ body{
     color: #BFC0BF;
     padding-top: 0rem;
     padding-bottom: 0rem;
-    margin-top: -0.5vw;
+    margin-top: -10px;
+    height: 90px;
 }
 
+.text-head{
+    font-size: 350%;
+}
 
+.text-head-detail{
+    font-size: 250%;
+    margin-top: 16px;
+}
 
+.luft-wind{
+    margin-top: 15px;
+    font-size: 110%;
+}
+
+#Datum{
+    font-size: 115%;
+    margin-top: -24px;
+    padding-bottom: 3px;
+}
+
+.nav-head{
+    color: #C4C4C4;
+    text-decoration: inherit;
+}
+
+.nav-head:hover{
+    color: #737373;
+    text-decoration: none; 
+}
+
+.headicon::before{
+    font-size: 100%;
+}
 
 
 

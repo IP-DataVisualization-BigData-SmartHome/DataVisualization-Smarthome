@@ -6,7 +6,7 @@ Created on Sun May 10 16:27:30 2020
 """
 
 import dash_html_components as html
-
+import dash_core_components as dcc
 
 
 class Optimization:
@@ -14,7 +14,7 @@ class Optimization:
  
     def optimization_seite(self):
         return html.Div([
-                            html.Nav(className='fixed-top',
+                            html.Nav(
                                      children=
                                                  html.Div(className='container-fluid head-design',
                                                           children=
@@ -30,6 +30,16 @@ class Optimization:
                                                                                )
                                                           )
                                      ),
+                            dcc.Dropdown(
+                                    id='input-test-callback',
+                                    options=[
+                                        {'label': 'New York City', 'value': 'NYC'},
+                                        {'label': 'Montreal', 'value': 'MTL'},
+                                        {'label': 'San Francisco', 'value': 'SF'}
+                                    ],
+                                    value='NYC'
+                                ),                            
+                            html.Div(id='output-test-callback'),
                             html.Main(children=
                                                   html.Div(className='container-fluid main',
                                                            children=
