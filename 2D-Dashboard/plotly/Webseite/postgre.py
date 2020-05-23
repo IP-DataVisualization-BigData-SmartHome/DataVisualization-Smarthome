@@ -41,8 +41,11 @@ class postgre_connector:
         
         self.connect()
         
-        start_day = dt.datetime(day1[0], day1[1], day1[2], 0,0,0)
-        end_day = dt.datetime(day2[0], day2[1], day2[2], 0,0,0)
+        start_day = dt.datetime(day1[0], day1[1], day1[2], day1[3], day1[4], 0)
+        end_day = dt.datetime(day2[0], day2[1], day2[2], day2[3], day2[4], 0)
+        
+        print(start_day)
+        print(end_day)
         
         query = 'SELECT '
         
@@ -53,22 +56,22 @@ class postgre_connector:
         
         if mode == 'a':
             #Grunddaten
-            query += ' FROM "public"."energyusage" WHERE date::date >= (%s) AND date::date <= (%s);'
+            query += ' FROM "public"."energyusage" WHERE date >= (%s) AND date <= (%s);'
             dataframe = self.create_pandas_table(query, [start_day, end_day])
         
         elif mode == 'h':
             #stunde
-            query += ' FROM "public"."mat_view_avg_all_hour" WHERE date::date >= (%s) AND date::date <= (%s);'
+            query += ' FROM "public"."mat_view_avg_all_hour" WHERE date >= (%s) AND date <= (%s);'
             dataframe = self.create_pandas_table(query, [start_day, end_day])
             
         elif mode == 'd':
             #mtag
-            query += ' FROM "public"."mat_view_avg_all_days.day" WHERE date::date >= (%s) AND date::date <= (%s);'
+            query += ' FROM "public"."mat_view_avg_all_days.day" WHERE date >= (%s) AND date <= (%s);'
             dataframe = self.create_pandas_table(query, [start_day, end_day])
             
         elif mode == 'm':
             #month: Table: mat_view_avg_all_months
-            query += ' FROM "public"."mat_view_avg_all_months" WHERE date::date >= (%s) AND date::date <= (%s);'
+            query += ' FROM "public"."mat_view_avg_all_months" WHERE date >= (%s) AND date <= (%s);'
             dataframe = self.create_pandas_table(query, [start_day, end_day])
         
         self.close()
@@ -80,9 +83,9 @@ class postgre_connector:
 
 if __name__=='__main__':
     DB_connector = postgre_connector()
-    day1 = [2016,4,12]
-    day2 = [2016,4,13]
-    result = DB_connector.get_data(day1, day2, 'h', ['t1, t2, rh_1'])
+    day1 = [2016,4,12,3,30]
+    day2 = [2016,4,13,5,50]
+    result = DB_connector.get_data(day1, day2, 'a', ['t1, t2, rh_1'])
     print(result)
     
     
