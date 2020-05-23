@@ -26,6 +26,20 @@ class postgre_connector:
         if self.__connection != None:
             self.__connection.close()
         return
+    
+    def get_first_date(self):
+        self.connect()
+        query = 'SELECT date FROM "public"."energyusage" ORDER BY DATE ASC LIMIT 1;'
+        dataframe = self.create_pandas_table(query, [])
+        self.close()
+        return dataframe
+    
+    def get_last_date(self):
+        self.connect()
+        query = 'SELECT date FROM "public"."energyusage" ORDER BY DATE DESC LIMIT 1;'
+        dataframe = self.create_pandas_table(query, [])
+        self.close()
+        return dataframe
         
     def create_pandas_table(self, sql_query, data):
         table = pd.read_sql_query(sql_query, self.__connection, params=data)
@@ -85,7 +99,8 @@ if __name__=='__main__':
     DB_connector = postgre_connector()
     day1 = [2016,4,12,3,30]
     day2 = [2016,4,13,5,50]
-    result = DB_connector.get_data(day1, day2, 'a', ['t1, t2, rh_1'])
+    #result = DB_connector.get_data(day1, day2, 'a', ['t1, t2, rh_1'])
+    result = DB_connector.get_first_date()
     print(result)
     
     

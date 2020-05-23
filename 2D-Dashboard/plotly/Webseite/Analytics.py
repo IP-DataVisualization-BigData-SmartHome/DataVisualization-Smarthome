@@ -269,12 +269,22 @@ def update_output_div(input_value):
         return { 'color' : '#BFC0BF' }, 0
 '''
 @app.callback(
-    [Output(component_id='test', component_property='children')],
-    [Input(component_id='test', component_property='n_clicks')]
-)
-def update_output(input_value):
-    return 'Changed {}'.format(input_value)
+    Output('test', 'style'),
+    [Input('test', 'n_clicks')])
+def clicks(value):
+    if value % 2 == 0:
+        return { 'color' : '#737373'}
+    else:
+        return { 'color' : '#AB0134'}
 
+@app.callback(
+    Output('test', 'style'),
+    [Input('test', 'n_clicks')])
+def clicks(value):
+    if value % 2 == 0:
+        return { 'color' : '#737373'}
+    else:
+        return { 'color' : '#AB0134'}
 
 if __name__ == '__main__':
     app.run_server(debug=True)
