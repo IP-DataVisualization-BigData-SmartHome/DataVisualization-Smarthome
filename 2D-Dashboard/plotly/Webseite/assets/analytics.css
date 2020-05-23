@@ -74,11 +74,21 @@ button[type="checkbox"]:checked + label {
 .time{
     padding-top: 10px;
     padding-left: 10px;
-    padding-right: 10PX;
+    padding-right: 10px;
 }
 
-input[type="radio"]:checked ~ .checkmark {
-  background-color: #2196F3;
+.labeltest{
+    padding-top:20px;
+}
+
+input[tpye='radio']:after {
+    background-color: #00B1AC;
+	border: 2px solid white;
+}
+
+input[type="radio"]:checked:after {
+    background-color: #00B1AC;
+    padding-right: 10px;
 }
 
 .time:hover{

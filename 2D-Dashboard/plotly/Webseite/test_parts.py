@@ -18,10 +18,22 @@ Created on Mon May 18 12:32:14 2020
 """
 
 import dash_html_components as html
+import dash_core_components as dcc
 import dash_bootstrap_components as dbc
 import dash
 
-Header = html.Button('Absenden', type='submit', )
+Header = html.Div(children=
+                        dcc.RadioItems(
+                                       options=[
+                                           {'label': ' Temperatur ', 'value': 'temp'},
+                                           {'label': ' Luftfeuchtigkeit', 'value': 'hum'},
+                                           {'label': ' Temperatur draußen', 'value': 'tempd'}
+                                               ],
+                                       value='MTL',
+                                       labelStyle={'display': 'inline-block'},
+                                       labelClassName = 'labeltest'
+                                       )
+                  )
                                             
 external_scripts = [
     {
