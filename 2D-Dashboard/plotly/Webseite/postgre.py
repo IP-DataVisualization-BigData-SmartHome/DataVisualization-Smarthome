@@ -80,7 +80,7 @@ class postgre_connector:
             
         elif mode == 'd':
             #mtag
-            query += ' FROM "public"."mat_view_avg_all_days.day" WHERE date >= (%s) AND date <= (%s);'
+            query += ' FROM "public"."mat_view_avg_all_days" WHERE date >= (%s) AND date <= (%s);'
             dataframe = self.create_pandas_table(query, [start_day, end_day])
             
         elif mode == 'm':
@@ -95,12 +95,12 @@ class postgre_connector:
         # Einfüge-Funktion um den Datensatz zu erweitern
         pass
 
-if __name__=='__main__':
-    DB_connector = postgre_connector()
-    day1 = [2016,4,12,3,30]
-    day2 = [2016,4,13,5,50]
-    #result = DB_connector.get_data(day1, day2, 'a', ['t1, t2, rh_1'])
-    result = DB_connector.get_first_date()
-    print(result)
-    
+
+DB_connector = postgre_connector()
+day1 = [2016,4,12,3,30]
+day2 = [2016,4,16,8,30]
+result = DB_connector.get_data(day1, day2, 'd', ['t1, t2, rh_1'])
+#result = DB_connector.get_first_date()
+print(result)
+
     

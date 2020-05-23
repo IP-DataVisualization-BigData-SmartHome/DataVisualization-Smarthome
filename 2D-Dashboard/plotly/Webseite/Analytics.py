@@ -3,6 +3,32 @@
 @author: Lukas Schnittcher
 
 
+                                                                                                                                                          html.Div(className='form-check-inline', 
+                                                                                                                                                                   children= [
+                                                                                                                                                                               html.Button(className='checkbox', type='radio', name='TimeFrame', id='Tag', value='D'),
+                                                                                                                                                                               html.Label(className='time', htmlFor='Tag', children='TAG', id='d')
+                                                                                                                                                                             ]
+                                                                                                                                                                   ),
+                                                                                                                                                          html.Div(className='form-check-inline', 
+                                                                                                                                                                   children= [
+                                                                                                                                                                               html.Button(className='checkbox', type='radio', name='TimeFrame', id='Woche', value='W'),
+                                                                                                                                                                               html.Label(className='time', htmlFor='Woche', children='WOCHE', id = 'w')
+                                                                                                                                                                             ]
+                                                                                                                                                                   ),
+                                                                                                                                                          html.Div(className='form-check-inline', 
+                                                                                                                                                                   children= [
+                                                                                                                                                                               html.Button(className='checkbox', type='radio', name='TimeFrame', id='Monat', value='M'),
+                                                                                                                                                                               html.Label(className='time', htmlFor='Monat', children='MONAT', id = 'm')
+                                                                                                                                                                             ]
+                                                                                                                                                                   )
+                     
+                                                                                                                                                           html.Div(className='frame', 
+                                                                                                                                               children= [
+                                                                                                                                                           html.Button(className='checkbox', name='room', type='checkbox', value='1', id = 'All'),
+                                                                                                                                                           html.Label(className='room-selection', htmlFor = 'All', children='Alle', id='Alle')
+                                                                                                                                                         ]
+                                                                                                                                               ),
+                                                                                                                                                          
 """
 
 import dash_html_components as html
@@ -12,8 +38,12 @@ from dash.dependencies import Input, Output
 import dash
 #import postgre
 
-
 class analytics:
+    
+    def __init__(self):
+        self.rooms = []
+        self.mode = 'd'
+        self.data = 'temp'
     
     def get_site(self):
         return html.Div([   
@@ -23,7 +53,6 @@ class analytics:
                                                           children= 
                                                                        html.Div(className='row',
                                                                                 children= [
-                                                                                            
                                                                                             html.Div(className='col-4'),
                                                                                             html.Div(className='col-4 text-center head-analytics', 
                                                                                                      children= html.A('Analytics')
@@ -42,58 +71,53 @@ class analytics:
                                                                                                      children= [ 
                                                                                                                  html.Div(className='col-3',
                                                                                                                           children= [
+                                                                                                                                     
                                                                                                                                       html.Div(className='frame', 
                                                                                                                                                children= [
-                                                                                                                                                           html.Button(className='checkbox', name='room', type='checkbox', value='1', id = 'Alle'),
-                                                                                                                                                           html.Label(className='room-selection', htmlFor = 'Alle', children='Alle', id='test')
+                                                                                                                                                           html.Button(className='checkbox', name='room', type='checkbox', value='2', id = 'Az'),
+                                                                                                                                                           html.Label(className='room-selection', htmlFor = 'Az', children='Arbeitszimmer', id='Arbeitszimmer')
                                                                                                                                                          ]
                                                                                                                                                ),
                                                                                                                                       html.Div(className='frame', 
                                                                                                                                                children= [
-                                                                                                                                                           html.Button(className='checkbox', name='room', type='checkbox', value='2', id = 'Arbeitszimmer'),
-                                                                                                                                                           html.Label(className='room-selection', htmlFor = 'Arbeitszimmer', children='Arbeitszimmer')
+                                                                                                                                                           html.Button(className='checkbox', name='room', type='checkbox', value='3', id = 'Baz'),
+                                                                                                                                                           html.Label(className='room-selection', htmlFor = 'Baz', children='Badezimmer', id = 'Badezimmer')
                                                                                                                                                          ]
                                                                                                                                                ),
                                                                                                                                       html.Div(className='frame', 
                                                                                                                                                children= [
-                                                                                                                                                           html.Button(className='checkbox', name='room', type='checkbox', value='3', id = 'Badezimmer'),
-                                                                                                                                                           html.Label(className='room-selection', htmlFor = 'Badezimmer', children='Badezimmer')
+                                                                                                                                                           html.Button(className='checkbox', name='room', type='checkbox', value='4', id = 'Büz'),
+                                                                                                                                                           html.Label(className='room-selection', htmlFor = 'Büz', children='Bügelzimmer', id = 'Bügelzimmer')
                                                                                                                                                          ]
                                                                                                                                                ),
                                                                                                                                       html.Div(className='frame', 
                                                                                                                                                children= [
-                                                                                                                                                           html.Button(className='checkbox', name='room', type='checkbox', value='4', id = 'Bügelzimmer'),
-                                                                                                                                                           html.Label(className='room-selection', htmlFor = 'Bügelzimmer', children='Bügelzimmer')
-                                                                                                                                                         ]
-                                                                                                                                               ),
-                                                                                                                                      html.Div(className='frame', 
-                                                                                                                                               children= [
-                                                                                                                                                           html.Button(className='checkbox', name='room', type='checkbox', value='5', id = 'Kinderzimmer'),
-                                                                                                                                                           html.Label(className='room-selection', htmlFor = 'Kinderzimmer', children='Kinderzimmer')
+                                                                                                                                                           html.Button(className='checkbox', name='room', type='checkbox', value='5', id = 'Kz'),
+                                                                                                                                                           html.Label(className='room-selection', htmlFor = 'Kz', children='Kinderzimmer', id = 'Kinderzimmer')
                                                                                                                                                          ]
                                                                                                                                                ),                                                                   
                                                                                                                                       html.Div(className='frame', 
                                                                                                                                                children= [
-                                                                                                                                                           html.Button(className='checkbox', name='room', type='checkbox', value='6', id = 'Küche'),
-                                                                                                                                                           html.Label(className='room-selection', htmlFor = 'Küche', children='Küche')
+                                                                                                                                                           html.Button(className='checkbox', name='room', type='checkbox', value='6', id = 'Kü'),
+                                                                                                                                                           html.Label(className='room-selection', htmlFor = 'Kü', children='Küchenzimmer', id = 'Küche')
                                                                                                                                                          ]
                                                                                                                                                ),                  
                                                                                                                                       html.Div(className='frame', 
                                                                                                                                                children= [
-                                                                                                                                                           html.Button(className='checkbox', name='room', type='checkbox', value='7', id = 'Schlafzimmer'),
-                                                                                                                                                           html.Label(className='room-selection', htmlFor = 'Schlafzimmer', children='Schlafzimmer')
+                                                                                                                                                           html.Button(className='checkbox', name='room', type='checkbox', value='7', id = 'Sz'),
+                                                                                                                                                           html.Label(className='room-selection', htmlFor = 'Sz', children='Schlafzimmer', id = 'Schlafzimmer')
                                                                                                                                                          ]
                                                                                                                                                ),
                                                                                                                                       html.Div(className='frame', 
                                                                                                                                                children= [
-                                                                                                                                                           html.Button(className='checkbox', name='room', type='checkbox', value='8', id = 'Waschküche'),
-                                                                                                                                                           html.Label(className='room-selection', htmlFor = 'Waschküche', children='Waschküche')
+                                                                                                                                                           html.Button(className='checkbox', name='room', type='checkbox', value='8', id = 'Wk'),
+                                                                                                                                                           html.Label(className='room-selection', htmlFor = 'Wk', children='Waschküche', id = 'Waschküche')
                                                                                                                                                          ]
                                                                                                                                                ),         
                                                                                                                                       html.Div(className='frame', 
                                                                                                                                                children= [
-                                                                                                                                                           html.Button(className='checkbox', name='room', type='checkbox', value='9', id = 'Wohnzimmer'),
-                                                                                                                                                           html.Label(className='room-selection', htmlFor = 'Wohnzimmer', children='Wohnzimmer')
+                                                                                                                                                           html.Button(className='checkbox', name='room', type='checkbox', value='9', id = 'Wz'),
+                                                                                                                                                           html.Label(className='room-selection', htmlFor = 'Wz', children='Wohnzimmer', id = 'Wohnzimmer')
                                                                                                                                                          ]
                                                                                                                                                )
                                                                                                                                     ]
@@ -107,32 +131,23 @@ class analytics:
                                                                                             html.Div(className='row',
                                                                                                      children= [
                                                                                                                html.Div(className='col-3',
-                                                                                                                        children=
-                                                                                                                                    html.Button('Absenden',type='submit')
+                                                                                                                        
                                                                                                                         ),
                                                                                                                html.Div(className='col-9',
                                                                                                                         children = [
                                                                                                                                     html.Div(className='select form-check-inline',
                                                                                                                                              children= [
-                                                                                                                                                          html.Div(className='form-check-inline', 
-                                                                                                                                                                   children= [
-                                                                                                                                                                               html.Button(className='checkbox', type='checkbox', name='Attselect', id='Temp', value='Temp'),
-                                                                                                                                                                               html.Label(className='time', htmlFor='Temp', children='Temperatur')
-                                                                                                                                                                             ]
-                                                                                                                                                                   ),
-                                                                                                                                                          html.Div(className='form-check-inline', 
-                                                                                                                                                                   children= [
-                                                                                                                                                                               html.Button(className='checkbox', type='checkbox', name='Attselect', id='Luft', value='Hum1'),
-                                                                                                                                                                               html.Label(className='time', htmlFor='Luft', children='Luftfeuchte')
-                                                                                                                                                                             ]
-                                                                                                                                                                   ),
-                                                                                                                                                          html.Div(className='form-check-inline', 
-                                                                                                                                                                   children= [
-                                                                                                                                                                               html.Button(className='checkbox', type='checkbox', name='Attselect', id='TempD', value='TempD'),
-                                                                                                                                                                               html.Label(className='time', htmlFor='TempD', children='Temp. draußen')
-                                                                                                                                                                             ]
-                                                                                                                                                                   )
-                                                                                                                                                          ]
+                                                                                                                                                         dcc.RadioItems(
+                                                                                                                                                                 options=[
+                                                                                                                                                                                 {'label': ' Temperatur ', 'value': 'temp'},
+                                                                                                                                                                                 {'label': ' Luftfeuchtigkeit', 'value': 'hum'},
+                                                                                                                                                                                 {'label': ' Temperatur draußen', 'value': 'tempd'}
+                                                                                                                                                                         ],
+                                                                                                                                                                value='MTL',
+                                                                                                                                                                labelStyle={'display': 'inline-block'},
+                                                                                                                                                                labelClassName = 'time'
+                                                                                                                                                                        )
+                                                                                                                                                       ]
                                                                                                                                             ),
                                                                                                                                    html.Div(className='select form-check-inline',
                                                                                                                                             children = 
@@ -145,24 +160,17 @@ class analytics:
                                                                                                                                            ),
                                                                                                                                    html.Div(className='select form-check-inline',
                                                                                                                                              children= [
-                                                                                                                                                          html.Div(className='form-check-inline', 
-                                                                                                                                                                   children= [
-                                                                                                                                                                               html.Button(className='checkbox', type='radio', name='TimeFrame', id='Tag', value='D'),
-                                                                                                                                                                               html.Label(className='time', htmlFor='Tag', children='TAG')
-                                                                                                                                                                             ]
-                                                                                                                                                                   ),
-                                                                                                                                                          html.Div(className='form-check-inline', 
-                                                                                                                                                                   children= [
-                                                                                                                                                                               html.Button(className='checkbox', type='radio', name='TimeFrame', id='Woche', value='W'),
-                                                                                                                                                                               html.Label(className='time', htmlFor='Woche', children='WOCHE')
-                                                                                                                                                                             ]
-                                                                                                                                                                   ),
-                                                                                                                                                          html.Div(className='form-check-inline', 
-                                                                                                                                                                   children= [
-                                                                                                                                                                               html.Button(className='checkbox', type='radio', name='TimeFrame', id='Monat', value='M'),
-                                                                                                                                                                               html.Label(className='time', htmlFor='Monat', children='MONAT')
-                                                                                                                                                                             ]
-                                                                                                                                                                   )
+                                                                                                                                                 
+                                                                                                                                                         dcc.RadioItems(
+                                                                                                                                                                 options=[
+                                                                                                                                                                                 {'label': ' Tage', 'value': 'd'},
+                                                                                                                                                                                 {'label': ' Wochen', 'value': 'w'},
+                                                                                                                                                                                 {'label': ' Monate', 'value': 'm'}
+                                                                                                                                                                         ],
+                                                                                                                                                                value='MTL',
+                                                                                                                                                                labelStyle={'display': 'inline-block'},
+                                                                                                                                                                labelClassName = 'time'
+                                                                                                                                                                        )                                                
                                                                                                                                                           ]
                                                                                                                                             )
                                                                                                                                     ]
@@ -255,36 +263,139 @@ site = analytics()
 
 app.layout = site.get_site()
 
-
-'''
 @app.callback(
-    [Output(component_id='Alle', component_property='style'),
-     Output(component_id='Alle', component_property='value')],
-    [Input(component_id='Alle', component_property='value')]
-)
-def update_output_div(input_value):
-    if(input_value == 0):
-        return { 'color' : '#00B1AC' }, 1
+    Output('Alle', 'style'),
+    [Input('Alle', 'n_clicks')])
+def click_all(value):
+    if value % 2 == 1:
+        site.rooms.append('hallo')
+        return { 'color' : '#00B1AC'}
     else:
-        return { 'color' : '#BFC0BF' }, 0
-'''
-@app.callback(
-    Output('test', 'style'),
-    [Input('test', 'n_clicks')])
-def clicks(value):
-    if value % 2 == 0:
-        return { 'color' : '#737373'}
-    else:
-        return { 'color' : '#AB0134'}
+        site.rooms = []
+        return { 'color' : '#BFC0BF'}
 
 @app.callback(
-    Output('test', 'style'),
-    [Input('test', 'n_clicks')])
-def clicks(value):
-    if value % 2 == 0:
-        return { 'color' : '#737373'}
+    Output('Arbeitszimmer', 'style'),
+    [Input('Arbeitszimmer', 'n_clicks')])
+def click_az(value):
+    if value % 2 == 1:
+        site.rooms.append('Arbeitszimmer')
+        return { 'color' : '#00B1AC'}
     else:
-        return { 'color' : '#AB0134'}
+        if 'Arbeitszimmer' in site.rooms:
+            site.rooms.remove('Arbeitszimmer')
+        return { 'color' : '#BFC0BF'}
+    
+@app.callback(
+    Output('Badezimmer', 'style'),
+    [Input('Badezimmer', 'n_clicks')])
+def click_baz(value):
+    if value % 2 == 1:
+        site.rooms.append('Badezimmer')
+        return { 'color' : '#00B1AC'}
+    else:
+        if 'Badezimmer' in site.rooms:
+            site.rooms.remove('Badezimmer')
+        return { 'color' : '#BFC0BF'}
+
+@app.callback(
+    Output('Bügelzimmer', 'style'),
+    [Input('Bügelzimmer', 'n_clicks')])
+def click_büz(value):
+    if value % 2 == 1:
+        site.rooms.append('Bügelzimmer')
+        return { 'color' : '#00B1AC'}
+    else:
+        if 'Bügelzimmer' in site.rooms:
+            site.rooms.remove('Bügelzimmer')
+        return { 'color' : '#BFC0BF'}
+
+@app.callback(
+    Output('Kinderzimmer', 'style'),
+    [Input('Kinderzimmer', 'n_clicks')])
+def click_kz(value):
+    if value % 2 == 1:
+        site.rooms.append('Kinderzimmer')
+        return { 'color' : '#00B1AC'}
+    else:
+        if 'Kinderzimmer' in site.rooms:
+            site.rooms.remove('Kinderzimmer')
+        return { 'color' : '#BFC0BF'}  
+
+@app.callback(
+    Output('Küche', 'style'),
+    [Input('Küche', 'n_clicks')])
+def click_kü(value):
+    if value % 2 == 1:
+        site.rooms.append('Küche')
+        return { 'color' : '#00B1AC'}
+    else:
+        if 'Küche' in site.rooms:
+            site.rooms.remove('Küche')
+        return { 'color' : '#BFC0BF'}   
+
+@app.callback(
+    Output('Schlafzimmer', 'style'),
+    [Input('Schlafzimmer', 'n_clicks')])
+def click_sz(value):
+    if value % 2 == 1:
+        site.rooms.append('Schlafzimmer')
+        return { 'color' : '#00B1AC'}
+    else:
+        if 'Schlafzimmer' in site.rooms:
+            site.rooms.remove('Schlafzimmer')
+        return { 'color' : '#BFC0BF'} 
+    
+@app.callback(
+    Output('Waschküche', 'style'),
+    [Input('Waschküche', 'n_clicks')])
+def click_wk(value):
+    if value % 2 == 1:
+        site.rooms.append('Waschküche')
+        return { 'color' : '#00B1AC'}
+    else:
+        if 'Waschküche' in site.rooms:
+            site.rooms.remove('Waschküche')
+        return { 'color' : '#BFC0BF'} 
+
+@app.callback(
+    Output('Wohnzimmer', 'style'),
+    [Input('Wohnzimmer', 'n_clicks')])
+def click_wz(value):
+    if value % 2 == 1:
+        site.rooms.append('Wohnzimmer')
+        return { 'color' : '#00B1AC'}
+    else:
+        if 'Wohnzimmer' in site.rooms:
+            site.rooms.remove('Wohnzimmer')
+        return { 'color' : '#BFC0BF'} 
+"""
+@app.callback(
+    [Output('d', 'style'), Output('w', 'style'), Output('m', 'style')],
+    [Input('d', 'id')])
+def click_day(value):
+    return { 'color' : '#00B1AC'}, { 'color' : '#BFC0BF'}, { 'color' : '#BFC0BF'}
+
+@app.callback(
+    [Output('d', 'style'), Output('w', 'style'), Output('m', 'style')],
+    [Input('w', 'id')])
+def click_week(value):
+    return { 'color' : '#BFC0BF'}, { 'color' : '#00B1AC'}, { 'color' : '#BFC0BF'}
+
+
+@app.callback(
+    [Output('d', 'style'), Output('w', 'style'), Output('m', 'style')],
+    [Input('w', 'n_clicks')])
+def click_week(value):
+    return { 'color' : '#BFC0BF'}, { 'color' : '#00B1AC'}, { 'color' : '#BFC0BF'}
+
+@app.callback(
+    [Output('d', 'style'), Output('w', 'style'), Output('m', 'style')],
+    [Input('m', 'n_clicks')])
+def click_month(value):
+    return { 'color' : '#BFC0BF'}, { 'color' : '#BFC0BF'}, { 'color' : '#00B1AC'}
+
+"""
 
 if __name__ == '__main__':
     app.run_server(debug=True)

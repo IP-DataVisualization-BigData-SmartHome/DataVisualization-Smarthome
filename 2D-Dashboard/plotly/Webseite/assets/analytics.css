@@ -46,11 +46,11 @@
 .checkbox{
     visibility: hidden;
 }
-
+/*
 .room-selection:hover{
     color: #737373;
     }
-
+*/
 button[type="checkbox"]:checked + label:hover {
    color: #1F897C;
 }
@@ -73,6 +73,12 @@ button[type="checkbox"]:checked + label {
 
 .time{
     padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10PX;
+}
+
+input[type="radio"]:checked ~ .checkmark {
+  background-color: #2196F3;
 }
 
 .time:hover{
