@@ -447,4 +447,34 @@
     padding-top: 1rem;
     padding-right: 0.2rem;
     }
+	.DateInput_input {
+	background-color: #595A59;
+	border-color: #595A59;
+	font-weight: 200;
+	font-size: 25px;
+	line-height: 24px;
+	color: #C4C4C4;
+	width: 150%;
+	padding: 11px 11px 9px;
+	border: 0;
+	border-top: 0;
+	border-right: 0;
+	border-bottom: 2px solid transparent;
+	border-left: 0;
+	border-radius: 0;
+	}
+	.SingleDatePickerInput__withBorder {
+		border: 0px solid #595A59;
+	}
+	.Select-control {
+		width: 150px;
+		background-color: #595A59;
+		border-radius: 4px;
+		border: 0px solid #595A59;
+		color: #C4C4C4;
+		display: table;
+		border-spacing: 0;
+		border-collapse: separate;
+		height: 36px;
+		overflow: hidden;
 }

@@ -7,14 +7,15 @@ Created on Wed May  6 15:18:10 2020
 
 import dash_html_components as html
 import dash_core_components as dcc
-
+from datetime import datetime as dt
 
 class Dashboard:
 
+    
  
-    def dashboard_seite(self):
+    def dashboard_seite(self, uhrzeiten):
         return html.Div([
-                            html.Nav(className='fixed-top',
+                            html.Nav(#className='fixed-top',
                                      children=
                                                  html.Div(className='container-fluid head-design',
                                                           children=[
@@ -26,15 +27,45 @@ class Dashboard:
                                                                                                                          #<!-- Datensatz: Temperatur draußen -->
                                                                                                                          )
                                                                                                     ),
-                                                                                           html.Div(className='col-4 text-center text-head',
-                                                                                                    children=
-                                                                                                                html.A(className='nav-head',
-                                                                                                                       href='#',
-                                                                                                                       children='18:20'
-                                                                                                                       #<!-- Bei Click Uhrzeitauswahl -->
-                                                                                                                       )
+                                                                                           html.Div(className='col-1',                                                                                                                                                                                                                             
                                                                                                     ),
-                                                                                           html.Div(className='col-4 text-left luft-wind',
+                                                                                           html.Div(#className='col-4 text-center text-head',
+                                                                                                    style={'margin-top': '32px', 'position':'relative', 'z-index':'3'},
+                                                                                                    className='col-1,5 text-center text-head2',
+                                                                                                    children=
+                                                                                                                dcc.Dropdown(id='dropdown-tag',
+                                                                                                                             #style={ 'position':'absolute', 'z-index':'3'},
+                                                                                                                             placeholder='Uhrzeit',
+                                                                                                                             options=[{'label': i.strftime("%H:%M"), 'value': i} for i in uhrzeiten],
+                                                                                                                             )
+                                                                                                    
+                                                                                                                #html.A(className='nav-head',
+                                                                                                                 #      href='#',
+                                                                                                                  #     children='18:20'
+                                                                                                                       #<!-- Bei Click Uhrzeitauswahl -->
+                                                                                                                   #    )
+                                                                                                    ),
+                                                                                            html.Div(style={'margin-top': '25px', 'position':'relative', 'z-index':'3'},
+                                                                                                    className='col-3',                                
+                                                                                                    id='Datum',
+                                                                                                    children=   
+                                                                                                                dcc.DatePickerSingle(                                                                                                                                        
+                                                                                                                                        #style={'background-color': '#000000'},
+                                                                                                                                        id='my-date-picker-single',
+                                                                                                                                        display_format='DD.MM.YYYY',
+                                                                                                                                        min_date_allowed=dt(2016, 1, 11),
+                                                                                                                                        max_date_allowed=dt(2016, 5, 27),
+                                                                                                                                        initial_visible_month=dt(2016, 1, 11),
+                                                                                                                                        date=str(dt(2016, 1, 11, 23, 59, 59))
+                                                                                                                                    )
+                                                                                                                #html.A(className='nav-head',
+                                                                                                                 #      href='#',
+                                                                                                                  #     children=' Montag, 17. Nov.'
+                                                                                                                       #<!-- Bei Click Datumauswahl -->
+                                                                                                                   #    )
+                                                                                                    ),
+                                                                                           #html.Div(id='output-test-callback'),
+                                                                                           html.Div(className='col-2 text-center luft-wind',
                                                                                                     children=[
                                                                                                                 html.Div(children='Luftfeuchte: 43%'
                                                                                                                          #<!-- Datensatz: Luftfeuchte draußen -->
@@ -48,15 +79,31 @@ class Dashboard:
                                                                                ),
                                                                       html.Div(className='row',
                                                                                children=[
-                                                                                           html.Div(className='col text-center',
-                                                                                                    id='Datum',
-                                                                                                    children=
-                                                                                                                html.A(className='nav-head',
-                                                                                                                       href='#',
-                                                                                                                       children=' Montag, 17. Nov.'
+                                                                                   html.Div(className='col-4 text-right text-head',
+                                                                                                    #children=
+                                                                                                     #           html.Div(children='10°C'
+                                                                                                      #                   #<!-- Datensatz: Temperatur draußen -->
+                                                                                                       #                  )
+                                                                                                    ),
+                                                                                          # html.Div(className='text-center',                                
+                                                                                           #         id='Datum',
+                                                                                            #        children=   
+                                                                                             #                   dcc.DatePickerSingle(
+                                                                                              #                                          #style={'background-color': '#000000'},
+                                                                                               #                                         id='my-date-picker-single',
+                                                                                                #                                        display_format='DD.MM.YYYY',
+                                                                                                 #                                       min_date_allowed=dt(2016, 1, 11),
+                                                                                                  #                                      max_date_allowed=dt(2016, 5, 27),
+                                                                                                   #                                     initial_visible_month=dt(2016, 1, 11),
+                                                                                                    #                                    date=str(dt(2016, 1, 11, 23, 59, 59))
+                                                                                                     #                               )
+                                                                                                                #html.A(className='nav-head',
+                                                                                                                 #      href='#',
+                                                                                                                  #     children=' Montag, 17. Nov.'
                                                                                                                        #<!-- Bei Click Datumauswahl -->
-                                                                                                                       )
-                                                                                                    )                                                                        
+                                                                                                                   #    )
+                                                                                                    #),
+                                                                                           #html.Div(id='output-test-callback')
                                                                                            ]
                                                                                )
                                                               ])

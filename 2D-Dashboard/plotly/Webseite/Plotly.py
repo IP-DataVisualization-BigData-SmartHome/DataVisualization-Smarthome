@@ -20,6 +20,10 @@ from Schlaf import Schlaf
 from Wasch import Wasch
 from Arbeit import Arbeit
 from Wohn import Wohn
+import psycopg2
+from postgre import postgre_connector
+from datetime import datetime as dt
+
 
 
 
@@ -34,6 +38,14 @@ external_stylesheets = [
         dbc.themes.BOOTSTRAP,
         'https://cdn.materialdesignicons.com/5.1.45/css/materialdesignicons.min.css'
 ]
+
+uhrzeiten = []
+    
+for i in range(0,24):
+    minutenzaehler = -10
+    for j in range(0,6):
+        minutenzaehler += 10
+        uhrzeiten.append(dt(year = 9999, month = 1, day = 1, hour=i, minute=minutenzaehler))
 
 
 app = dash.Dash(external_stylesheets=external_stylesheets, external_scripts=external_scripts)
@@ -76,7 +88,7 @@ app.layout = html.Div([
 
 def display_page(pathname):
     if pathname == '/dashboard.html':
-        return Dashboard().dashboard_seite()
+        return Dashboard().dashboard_seite(uhrzeiten)
     elif pathname== '/optimization.html':
         return Optimization().optimization_seite()
     elif pathname== '/bad.html':
@@ -96,20 +108,20 @@ def display_page(pathname):
     elif pathname== '/wohn.html':
         return Wohn().wohn_seite()
     else:
-        return Dashboard().dashboard_seite()
+        return Dashboard().dashboard_seite(uhrzeiten)
     
 @app.callback(
     dash.dependencies.Output('output-test-callback', 'children'),
-   [dash.dependencies.Input('input-test-callback', 'value')])
+   [dash.dependencies.Input('my-date-picker-single', 'date')])
 
 
-def erzeuge_uhrzeit_dropdown(value):
-            if value == None:
+def erzeuge_uhrzeit_dropdown(date):
+            if date == None:
                 return None
             else:
-                return html.Div(children=value)
+                return html.Div(children=date)
 
 
 if __name__ == '__main__':
-    app.run_server()
+    app.run_server(debug=False)
     
