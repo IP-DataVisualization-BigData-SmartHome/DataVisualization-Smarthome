@@ -32,6 +32,13 @@
     margin-top: -25px;
 }
 
+/*
+CallbackMethode ruft Klasse auf für zuweisung 
+1. nicht geklickt hover wird überschrieben
+2. geklickt ebenfalls
+
+
+
 .room-selection{
     background-color: #595A59;
     color: #BFC0BF;
@@ -46,25 +53,18 @@
 .checkbox{
     visibility: hidden;
 }
-
+/*
 .room-selection:hover{
     color: #737373;
     }
-
+*/
 input[type="checkbox"]:checked + label:hover {
-    color: #1F897C; 
-}
-
-input[type="checkbox"]:checked + label:hover {
-   color: #737373; 
-
+   color: #1F897C;
 }
 
 input[type="checkbox"]:checked + label {
-   color: #00B1AC; 
-
+   color: #00B1AC;
 }
-
 
 
 .select{

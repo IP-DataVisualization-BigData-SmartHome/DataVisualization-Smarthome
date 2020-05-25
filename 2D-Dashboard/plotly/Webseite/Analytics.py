@@ -74,8 +74,8 @@ class analytics:
                                                                                                                                      
                                                                                                                                       html.Div(className='frame', 
                                                                                                                                                children= [
-                                                                                                                                                           html.Button(className='checkbox', name='room', type='checkbox', value='2', id = 'Az'),
-                                                                                                                                                           html.Label(className='room-selection', htmlFor = 'Az', children='Arbeitszimmer', id='Arbeitszimmer')
+                                                                                                                                                          
+                                                                                                                                                           html.Label(className='room-selection', children='Arbeitszimmer', id='Arbeitszimmer')
                                                                                                                                                          ]
                                                                                                                                                ),
                                                                                                                                       html.Div(className='frame', 
@@ -263,7 +263,7 @@ site = analytics()
 
 app.layout = site.get_site()
 
-'''
+
 @app.callback(
     Output('Arbeitszimmer', 'style'),
     [Input('Arbeitszimmer', 'n_clicks')])
@@ -359,7 +359,7 @@ def click_wz(value):
         if 'Wohnzimmer' in site.rooms:
             site.rooms.remove('Wohnzimmer')
         return { 'color' : '#BFC0BF'} 
-'''    
+    
 """
 @app.callback(
     [Output('d', 'style'), Output('w', 'style'), Output('m', 'style')],
