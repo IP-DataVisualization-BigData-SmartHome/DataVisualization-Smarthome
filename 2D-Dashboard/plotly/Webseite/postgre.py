@@ -8,6 +8,7 @@
 import psycopg2
 import pandas as pd
 import datetime as dt
+import time
 # Connect to the PostgreSQL database
 
 class postgre_connector:
@@ -99,8 +100,12 @@ class postgre_connector:
 DB_connector = postgre_connector()
 day1 = [2016,4,12,3,30]
 day2 = [2016,4,16,8,30]
-result = DB_connector.get_data(day1, day2, 'd', ['t1, t2, rh_1'])
+start = time.time()
+result = DB_connector.get_data(day1, day2, 'a', ['t1, t2, rh_1'])
+end = time.time()
+
 #result = DB_connector.get_first_date()
 print(result)
+print('Die Query dauerte ' + str(end-start) + ' Sekunden')
 
     
