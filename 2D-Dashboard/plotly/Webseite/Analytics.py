@@ -3,31 +3,7 @@
 @author: Lukas Schnittcher
 
 
-                                                                                                                                                          html.Div(className='form-check-inline', 
-                                                                                                                                                                   children= [
-                                                                                                                                                                               html.Button(className='checkbox', type='radio', name='TimeFrame', id='Tag', value='D'),
-                                                                                                                                                                               html.Label(className='time', htmlFor='Tag', children='TAG', id='d')
-                                                                                                                                                                             ]
-                                                                                                                                                                   ),
-                                                                                                                                                          html.Div(className='form-check-inline', 
-                                                                                                                                                                   children= [
-                                                                                                                                                                               html.Button(className='checkbox', type='radio', name='TimeFrame', id='Woche', value='W'),
-                                                                                                                                                                               html.Label(className='time', htmlFor='Woche', children='WOCHE', id = 'w')
-                                                                                                                                                                             ]
-                                                                                                                                                                   ),
-                                                                                                                                                          html.Div(className='form-check-inline', 
-                                                                                                                                                                   children= [
-                                                                                                                                                                               html.Button(className='checkbox', type='radio', name='TimeFrame', id='Monat', value='M'),
-                                                                                                                                                                               html.Label(className='time', htmlFor='Monat', children='MONAT', id = 'm')
-                                                                                                                                                                             ]
-                                                                                                                                                                   )
-                     
-                                                                                                                                                           html.Div(className='frame', 
-                                                                                                                                               children= [
-                                                                                                                                                           html.Button(className='checkbox', name='room', type='checkbox', value='1', id = 'All'),
-                                                                                                                                                           html.Label(className='room-selection', htmlFor = 'All', children='Alle', id='Alle')
-                                                                                                                                                         ]
-                                                                                                                                               ),
+                                                                                                                                                
                                                                                                                                                           
 """
 
@@ -36,6 +12,7 @@ import dash_core_components as dcc
 import dash_bootstrap_components as dbc
 from dash.dependencies import Input, Output
 import dash
+import datetime as dt
 #import postgre
 
 class analytics:
@@ -74,8 +51,8 @@ class analytics:
                                                                                                                                      
                                                                                                                                       html.Div(className='frame', 
                                                                                                                                                children= [
-                                                                                                                                                          
-                                                                                                                                                           html.Label(className='room-selection', children='Arbeitszimmer', id='Arbeitszimmer')
+                                                                                                                                                           html.Button(className='checkbox', name='room', type='checkbox', value='2', id = 'Az'),
+                                                                                                                                                           html.Label(className='room-selection', children='Arbeitszimmer', htmlFor='Az', id='Arbeitszimmer')
                                                                                                                                                          ]
                                                                                                                                                ),
                                                                                                                                       html.Div(className='frame', 
@@ -151,12 +128,19 @@ class analytics:
                                                                                                                                             ),
                                                                                                                                    html.Div(className='select form-check-inline',
                                                                                                                                             children = 
-                                                                                                                                                          html.Div(className='form-check-inline datepicker',
-                                                                                                                                                                   children= [
-                                                                                                                                                                                html.Button(className='checkbox'),
-                                                                                                                                                                                html.Label(className='time', children='Letzter tag: Placeholder Datepicker')
-                                                                                                                                                                             ]
-                                                                                                                                                                  )
+                                                                                                                                                          html.Div(style={'margin-top': '25px', 'position':'relative', 'z-index':'3'},
+                                                                                                                                                                   className='col-3', id='Datum1',
+                                                                                                                                                                   children=   
+                                                                                                                                                                                  dcc.DatePickerSingle(                                                                                                                                        
+                                                                                                                                                                                                      #style={'background-color': '#000000'},
+                                                                                                                                                                                                      id='my-date-picker-single',
+                                                                                                                                                                                                      display_format='DD.MM.YYYY',
+                                                                                                                                                                                                      min_date_allowed=dt.datetime(2016, 1, 11),
+                                                                                                                                                                                                      max_date_allowed=dt.datetime(2016, 5, 27),
+                                                                                                                                                                                                      initial_visible_month=dt.datetime(2016, 1, 11),
+                                                                                                                                                                                                      date=str(dt.datetime(2016, 1, 11, 23, 59, 59))
+                                                                                                                                                                                                      )                
+                                                                                                                                                                   )
                                                                                                                                            ),
                                                                                                                                    html.Div(className='select form-check-inline',
                                                                                                                                              children= [
@@ -360,33 +344,6 @@ def click_wz(value):
             site.rooms.remove('Wohnzimmer')
         return { 'color' : '#BFC0BF'} 
     
-"""
-@app.callback(
-    [Output('d', 'style'), Output('w', 'style'), Output('m', 'style')],
-    [Input('d', 'id')])
-def click_day(value):
-    return { 'color' : '#00B1AC'}, { 'color' : '#BFC0BF'}, { 'color' : '#BFC0BF'}
-
-@app.callback(
-    [Output('d', 'style'), Output('w', 'style'), Output('m', 'style')],
-    [Input('w', 'id')])
-def click_week(value):
-    return { 'color' : '#BFC0BF'}, { 'color' : '#00B1AC'}, { 'color' : '#BFC0BF'}
-
-
-@app.callback(
-    [Output('d', 'style'), Output('w', 'style'), Output('m', 'style')],
-    [Input('w', 'n_clicks')])
-def click_week(value):
-    return { 'color' : '#BFC0BF'}, { 'color' : '#00B1AC'}, { 'color' : '#BFC0BF'}
-
-@app.callback(
-    [Output('d', 'style'), Output('w', 'style'), Output('m', 'style')],
-    [Input('m', 'n_clicks')])
-def click_month(value):
-    return { 'color' : '#BFC0BF'}, { 'color' : '#BFC0BF'}, { 'color' : '#00B1AC'}
-
-"""
 
 if __name__ == '__main__':
     app.run_server(debug=True)
