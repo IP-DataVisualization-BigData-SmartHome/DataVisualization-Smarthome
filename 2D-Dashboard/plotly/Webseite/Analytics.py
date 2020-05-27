@@ -13,8 +13,19 @@ import dash_bootstrap_components as dbc
 from dash.dependencies import Input, Output
 import dash
 import datetime as dt
-#import postgre
+from postgre import postgre_connector
 
+room_dict = {
+             'Küche' : ('t1','rh_1'),
+             'Wohnzimmer' : ('t2','rh_2'),
+             'Waschraum' : ('t3','rh_3'),
+             'Arbeitszimmer' : ('t4','rh_4'),
+             'Badezimmer' : ('t5','rh_5'),
+             'Bügelzimmer' : ('t7','rh_7'),
+             'Kinderzimmer' : ('t8','rh_8'),
+             'Elternzimmer' : ('t9','rh_9')
+             }
+                                                                                                                                                  
 class analytics:
     
     def __init__(self):
@@ -101,9 +112,12 @@ class analytics:
                                                                                                                         ),
                                                                                                                 html.Div(className='col-9',
                                                                                                                           children= 
-                                                                                                                                     html.Div(className='graph', children='Plotly Diagramm')
+                                                                                                                                     html.Div(className='graph', children= [], id = 'analytics_graph')
+                                                                                                                                              
+                                                                                                                                              
                                                                                                                         )
                                                                                                                 ]
+                                                                                                                
                                                                                                     ),
                                                                                             html.Div(className='row',
                                                                                                      children= [
@@ -122,25 +136,24 @@ class analytics:
                                                                                                                                                                          ],
                                                                                                                                                                 value='MTL',
                                                                                                                                                                 labelStyle={'display': 'inline-block'},
-                                                                                                                                                                labelClassName = 'time'
+                                                                                                                                                                labelClassName = 'time',
+                                                                                                                                                                id = 'mode_data'
                                                                                                                                                                         )
                                                                                                                                                        ]
                                                                                                                                             ),
                                                                                                                                    html.Div(className='select form-check-inline',
                                                                                                                                             children = 
-                                                                                                                                                          html.Div(style={'margin-top': '25px', 'position':'relative', 'z-index':'3'},
-                                                                                                                                                                   className='col-3', id='Datum1',
-                                                                                                                                                                   children=   
-                                                                                                                                                                                  dcc.DatePickerSingle(                                                                                                                                        
-                                                                                                                                                                                                      #style={'background-color': '#000000'},
-                                                                                                                                                                                                      id='my-date-picker-single',
-                                                                                                                                                                                                      display_format='DD.MM.YYYY',
-                                                                                                                                                                                                      min_date_allowed=dt.datetime(2016, 1, 11),
-                                                                                                                                                                                                      max_date_allowed=dt.datetime(2016, 5, 27),
-                                                                                                                                                                                                      initial_visible_month=dt.datetime(2016, 1, 11),
-                                                                                                                                                                                                      date=str(dt.datetime(2016, 1, 11, 23, 59, 59))
-                                                                                                                                                                                                      )                
-                                                                                                                                                                   )
+                                                                                                                                                          
+                                                                                                                                                         dcc.DatePickerRange(
+                                                                                                                                                                 id='daterange',
+                                                                                                                                                                 min_date_allowed=dt.datetime(2016, 1, 12),
+                                                                                                                                                                 max_date_allowed=dt.datetime(2016, 5, 26),
+                                                                                                                                                                 initial_visible_month=dt.datetime(2016, 1, 13),
+                                                                                                                                                                 end_date=dt.datetime(2016, 5, 25).date(),
+                                                                                                                                                                 start_date=dt.datetime(2016, 1, 15).date(),
+                                                                                                                                                                 className='daterange'
+                                                                                                                                                                             )                
+                                                                                                                                                                   
                                                                                                                                            ),
                                                                                                                                    html.Div(className='select form-check-inline',
                                                                                                                                              children= [
@@ -153,7 +166,8 @@ class analytics:
                                                                                                                                                                          ],
                                                                                                                                                                 value='MTL',
                                                                                                                                                                 labelStyle={'display': 'inline-block'},
-                                                                                                                                                                labelClassName = 'time'
+                                                                                                                                                                labelClassName = 'time',
+                                                                                                                                                                id = 'mode_time'
                                                                                                                                                                         )                                                
                                                                                                                                                           ]
                                                                                                                                             )
@@ -242,6 +256,8 @@ external_stylesheets = [
 
 app = dash.Dash(external_stylesheets=external_stylesheets, external_scripts=external_scripts)
 app.title = 'Analytics'
+
+dbcon = postgre_connector()
 
 site = analytics()
 
@@ -344,6 +360,38 @@ def click_wz(value):
             site.rooms.remove('Wohnzimmer')
         return { 'color' : '#BFC0BF'} 
     
+@app.callback(
+    Output('analytics_graph', 'children'),
+    [Input('Arbeitszimmer', 'n_clicks')])
+def graph_cb(value):
+    
+    retDiv = html.Div(children = [])
+    
+    if value == None: return 
+    day1 = dt.datetime(2016, 1, 17)
+    day2 = dt.datetime(2016, 2, 23)
+    result = dbcon.get_data(day1, day2, 'a', ['t1', 't2', 'rh_1'])
+    data = []
+    
+    # Pro Raum nur temp und Luftfeuchte (Pro Graph)
+    
+    for room in site.rooms:
+        roomtupel = room_dict[room]
+        graphObj = dcc.Graph()
+        tmp = {'y' : list(result[roomtupel[0]]), 'x' : list(result['date']), 'type' : 'bar', 'name' : str(roomtupel[0])}
+        data.append(tmp)
+        tmp = {'y' : list(result[roomtupel[1]]), 'x' : list(result['date']), 'type' : 'bar', 'name' :str(roomtupel[1])}
+        data.append(tmp)
+        tmp = {'title' : str(room)}
+        ret = {}
+        ret['data'] = data
+        ret['layout'] = tmp
+        graphObj.figure = ret
+        retDiv.children += graphObj        
+    
+    return retDiv
+
+
 
 if __name__ == '__main__':
     app.run_server(debug=True)

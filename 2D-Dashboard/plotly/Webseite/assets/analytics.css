@@ -32,12 +32,6 @@
     margin-top: -25px;
 }
 
-/*
-CallbackMethode ruft Klasse auf für zuweisung 
-1. nicht geklickt hover wird überschrieben
-2. geklickt ebenfalls
-
-
 
 .room-selection{
     background-color: #595A59;
@@ -48,6 +42,12 @@ CallbackMethode ruft Klasse auf für zuweisung
     padding-bottom: 5px;
     font-size: 2vw;
     width: 100%;
+}
+
+
+.daterange {
+   background-color: #595A59 !important;
+   color: red;
 }
 
 .checkbox{
@@ -88,11 +88,11 @@ input[type="checkbox"]:checked + label {
 .labeltest{
     padding-top:20px;
 }
-
+/*
 .time:hover{
     color: #737373;
 }
-
+*/
 button[type="radio"]:checked + label:hover {
    color: #1F897C;
 }
