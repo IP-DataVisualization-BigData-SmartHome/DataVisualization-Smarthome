@@ -30,14 +30,14 @@ class postgre_connector:
     
     def get_first_date(self):
         self.connect()
-        query = 'SELECT date FROM "public"."energyusage" ORDER BY DATE ASC LIMIT 1;'
+        query = 'SELECT datum FROM "public"."energyusage" ORDER BY DATE ASC LIMIT 1;'
         dataframe = self.create_pandas_table(query, [])
         self.close()
         return dataframe
     
     def get_last_date(self):
         self.connect()
-        query = 'SELECT date FROM "public"."energyusage" ORDER BY DATE DESC LIMIT 1;'
+        query = 'SELECT datum FROM "public"."energyusage" ORDER BY DATE DESC LIMIT 1;'
         dataframe = self.create_pandas_table(query, [])
         self.close()
         return dataframe
@@ -69,30 +69,33 @@ class postgre_connector:
         query = 'SELECT '
         
         
-        
         for col in coloums:
             query += col + ','
         
         query = query[:-1:] # Delete last ',' from Query
         
+        
         if mode == 'a':
             #Grunddaten
-            query += ' FROM "public"."mat_view_all_data" WHERE datum >= %s AND datum <= %s;'
+            query += ' FROM public.mat_view_all_data WHERE datum >= %s AND datum <= %s ORDER BY datum ASC;'
+            print(query % (start_day, end_day))
             dataframe = self.create_pandas_table(query, [start_day, end_day])
         
         elif mode == 'h':
             #stunde
-            query += ' FROM "public"."mat_view_avg_all_hour" WHERE EXTRACT("hour" from datum) >= %s AND EXTRACT("hour" from datum) <= %s;'
-            dataframe = self.create_pandas_table(query, [start_day.hour, end_day.hour])
+            query += ' FROM public.mat_view_avg_all_hour WHERE datum >= %s AND datum <= %s ORDER BY datum ASC;'
+            #print(query)
+            dataframe = self.create_pandas_table(query, [start_day, end_day])
             
         elif mode == 'd':
             #mtag
-            query += ' FROM "public"."mat_view_avg_all_days" WHERE EXTRACT("day" from datum) >= %s AND EXTRACT("day" from datum) <= %s;'
-            dataframe = self.create_pandas_table(query, [start_day.day, end_day.day])
+            query += ' FROM public.mat_view_avg_all_days WHERE datum >= %s AND datum <= %s ORDER BY datum ASC;'
+            print(query % (start_day, end_day))
+            dataframe = self.create_pandas_table(query, [start_day, end_day])
             
         elif mode == 'm':
             #month: Table: mat_view_avg_all_months
-            query += ' FROM public.mat_view_avg_all_months WHERE EXTRACT("month" from datum) >= %s AND EXTRACT ("month" from datum) <= %s;'
+            query += ' FROM public.mat_view_avg_all_months WHERE EXTRACT("month" from datum) >= %s AND EXTRACT ("month" from datum) <= %s ORDER BY datum ASC;'
             print(query % (start_day.month, end_day.month))
             dataframe = self.create_pandas_table(query, [start_day.month, end_day.month])
         self.close()
@@ -102,15 +105,12 @@ class postgre_connector:
         # Einfüge-Funktion um den Datensatz zu erweitern
         pass
 
-"""
 DB_connector = postgre_connector()
-day1 = [2016,4,12,0,0]
+day1 = [2016,2,18,0,0]
 day2 = [2016,5,16,8,30]
-start = time.time()
-result = DB_connector.get_data(day1, day2, 'a', [])
-end = time.time()
-"""
-#result = DB_connector.get_first_date()
-#print(result)
+result = DB_connector.get_data(day1, day2, 'h', [])
+
+
+print(result)
 
     

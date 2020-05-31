@@ -160,6 +160,7 @@ class analytics:
                                                                                                                                                  
                                                                                                                                                          dcc.RadioItems(
                                                                                                                                                                  options=[
+                                                                                                                                                                                 {'label' : ' Minuten', 'value': 'a'}
                                                                                                                                                                                  {'label': ' Tage', 'value': 'd'},
                                                                                                                                                                                  {'label': ' Wochen', 'value': 'w'},
                                                                                                                                                                                  {'label': ' Monate', 'value': 'm'}
@@ -361,10 +362,20 @@ def click_wz(value):
         return { 'color' : '#BFC0BF'} 
  
 @app.callback(
-    Output('analytics_graph', 'children'),
-    [Input('Arbeitszimmer', 'n_clicks')])
+    Output('analytics_graph', 'children'),  ""
+    [Input('Arbeitszimmer', 'n_clicks'),
+     Input('Badezimmer', 'n_clicks'),
+     Input('Bügelzimmer', 'n_clicks'),
+     Input('Kinderzimmer', 'n_clicks'),
+     Input('Küche', 'n_clicks'),
+     Input('Schlafzimmer', 'n_clicks'),
+     Input('Waschlüche', 'n_clicks'),
+     Input('Wohnzimmer', 'n_clicks'),
+     Input('daterange', 'start_date'),
+     Input('daterange', 'end_date'),
+     Input('mode_data', 'value'),])
 
-def graph_cb(value):
+def graph_cb(value1, value2, value3, value4,):
     
     if value == None: return
     retDiv = html.Div(children = [])
