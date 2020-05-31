@@ -8,6 +8,7 @@
 import psycopg2
 import pandas as pd
 import datetime as dt
+import time
 # Connect to the PostgreSQL database
 
 class postgre_connector:
@@ -26,25 +27,48 @@ class postgre_connector:
         if self.__connection != None:
             self.__connection.close()
         return
+    
+    def get_first_date(self):
+        self.connect()
+        query = 'SELECT date FROM "public"."energyusage" ORDER BY DATE ASC LIMIT 1;'
+        dataframe = self.create_pandas_table(query, [])
+        self.close()
+        return dataframe
+    
+    def get_last_date(self):
+        self.connect()
+        query = 'SELECT date FROM "public"."energyusage" ORDER BY DATE DESC LIMIT 1;'
+        dataframe = self.create_pandas_table(query, [])
+        self.close()
+        return dataframe
         
     def create_pandas_table(self, sql_query, data):
         table = pd.read_sql_query(sql_query, self.__connection, params=data)
         return table
     
         """
-        Data-Format day = [(int)Jahr, int(monat), int(day)]
+        Data-Format day = [(int)Jahr, int(monat), int(day)] oder day1 und day2 sind datetime-Objekte
         Data-Format coloumns = ['t1', 'rh1', ...]
+        Data-Format mode = { 'd' : tag, 'm' : Monat, 'h : stündlich, 'a' : Alle Daten'}
         """
     def get_data(self, day1, day2, mode = 'd', coloums = ['t1']):
         
-        coloums = ['date'] + coloums
+        if coloums == []:
+            coloums = ['*']
+        else:
+            coloums = ['datum'] + coloums
         
         self.connect()
-        
-        start_day = dt.datetime(day1[0], day1[1], day1[2], 0,0,0)
-        end_day = dt.datetime(day2[0], day2[1], day2[2], 0,0,0)
-        
+        if(type(day1) != dt.datetime and type(day2) != dt.datetime):
+            start_day = dt.datetime(day1[0], day1[1], day1[2], day1[3], day1[4], 0)
+            end_day = dt.datetime(day2[0], day2[1], day2[2], day2[3], day2[4], 0)
+        else:
+            start_day = day1
+            end_day = day2
+                
         query = 'SELECT '
+        
+        
         
         for col in coloums:
             query += col + ','
@@ -53,22 +77,24 @@ class postgre_connector:
         
         if mode == 'a':
             #Grunddaten
-            query += ' FROM "public"."energyusage" WHERE date::date >= (%s) AND date::date <= (%s);'
+            query += ' FROM "public"."mat_view_all_data" WHERE datum >= %s AND datum <= %s;'
             dataframe = self.create_pandas_table(query, [start_day, end_day])
         
         elif mode == 'h':
-            #stunde 
-            pass
+            #stunde
+            query += ' FROM "public"."mat_view_avg_all_hour" WHERE EXTRACT("hour" from datum) >= %s AND EXTRACT("hour" from datum) <= %s;'
+            dataframe = self.create_pandas_table(query, [start_day.hour, end_day.hour])
             
         elif mode == 'd':
             #mtag
-            pass
+            query += ' FROM "public"."mat_view_avg_all_days" WHERE EXTRACT("day" from datum) >= %s AND EXTRACT("day" from datum) <= %s;'
+            dataframe = self.create_pandas_table(query, [start_day.day, end_day.day])
             
         elif mode == 'm':
             #month: Table: mat_view_avg_all_months
-            query += ' FROM "public"."mat_view_avg_all_months" WHERE date::date >= (%s) AND date::date <= (%s);'
-            dataframe = self.create_pandas_table(query, [start_day, end_day])
-        
+            query += ' FROM public.mat_view_avg_all_months WHERE EXTRACT("month" from datum) >= %s AND EXTRACT ("month" from datum) <= %s;'
+            print(query % (start_day.month, end_day.month))
+            dataframe = self.create_pandas_table(query, [start_day.month, end_day.month])
         self.close()
         return dataframe
     
@@ -76,11 +102,15 @@ class postgre_connector:
         # Einfüge-Funktion um den Datensatz zu erweitern
         pass
 
-#if __name__=='__main__':
- #   DB_connector = postgre_connector()
-  #  day1 = [2016,4,12]
-   # day2 = [2016,4,13]
-    #result = DB_connector.get_data(day1, day2, 'a', ['t1, t2, rh_1'])
-    #print(result)
-    
+"""
+DB_connector = postgre_connector()
+day1 = [2016,4,12,0,0]
+day2 = [2016,5,16,8,30]
+start = time.time()
+result = DB_connector.get_data(day1, day2, 'a', [])
+end = time.time()
+"""
+#result = DB_connector.get_first_date()
+#print(result)
+
     
