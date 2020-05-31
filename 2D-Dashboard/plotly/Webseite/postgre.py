@@ -102,15 +102,15 @@ class postgre_connector:
         # Einfüge-Funktion um den Datensatz zu erweitern
         pass
 
-
+"""
 DB_connector = postgre_connector()
 day1 = [2016,4,12,0,0]
 day2 = [2016,5,16,8,30]
 start = time.time()
 result = DB_connector.get_data(day1, day2, 'a', [])
 end = time.time()
-
+"""
 #result = DB_connector.get_first_date()
-print(result)
+#print(result)
 
     

@@ -359,42 +359,47 @@ def click_wz(value):
         if 'Wohnzimmer' in site.rooms:
             site.rooms.remove('Wohnzimmer')
         return { 'color' : '#BFC0BF'} 
-    
+ 
 @app.callback(
     Output('analytics_graph', 'children'),
     [Input('Arbeitszimmer', 'n_clicks')])
+
 def graph_cb(value):
     
+    if value == None: return
     retDiv = html.Div(children = [])
+    
+    gathering = []
     
     if value == None: return 
     day1 = dt.datetime(2016, 1, 17)
-    day2 = dt.datetime(2016, 2, 23)
-    result = dbcon.get_data(day1, day2, 'a', ['t1', 't2', 'rh_1'])
+    day2 = dt.datetime(2016, 4, 23)
+    result = dbcon.get_data(day1, day2, 'd', [])
     data = []
-    
+    rooms =['Arbeitszimmer', 'Kinderzimmer']
     # Pro Raum nur temp und Luftfeuchte (Pro Graph)
     
-    for room in site.rooms:
+    for room in rooms:
         roomtupel = room_dict[room]
         graphObj = dcc.Graph()
-        tmp = {'y' : list(result[roomtupel[0]]), 'x' : list(result['date']), 'type' : 'bar', 'name' : str(roomtupel[0])}
+        tmp = {'y' : list(result[roomtupel[0]]), 'x' : list(result['datum']), 'type' : 'bar', 'name' : roomtupel[0]}
         data.append(tmp)
-        tmp = {'y' : list(result[roomtupel[1]]), 'x' : list(result['date']), 'type' : 'bar', 'name' :str(roomtupel[1])}
+        tmp = {'y' : list(result[roomtupel[1]]), 'x' : list(result['datum']), 'type' : 'bar', 'name' : roomtupel[1]}
         data.append(tmp)
         tmp = {'title' : str(room)}
         ret = {}
         ret['data'] = data
         ret['layout'] = tmp
         graphObj.figure = ret
-        retDiv.children += graphObj        
+        gathering.append(graphObj)
+    retDiv.children = gathering     
     
     return retDiv
 
 
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server(debug=False)
 
 
 

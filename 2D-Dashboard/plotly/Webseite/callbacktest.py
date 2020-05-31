@@ -16,67 +16,50 @@ app = dash.Dash()
 
 dbcon = postgre_connector()
 
-app.layout = html.Div(children = [ dcc.Graph(
-        id='test2',
-        figure={
-            'data': [
-                {'x': [1, 2, 3], 'y': [4, 1, 2], 'type': 'bar', 'name': 'SF'},
-                {'x': [1, 2, 3], 'y': [2, 4, 5], 'type': 'bar', 'name': u'Montréal'},
-            ],
-            'layout': {
-                'title': 'Dash Data Visualization'
-            }
-        }
-    ),
-    html.Button(id='test1')
-    ]
-    )
+room_dict = {
+             'Küche' : ('t1','rh_1'),
+             'Wohnzimmer' : ('t2','rh_2'),
+             'Waschraum' : ('t3','rh_3'),
+             'Arbeitszimmer' : ('t4','rh_4'),
+             'Badezimmer' : ('t5','rh_5'),
+             'Bügelzimmer' : ('t7','rh_7'),
+             'Kinderzimmer' : ('t8','rh_8'),
+             'Elternzimmer' : ('t9','rh_9')
+             }
 
-@app.callback(
-    Output('test2', 'figure'),
-    [Input('test1', 'n_clicks')])
+
 def graph_cb(value):
+    
+    retDiv = html.Div(children = [])
+    
+    gathering = []
+    
+    if value == None: return 
     day1 = dt.datetime(2016, 1, 17)
     day2 = dt.datetime(2016, 2, 23)
-    result = dbcon.get_data(day1, day2, 'a', ['t1', 't2', 'rh_1'])
+    result = dbcon.get_data(day1, day2, 'h', [])
     data = []
+    rooms =['Arbeitszimmer', 'Kinderzimmer']
+    # Pro Raum nur temp und Luftfeuchte (Pro Graph)
     
-    for col in result.keys():
-        if col != 'date':
-            tmp = {'y' : list(result[col]), 'x' : list(result['date']), 'type' : 'bar', 'name' : col}
-            data.append(tmp)
-    
-    tmp = {'title' : 'Test_Graph'}
-    ret = {}
-    ret['data'] = data
-    ret['layout'] = tmp
-    return ret
- 
-def testing(value):
-    day1 = dt.datetime(2016, 1, 17)
-    day2 = dt.datetime(2016, 2, 23)
-    result = dbcon.get_data(day1, day2, 'a', ['t1', 't2', 'rh_1'])
-    data = []
-    
-    retDiv = html.Div(children= [])
-    
-    for room in site.rooms:
+    for room in rooms:
+        roomtupel = room_dict[room]
         graphObj = dcc.Graph()
-        for col in result.keys():
-            if col != 'date':
-                tmp = {'x' : list(data[col]), 'y' : list(data['date']), 'type' : 'bar', 'name' : col}
-                data.append(tmp)
+        tmp = {'y' : list(result[roomtupel[0]]), 'x' : list(result['datum']), 'type' : 'bar', 'name' : roomtupel[0]}
+        data.append(tmp)
+        tmp = {'y' : list(result[roomtupel[1]]), 'x' : list(result['datum']), 'type' : 'bar', 'name' : roomtupel[1]}
+        data.append(tmp)
+        tmp = {'title' : str(room)}
+        ret = {}
+        ret['data'] = data
+        ret['layout'] = tmp
+        graphObj.figure = ret
+        gathering.append(graphObj)
+    retDiv.children = gathering     
     
-    tmp = {'title' : 'Test_Graph'}
-    ret = {}
-    ret['data'] = data
-    ret['layout'] = tmp
-    ret.append(tmp)
-    return ret   
-
-if __name__ == '__main__':
-    app.run_server(debug=True)
-    
+    return retDiv
+ 
+print(graph_cb(0))   
     
     
     
