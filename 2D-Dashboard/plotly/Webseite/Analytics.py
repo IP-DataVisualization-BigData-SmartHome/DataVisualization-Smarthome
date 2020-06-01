@@ -134,7 +134,7 @@ class analytics:
                                                                                                                                                                                  {'label': ' Luftfeuchtigkeit', 'value': 'hum'},
                                                                                                                                                                                  {'label': ' Temperatur draußen', 'value': 'tempd'}
                                                                                                                                                                          ],
-                                                                                                                                                                value='MTL',
+                                                                                                                                                                value='temp',
                                                                                                                                                                 labelStyle={'display': 'inline-block'},
                                                                                                                                                                 labelClassName = 'time',
                                                                                                                                                                 id = 'mode_data'
@@ -151,7 +151,8 @@ class analytics:
                                                                                                                                                                  initial_visible_month=dt.datetime(2016, 1, 13),
                                                                                                                                                                  end_date=dt.datetime(2016, 5, 25).date(),
                                                                                                                                                                  start_date=dt.datetime(2016, 1, 15).date(),
-                                                                                                                                                                 className='daterange'
+                                                                                                                                                                 className='daterange',
+                                                                                                                                                                 with_portal = True
                                                                                                                                                                              )                
                                                                                                                                                                    
                                                                                                                                            ),
@@ -160,12 +161,12 @@ class analytics:
                                                                                                                                                  
                                                                                                                                                          dcc.RadioItems(
                                                                                                                                                                  options=[
-                                                                                                                                                                                 {'label' : ' Minuten', 'value': 'a'}
+                                                                                                                                                                                 {'label' : ' Minuten', 'value': 'a'},
                                                                                                                                                                                  {'label': ' Tage', 'value': 'd'},
                                                                                                                                                                                  {'label': ' Wochen', 'value': 'w'},
                                                                                                                                                                                  {'label': ' Monate', 'value': 'm'}
                                                                                                                                                                          ],
-                                                                                                                                                                value='MTL',
+                                                                                                                                                                value='a',
                                                                                                                                                                 labelStyle={'display': 'inline-block'},
                                                                                                                                                                 labelClassName = 'time',
                                                                                                                                                                 id = 'mode_time'
@@ -362,48 +363,36 @@ def click_wz(value):
         return { 'color' : '#BFC0BF'} 
  
 @app.callback(
-    Output('analytics_graph', 'children'),  ""
+    Output('analytics_graph', 'children'),  
     [Input('Arbeitszimmer', 'n_clicks'),
      Input('Badezimmer', 'n_clicks'),
      Input('Bügelzimmer', 'n_clicks'),
      Input('Kinderzimmer', 'n_clicks'),
      Input('Küche', 'n_clicks'),
      Input('Schlafzimmer', 'n_clicks'),
-     Input('Waschlüche', 'n_clicks'),
+     Input('Waschküche', 'n_clicks'),
      Input('Wohnzimmer', 'n_clicks'),
      Input('daterange', 'start_date'),
      Input('daterange', 'end_date'),
-     Input('mode_data', 'value'),])
-
-def graph_cb(value1, value2, value3, value4,):
+     Input('mode_data', 'value'),
+     Input('mode_time', 'value')])
+def graph_cb(value1, value2, value3, value4, value5, value6, value7, value8, start_date, end_date, mode_data, mode_time):
     
-    if value == None: return
+    
     retDiv = html.Div(children = [])
+    test = ''
+    
+    for room in site.rooms:
+        test += ' ' + str(room)+ ' '
+    
+    test += ' ' + str(start_date) + ' ' 
+    test += ' ' + str(end_date) + ' ' 
+    test += ' ' + str(mode_data) + ' ' 
+    test += ' ' + str(mode_time) + ' ' 
     
     gathering = []
     
-    if value == None: return 
-    day1 = dt.datetime(2016, 1, 17)
-    day2 = dt.datetime(2016, 4, 23)
-    result = dbcon.get_data(day1, day2, 'd', [])
-    data = []
-    rooms =['Arbeitszimmer', 'Kinderzimmer']
-    # Pro Raum nur temp und Luftfeuchte (Pro Graph)
-    
-    for room in rooms:
-        roomtupel = room_dict[room]
-        graphObj = dcc.Graph()
-        tmp = {'y' : list(result[roomtupel[0]]), 'x' : list(result['datum']), 'type' : 'bar', 'name' : roomtupel[0]}
-        data.append(tmp)
-        tmp = {'y' : list(result[roomtupel[1]]), 'x' : list(result['datum']), 'type' : 'bar', 'name' : roomtupel[1]}
-        data.append(tmp)
-        tmp = {'title' : str(room)}
-        ret = {}
-        ret['data'] = data
-        ret['layout'] = tmp
-        graphObj.figure = ret
-        gathering.append(graphObj)
-    retDiv.children = gathering     
+    retDiv.children = [test]
     
     return retDiv
 

@@ -62,4 +62,26 @@ def graph_cb(value):
 print(graph_cb(0))   
     
     
+day1 = dt.datetime(2016, 1, 17)
+    day2 = dt.datetime(2016, 4, 23)
+    result = dbcon.get_data(day1, day2, 'd', [])
+    data = []
+    rooms =['Arbeitszimmer', 'Kinderzimmer']
+    # Pro Raum nur temp und Luftfeuchte (Pro Graph)
     
+    for room in rooms:
+        roomtupel = room_dict[room]
+        graphObj = dcc.Graph()
+        tmp = {'y' : list(result[roomtupel[0]]), 'x' : list(result['datum']), 'type' : 'bar', 'name' : roomtupel[0]}
+        data.append(tmp)
+        tmp = {'y' : list(result[roomtupel[1]]), 'x' : list(result['datum']), 'type' : 'bar', 'name' : roomtupel[1]}
+        data.append(tmp)
+        tmp = {'title' : str(room)}
+        ret = {}
+        ret['data'] = data
+        ret['layout'] = tmp
+        graphObj.figure = ret
+        gathering.append(graphObj)
+    retDiv.children = gathering     
+    
+    return retDiv    

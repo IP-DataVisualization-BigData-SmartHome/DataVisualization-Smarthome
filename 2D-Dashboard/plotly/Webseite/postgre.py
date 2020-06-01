@@ -30,14 +30,14 @@ class postgre_connector:
     
     def get_first_date(self):
         self.connect()
-        query = 'SELECT datum FROM "public"."energyusage" ORDER BY DATE ASC LIMIT 1;'
+        query = 'SELECT datum FROM public.mat_view_all_data ORDER BY datum ASC LIMIT 1;'
         dataframe = self.create_pandas_table(query, [])
         self.close()
         return dataframe
     
     def get_last_date(self):
         self.connect()
-        query = 'SELECT datum FROM "public"."energyusage" ORDER BY DATE DESC LIMIT 1;'
+        query = 'SELECT datum FROM public.mat_view_all_data ORDER BY datum DESC LIMIT 1;'
         dataframe = self.create_pandas_table(query, [])
         self.close()
         return dataframe
@@ -108,7 +108,7 @@ class postgre_connector:
 DB_connector = postgre_connector()
 day1 = [2016,2,18,0,0]
 day2 = [2016,5,16,8,30]
-result = DB_connector.get_data(day1, day2, 'h', [])
+result = DB_connector.get_last_date()
 
 
 print(result)
