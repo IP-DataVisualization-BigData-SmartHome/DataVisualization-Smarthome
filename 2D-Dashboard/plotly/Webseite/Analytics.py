@@ -18,12 +18,12 @@ from postgre import postgre_connector
 room_dict = {
              'Küche' : ('t1','rh_1'),
              'Wohnzimmer' : ('t2','rh_2'),
-             'Waschraum' : ('t3','rh_3'),
+             'Waschküche' : ('t3','rh_3'),
              'Arbeitszimmer' : ('t4','rh_4'),
              'Badezimmer' : ('t5','rh_5'),
              'Bügelzimmer' : ('t7','rh_7'),
              'Kinderzimmer' : ('t8','rh_8'),
-             'Elternzimmer' : ('t9','rh_9')
+             'Schlafzimmer' : ('t9','rh_9')
              }
                                                                                                                                                   
 class analytics:
@@ -162,8 +162,8 @@ class analytics:
                                                                                                                                                          dcc.RadioItems(
                                                                                                                                                                  options=[
                                                                                                                                                                                  {'label' : ' Minuten', 'value': 'a'},
+                                                                                                                                                                                 {'label': ' Stunden', 'value': 'h'},
                                                                                                                                                                                  {'label': ' Tage', 'value': 'd'},
-                                                                                                                                                                                 {'label': ' Wochen', 'value': 'w'},
                                                                                                                                                                                  {'label': ' Monate', 'value': 'm'}
                                                                                                                                                                          ],
                                                                                                                                                                 value='a',
@@ -378,28 +378,59 @@ def click_wz(value):
      Input('mode_time', 'value')])
 def graph_cb(value1, value2, value3, value4, value5, value6, value7, value8, start_date, end_date, mode_data, mode_time):
     
-    
+
     retDiv = html.Div(children = [])
-    test = ''
+    #graph = dcc.Graph(config = {'responsible' : True})
+    start_date = dt.datetime.strptime(start_date, '%Y-%m-%d')
+    end_date = dt.datetime.strptime(end_date, '%Y-%m-%d')
+
+    room_list = []
+    gath = []
     
-    for room in site.rooms:
-        test += ' ' + str(room)+ ' '
+    checkstring = ''
     
-    test += ' ' + str(start_date) + ' ' 
-    test += ' ' + str(end_date) + ' ' 
-    test += ' ' + str(mode_data) + ' ' 
-    test += ' ' + str(mode_time) + ' ' 
+    if mode_data == 'temp':
+        room_list += [room_dict[x][0] for x in site.rooms]
+        result = DB_conn.get_data(start_date, end_date, mode_time, room_list)  
     
-    gathering = []
+    elif mode_data == 'tempd':
+        room_list += [room_dict[x][0] for x in site.rooms] 
+        room_list += ['t_out']
+        site.rooms += ['Temperatur Draußen']
+        result = DB_conn.get_data(start_date, end_date, mode_time, room_list)
+        
+    elif mode_data == 'hum':
+        room_list += [room_dict[x][1] for x in site.rooms]
+        result = DB_conn.get_data(start_date, end_date, mode_time, room_list)
+        
+    data_col = list(result.columns).copy()
+    data_col.remove('datum')
+        
+    for col,name in zip(data_col, site.rooms):
+        if col != 'datum':
+            fig_data = {'x' : result['datum'], 'y' : result[col], 'type' : 'bar', 'name' : name}
+            gath.append(fig_data)
     
-    retDiv.children = [test]
+    #checkstring += str(data_col) + '  ' + str(site.rooms) + '  ' + str(room_list) 
+    #checkstring += str(room_list)
+    #checkstring += '  ' + str(site.rooms)
+    
+    if mode_data == 'tempd':
+        site.rooms.remove('Temperatur Draußen')
+    
+    fig = { 'data' : gath, 'layout': {'title': 'Analytics Graph'}}
+    graph = dcc.Graph(figure=fig)
+
+    #checkstring += str(fig)
+    
+    retDiv.children = graph
     
     return retDiv
 
 
-
+DB_conn = postgre_connector()
 if __name__ == '__main__':
-    app.run_server(debug=False)
+    app.run_server(debug=True)
 
 
 
