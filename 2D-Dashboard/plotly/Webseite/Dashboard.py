@@ -18,8 +18,8 @@ class Dashboard:
         DB_connector = postgre_connector()
         erster_eintrag = DB_connector.get_first_date()
         letzter_eintrag = DB_connector.get_last_date()
-        self.__erster_eintrag_timestamp = erster_eintrag['date'][0]
-        self.__letzter_eintrag_timestamp = letzter_eintrag['date'][0]
+        self.__erster_eintrag_timestamp = erster_eintrag['datum'][0]
+        self.__letzter_eintrag_timestamp = letzter_eintrag['datum'][0]
         # print(self.__letzter_eintrag_timestamp)
         #print(type(erster_eintrag))
         #print(type(letzter_eintrag))
