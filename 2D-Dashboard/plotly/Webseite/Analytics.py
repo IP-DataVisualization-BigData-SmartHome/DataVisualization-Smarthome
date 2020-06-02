@@ -13,7 +13,7 @@ import dash_bootstrap_components as dbc
 from dash.dependencies import Input, Output
 import dash
 import datetime as dt
-from postgre import postgre_connector
+from postgre import postgre_connector, pd
 
 room_dict = {
              'Küche' : ('t1','rh_1'),
@@ -132,7 +132,8 @@ class analytics:
                                                                                                                                                                  options=[
                                                                                                                                                                                  {'label': ' Temperatur ', 'value': 'temp'},
                                                                                                                                                                                  {'label': ' Luftfeuchtigkeit', 'value': 'hum'},
-                                                                                                                                                                                 {'label': ' Temperatur draußen', 'value': 'tempd'}
+                                                                                                                                                                                 {'label': ' Temperatur draußen', 'value': 'tempd'},
+                                                                                                                                                                                 {'label': ' Luftfeuchtigkeit draußen', 'value': 'humd'}
                                                                                                                                                                          ],
                                                                                                                                                                 value='temp',
                                                                                                                                                                 labelStyle={'display': 'inline-block'},
@@ -149,8 +150,8 @@ class analytics:
                                                                                                                                                                  min_date_allowed=dt.datetime(2016, 1, 12),
                                                                                                                                                                  max_date_allowed=dt.datetime(2016, 5, 26),
                                                                                                                                                                  initial_visible_month=dt.datetime(2016, 1, 13),
-                                                                                                                                                                 end_date=dt.datetime(2016, 5, 25).date(),
-                                                                                                                                                                 start_date=dt.datetime(2016, 1, 15).date(),
+                                                                                                                                                                 end_date= pd.to_datetime(DB_conn.get_last_date()['datum'][0]).date(),
+                                                                                                                                                                 start_date= pd.to_datetime(DB_conn.get_first_date()['datum'][0]).date(),
                                                                                                                                                                  className='daterange',
                                                                                                                                                                  with_portal = True
                                                                                                                                                                              )                
@@ -259,7 +260,7 @@ external_stylesheets = [
 app = dash.Dash(external_stylesheets=external_stylesheets, external_scripts=external_scripts)
 app.title = 'Analytics'
 
-dbcon = postgre_connector()
+DB_conn = postgre_connector()
 
 site = analytics()
 
@@ -402,6 +403,12 @@ def graph_cb(value1, value2, value3, value4, value5, value6, value7, value8, sta
     elif mode_data == 'hum':
         room_list += [room_dict[x][1] for x in site.rooms]
         result = DB_conn.get_data(start_date, end_date, mode_time, room_list)
+    
+    elif mode_data == 'humd':
+        room_list += [room_dict[x][1] for x in site.rooms]
+        room_list += ['rh_out']
+        site.rooms += ['Luftfeuchtigkeit Draußen']
+        result = DB_conn.get_data(start_date, end_date, mode_time, room_list)
         
     data_col = list(result.columns).copy()
     data_col.remove('datum')
@@ -417,6 +424,8 @@ def graph_cb(value1, value2, value3, value4, value5, value6, value7, value8, sta
     
     if mode_data == 'tempd':
         site.rooms.remove('Temperatur Draußen')
+    elif mode_data == 'humd':
+        site.rooms.remove('Luftfeuchtigkeit Draußen')
     
     fig = { 'data' : gath, 'layout': {'title': 'Analytics Graph'}}
     graph = dcc.Graph(figure=fig)
@@ -428,7 +437,7 @@ def graph_cb(value1, value2, value3, value4, value5, value6, value7, value8, sta
     return retDiv
 
 
-DB_conn = postgre_connector()
+
 if __name__ == '__main__':
     app.run_server(debug=True)
 
