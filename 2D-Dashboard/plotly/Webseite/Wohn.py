@@ -27,12 +27,11 @@ class Wohn:
             day1 = [int(dashboard_datum_liste[0]),int(dashboard_datum_liste[1]),int(dashboard_datum_liste[2]),00,00]
             day2 = [int(dashboard_datum_liste[0]),int(dashboard_datum_liste[1]),int(dashboard_datum_liste[2]),23,50]
             result = DB_connector.get_data(day1, day2, 'a', ['t2', 'rh_2'])
-            #print(result)
             
             erster_eintrag = DB_connector.get_first_date()
             letzter_eintrag = DB_connector.get_last_date()
-            self.__erster_eintrag_timestamp = erster_eintrag['date'][0]
-            self.__letzter_eintrag_timestamp = letzter_eintrag['date'][0]
+            self.__erster_eintrag_timestamp = erster_eintrag['datum'][0]
+            self.__letzter_eintrag_timestamp = letzter_eintrag['datum'][0]
             return html.Div([
                                  html.Nav(className='fixed-top',
                                      children=
@@ -40,14 +39,8 @@ class Wohn:
                                                           children=[
                                                                       html.Div(className='row',
                                                                                children=[
-                                                                                           html.Div(id='temp_draussen'),
-                                                                                           # html.Div(className='col-4 text-right text-head',
-                                                                                           #          children=
-                                                                                           #                      html.Div(children='10°C'
-                                                                                           #                               #<!-- Datensatz: Temperatur draußen -->
-                                                                                           #                               )
-                                                                                           #          ),
-                                                                                           html.Div(className='col-1',                                                                                                                                                                                                                             
+                                                                                           html.Div(id='temp_draussen'),                                                                                           
+                                                                                           html.Div(className='col-5',                                                                                                                                                                                                                             
                                                                                                     ),
                                                                                            
                                                                                             html.Div(style={'margin-top': '25px', 'position':'relative', 'z-index':'3'},
@@ -66,55 +59,14 @@ class Wohn:
                                                                                                                                         #initial_visible_month=dt(2016, 1, 11),
                                                                                                                                         #date=str(dt(2016, 1, 11))
                                                                                                                                         date=str(dt(int(dashboard_datum_liste[0]), int(dashboard_datum_liste[1]), int(dashboard_datum_liste[2])))
-                                                                                                                                    )
-                                                                                                                #html.A(className='nav-head',
-                                                                                                                 #      href='#',
-                                                                                                                  #     children=' Montag, 17. Nov.'
-                                                                                                                       #<!-- Bei Click Datumauswahl -->
-                                                                                                                   #    )
+                                                                                                                                    )                                                                                                                
                                                                                                     ),
-                                                                                           #html.Div(id='output-test-callback'),
                                                                                            html.Div(id='luftfeuchte_wind_draussen'),
-                                                                                           # html.Div(className='col-2 text-center luft-wind',
-                                                                                           #          children=[
-                                                                                           #                      html.Div(children='Luftfeuchte: 43%'
-                                                                                           #                               #<!-- Datensatz: Luftfeuchte draußen -->
-                                                                                           #                               ),
-                                                                                           #                      html.Div(children='Wind: 10 km/h'
-                                                                                           #                               #<!-- Datensatz: Wind draußen -->
-                                                                                           #                               )
-                                                                                           #                      ]
-                                                                                           #          )
                                                                                        ]
                                                                                ),
                                                                       html.Div(className='row',
-                                                                               children=[
-                                                                                   html.Div(className='col-4 text-right text-head',
-                                                                                                    #children=
-                                                                                                     #           html.Div(children='10°C'
-                                                                                                      #                   #<!-- Datensatz: Temperatur draußen -->
-                                                                                                       #                  )
-                                                                                                    ),
-                                                                                          # html.Div(className='text-center',                                
-                                                                                           #         id='Datum',
-                                                                                            #        children=   
-                                                                                             #                   dcc.DatePickerSingle(
-                                                                                              #                                          #style={'background-color': '#000000'},
-                                                                                               #                                         id='my-date-picker-single',
-                                                                                                #                                        display_format='DD.MM.YYYY',
-                                                                                                 #                                       min_date_allowed=dt(2016, 1, 11),
-                                                                                                  #                                      max_date_allowed=dt(2016, 5, 27),
-                                                                                                   #                                     initial_visible_month=dt(2016, 1, 11),
-                                                                                                    #                                    date=str(dt(2016, 1, 11, 23, 59, 59))
-                                                                                                     #                               )
-                                                                                                                #html.A(className='nav-head',
-                                                                                                                 #      href='#',
-                                                                                                                  #     children=' Montag, 17. Nov.'
-                                                                                                                       #<!-- Bei Click Datumauswahl -->
-                                                                                                                   #    )
-                                                                                                    #),
-                                                                                           #html.Div(id='output-test-callback')
-                                                                                           ]
+                                                                               children=
+                                                                                           html.Div(className='col-4 text-right text-head')                                                                                          
                                                                                )
                                                               ])
                                                  ),
@@ -157,7 +109,7 @@ class Wohn:
                                                                                                                              id='Graph_Temperatur_Wohn',
                                                                                                                              figure = {
                                                                                                                                  'data': [
-                                                                                                                                             {'x': result['date'], 'y': result['t2'], 'type': 'scatter', 'name': 'SF'},
+                                                                                                                                             {'x': result['datum'], 'y': result['t2'], 'type': 'scatter', 'name': 'SF'},
                                                                                                                                          ],
                                                                                                                                   'layout': {
                                                                                                                                               'title': 'Temperatur'
@@ -173,7 +125,7 @@ class Wohn:
                                                                                                                               id='Graph_Luftfeucht_Wohn',
                                                                                                                               figure = {
                                                                                                                                   'data': [
-                                                                                                                                              {'x': result['date'], 'y': result['rh_2'], 'type': 'scatter', 'name': 'SF'},
+                                                                                                                                              {'x': result['datum'], 'y': result['rh_2'], 'type': 'scatter', 'name': 'SF'},
                                                                                                                                           ],
                                                                                                                                    'layout': {
                                                                                                                                                'title': 'Luftfeuchtigkeit'

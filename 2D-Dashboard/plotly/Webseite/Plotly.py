@@ -106,16 +106,10 @@ wohn = Wohn()
 #erzeugt die Unterseiten
 @app.callback(dash.dependencies.Output('page-content', 'children'),
               [dash.dependencies.Input('url', 'pathname'),
-                # dash.dependencies.Input('my-date-picker-single', 'date'),
-                # dash.dependencies.Input('dropdown-uhrzeit', 'value')
                ])
 
 
 def display_page(pathname):
-    
-    # if(date == None or value == None):
-    #     datum_liste = dashboard_datum_gesplittet(date)
-    #     uhrzeit = dashboard_uhrzeit_gesplittet(value)
     
     if pathname == '/dashboard.html':
         return dashboard.dashboard_seite(uhrzeiten)
@@ -149,10 +143,6 @@ def dashboard_uhrzeit_tage_abspeichern(date, value):
             if(date != None and value != None):
                 uhrzeit_datum.uhrzeit = dashboard_uhrzeit_gesplittet(value)
                 uhrzeit_datum.datum = dashboard_datum_gesplittet(date)
-                #dashboard_datum_liste = dashboard_datum_gesplittet(date)
-                #dashboard_uhrzeit = dashboard_uhrzeit_gesplittet(value)
-                #print(dashboard_datum_liste)
-                #print(dashboard_uhrzeit)
             
     
 @app.callback(
@@ -164,60 +154,12 @@ def kugel_zimmer1(date, value):
             if date == None or value == None:
                 return None
             else:
-                 #DB_connector = postgre_connector()
-                 #day1 = [2016,4,12]
-                 #day2 = [2016,4,13]
-                 #result = DB_connector.get_data(day1, day2, 'a', ['t1, t2, rh_1'])
-                 #print(result)
-                
-                #print(date)
-                #print(value)
-                # date_gesplittet = date.split('-',3)
-                # jahr = date_gesplittet[0]
-                # monat = date_gesplittet[1]                
-                # date_gesplittet_gesplittet = date_gesplittet[2].split(' ', 2)
-                # tag = date_gesplittet_gesplittet[0]
-                # jahr_zahl = int(jahr)
-                # monat_zahl = int(monat)
-                # tag_zahl = int(tag)
-                
-                # value_gesplittet = value.split('T', 2)
-                # print(value_gesplittet[1])
-               # print(type(date))
                 datum_liste = dashboard_datum_gesplittet(date)
                 uhrzeit = dashboard_uhrzeit_gesplittet(value)
                 
                 return dashboard_erstellung_zimmer_kugeln(datum_liste, uhrzeit, 't1', 'rh_1')
                 
-            #     print(datum_liste)
-            #     print(uhrzeit)
-                
-            #     DB_connector = postgre_connector()
-            #     day1 = [datum_liste[0],datum_liste[1],datum_liste[2]]
-            #     day2 = [datum_liste[0],datum_liste[1],datum_liste[2]]
-            #     result = DB_connector.get_data(day1, day2, 'a', ['t1', 'rh_1'])
-            #     result_gefiltert = result.loc[result['date'] == datum_liste[3] + '-' + datum_liste[4] + '-' + datum_liste[5] + ' ' + uhrzeit]
-            #     print(result)
-            #     print(result_gefiltert['date'])
-            #     # print(list(result.columns.values))
-            #      #for i in result:
-            #       #   print(result["date"].)
-            #      #print(x)
-            #     print(type(result['t1']))
-            #     return html.Div(className='colorcircle',
-            #                     children=[
-            #                                 html.Div(className='filled',
-            #                                          id='bad-fill'),
-            #                                 html.P(children=result_gefiltert['t1']),
-            #                                 html.P(children=result_gefiltert['rh_1'])
-            #                             ]
-            #                     )
-            
-            
-            # #html.Div(children=[
-            #                                 #html.Div(children=date.strftime('%d.%m.%y')),
-            #             #                    html.Div(children=value)
-            #              #                 ])
+           
 
 
 @app.callback(
@@ -346,9 +288,6 @@ def dashboard_datum_gesplittet(date):
     monat = date_gesplittet[1]                
     date_gesplittet_gesplittet = date_gesplittet[2].split(' ', 2)
     tag = date_gesplittet_gesplittet[0]
-    # jahr_zahl = int(jahr)
-    # monat_zahl = int(monat)
-    # tag_zahl = int(tag)
     
     liste = []
     liste.append(jahr)
@@ -360,24 +299,16 @@ def dashboard_datum_gesplittet(date):
 def dashboard_uhrzeit_gesplittet(uhrzeit):
      uhrzeit_gesplittet = uhrzeit.split('T', 2)
      uhrzeit_gesplittet_gesplittet = uhrzeit_gesplittet[1].split(':',3)
-     #print(uhrzeit_gesplittet_gesplittet)
      return uhrzeit_gesplittet_gesplittet
  
 def dashboard_erstellung_zimmer_kugeln(datum_liste, uhrzeit, temp_zimmer, luftfeucht_zimmer):
     DB_connector = postgre_connector()
-    # day1 = [datum_liste[0],datum_liste[1],datum_liste[2]]
-    # day2 = [datum_liste[0],datum_liste[1],datum_liste[2]]
-    # result = DB_connector.get_data(day1, day2, 'a', [temp_zimmer, luftfeucht_zimmer])
-    # result_gefiltert = result.loc[result['date'] == datum_liste[3] + '-' + datum_liste[4] + '-' + datum_liste[5] + ' ' + uhrzeit]
 
     day1 = [int(datum_liste[0]),int(datum_liste[1]),int(datum_liste[2]),int(uhrzeit[0]),int(uhrzeit[1])]
     day2 = [int(datum_liste[0]),int(datum_liste[1]),int(datum_liste[2]),int(uhrzeit[0]),int(uhrzeit[1])]
     result = DB_connector.get_data(day1, day2, 'a', [temp_zimmer, luftfeucht_zimmer])
-    #print(result)
     temp_zimmer_gesplittet = result[temp_zimmer].get(0).astype(str).split('.',2)
     luftfeucht_zimmer_gesplittet = result[luftfeucht_zimmer].get(0).astype(str).split('.',2)
-    #print((result[temp_zimmer].get(0).astype(str).split('.',2)))
-    #print(type(result[luftfeucht_zimmer].get(0).astype(str)))
 
     return html.Div(className='colorcircle',
                     children=[
@@ -404,8 +335,6 @@ def dashboard_luftfeuchte_wind_draussen(date, value):
                 day1 = [int(datum_liste[0]),int(datum_liste[1]),int(datum_liste[2]),int(uhrzeit[0]),int(uhrzeit[1])]
                 day2 = [int(datum_liste[0]),int(datum_liste[1]),int(datum_liste[2]),int(uhrzeit[0]),int(uhrzeit[1])]
                 result = DB_connector.get_data(day1, day2, 'a', ['windspeed', 'rh_out'])
-                #print(result)
-                #print(type(result['windspeed']))
                 
                 windspeed_gesplittet = result['windspeed'].get(0).astype(str).split('.',2)
                 rh_out_gesplittet = result['rh_out'].get(0).astype(str).split('.',2)
@@ -440,17 +369,15 @@ def dashboard_temp_draussen(date, value):
                 
                 day1 = [int(datum_liste[0]),int(datum_liste[1]),int(datum_liste[2]),int(uhrzeit[0]),int(uhrzeit[1])]
                 day2 = [int(datum_liste[0]),int(datum_liste[1]),int(datum_liste[2]),int(uhrzeit[0]),int(uhrzeit[1])]
-                result = DB_connector.get_data(day1, day2, 'a', ['t_out'])
-                #print(result)
-                #print(type(result['windspeed']))
+                result = DB_connector.get_data(day1, day2, 'a', ['t_out'])                
                 
                 temp_draussen_gesplittet = result['t_out'].get(0).astype(str).split('.',2)
                 
     
                 
-                return  html.Div(#className='col-4 text-right text-head',
+                return  html.Div(
                                  children=
-                                             html.Div(children= temp_draussen_gesplittet[0] + '°C' #result['t_out'].astype(str) + '°C'
+                                             html.Div(children= temp_draussen_gesplittet[0] + '°C' 
                                                       #<!-- Datensatz: Temperatur draußen -->
                                                       )
                                  ),          
@@ -471,8 +398,6 @@ def dashboard_stromverbrauch_lichtverbrauch(date, value):
                 day1 = [int(datum_liste[0]),int(datum_liste[1]),int(datum_liste[2]),int(uhrzeit[0]),int(uhrzeit[1])]
                 day2 = [int(datum_liste[0]),int(datum_liste[1]),int(datum_liste[2]),int(uhrzeit[0]),int(uhrzeit[1])]
                 result = DB_connector.get_data(day1, day2, 'a', ['appliances', 'lights'])
-                #print(result)
-                #print(type(result['windspeed']))
                 
                 appliances_gesplittet = result['appliances'].get(0).astype(str).split('.',2)
                 licht_gesplittet = result['lights'].get(0).astype(str).split('.',2)
@@ -490,7 +415,7 @@ def dashboard_stromverbrauch_lichtverbrauch(date, value):
                                                                                   html.I(className='mdi mdi-flash icons-verbrauch')
                                                                           ),
                                                                  html.Div(className='stromverbrauch verbrauch-zahl',
-                                                                          children=appliances_gesplittet[0] + 'W' #result['appliances'].astype(str) + 'W'
+                                                                          children=appliances_gesplittet[0] + 'W' 
                                                                           #<!-- Stromverbrauch eintragen -->
                                                                           )
                                                                 ] 
@@ -506,7 +431,7 @@ def dashboard_stromverbrauch_lichtverbrauch(date, value):
                                                                                       html.I(className='mdi mdi-lightbulb-on icons-verbrauch')
                                                                           ),
                                                                  html.Div(className='stromverbrauch verbrauch-zahl',
-                                                                          children=licht_gesplittet[0] + 'W' #result['lights'].astype(str) + 'W'
+                                                                          children=licht_gesplittet[0] + 'W' 
                                                                           #<!-- Lichtverbrauch eintragen -->
                                                                           )
                                                                  ]
@@ -675,10 +600,7 @@ def arbeitszimmer_luftfeucht_tag(date):
 
 def einzelzimmer_graph_tagesverlauf(date, datenbankspalte, ueberschrift):
             if date == None:
-               # if uhrzeit_datum.datum == None:
                     return None
-               # else:
-                    #date = uhrzeit_datum.datum
                 
             else:
                 dashboard_datum_liste = dashboard_datum_gesplittet(date)
