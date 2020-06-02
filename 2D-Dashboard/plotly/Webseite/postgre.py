@@ -27,6 +27,12 @@ class postgre_connector:
         if self.__connection != None:
             self.__connection.close()
         return
+   
+    def get_time_intervall(self):
+        self.connect()
+        query = 'SELECT datum FROM public.mat_view_all_data ORDER BY datum ASC LIMIT 2;'
+        dataframe = self.create_pandas_table(query, [])
+        return (dataframe['datum'][1] - dataframe['datum'][0]).total_seconds()/60
     
     def get_first_date(self):
         self.connect()
@@ -110,6 +116,8 @@ day1 = [2016,2,18,0,0]
 day2 = [2016,5,16,8,30]
 result = DB_connector.get_data(day1,day2,'a', [])
 
-
+DB_connector = postgre_connector()
+result = DB_connector.get_time_intervall()
+print(type(result))
 print(result)
- """ 
+"""
