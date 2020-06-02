@@ -40,13 +40,24 @@ external_stylesheets = [
         'https://cdn.materialdesignicons.com/5.1.45/css/materialdesignicons.min.css'
 ]
 
-uhrzeiten = []
+def erzeuge_uhrzeiten():
+    DB_connector = postgre_connector()
+    uhrzeiten_liste = []
+    time_intervall = int(DB_connector.get_time_intervall())
     
-for i in range(0,24):
-    minutenzaehler = -10
-    for j in range(0,6):
-        minutenzaehler += 10
-        uhrzeiten.append(dt(year = 9999, month = 1, day = 1, hour=i, minute=minutenzaehler))
+    for i in range(0,24):
+        minutenzaehler = time_intervall * -1
+        for j in range(0, int(60/time_intervall)):
+            minutenzaehler += time_intervall
+            uhrzeiten_liste.append(dt(year = 9999, month = 1, day = 1, hour=i, minute=minutenzaehler))
+    
+    return uhrzeiten_liste      
+
+
+
+uhrzeiten = erzeuge_uhrzeiten()
+
+uhrzeit_datum = Uhrzeit_datum()
 
 
 app = dash.Dash(external_stylesheets=external_stylesheets, external_scripts=external_scripts)
@@ -90,10 +101,6 @@ schlaf = Schlaf()
 wasch = Wasch()
 arbeit = Arbeit()
 wohn = Wohn()
-
-#dashboard_uhrzeit = None
-#dashboard_datum_liste = None
-uhrzeit_datum = Uhrzeit_datum()
 
 
 #erzeugt die Unterseiten
@@ -692,7 +699,7 @@ def einzelzimmer_graph_tagesverlauf(date, datenbankspalte, ueberschrift):
                            }
                         }                                                   
                         
-                                                   
+                                          
                                            
                           
                     

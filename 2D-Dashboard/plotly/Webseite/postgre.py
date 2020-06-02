@@ -27,17 +27,23 @@ class postgre_connector:
         if self.__connection != None:
             self.__connection.close()
         return
+   
+    def get_time_intervall(self):
+        self.connect()
+        query = 'SELECT datum FROM public.mat_view_all_data ORDER BY datum ASC LIMIT 2;'
+        dataframe = self.create_pandas_table(query, [])
+        return (dataframe['datum'][1] - dataframe['datum'][0]).total_seconds()/60
     
     def get_first_date(self):
         self.connect()
-        query = 'SELECT datum FROM public.mat_view_all_data ORDER BY DATUM ASC LIMIT 1;'
+        query = 'SELECT datum FROM public.mat_view_all_data ORDER BY datum ASC LIMIT 1;'
         dataframe = self.create_pandas_table(query, [])
         self.close()
         return dataframe
     
     def get_last_date(self):
         self.connect()
-        query = 'SELECT datum FROM public.mat_view_all_data ORDER BY DATUM DESC LIMIT 1;'
+        query = 'SELECT datum FROM public.mat_view_all_data ORDER BY datum DESC LIMIT 1;'
         dataframe = self.create_pandas_table(query, [])
         self.close()
         return dataframe
@@ -78,7 +84,7 @@ class postgre_connector:
         if mode == 'a':
             #Grunddaten
             query += ' FROM public.mat_view_all_data WHERE datum >= %s AND datum <= %s ORDER BY datum ASC;'
-            print(query % (start_day, end_day))
+            #print(query % (start_day, end_day))
             dataframe = self.create_pandas_table(query, [start_day, end_day])
         
         elif mode == 'h':
@@ -90,13 +96,13 @@ class postgre_connector:
         elif mode == 'd':
             #mtag
             query += ' FROM public.mat_view_avg_all_days WHERE datum >= %s AND datum <= %s ORDER BY datum ASC;'
-            print(query % (start_day, end_day))
+            #print(query % (start_day, end_day))
             dataframe = self.create_pandas_table(query, [start_day, end_day])
             
         elif mode == 'm':
             #month: Table: mat_view_avg_all_months
             query += ' FROM public.mat_view_avg_all_months WHERE EXTRACT("month" from datum) >= %s AND EXTRACT ("month" from datum) <= %s ORDER BY datum ASC;'
-            print(query % (start_day.month, end_day.month))
+            #print(query % (start_day.month, end_day.month))
             dataframe = self.create_pandas_table(query, [start_day.month, end_day.month])
         self.close()
         return dataframe
@@ -104,13 +110,14 @@ class postgre_connector:
     def add_data(self, data):
         # Einfüge-Funktion um den Datensatz zu erweitern
         pass
-
+"""
 DB_connector = postgre_connector()
 day1 = [2016,2,18,0,0]
 day2 = [2016,5,16,8,30]
-result = DB_connector.get_data(day1, day2, 'h', [])
+result = DB_connector.get_data(day1,day2,'a', [])
 
-
+DB_connector = postgre_connector()
+result = DB_connector.get_time_intervall()
+print(type(result))
 print(result)
-
-    
+"""
