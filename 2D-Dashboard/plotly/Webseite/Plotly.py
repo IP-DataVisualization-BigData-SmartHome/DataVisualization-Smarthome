@@ -412,7 +412,7 @@ def dashboard_stromverbrauch_lichtverbrauch(date, value):
                                                                           children='Stromverbrauch'
                                                                           ),
                                                                  html.Div(children=
-                                                                                  html.I(className='mdi mdi-flash icons-verbrauch')
+                                                                                  html.I(className='mdi mdi-48px mdi-flash icons-verbrauch')
                                                                           ),
                                                                  html.Div(className='stromverbrauch verbrauch-zahl',
                                                                           children=appliances_gesplittet[0] + 'W' 
@@ -428,7 +428,7 @@ def dashboard_stromverbrauch_lichtverbrauch(date, value):
                                                                           children='Lichtverbrauch'
                                                                           ),
                                                                  html.Div(children=
-                                                                                      html.I(className='mdi mdi-lightbulb-on icons-verbrauch')
+                                                                                      html.I(className='mdi mdi-48px mdi-lightbulb-on icons-verbrauch')
                                                                           ),
                                                                  html.Div(className='stromverbrauch verbrauch-zahl',
                                                                           children=licht_gesplittet[0] + 'W' 
