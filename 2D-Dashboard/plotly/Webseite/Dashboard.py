@@ -161,7 +161,8 @@ class Dashboard:
                                                                          html.Div(className='col-2 main-div')
                                                                          ]
                                                              ),
-                                                    html.Nav(className='navbar fixed-bottom',
+                                                    html.Nav(style={'margin-top': '50px'},
+                                                             className='navbar fixed-bottom',
                                                              children=
                                                                          html.Div(className='container-fluid navdiv',
                                                                                   children=[

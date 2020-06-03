@@ -26,7 +26,7 @@ from postgre import postgre_connector, pd
 import datetime as dt
 from Uhrzeit_datum import Uhrzeit_datum
 from Analytics import analytics
-
+import numpy  as np
 
 
 
@@ -646,8 +646,128 @@ def einzelzimmer_graph_tagesverlauf(date, datenbankspalte, ueberschrift):
                                     'title': ueberschrift
                            }
                         }                                                   
-                        
-                                          
+
+@app.callback(
+    dash.dependencies.Output('Durchschnitt_Temp_Luftfeuchte_Arbeitszimmer', 'children'),
+   [dash.dependencies.Input('DatePickerArbeit', 'date')])
+
+def arbeitszimmer_durchschnitt_temp_luftfeuchte(date):
+            if date == None:
+                return None
+            else:
+                return einzelzimmer_durchschnitt_temp_luftfeuchte(date, 't4', 'rh_4')   
+
+@app.callback(
+    dash.dependencies.Output('Durchschnitt_Temp_Luftfeuchte_Bad', 'children'),
+   [dash.dependencies.Input('DatePickerBad', 'date')])
+
+def bad_durchschnitt_temp_luftfeuchte(date):
+            if date == None:
+                return None
+            else:
+                return einzelzimmer_durchschnitt_temp_luftfeuchte(date, 't5', 'rh_5')  
+            
+@app.callback(
+    dash.dependencies.Output('Durchschnitt_Temp_Luftfeuchte_Buegel', 'children'),
+   [dash.dependencies.Input('DatePickerBuegel', 'date')])
+
+def buegel_durchschnitt_temp_luftfeuchte(date):
+            if date == None:
+                return None
+            else:
+                return einzelzimmer_durchschnitt_temp_luftfeuchte(date, 't7', 'rh_7')
+
+@app.callback(
+    dash.dependencies.Output('Durchschnitt_Temp_Luftfeuchte_Kinder', 'children'),
+   [dash.dependencies.Input('DatePickerKinder', 'date')])
+
+def kinder_durchschnitt_temp_luftfeuchte(date):
+            if date == None:
+                return None
+            else:
+                return einzelzimmer_durchschnitt_temp_luftfeuchte(date, 't8', 'rh_8')   
+
+@app.callback(
+    dash.dependencies.Output('Durchschnitt_Temp_Luftfeuchte_Kueche', 'children'),
+   [dash.dependencies.Input('DatePickerKueche', 'date')])
+
+def kueche_durchschnitt_temp_luftfeuchte(date):
+            if date == None:
+                return None
+            else:
+                return einzelzimmer_durchschnitt_temp_luftfeuchte(date, 't1', 'rh_1')   
+        
+@app.callback(
+    dash.dependencies.Output('Durchschnitt_Temp_Luftfeuchte_Schlaf', 'children'),
+   [dash.dependencies.Input('DatePickerSchlaf', 'date')])
+
+def schlaf_durchschnitt_temp_luftfeuchte(date):
+            if date == None:
+                return None
+            else:
+                return einzelzimmer_durchschnitt_temp_luftfeuchte(date, 't9', 'rh_9')   
+            
+@app.callback(
+    dash.dependencies.Output('Durchschnitt_Temp_Luftfeuchte_Wasch', 'children'),
+   [dash.dependencies.Input('DatePickerWasch', 'date')])
+
+def wasch_durchschnitt_temp_luftfeuchte(date):
+            if date == None:
+                return None
+            else:
+                return einzelzimmer_durchschnitt_temp_luftfeuchte(date, 't3', 'rh_3')   
+            
+@app.callback(
+    dash.dependencies.Output('Durchschnitt_Temp_Luftfeuchte_Wohn', 'children'),
+   [dash.dependencies.Input('DatePickerWohn', 'date')])
+
+def wohn_durchschnitt_temp_luftfeuchte(date):
+            if date == None:
+                return None
+            else:
+                return einzelzimmer_durchschnitt_temp_luftfeuchte(date, 't2', 'rh_2')   
+            
+            
+            
+            
+def einzelzimmer_durchschnitt_temp_luftfeuchte(date, temp_datenbankspalte, luftfeucht_datenbankspalte):
+                dashboard_datum_liste = dashboard_datum_gesplittet(date)
+                
+                DB_connector = postgre_connector()
+                
+            
+                day1 = [int(dashboard_datum_liste[0]),int(dashboard_datum_liste[1]),int(dashboard_datum_liste[2]),00,00]
+                day2 = [int(dashboard_datum_liste[0]),int(dashboard_datum_liste[1]),int(dashboard_datum_liste[2]),23,50]
+                result = DB_connector.get_data(day1, day2, 'a', [temp_datenbankspalte, luftfeucht_datenbankspalte])
+                
+                durchschnitt_temp = np.array(result[temp_datenbankspalte]).mean().round(0)
+                durchschnitt_luftfeucht = np.array(result[luftfeucht_datenbankspalte]).mean().round(0)
+                print(durchschnitt_temp)
+                # return html.Div(className='container-fluid data-container',
+                return html.Div(className='row',
+                               children=[
+                
+                                            html.Div(className='col',
+                                                     children=
+                                                                html.P(className='data temp',
+                                                                       children=[
+                                                                                   durchschnitt_temp,#'20',#Raum Temperatur
+                                                                                   html.I(className='mdi mdi-temperature-celsius kreis-icon')
+                                                                               ]
+                                                                       )
+                                                    ),
+                                            html.Div(className='col',
+                                                     children=
+                                                                html.P(className='data temp',
+                                                                       children=[
+                                                                                   durchschnitt_luftfeucht,#'60',#Raum Temperatur
+                                                                                   html.I(className='mdi mdi-water-percent kreis-icon')
+                                                                               ]
+                                                                       )
+                                                    )
+                                            ]
+                                ) 
+                         #)                                      
 #----------------------------------------------------------------- Analytics
 @app.callback(
     dash.dependencies.Output('Arbeitszimmer', 'style'),
@@ -833,4 +953,4 @@ def graph_cb(value1, value2, value3, value4, value5, value6, value7, value8, sta
                     
                     
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server(debug=False)

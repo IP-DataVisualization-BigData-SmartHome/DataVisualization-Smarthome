@@ -18,20 +18,39 @@ import psycopg2
 from postgre import postgre_connector
 from datetime import datetime as dt
 from datetime import timedelta
+import numpy  as np
+
 
 class Wohn:
 
     def wohn_seite(self, uhrzeiten, dashboard_datum_liste, dashboard_uhrzeit):
             DB_connector = postgre_connector()
-            
-            day1 = [int(dashboard_datum_liste[0]),int(dashboard_datum_liste[1]),int(dashboard_datum_liste[2]),00,00]
-            day2 = [int(dashboard_datum_liste[0]),int(dashboard_datum_liste[1]),int(dashboard_datum_liste[2]),23,50]
-            result = DB_connector.get_data(day1, day2, 'a', ['t2', 'rh_2'])
-            
+            result = None
+            initial_datum = None
             erster_eintrag = DB_connector.get_first_date()
             letzter_eintrag = DB_connector.get_last_date()
             self.__erster_eintrag_timestamp = erster_eintrag['datum'][0]
-            self.__letzter_eintrag_timestamp = letzter_eintrag['datum'][0]
+            self.__letzter_eintrag_timestamp = letzter_eintrag['datum'][0]            
+            if(dashboard_datum_liste != None and dashboard_uhrzeit != None):                               
+                day1 = [int(dashboard_datum_liste[0]),int(dashboard_datum_liste[1]),int(dashboard_datum_liste[2]),00,00]
+                day2 = [int(dashboard_datum_liste[0]),int(dashboard_datum_liste[1]),int(dashboard_datum_liste[2]),23,50]
+                result = DB_connector.get_data(day1, day2, 'a', ['t2', 'rh_2'])                    
+                initial_datum = dt(int(dashboard_datum_liste[0]), int(dashboard_datum_liste[1]), int(dashboard_datum_liste[2]))              
+                result_durchschnitt = DB_connector.get_data(day1, day2, 'a', ['t2', 'rh_2'])
+                
+                durchschnitt_temp = np.array(result_durchschnitt['t2']).mean().round(0)
+                durchschnitt_luftfeucht = np.array(result_durchschnitt['rh_2']).mean().round(0)
+                                                                                             
+                
+            else:                
+                initial_datum = dt(self.__erster_eintrag_timestamp.year,self.__erster_eintrag_timestamp.month,self.__erster_eintrag_timestamp.day)
+                day1 = [self.__erster_eintrag_timestamp.year,self.__erster_eintrag_timestamp.month,self.__erster_eintrag_timestamp.day,00,00]
+                day2 = [self.__erster_eintrag_timestamp.year,self.__erster_eintrag_timestamp.month,self.__erster_eintrag_timestamp.day,23,50]
+                result = DB_connector.get_data(day1, day2, 'a', ['t2', 'rh_2'])
+                result_durchschnitt = DB_connector.get_data(day1, day2, 'a', ['t2', 'rh_2'])
+                
+                durchschnitt_temp = np.array(result_durchschnitt['t2']).mean().round(0)
+                durchschnitt_luftfeucht = np.array(result_durchschnitt['rh_2']).mean().round(0)
             return html.Div([
                                  html.Nav(className='fixed-top',
                                      children=
@@ -55,10 +74,10 @@ class Wohn:
                                                                                                                                         max_date_allowed=self.__letzter_eintrag_timestamp - timedelta(days=1),
                                                                                                                                         #min_date_allowed=dt(2016, 1, 11),
                                                                                                                                         #max_date_allowed=dt(2016, 5, 27),
-                                                                                                                                        initial_visible_month=dt(int(dashboard_datum_liste[0]), int(dashboard_datum_liste[1]), int(dashboard_datum_liste[2])),
+                                                                                                                                        initial_visible_month=initial_datum,
                                                                                                                                         #initial_visible_month=dt(2016, 1, 11),
                                                                                                                                         #date=str(dt(2016, 1, 11))
-                                                                                                                                        date=str(dt(int(dashboard_datum_liste[0]), int(dashboard_datum_liste[1]), int(dashboard_datum_liste[2])))
+                                                                                                                                        date=str(initial_datum)
                                                                                                                                     )                                                                                                                
                                                                                                     ),
                                                                                            html.Div(id='luftfeuchte_wind_draussen'),
@@ -80,6 +99,7 @@ class Wohn:
                                                                                                      children='Wohnzimmer'
                                                                                                      ),#Raumname
                                                                                              html.Div(className='container-fluid data-container',
+                                                                                                      id='Durchschnitt_Temp_Luftfeuchte_Wohn',
                                                                                                       children=
                                                                                                                   html.Div(className='row',
                                                                                                                            children=[
@@ -87,7 +107,7 @@ class Wohn:
                                                                                                                                                 children=
                                                                                                                                                            html.P(className='data temp',
                                                                                                                                                                   children=[
-                                                                                                                                                                              '20',#Raum Temperatur
+                                                                                                                                                                              durchschnitt_temp,#'20',#Raum Temperatur
                                                                                                                                                                               html.I(className='mdi mdi-temperature-celsius kreis-icon')
                                                                                                                                                                           ]
                                                                                                                                                                   )
@@ -96,7 +116,7 @@ class Wohn:
                                                                                                                                                 children=
                                                                                                                                                            html.P(className='data temp',
                                                                                                                                                                   children=[
-                                                                                                                                                                              '60',#Raum Temperatur
+                                                                                                                                                                              durchschnitt_luftfeucht,#'60',#Raum Temperatur
                                                                                                                                                                               html.I(className='mdi mdi-water-percent kreis-icon')
                                                                                                                                                                           ]
                                                                                                                                                                   )
@@ -104,8 +124,7 @@ class Wohn:
                                                                                                                                        ]
                                                                                                                            )
                                                                                                       ),
-                                                                                             html.Div(className='card-graph',
-                                                                                                       children=dcc.Graph(
+                                                                                             html.Div(children=dcc.Graph(
                                                                                                                              id='Graph_Temperatur_Wohn',
                                                                                                                              figure = {
                                                                                                                                  'data': [
@@ -119,8 +138,7 @@ class Wohn:
                                                                                                                      ),
                                                                                                    
                                                                                              
-                                                                                               html.Div(className='card-graph',
-                                                                                                        style={'margin-top': '300px'},
+                                                                                               html.Div(style={'margin-top': '50px'},
                                                                                                         children=dcc.Graph(
                                                                                                                               id='Graph_Luftfeucht_Wohn',
                                                                                                                               figure = {
