@@ -110,16 +110,15 @@ class postgre_connector:
     def add_data(self, data):
         # Einfüge-Funktion um den Datensatz zu erweitern
         pass
-"""
+
 DB_connector = postgre_connector()
 day1 = [2016,2,18,0,0]
-day2 = [2016,5,16,8,30]
-#result = DB_connector.get_data(day1,day2,'a', [])
-result = DB_connector.get_first_date()
+day2 = [2016,2,18,23,30]
+result = DB_connector.get_data(day1,day2,'m', [])
+#result = DB_connector.get_first_date()
 
 #DB_connector = postgre_connector()
 #result = DB_connector.get_time_intervall()
 #print(type(pd.to_datetime(result['datum'][0])))
-result1 = pd.to_datetime(result['datum'][0])
-print(result1)
-"""
+#result1 = pd.to_datetime(result['datum'][0])
+print(result)
