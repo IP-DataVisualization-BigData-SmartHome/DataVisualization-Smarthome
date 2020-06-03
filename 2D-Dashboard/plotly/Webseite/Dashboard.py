@@ -88,7 +88,7 @@ class Dashboard:
                                                                                               html.Div(className='row',
                                                                                                        children=[
                                                                                                                    html.A(className='kreise-link',
-                                                                                                                          href='bad.html',
+                                                                                                                          href='bad',
                                                                                                                           children=
                                                                                                                                    html.Div(className='colorwrapper bad',
                                                                                                                                             children=
@@ -96,7 +96,7 @@ class Dashboard:
                                                                                                                                             )
                                                                                                                            ),
                                                                                                                    html.A(className='kreise-link',
-                                                                                                                          href='arbeit.html',
+                                                                                                                          href='arbeit',
                                                                                                                           children=                                                                                                                   
                                                                                                                                    html.Div(className='colorwrapper arbeits',
                                                                                                                                             children=
@@ -104,7 +104,7 @@ class Dashboard:
                                                                                                                                             ),
                                                                                                                            ),
                                                                                                                    html.A(className='kreise-link',
-                                                                                                                          href='schlaf.html',
+                                                                                                                          href='schlaf',
                                                                                                                           children=                                                                                                                   
                                                                                                                                    html.Div(className='colorwrapper schlaf',
                                                                                                                                             children=
@@ -112,7 +112,7 @@ class Dashboard:
                                                                                                                                             ),
                                                                                                                            ),
                                                                                                                    html.A(className='kreise-link',
-                                                                                                                          href='wasch.html',
+                                                                                                                          href='wasch',
                                                                                                                           children=
                                                                                                                                    html.Div(className='colorwrapper wasch',
                                                                                                                                             children=
@@ -120,7 +120,7 @@ class Dashboard:
                                                                                                                                             ),
                                                                                                                            ),
                                                                                                                    html.A(className='kreise-link',
-                                                                                                                          href='kinder.html',
+                                                                                                                          href='kinder',
                                                                                                                           children=
                                                                                                                                    html.Div(className='colorwrapper kinder',
                                                                                                                                             children=
@@ -128,7 +128,7 @@ class Dashboard:
                                                                                                                                             ),
                                                                                                                            ),
                                                                                                                    html.A(className='kreise-link',
-                                                                                                                          href='buegel.html',
+                                                                                                                          href='buegel',
                                                                                                                           children=
                                                                                                                                    html.Div(className='colorwrapper buegel',
                                                                                                                                             children=
@@ -136,7 +136,7 @@ class Dashboard:
                                                                                                                                             ),
                                                                                                                            ),
                                                                                                                    html.A(className='kreise-link',
-                                                                                                                          href='kueche.html',
+                                                                                                                          href='kueche',
                                                                                                                           children=
                                                                                                                                    html.Div(className='colorwrapper kueche',
                                                                                                                                             children=
@@ -144,7 +144,7 @@ class Dashboard:
                                                                                                                                             ),
                                                                                                                            ),
                                                                                                                    html.A(className='kreise-link',
-                                                                                                                          href='wohn.html',
+                                                                                                                          href='wohn',
                                                                                                                           children=
                                                                                                                                    html.Div(className='colorwrapper wohn',
                                                                                                                                             children=
@@ -168,7 +168,7 @@ class Dashboard:
                                                                                               html.Div(className='col navdiv',
                                                                                                        children=
                                                                                                                    html.A(className='nav-link',
-                                                                                                                          href='analytics.html',
+                                                                                                                          href='analytics',
                                                                                                                           children=[
                                                                                                                                       html.I(className='mdi mdi-google-analytics navicon'),
                                                                                                                                       html.P(className='nav-text',
@@ -192,7 +192,7 @@ class Dashboard:
                                                                                               html.Div(className='col navdiv',
                                                                                                        children=
                                                                                                                    html.A(className='nav-link ',
-                                                                                                                          href='optimization.html',
+                                                                                                                          href='optimization',
                                                                                                                           children=[
                                                                                                                                       html.I(className='mdi mdi-sync navicon'),
                                                                                                                                       html.P(className='nav-text',

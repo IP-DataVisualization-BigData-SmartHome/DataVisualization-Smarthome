@@ -21,18 +21,32 @@ from Wasch import Wasch
 from Arbeit import Arbeit
 from Wohn import Wohn
 import psycopg2
-from postgre import postgre_connector
-from datetime import datetime as dt
+from postgre import postgre_connector, pd
+#from datetime import datetime as dt
+import datetime as dt
 from Uhrzeit_datum import Uhrzeit_datum
+from Analytics import analytics
 
 
 
 
 
 external_scripts = [
-    'https://code.jquery.com/jquery-3.2.1.slim.min.js',
-    'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js',
-    'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js'
+    {
+        'src': 'https://code.jquery.com/jquery-3.2.1.slim.min.js',
+        'integrity': 'sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm',
+        'crossorigin': 'anonymous'
+    },
+    {
+        'src': 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js',
+        'integrity': 'sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q',
+        'crossorigin': 'anonymous'
+    },
+    {
+        'src': 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js',
+        'integrity': 'sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl',
+        'crossorigin': 'anonymous'
+    }
 ]
 
 external_stylesheets = [
@@ -49,11 +63,20 @@ def erzeuge_uhrzeiten():
         minutenzaehler = time_intervall * -1
         for j in range(0, int(60/time_intervall)):
             minutenzaehler += time_intervall
-            uhrzeiten_liste.append(dt(year = 9999, month = 1, day = 1, hour=i, minute=minutenzaehler))
+            uhrzeiten_liste.append(dt.datetime(year = 9999, month = 1, day = 1, hour=i, minute=minutenzaehler))
     
     return uhrzeiten_liste      
 
-
+room_dict = {
+             'Küche' : ('t1','rh_1'),
+             'Wohnzimmer' : ('t2','rh_2'),
+             'Waschküche' : ('t3','rh_3'),
+             'Arbeitszimmer' : ('t4','rh_4'),
+             'Badezimmer' : ('t5','rh_5'),
+             'Bügelzimmer' : ('t7','rh_7'),
+             'Kinderzimmer' : ('t8','rh_8'),
+             'Schlafzimmer' : ('t9','rh_9')
+             }
 
 uhrzeiten = erzeuge_uhrzeiten()
 
@@ -78,7 +101,7 @@ app.index_string = '''
         {%app_entry%}
         <footer>
             {%config%}
-            {%scripts%}
+            {%scripts%}            
             {%renderer%}
         </footer>
        <!-- <div>My Custom footer</div>-->
@@ -101,6 +124,7 @@ schlaf = Schlaf()
 wasch = Wasch()
 arbeit = Arbeit()
 wohn = Wohn()
+analytics = analytics()
 
 
 #erzeugt die Unterseiten
@@ -113,23 +137,25 @@ def display_page(pathname):
     
     if pathname == '/dashboard.html':
         return dashboard.dashboard_seite(uhrzeiten)
-    elif pathname== '/optimization.html':
+    elif pathname== '/analytics':
+        return analytics.get_site()
+    elif pathname== '/optimization':
         return optimization.optimization_seite()
-    elif pathname== '/bad.html':
+    elif pathname== '/bad':
         return bad.bad_seite(uhrzeiten, uhrzeit_datum.datum, uhrzeit_datum.uhrzeit)
-    elif pathname== '/buegel.html':
+    elif pathname== '/buegel':
         return buegel.buegel_seite(uhrzeiten, uhrzeit_datum.datum, uhrzeit_datum.uhrzeit)
-    elif pathname== '/kinder.html':
+    elif pathname== '/kinder':
         return kinder.kinder_seite(uhrzeiten, uhrzeit_datum.datum, uhrzeit_datum.uhrzeit)
-    elif pathname== '/kueche.html':
+    elif pathname== '/kueche':
         return kueche.kueche_seite(uhrzeiten, uhrzeit_datum.datum, uhrzeit_datum.uhrzeit)
-    elif pathname== '/schlaf.html':
+    elif pathname== '/schlaf':
         return schlaf.schlaf_seite(uhrzeiten, uhrzeit_datum.datum, uhrzeit_datum.uhrzeit)
-    elif pathname== '/wasch.html':
+    elif pathname== '/wasch':
         return wasch.wasch_seite(uhrzeiten, uhrzeit_datum.datum, uhrzeit_datum.uhrzeit)
-    elif pathname== '/arbeit.html':
+    elif pathname== '/arbeit':
         return arbeit.arbeit_seite(uhrzeiten,  uhrzeit_datum.datum, uhrzeit_datum.uhrzeit)
-    elif pathname== '/wohn.html':
+    elif pathname== '/wohn':
         return wohn.wohn_seite(uhrzeiten, uhrzeit_datum.datum, uhrzeit_datum.uhrzeit)
     else:
         return Dashboard().dashboard_seite(uhrzeiten)
@@ -622,9 +648,189 @@ def einzelzimmer_graph_tagesverlauf(date, datenbankspalte, ueberschrift):
                         }                                                   
                         
                                           
-                                           
+#----------------------------------------------------------------- Analytics
+@app.callback(
+    dash.dependencies.Output('Arbeitszimmer', 'style'),
+    [dash.dependencies.Input('Arbeitszimmer', 'n_clicks')])
+def click_az(value):
+    if(value == None):
+        return None
+    if value % 2 == 1:
+        analytics.rooms.append('Arbeitszimmer')
+        return { 'color' : '#00B1AC'}
+    else:
+        if 'Arbeitszimmer' in analytics.rooms:
+            analytics.rooms.remove('Arbeitszimmer')
+        return { 'color' : '#BFC0BF'}
+    
+@app.callback(
+    dash.dependencies.Output('Badezimmer', 'style'),
+    [dash.dependencies.Input('Badezimmer', 'n_clicks')])
+def click_baz(value):
+    if(value == None):
+        return None
+    if value % 2 == 1:
+        analytics.rooms.append('Badezimmer')
+        return { 'color' : '#00B1AC'}
+    else:
+        if 'Badezimmer' in analytics.rooms:
+            analytics.rooms.remove('Badezimmer')
+        return { 'color' : '#BFC0BF'}
+
+@app.callback(
+    dash.dependencies.Output('Bügelzimmer', 'style'),
+    [dash.dependencies.Input('Bügelzimmer', 'n_clicks')])
+def click_büz(value):
+    if(value == None):
+        return None
+    if value % 2 == 1:
+        analytics.rooms.append('Bügelzimmer')
+        return { 'color' : '#00B1AC'}
+    else:
+        if 'Bügelzimmer' in analytics.rooms:
+            analytics.rooms.remove('Bügelzimmer')
+        return { 'color' : '#BFC0BF'}
+
+@app.callback(
+    dash.dependencies.Output('Kinderzimmer', 'style'),
+    [dash.dependencies.Input('Kinderzimmer', 'n_clicks')])
+def click_kz(value):
+    if(value == None):
+        return None
+    if value % 2 == 1:
+        analytics.rooms.append('Kinderzimmer')
+        return { 'color' : '#00B1AC'}
+    else:
+        if 'Kinderzimmer' in analytics.rooms:
+            analytics.rooms.remove('Kinderzimmer')
+        return { 'color' : '#BFC0BF'}  
+
+@app.callback(
+    dash.dependencies.Output('Küche', 'style'),
+    [dash.dependencies.Input('Küche', 'n_clicks')])
+def click_kü(value):
+    if(value == None):
+        return None
+    if value % 2 == 1:
+        analytics.rooms.append('Küche')
+        return { 'color' : '#00B1AC'}
+    else:
+        if 'Küche' in analytics.rooms:
+            analytics.rooms.remove('Küche')
+        return { 'color' : '#BFC0BF'}   
+
+@app.callback(
+    dash.dependencies.Output('Schlafzimmer', 'style'),
+    [dash.dependencies.Input('Schlafzimmer', 'n_clicks')])
+def click_sz(value):
+    if(value == None):
+        return None
+    if value % 2 == 1:
+        analytics.rooms.append('Schlafzimmer')
+        return { 'color' : '#00B1AC'}
+    else:
+        if 'Schlafzimmer' in analytics.rooms:
+            analytics.rooms.remove('Schlafzimmer')
+        return { 'color' : '#BFC0BF'} 
+    
+@app.callback(
+    dash.dependencies.Output('Waschküche', 'style'),
+    [dash.dependencies.Input('Waschküche', 'n_clicks')])
+def click_wk(value):
+    if(value == None):
+        return None
+    if value % 2 == 1:
+        analytics.rooms.append('Waschküche')
+        return { 'color' : '#00B1AC'}
+    else:
+        if 'Waschküche' in analytics.rooms:
+            analytics.rooms.remove('Waschküche')
+        return { 'color' : '#BFC0BF'} 
+
+@app.callback(
+    dash.dependencies.Output('Wohnzimmer', 'style'),
+    [dash.dependencies.Input('Wohnzimmer', 'n_clicks')])
+def click_wz(value):
+    if(value == None):
+        return None
+    if value % 2 == 1:
+        analytics.rooms.append('Wohnzimmer')
+        return { 'color' : '#00B1AC'}
+    else:
+        if 'Wohnzimmer' in analytics.rooms:
+            analytics.rooms.remove('Wohnzimmer')
+        return { 'color' : '#BFC0BF'} 
+ 
+@app.callback(
+    dash.dependencies.Output('analytics_graph', 'children'),  
+    [dash.dependencies.Input('Arbeitszimmer', 'n_clicks'),
+      dash.dependencies.Input('Badezimmer', 'n_clicks'),
+      dash.dependencies.Input('Bügelzimmer', 'n_clicks'),
+      dash.dependencies.Input('Kinderzimmer', 'n_clicks'),
+      dash.dependencies.Input('Küche', 'n_clicks'),
+      dash.dependencies.Input('Schlafzimmer', 'n_clicks'),
+      dash.dependencies.Input('Waschküche', 'n_clicks'),
+      dash.dependencies.Input('Wohnzimmer', 'n_clicks'),
+      dash.dependencies.Input('daterange', 'start_date'),
+      dash.dependencies.Input('daterange', 'end_date'),
+      dash.dependencies.Input('mode_data', 'value'),
+      dash.dependencies.Input('mode_time', 'value')])
+def graph_cb(value1, value2, value3, value4, value5, value6, value7, value8, start_date, end_date, mode_data, mode_time):
+    
+    DB_conn = postgre_connector()
+    retDiv = html.Div(children = [])
+    #graph = dcc.Graph(config = {'responsible' : True})
+    start_date = dt.datetime.strptime(start_date, '%Y-%m-%d')
+    end_date = dt.datetime.strptime(end_date, '%Y-%m-%d')
+
+    room_list = []
+    gath = []
+    
+    if mode_data == 'temp':
+        room_list += [room_dict[x][0] for x in analytics.rooms]
+        result = DB_conn.get_data(start_date, end_date, mode_time, room_list)  
+    
+    elif mode_data == 'tempd':
+        room_list += [room_dict[x][0] for x in analytics.rooms] 
+        room_list += ['t_out']
+        analytics.rooms += ['Temperatur Draußen']
+        result = DB_conn.get_data(start_date, end_date, mode_time, room_list)
+        
+    elif mode_data == 'hum':
+        room_list += [room_dict[x][1] for x in analytics.rooms]
+        result = DB_conn.get_data(start_date, end_date, mode_time, room_list)
+    
+    elif mode_data == 'humd':
+        room_list += [room_dict[x][1] for x in analytics.rooms]
+        room_list += ['rh_out']
+        analytics.rooms += ['Luftfeuchtigkeit Draußen']
+        result = DB_conn.get_data(start_date, end_date, mode_time, room_list)
+        
+    data_col = list(result.columns).copy()
+    data_col.remove('datum')
+        
+    for col,name in zip(data_col, analytics.rooms):
+        if col != 'datum':
+            fig_data = {'x' : result['datum'], 'y' : result[col], 'type' : 'bar', 'name' : name}
+            gath.append(fig_data)
+    
+
+    
+    if mode_data == 'tempd':
+        analytics.rooms.remove('Temperatur Draußen')
+    elif mode_data == 'humd':
+        analytics.rooms.remove('Luftfeuchtigkeit Draußen')
+    
+    fig = { 'data' : gath, 'layout': {'title': 'Analytics Graph'}}
+    graph = dcc.Graph(figure=fig)
+
+    #checkstring += str(fig)
+    
+    retDiv.children = graph
+    
+    return retDiv                                           
                           
                     
                     
 if __name__ == '__main__':
-    app.run_server(debug=False)
+    app.run_server(debug=True)

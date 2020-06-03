@@ -1,7 +1,11 @@
+.head-analytics{
+    font-size: 2vw;
+    padding-top: 1.7vw;
+    padding-bottom: 1.7vw;
+}
 
 .main{
-    margin-top: 90px;
-    margin-bottom: 90px;
+    margin-top: 7vw;
 }
 
 .graph{
@@ -40,14 +44,20 @@
     width: 100%;
 }
 
+
+.daterange {
+   background-color: #595A59 !important;
+   color: red;
+}
+
 .checkbox{
     visibility: hidden;
 }
-
+/*
 .room-selection:hover{
     color: #737373;
     }
-
+*/
 input[type="checkbox"]:checked + label:hover {
    color: #1F897C;
 }
@@ -55,6 +65,7 @@ input[type="checkbox"]:checked + label:hover {
 input[type="checkbox"]:checked + label {
    color: #00B1AC;
 }
+
 
 .select{
      background-color: #595A59;
@@ -70,45 +81,23 @@ input[type="checkbox"]:checked + label {
 
 .time{
     padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
+.labeltest{
+    padding-top:20px;
+}
+/*
 .time:hover{
     color: #737373;
 }
-
-input[type="radio"]:checked + label:hover {
+*/
+button[type="radio"]:checked + label:hover {
    color: #1F897C;
 }
 
-input[type="radio"]:checked + label {
+button[type="radio"]:checked + label {
    color: #00B1AC;
 }
 
-.submit{
-    background-color: #00B1AC;
-    color: ##595A59;
-    border-radius: 4px;
-   font-size: 1vw;
-    width: 100%;
-    height: 100%;
-    border-style: none;
-}
-
-
-@media (max-width: 750px) { 
-    .big{
-        display: none;
-    }
-    
-    .sm-nav{
-        margin-top: 85px;
-        font-size: 2vw;
-    
-    }
-}
-
-@media (min-width: 751px) { 
-    .small{
-        display: none;
-    }
-}

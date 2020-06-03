@@ -192,7 +192,7 @@ class Optimization:
                                                                                               html.Div(className='col navdiv',
                                                                                                        children=
                                                                                                                    html.A(className='nav-link',
-                                                                                                                          href='analytics.html',
+                                                                                                                          href='analytics',
                                                                                                                           children=[
                                                                                                                                       html.I(className='mdi mdi-google-analytics navicon'),
                                                                                                                                       html.P(className='nav-text',
@@ -204,7 +204,7 @@ class Optimization:
                                                                                               html.Div(className='col navdiv',
                                                                                                        children=
                                                                                                                    html.A(className='nav-link nav-link-active',
-                                                                                                                          href='#',
+                                                                                                                          href='dashboard',
                                                                                                                           children=[
                                                                                                                                       html.I(className='mdi mdi-home navicon'),
                                                                                                                                       html.P(className='nav-text',
@@ -216,7 +216,7 @@ class Optimization:
                                                                                               html.Div(className='col navdiv',
                                                                                                        children=
                                                                                                                    html.A(className='nav-link ',
-                                                                                                                          href='optimization.html',
+                                                                                                                          href='optimization',
                                                                                                                           children=[
                                                                                                                                       html.I(className='mdi mdi-sync navicon'),
                                                                                                                                       html.P(className='nav-text',
