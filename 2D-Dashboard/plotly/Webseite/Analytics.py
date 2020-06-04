@@ -112,12 +112,15 @@ class analytics:
                                                                                                                         ),
                                                                                                                 html.Div(className='col-9',
                                                                                                                           children= 
-                                                                                                                                     html.Div(className='graph', children= [], id = 'analytics_graph')
+                                                                                                                                     html.Div(className='graph', 
+                                                                                                                                              children = html.Div(className ='graph-plot', id = 'analytics_graph')
+                                                                                                                                              )
+                                                                                                                                             
                                                                                                                                               
                                                                                                                                               
                                                                                                                         )
-                                                                                                                ]
                                                                                                                 
+                                                                                                                ]
                                                                                                     ),
                                                                                             html.Div(className='row',
                                                                                                      children= [
@@ -379,16 +382,16 @@ def click_wz(value):
      Input('mode_time', 'value')])
 def graph_cb(value1, value2, value3, value4, value5, value6, value7, value8, start_date, end_date, mode_data, mode_time):
     
-
+    if site.rooms == [] and mode_data != 'tempd':
+        return None
+        
+    
     retDiv = html.Div(children = [])
-    #graph = dcc.Graph(config = {'responsible' : True})
     start_date = dt.datetime.strptime(start_date, '%Y-%m-%d')
     end_date = dt.datetime.strptime(end_date, '%Y-%m-%d')
 
     room_list = []
     gath = []
-    
-    checkstring = ''
     
     if mode_data == 'temp':
         room_list += [room_dict[x][0] for x in site.rooms]
@@ -418,19 +421,15 @@ def graph_cb(value1, value2, value3, value4, value5, value6, value7, value8, sta
             fig_data = {'x' : result['datum'], 'y' : result[col], 'type' : 'bar', 'name' : name}
             gath.append(fig_data)
     
-    #checkstring += str(data_col) + '  ' + str(site.rooms) + '  ' + str(room_list) 
-    #checkstring += str(room_list)
-    #checkstring += '  ' + str(site.rooms)
     
     if mode_data == 'tempd':
         site.rooms.remove('Temperatur Draußen')
     elif mode_data == 'humd':
         site.rooms.remove('Luftfeuchtigkeit Draußen')
     
-    fig = { 'data' : gath, 'layout': {'title': 'Analytics Graph'}}
-    graph = dcc.Graph(figure=fig)
+    fig = { 'data' : gath, 'layout': {'title': 'Analytics Graph'}} #, 'paper_bgcolor' : '#595A59'}}
+    graph = dcc.Graph(figure=fig, className = "graph-plot")
 
-    #checkstring += str(fig)
     
     retDiv.children = graph
     

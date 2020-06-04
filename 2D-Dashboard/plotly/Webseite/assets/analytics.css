@@ -8,6 +8,13 @@
     margin-top: 7vw;
 }
 
+.graph-plot {
+   margin-top: 0px;
+   margin-bottom: 0px;
+   margin-left: 0px;
+   margin-right: 0px;
+}
+
 .graph{
     background-color: #595A59;
     color: #BFC0BF;
