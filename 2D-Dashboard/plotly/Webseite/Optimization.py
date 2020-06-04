@@ -10,16 +10,75 @@ import dash_core_components as dcc
 import dash_bootstrap_components as dbc
 import dash
 from postgre import postgre_connector
+from optimazation_help import optimazation_dict
 import datetime as dt
 import numpy as np
+import copy
 
+def ref_finder(ref):
+    while True:
+        if type(ref) != list and ref.children == 'Plotly Diagramm':
+            break
+        elif type(ref) == list:
+            ref = ref[1]
+        else:
+            ref = ref.children
+            
+    return ref
 
 class Optimization:
 
     def __init__(self, date = None):
         self.date = date
         
-   
+    def case_check(self):
+        if self.date != None:
+            
+            retDiv = html.Div()
+            child_list = []
+            filt_list = []
+
+
+            
+            case_dict = { 'visibility' : False, 'windspeed' : False}
+            
+            date = dt.datetime(site.date.year, self.date.month, self.date.day, 0, 0)
+            date2 = date + dt.timedelta(hours= 23, minutes = 50)
+            db_con = postgre_connector()
+            threshold = db_con.get_data(site.date, site.date, 'm', [])
+            result = db_con.get_data(date, date2, 'a', [])
+            
+            for col in result.columns:
+                if col != 'datum':
+                    filt_result = result[['datum', col]]
+                    filt_result = filt_result[result[col] > threshold[col][0]]
+                    if filt_result.empty != True and len(filt_result) >= 72:
+                        if col in case_dict.keys():
+                            case_dict[col] = True
+                        filt_list.append(filt_result)
+         
+            for case in case_dict.keys():
+                if case_dict[case] == True:
+                    frame = None
+                    for df in filt_list:
+                        if case in df.columns:
+                            frame = df
+                    data = []
+                    div = copy.deepcopy(optimazation_dict[case])
+                    tag = div.children
+                    graphtag = ref_finder(tag)                   
+                    data.append({'x' : list(result['datum']), 'y' : list(result[case]), 'type' : 'bar', 'name' : case})
+                    data.append({'x' : list(frame['datum']), 'y' : list(frame[case]), 'type' : 'bar', 'name' : case + ' mit überschreitung'})
+                    fig = { 'data' : data, 'layout' : {'title' : case}}
+                    graph = dcc.Graph(figure = fig)
+                    graphtag.children = graph
+                    graphtag.className = 'card-graph'
+                    child_list.append(div)
+            
+          
+            retDiv.children = child_list
+            
+            return retDiv
                     
  
     def optimization_seite(self):
@@ -56,169 +115,8 @@ class Optimization:
                                                                                                                  html.I(className='mdi mdi-weather-pouring')
                                                                                                              ]
                                                                                                      ),
-                                                                                            html.Div(className='col-5',
-                                                                                                    #erste Spalte
-                                                                                                     children=[
-                                                                                                                 html.Div(className='card',
-                                                                                                                          children=
-                                                                                                                                      html.Div(className='card-body',
-                                                                                                                                               children=[
-                                                                                                                                                           html.Div(className='row',
-                                                                                                                                                                    children=[
-                                                                                                                                                                                html.Div(className='col-8',
-                                                                                                                                                                                         children=
-                                                                                                                                                                                                     html.H5(className='card-title',
-                                                                                                                                                                                                             children='Dämmung ist schlecht'
-                                                                                                                                                                                                             )
-                                                                                                                                                                                         ),
-                                                                                                                                                                                html.Div(className='col-4 text-right',
-                                                                                                                                                                                         children=
-                                                                                                                                                                                                     html.I(className='mdi mdi-home-thermometer card-icon')
-                                                                                                                                                                                         )
-                                                                                                                                                                                ]
-                                                                                                                                                                    ),
-                                                                                                                                                           html.Div(className='row',
-                                                                                                                                                                    children=
-                                                                                                                                                                                html.Div(className='col-12',
-                                                                                                                                                                                         children=
-                                                                                                                                                                                                     html.Div(className='card-graph',
-                                                                                                                                                                                                              children='Plotly Diagramm'
-                                                                                                                                                                                                              )
-                                                                                                                                                                                         )
-                                                                                                                                                                    ),
-                                                                                                                                                           html.P(className='card-text',
-                                                                                                                                                                  children='Mögliche Ursachen: Dämmung / Heizung'
-                                                                                                                                                                  ),
-                                                                                                                                                           html.A(className='card-btn btn btn-sm',
-                                                                                                                                                                  href='#',
-                                                                                                                                                                  children='Mehr dazu'
-                                                                                                                                                                  #Link zu Analytics
-                                                                                                                                                                  )
-                                                                                                                                                           ]
-                                                                                                                                               )
-                                                                                                                          ),
-                                                                                                                 html.Div(className='card',
-                                                                                                                          children=
-                                                                                                                                      html.Div(className='card-body',
-                                                                                                                                               children=[
-                                                                                                                                                           html.Div(className='row',
-                                                                                                                                                                    children=[
-                                                                                                                                                                                html.Div(className='col-8',
-                                                                                                                                                                                         children=
-                                                                                                                                                                                                     html.H5(className='card-title',
-                                                                                                                                                                                                             children='Viele Sonnenstunden'
-                                                                                                                                                                                                             )
-                                                                                                                                                                                         ),
-                                                                                                                                                                                html.Div(className='col-4 text-right',
-                                                                                                                                                                                         children=
-                                                                                                                                                                                                     html.I(className='mdi mdi-solar-power card-icon')
-                                                                                                                                                                                         )
-                                                                                                                                                                                ]
-                                                                                                                                                                    ),
-                                                                                                                                                           html.Div(className='row',
-                                                                                                                                                                    children=
-                                                                                                                                                                                html.Div(className='col-12',
-                                                                                                                                                                                         children=
-                                                                                                                                                                                                     html.Div(className='card-graph',
-                                                                                                                                                                                                              children='Plotly Diagramm'
-                                                                                                                                                                                                              )
-                                                                                                                                                                                         )
-                                                                                                                                                                    ),
-                                                                                                                                                           html.P(className='card-text',
-                                                                                                                                                                  children='Der Bau einer Solaranlage würde sich lohnen'
-                                                                                                                                                                  ),
-                                                                                                                                                           html.A(className='card-btn btn btn-sm',
-                                                                                                                                                                  href='#',
-                                                                                                                                                                  children='Mehr dazu'
-                                                                                                                                                                  #Link zu Analytics
-                                                                                                                                                                  )
-                                                                                                                                                           ]
-                                                                                                                                               )
-                                                                                                                          )
-                                                                                                         ]
-                                                                                                     ),
-                                                                                            html.Div(className='col-5',
-                                                                                                     #zweite Spalte
-                                                                                                     children= [
-                                                                                                                html.Div(className='card',
-                                                                                                                          children=
-                                                                                                                                      html.Div(className='card-body',
-                                                                                                                                               children=[
-                                                                                                                                                           html.Div(className='row',
-                                                                                                                                                                    children=[
-                                                                                                                                                                                html.Div(className='col-8',
-                                                                                                                                                                                         children=
-                                                                                                                                                                                                     html.H5(className='card-title',
-                                                                                                                                                                                                             children='Viel Wind'
-                                                                                                                                                                                                             )
-                                                                                                                                                                                         ),
-                                                                                                                                                                                html.Div(className='col-4 text-right',
-                                                                                                                                                                                         children=
-                                                                                                                                                                                                     html.I(className='mdi mdi-wind-turbine card-icon')
-                                                                                                                                                                                         )
-                                                                                                                                                                                ]
-                                                                                                                                                                    ),
-                                                                                                                                                           html.Div(className='row',
-                                                                                                                                                                    children=
-                                                                                                                                                                                html.Div(className='col-12',
-                                                                                                                                                                                         children=
-                                                                                                                                                                                                     html.Div(className='card-graph',
-                                                                                                                                                                                                              children='Plotly Diagramm'
-                                                                                                                                                                                                              )
-                                                                                                                                                                                         )
-                                                                                                                                                                    ),
-                                                                                                                                                           html.P(className='card-text',
-                                                                                                                                                                  children='Der Bau einer Windkraftanlage würde sich lohnen'
-                                                                                                                                                                  ),
-                                                                                                                                                           html.A(className='card-btn btn btn-sm',
-                                                                                                                                                                  href='#',
-                                                                                                                                                                  children='Mehr dazu'
-                                                                                                                                                                  #Link zu Analytics
-                                                                                                                                                                  )
-                                                                                                                                                           ]
-                                                                                                                                               )
-                                                                                                                          ),
-                                                                                            html.Div(className='card',
-                                                                                                                          children=
-                                                                                                                                      html.Div(className='card-body',
-                                                                                                                                               children=[
-                                                                                                                                                           html.Div(className='row',
-                                                                                                                                                                    children=[
-                                                                                                                                                                                html.Div(className='col-8',
-                                                                                                                                                                                         children=
-                                                                                                                                                                                                     html.H5(className='card-title',
-                                                                                                                                                                                                             children='Wenig Wolken'
-                                                                                                                                                                                                             )
-                                                                                                                                                                                         ),
-                                                                                                                                                                                html.Div(className='col-4 text-right',
-                                                                                                                                                                                         children=
-                                                                                                                                                                                                     html.I(className='mdi mdi-white-balance-sunny card-icon')
-                                                                                                                                                                                         )
-                                                                                                                                                                                ]
-                                                                                                                                                                    ),
-                                                                                                                                                           html.Div(className='row',
-                                                                                                                                                                    children=
-                                                                                                                                                                                html.Div(className='col-12',
-                                                                                                                                                                                         children=
-                                                                                                                                                                                                     html.Div(className='card-graph',
-                                                                                                                                                                                                              children='Plotly Diagramm'
-                                                                                                                                                                                                              )
-                                                                                                                                                                                         )
-                                                                                                                                                                    ),
-                                                                                                                                                           html.P(className='card-text',
-                                                                                                                                                                  children='Schönes Wetter, gehen Sie spazieren!'
-                                                                                                                                                                  ),
-                                                                                                                                                           html.A(className='card-btn btn btn-sm',
-                                                                                                                                                                  href='#',
-                                                                                                                                                                  children='Mehr dazu'
-                                                                                                                                                                  #Link zu Analytics
-                                                                                                                                                                  )
-                                                                                                                                                           ]
-                                                                                                                                               )
-                                                                                                                          )
-                                                                                            ]
-                                                                                                                #Ende zweite Spalte
-                                                                                                        ),
+                                                                                            html.Div(className='col-10', children = self.case_check()),
+                                                                                            
                                                                                             html.Div(className='col-1'),
                                                                                         ]
                                                                                 )
@@ -269,20 +167,10 @@ class Optimization:
                                          )
                         ])
 
-@app
- def case_check():
-        if site.date != None:    
-            date = dt.datetime(site.date.year, site.date.month, site.date.day, 0, 0)
-            date2 = date + dt.timedelta(hours= 23, minutes = 50)
-            db_con = postgre_connector()
-            threshold = db_con.get_data(site.date, site.date, 'm', [])
-            result = db_con.get_data(date, date2, 'a', [])
-            
-            for col_t, col_r in zip(threshold, result):
-                if col_t != 'datum':
+
+
                     
-            # Weiter am besten die Werte eines tages mit dem Monatlcihen Durchschnitsswerten vergleichen,
-            # bei größer wird dann das Optimierungs-event getriggert
+            
 
 
 external_scripts = [
@@ -315,8 +203,9 @@ external_stylesheets = [
 app = dash.Dash(external_stylesheets=external_stylesheets, external_scripts=external_scripts)
 app.title = 'Optimazation'
 
-site = Optimization()
-
+site = Optimization(dt.datetime(2016, 4 , 15))
+test = site.case_check()
+#print(test)
 app.layout = site.optimization_seite()
 
 
