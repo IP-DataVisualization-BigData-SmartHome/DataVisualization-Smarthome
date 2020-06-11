@@ -1,7 +1,21 @@
+.head-optimization{
+    font-size: 2vw;
+    padding-top: 1.7vw;
+    padding-bottom: 1.7vw;
+    margin-bottom: -0px;
+}
 
+.card-graph{
+   margin-left: 20px;
+   margin-right: 20px;
+   margin-bottom: 120px;
+}
 
+.nav-abstand{
+   margin-bottom: -60px;
+}
 .main{
-    margin-top: 90px;
+    margin-top: 7vw;
 }
 
 .card-icon::before{
@@ -47,24 +61,4 @@
 .card-btn:hover{
     color: #737373;
     background-color: #BFC0BF;
-}
-
-
-
-@media (max-width: 750px) { 
-    .big{
-        display: none;
-    }
-    
-    .sm-nav{
-        margin-top: 85px;
-        font-size: 2vw;
-    
-    }
-}
-
-@media (min-width: 751px) { 
-    .small{
-        display: none;
-    }
 }

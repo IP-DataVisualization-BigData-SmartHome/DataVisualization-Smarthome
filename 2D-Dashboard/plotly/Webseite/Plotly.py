@@ -137,25 +137,27 @@ def display_page(pathname):
     
     if pathname == '/dashboard.html':
         return dashboard.dashboard_seite(uhrzeiten)
-    elif pathname== '/analytics':
+    elif pathname == '/analytics':
         return analytics.get_site()
-    elif pathname== '/optimization':
-        return optimization.optimization_seite()
-    elif pathname== '/bad':
+    elif pathname == '/optimization':
+         site = Optimization(dt.datetime(int(uhrzeit_datum.datum[0]), int(uhrzeit_datum.datum[1]) , int(uhrzeit_datum.datum[2])))
+         site.case_check()
+         return site.optimization_seite()
+    elif pathname == '/bad':
         return bad.bad_seite(uhrzeiten, uhrzeit_datum.datum, uhrzeit_datum.uhrzeit)
-    elif pathname== '/buegel':
+    elif pathname == '/buegel':
         return buegel.buegel_seite(uhrzeiten, uhrzeit_datum.datum, uhrzeit_datum.uhrzeit)
-    elif pathname== '/kinder':
+    elif pathname == '/kinder':
         return kinder.kinder_seite(uhrzeiten, uhrzeit_datum.datum, uhrzeit_datum.uhrzeit)
-    elif pathname== '/kueche':
+    elif pathname == '/kueche':
         return kueche.kueche_seite(uhrzeiten, uhrzeit_datum.datum, uhrzeit_datum.uhrzeit)
-    elif pathname== '/schlaf':
+    elif pathname == '/schlaf':
         return schlaf.schlaf_seite(uhrzeiten, uhrzeit_datum.datum, uhrzeit_datum.uhrzeit)
-    elif pathname== '/wasch':
+    elif pathname == '/wasch':
         return wasch.wasch_seite(uhrzeiten, uhrzeit_datum.datum, uhrzeit_datum.uhrzeit)
-    elif pathname== '/arbeit':
+    elif pathname == '/arbeit':
         return arbeit.arbeit_seite(uhrzeiten,  uhrzeit_datum.datum, uhrzeit_datum.uhrzeit)
-    elif pathname== '/wohn':
+    elif pathname == '/wohn':
         return wohn.wohn_seite(uhrzeiten, uhrzeit_datum.datum, uhrzeit_datum.uhrzeit)
     else:
         return Dashboard().dashboard_seite(uhrzeiten)
@@ -166,6 +168,8 @@ def display_page(pathname):
     dash.dependencies.Input('dropdown-uhrzeit', 'value')])
 
 def dashboard_uhrzeit_tage_abspeichern(date, value):
+            if(date != None and value == None):
+                uhrzeit_datum.datum = dashboard_datum_gesplittet(date)
             if(date != None and value != None):
                 uhrzeit_datum.uhrzeit = dashboard_uhrzeit_gesplittet(value)
                 uhrzeit_datum.datum = dashboard_datum_gesplittet(date)
