@@ -17,7 +17,7 @@ optimazation_dict = {'fall1' : html.Div(className='card',
                                                                                                                                                                     children=[
                                                                                                                                                                                 html.Div(className='col-8',
                                                                                                                                                                                          children=
-                                                                                                                                                                                                     html.H5(className='card-title',
+                                                                                                                                                                                                     html.H5(className='card-title-optimization',
                                                                                                                                                                                                              children='Dämmung ist schlecht'
                                                                                                                                                                                                              )
                                                                                                                                                                                          ),
@@ -31,15 +31,15 @@ optimazation_dict = {'fall1' : html.Div(className='card',
                                                                                                                                                                     children=
                                                                                                                                                                                 html.Div(className='col-12',
                                                                                                                                                                                          children=
-                                                                                                                                                                                                     html.Div(className='card-graph',
+                                                                                                                                                                                                     html.Div(className='card-graph-optimization',
                                                                                                                                                                                                               children='Plotly Diagramm'
                                                                                                                                                                                                               )
                                                                                                                                                                                          )
                                                                                                                                                                     ),
-                                                                                                                                                           html.P(className='card-text',
+                                                                                                                                                           html.P(className='card-text-optimization',
                                                                                                                                                                   children='Mögliche Ursachen: Dämmung / Heizung'
                                                                                                                                                                   ),
-                                                                                                                                                           html.A(className='card-btn btn btn-sm',
+                                                                                                                                                           html.A(className='card-btn-optimization btn btn-sm',
                                                                                                                                                                   href='#',
                                                                                                                                                                   children='Mehr dazu'
                                                                                                                                                                   #Link zu Analytics
@@ -55,7 +55,7 @@ optimazation_dict = {'fall1' : html.Div(className='card',
                                                                                                                                                                     children=[
                                                                                                                                                                                 html.Div(className='col-8',
                                                                                                                                                                                          children=
-                                                                                                                                                                                                     html.H5(className='card-title',
+                                                                                                                                                                                                     html.H5(className='card-title-optimization',
                                                                                                                                                                                                              children='Viele Sonnenstunden'
                                                                                                                                                                                                              )
                                                                                                                                                                                          ),
@@ -69,15 +69,15 @@ optimazation_dict = {'fall1' : html.Div(className='card',
                                                                                                                                                                     children=
                                                                                                                                                                                 html.Div(className='col-12',
                                                                                                                                                                                          children=
-                                                                                                                                                                                                     html.Div(className='card-graph',
+                                                                                                                                                                                                     html.Div(className='card-graph-optimization',
                                                                                                                                                                                                               children='Plotly Diagramm'
                                                                                                                                                                                                               )
                                                                                                                                                                                          )
                                                                                                                                                                     ),
-                                                                                                                                                           html.P(className='card-text',
+                                                                                                                                                           html.P(className='card-text-optimization',
                                                                                                                                                                   children='Der Bau einer Solaranlage würde sich lohnen'
                                                                                                                                                                   ),
-                                                                                                                                                           html.A(className='card-btn btn btn-sm',
+                                                                                                                                                           html.A(className='card-btn-optimization btn btn-sm',
                                                                                                                                                                   href='#',
                                                                                                                                                                   children='Mehr dazu'
                                                                                                                                                                   #Link zu Analytics
@@ -95,7 +95,7 @@ optimazation_dict = {'fall1' : html.Div(className='card',
                                                                                                                                                                     children=[
                                                                                                                                                                                 html.Div(className='col-8',
                                                                                                                                                                                          children=
-                                                                                                                                                                                                     html.H5(className='card-title',
+                                                                                                                                                                                                     html.H5(className='card-title-optimization',
                                                                                                                                                                                                              children='Viel Wind'
                                                                                                                                                                                                              )
                                                                                                                                                                                          ),
@@ -109,15 +109,15 @@ optimazation_dict = {'fall1' : html.Div(className='card',
                                                                                                                                                                     children=
                                                                                                                                                                                 html.Div(className='col-12',
                                                                                                                                                                                          children=
-                                                                                                                                                                                                     html.Div(className='card-graph',
+                                                                                                                                                                                                     html.Div(className='card-graph-optimization',
                                                                                                                                                                                                               children='Plotly Diagramm'
                                                                                                                                                                                                               )
                                                                                                                                                                                          )
                                                                                                                                                                     ),
-                                                                                                                                                           html.P(className='card-text',
+                                                                                                                                                           html.P(className='card-text-optimization',
                                                                                                                                                                   children='Der Bau einer Windkraftanlage würde sich lohnen'
                                                                                                                                                                   ),
-                                                                                                                                                           html.A(className='card-btn btn btn-sm',
+                                                                                                                                                           html.A(className='card-btn-optimization btn btn-sm',
                                                                                                                                                                   href='#',
                                                                                                                                                                   children='Mehr dazu'
                                                                                                                                                                   #Link zu Analytics
@@ -133,7 +133,7 @@ optimazation_dict = {'fall1' : html.Div(className='card',
                                                                                                                                                                     children=[
                                                                                                                                                                                 html.Div(className='col-8',
                                                                                                                                                                                          children=
-                                                                                                                                                                                                     html.H5(className='card-title',
+                                                                                                                                                                                                     html.H5(className='card-title-optimization',
                                                                                                                                                                                                              children='Wenig Wolken'
                                                                                                                                                                                                              )
                                                                                                                                                                                          ),
@@ -147,15 +147,15 @@ optimazation_dict = {'fall1' : html.Div(className='card',
                                                                                                                                                                     children=
                                                                                                                                                                                 html.Div(className='col-12',
                                                                                                                                                                                          children=
-                                                                                                                                                                                                     html.Div(className='card-graph',
+                                                                                                                                                                                                     html.Div(className='card-graph-optimization',
                                                                                                                                                                                                               children='Plotly Diagramm'
                                                                                                                                                                                                               )
                                                                                                                                                                                          )
                                                                                                                                                                     ),
-                                                                                                                                                           html.P(className='card-text',
+                                                                                                                                                           html.P(className='card-text-optimization',
                                                                                                                                                                   children='Schönes Wetter, gehen Sie spazieren!'
                                                                                                                                                                   ),
-                                                                                                                                                           html.A(className='card-btn btn btn-sm',
+                                                                                                                                                           html.A(className='card-btn-optimization btn btn-sm',
                                                                                                                                                                   href='#',
                                                                                                                                                                   children='Mehr dazu'
                                                                                                                                                                   #Link zu Analytics
@@ -177,7 +177,7 @@ html.Div(className='col-5',
                                                                                                                                                                     children=[
                                                                                                                                                                                 html.Div(className='col-8',
                                                                                                                                                                                          children=
-                                                                                                                                                                                                     html.H5(className='card-title',
+                                                                                                                                                                                                     html.H5(className='card-title-optimization',
                                                                                                                                                                                                              children='Dämmung ist schlecht'
                                                                                                                                                                                                              )
                                                                                                                                                                                          ),
@@ -191,15 +191,15 @@ html.Div(className='col-5',
                                                                                                                                                                     children=
                                                                                                                                                                                 html.Div(className='col-12',
                                                                                                                                                                                          children=
-                                                                                                                                                                                                     html.Div(className='card-graph',
+                                                                                                                                                                                                     html.Div(className='card-graph-optimization',
                                                                                                                                                                                                               children='Plotly Diagramm'
                                                                                                                                                                                                               )
                                                                                                                                                                                          )
                                                                                                                                                                     ),
-                                                                                                                                                           html.P(className='card-text',
+                                                                                                                                                           html.P(className='card-text-optimization',
                                                                                                                                                                   children='Mögliche Ursachen: Dämmung / Heizung'
                                                                                                                                                                   ),
-                                                                                                                                                           html.A(className='card-btn btn btn-sm',
+                                                                                                                                                           html.A(className='card-btn-optimization btn btn-sm',
                                                                                                                                                                   href='#',
                                                                                                                                                                   children='Mehr dazu'
                                                                                                                                                                   #Link zu Analytics
@@ -215,7 +215,7 @@ html.Div(className='col-5',
                                                                                                                                                                     children=[
                                                                                                                                                                                 html.Div(className='col-8',
                                                                                                                                                                                          children=
-                                                                                                                                                                                                     html.H5(className='card-title',
+                                                                                                                                                                                                     html.H5(className='card-title-optimization',
                                                                                                                                                                                                              children='Viele Sonnenstunden'
                                                                                                                                                                                                              )
                                                                                                                                                                                          ),
@@ -229,15 +229,15 @@ html.Div(className='col-5',
                                                                                                                                                                     children=
                                                                                                                                                                                 html.Div(className='col-12',
                                                                                                                                                                                          children=
-                                                                                                                                                                                                     html.Div(className='card-graph',
+                                                                                                                                                                                                     html.Div(className='card-graph-optimization',
                                                                                                                                                                                                               children='Plotly Diagramm'
                                                                                                                                                                                                               )
                                                                                                                                                                                          )
                                                                                                                                                                     ),
-                                                                                                                                                           html.P(className='card-text',
+                                                                                                                                                           html.P(className='card-text-optimization',
                                                                                                                                                                   children='Der Bau einer Solaranlage würde sich lohnen'
                                                                                                                                                                   ),
-                                                                                                                                                           html.A(className='card-btn btn btn-sm',
+                                                                                                                                                           html.A(className='card-btn-optimization btn btn-sm',
                                                                                                                                                                   href='#',
                                                                                                                                                                   children='Mehr dazu'
                                                                                                                                                                   #Link zu Analytics
@@ -258,7 +258,7 @@ html.Div(className='col-5',
                                                                                                                                                                     children=[
                                                                                                                                                                                 html.Div(className='col-8',
                                                                                                                                                                                          children=
-                                                                                                                                                                                                     html.H5(className='card-title',
+                                                                                                                                                                                                     html.H5(className='card-title-optimization',
                                                                                                                                                                                                              children='Viel Wind'
                                                                                                                                                                                                              )
                                                                                                                                                                                          ),
@@ -272,15 +272,15 @@ html.Div(className='col-5',
                                                                                                                                                                     children=
                                                                                                                                                                                 html.Div(className='col-12',
                                                                                                                                                                                          children=
-                                                                                                                                                                                                     html.Div(className='card-graph',
+                                                                                                                                                                                                     html.Div(className='card-graph-optimization',
                                                                                                                                                                                                               children='Plotly Diagramm'
                                                                                                                                                                                                               )
                                                                                                                                                                                          )
                                                                                                                                                                     ),
-                                                                                                                                                           html.P(className='card-text',
+                                                                                                                                                           html.P(className='card-text-optimization',
                                                                                                                                                                   children='Der Bau einer Windkraftanlage würde sich lohnen'
                                                                                                                                                                   ),
-                                                                                                                                                           html.A(className='card-btn btn btn-sm',
+                                                                                                                                                           html.A(className='card-btn-optimization btn btn-sm',
                                                                                                                                                                   href='#',
                                                                                                                                                                   children='Mehr dazu'
                                                                                                                                                                   #Link zu Analytics
@@ -296,7 +296,7 @@ html.Div(className='col-5',
                                                                                                                                                                     children=[
                                                                                                                                                                                 html.Div(className='col-8',
                                                                                                                                                                                          children=
-                                                                                                                                                                                                     html.H5(className='card-title',
+                                                                                                                                                                                                     html.H5(className='card-title-optimization',
                                                                                                                                                                                                              children='Wenig Wolken'
                                                                                                                                                                                                              )
                                                                                                                                                                                          ),
@@ -310,15 +310,15 @@ html.Div(className='col-5',
                                                                                                                                                                     children=
                                                                                                                                                                                 html.Div(className='col-12',
                                                                                                                                                                                          children=
-                                                                                                                                                                                                     html.Div(className='card-graph',
+                                                                                                                                                                                                     html.Div(className='card-graph-optimization',
                                                                                                                                                                                                               children='Plotly Diagramm'
                                                                                                                                                                                                               )
                                                                                                                                                                                          )
                                                                                                                                                                     ),
-                                                                                                                                                           html.P(className='card-text',
+                                                                                                                                                           html.P(className='card-text-optimization',
                                                                                                                                                                   children='Schönes Wetter, gehen Sie spazieren!'
                                                                                                                                                                   ),
-                                                                                                                                                           html.A(className='card-btn btn btn-sm',
+                                                                                                                                                           html.A(className='card-btn-optimization btn btn-sm',
                                                                                                                                                                   href='#',
                                                                                                                                                                   children='Mehr dazu'
                                                                                                                                                                   #Link zu Analytics

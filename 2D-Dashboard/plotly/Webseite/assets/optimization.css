@@ -5,7 +5,7 @@
     margin-bottom: -0px;
 }
 
-.card-graph{
+.card-graph-optimization{
    margin-left: 20px;
    margin-right: 20px;
    margin-bottom: 120px;
@@ -23,36 +23,36 @@
     margin-top: 1.5vw;
 }
 
-.card-title{
+.card-title-optimization{
     font-size: 2vw;
 }
 
-.card{
+.card-optimization{
     background-color: #595A59;
     color: #BFC0BF;
     margin-bottom: 2vw;
 }
 
-.card:last-child{
+.card{
     background-color: #595A59;
     color: #BFC0BF;
     margin-bottom: 100px;
 }
 
 
-.card-graph{
+.card-graph-optimization{
     background-color: #BFC0BF;
     color: #595A59;
     border-radius: 4px;
     font-size: 150%;
-    height: 18vw;
+    height: 25vw;
 }
 
-.card-text{
+.card-text-optimization{
     margin-top: 1vw;
 }
 
-.card-btn{
+.card-btn-optimization{
     background-color: #BFC0BF;
     color: #595A59;
     text-decoration: none;
