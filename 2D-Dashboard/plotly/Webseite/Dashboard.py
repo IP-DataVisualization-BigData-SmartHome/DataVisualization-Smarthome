@@ -42,7 +42,7 @@ class Dashboard:
                                                                                                     ),
                                                                                            html.Div(
                                                                                                     style={'margin-top': '32px', 'position':'relative', 'z-index':'3'},
-                                                                                                    className='col-1,5 text-center text-head2',
+                                                                                                    className='col-1,5  text-head2',
                                                                                                     children=
                                                                                                                 dcc.Dropdown(id='dropdown-uhrzeit',
                                                                                                                              #style={ 'position':'absolute', 'z-index':'3'},

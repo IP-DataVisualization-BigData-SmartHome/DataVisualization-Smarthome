@@ -33,15 +33,26 @@ class Uhrzeit_datum:
                 aktuelle_minute += 1
                 if(aktuelle_minute == 60):
                     aktuelle_minute = 0
-                    aktuelle_stunde += 1
+                    if(aktuelle_stunde <23):
+                        aktuelle_stunde += 1
+                    else:
+                        aktuelle_stunde = 0
                 print(aktuelle_minute)
                 
             else:
                 print(aktuelle_minute)
                 break
         
-        if(aktuelle_minute < 10):
+        if(aktuelle_minute < 10 and aktuelle_stunde < 10):
+            self.uhrzeit = ['0' + str(aktuelle_stunde), '0' + str(aktuelle_minute)]
+            self.datum = [str(letzter_eintrag_timestamp.year), str(letzter_eintrag_timestamp.month), str(letzter_eintrag_timestamp.day)]
+        
+        elif (aktuelle_minute < 10):
             self.uhrzeit = [str(aktuelle_stunde), '0' + str(aktuelle_minute)]
+            self.datum = [str(letzter_eintrag_timestamp.year), str(letzter_eintrag_timestamp.month), str(letzter_eintrag_timestamp.day)]
+            
+        elif (aktuelle_stunde < 10):
+            self.uhrzeit = ['0' + str(aktuelle_stunde), str(aktuelle_minute)]
             self.datum = [str(letzter_eintrag_timestamp.year), str(letzter_eintrag_timestamp.month), str(letzter_eintrag_timestamp.day)]
         else:
             self.uhrzeit = [str(aktuelle_stunde), str(aktuelle_minute)]

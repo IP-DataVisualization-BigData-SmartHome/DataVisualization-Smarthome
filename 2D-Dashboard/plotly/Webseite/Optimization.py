@@ -8,17 +8,16 @@ import dash_html_components as html
 import dash_core_components as dcc
 import datetime as dt
 from postgre import postgre_connector
-from optimazation_help import optimazation_dict, Taupunkt
+from optimazation_help import optimazation_dict
 import copy
 
 
-case_dict = { 'visibility' : False, 'windspeed' : False, 'appliances' : False, 'lights' : False, 'schimmel' : False}
 
 class Optimization:
 
     def __init__(self, date = None):
         self.date = date
-                        
+        
     def ref_finder(self, ref):
         while True:
             if type(ref) != list and ref.children == 'Plotly Diagramm':
@@ -30,34 +29,6 @@ class Optimization:
                 
         return ref
         
-    def schimmel_case(self, result):
-       result = result[['datum','t1', 'rh_1', 't2', 'rh_2', 't3', 'rh_3', 't4', 'rh_4', 't5', 'rh_5',
-                        't6', 'rh_6', 't7', 'rh_7', 't8', 'rh_8', 't9', 'rh_9', 't_out']]
-       
-       tdewlist = []
-       
-       for temp, hum in zip(list(result['t1']),list(result['rh_1'])):
-           tdewlist.append(Taupunkt(temp, hum))
-    
-       test = 0.5*(result['t1']-result['t_out']) + result['t_out']
-          
-       data = []
-       div = copy.deepcopy(optimazation_dict['schimmel'])
-       tag = div.children
-       graphtag = self.ref_finder(tag)                   
-       data.append({'x' : list(result['datum']), 'y' : list(result['t1']), 'type' : 'line', 'name' : 'Temperatur'})
-       data.append({'x' : list(result['datum']), 'y' : list(result['rh_1']), 'type' : 'line', 'name' : 'Luftfeuchte'})
-       data.append({'x' : list(result['datum']), 'y' : tdewlist, 'type' : 'line', 'name' : 'Taupunkt'})
-       data.append({'x' : list(result['datum']), 'y' : list(result['t_out']), 'type' : 'line', 'name' : 'Temperatur Draußen'})
-       data.append({'x' : list(result['datum']), 'y' : list(test), 'type' : 'line', 'name' : 'gemittelter Oberflächentemepraturwert'})
-       
-       fig = { 'data' : data, 'layout' : {'title' : 'Schimmel_Test'}}
-       graph = dcc.Graph(figure = fig)
-       graphtag.children = graph
-       graphtag.className = 'card-graph-optimization'
-
-       return div
-    
     def case_check(self):
         if self.date != None:
             
@@ -65,6 +36,10 @@ class Optimization:
             child_list = []
             filt_list = []
 
+
+            
+            case_dict = { 'visibility' : False, 'windspeed' : False}
+            
             date = dt.datetime(self.date.year, self.date.month, self.date.day, 0, 0)
             date2 = date + dt.timedelta(hours= 23, minutes = 50)
             db_con = postgre_connector()
@@ -75,7 +50,7 @@ class Optimization:
                 if col != 'datum':
                     filt_result = result[['datum', col]]
                     filt_result = filt_result[result[col] > threshold[col][0]]
-                    if filt_result.empty != True and len(filt_result) >= 5:
+                    if filt_result.empty != True and len(filt_result) >= 72:
                         if col in case_dict.keys():
                             case_dict[col] = True
                         filt_list.append(filt_result)
@@ -99,7 +74,6 @@ class Optimization:
                     child_list.append(div)
             
           
-            child_list.append(self.schimmel_case(result))
             retDiv.children = child_list
             
             return retDiv
