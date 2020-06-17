@@ -67,14 +67,10 @@ optimazation_dict = {'lights' : html.Div(className='card',
                                                                                                                                                                                                               )
                                                                                                                                                                                          )
                                                                                                                                                                     ),
-                                                                                                                                                           html.P(className='card-text-optimization',
+                                                                                                                                                           html.P(className='card-text-optimization', id = 'lightstext',
                                                                                                                                                                   children='Mögliche Ursachen: Dämmung / Heizung'
                                                                                                                                                                   ),
-                                                                                                                                                           html.A(className='card-btn-optimization btn btn-sm',
-                                                                                                                                                                  href='#',
-                                                                                                                                                                  children='Mehr dazu'
-                                                                                                                                                                  #Link zu Analytics
-                                                                                                                                                                  )
+                                                                                                                                                           html.Button('Mehr Dazu', id='lightsbt')
                                                                                                                                                            ]
                                                                                                                                                )
                                                                                                                           ),
@@ -105,14 +101,10 @@ optimazation_dict = {'lights' : html.Div(className='card',
                                                                                                                                                                                                               )
                                                                                                                                                                                          )
                                                                                                                                                                     ),
-                                                                                                                                                           html.P(className='card-text-optimization',
+                                                                                                                                                           html.P(className='card-text-optimization', id = 'appliancestext',
                                                                                                                                                                   children='Der Bau einer Solaranlage würde sich lohnen'
                                                                                                                                                                   ),
-                                                                                                                                                           html.A(className='card-btn-optimization btn btn-sm',
-                                                                                                                                                                  href='#',
-                                                                                                                                                                  children='Mehr dazu'
-                                                                                                                                                                  #Link zu Analytics
-                                                                                                                                                                  )
+                                                                                                                                                           html.Button('Mehr Dazu', id='appliancesbt',)
                                                                                                                                                            ]
                                                                                                                                                )
                                                                                                                           ),
@@ -145,14 +137,10 @@ optimazation_dict = {'lights' : html.Div(className='card',
                                                                                                                                                                                                               )
                                                                                                                                                                                          )
                                                                                                                                                                     ),
-                                                                                                                                                           html.P(className='card-text-optimization',
+                                                                                                                                                           html.P(className='card-text-optimization', id = 'windspeedtext',
                                                                                                                                                                   children='Der Bau einer Windkraftanlage würde sich lohnen'
                                                                                                                                                                   ),
-                                                                                                                                                           html.A(className='card-btn-optimization btn btn-sm',
-                                                                                                                                                                  href='#',
-                                                                                                                                                                  children='Mehr dazu'
-                                                                                                                                                                  #Link zu Analytics
-                                                                                                                                                                  )
+                                                                                                                                                           html.Button('Mehr Dazu', id='windspeedbt')
                                                                                                                                                            ]
                                                                                                                                                )
                                                                                                                           ),
@@ -183,14 +171,10 @@ optimazation_dict = {'lights' : html.Div(className='card',
                                                                                                                                                                                                               )
                                                                                                                                                                                          )
                                                                                                                                                                     ),
-                                                                                                                                                           html.P(className='card-text-optimization',
+                                                                                                                                                           html.P(className='card-text-optimization', id = 'visibilitytext',
                                                                                                                                                                   children='Schönes Wetter, gehen Sie spazieren!'
                                                                                                                                                                   ),
-                                                                                                                                                           html.A(className='card-btn-optimization btn btn-sm',
-                                                                                                                                                                  href='#',
-                                                                                                                                                                  children='Mehr dazu'
-                                                                                                                                                                  #Link zu Analytics
-                                                                                                                                                                  )
+                                                                                                                                                           html.Button('Mehr Dazu', id='visibilitybt')
                                                                                                                                                            ]
                                                                                                                                                )
                                                                                                                           ),
@@ -221,14 +205,10 @@ optimazation_dict = {'lights' : html.Div(className='card',
                                                                                                                                                                                                               )
                                                                                                                                                                                          )
                                                                                                                                                                     ),
-                                                                                                                                                           html.P(className='card-text-optimization',
+                                                                                                                                                           html.P(className='card-text-optimization', id = 'schimmeltext',
                                                                                                                                                                   children='Schönes Wetter, gehen Sie spazieren!'
                                                                                                                                                                   ),
-                                                                                                                                                           html.A(className='card-btn-optimization btn btn-sm',
-                                                                                                                                                                  href='#',
-                                                                                                                                                                  children='Mehr dazu'
-                                                                                                                                                                  #Link zu Analytics
-                                                                                                                                                                  )
+                                                                                                                                                           html.Button('Mehr Dazu', id='schimmelbt')
                                                                                                                                                            ]
                                                                                                                                                )
                                                                                                                           )

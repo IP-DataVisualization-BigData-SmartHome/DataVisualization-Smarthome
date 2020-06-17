@@ -1,6 +1,6 @@
 .head-analytics{
     font-size: 2vw;
-    padding-top: 1.7vw;
+    padding-top: 1.4vw;
     padding-bottom: 1.7vw;
 }
 
@@ -44,6 +44,10 @@
     width: 100%;
 }
 
+.graph-analytics{
+
+    padding-top: 100px;
+}
 
 .daterange {
    background-color: #595A59 !important;
@@ -93,11 +97,20 @@ input[type="checkbox"]:checked + label {
     color: #737373;
 }
 */
-button[type="radio"]:checked + label:hover {
-   color: #1F897C;
+/*
+input[type="radio"]:checked + label:hover {
+   color: #;
+}
+*/
+
+
+
+label input[type="radio"]:checked:after {
+   background: #33C1B1;
 }
 
-button[type="radio"]:checked + label {
-   color: #00B1AC;
+input[type="radio"] {
+background: red;
+cu
 }
 

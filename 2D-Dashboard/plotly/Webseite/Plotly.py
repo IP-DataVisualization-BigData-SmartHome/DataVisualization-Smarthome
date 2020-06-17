@@ -22,13 +22,11 @@ from Arbeit import Arbeit
 from Wohn import Wohn
 import psycopg2
 from postgre import postgre_connector, pd
-#from datetime import datetime as dt
+#from datetime import datetime as dt',
 import datetime as dt
 from Uhrzeit_datum import Uhrzeit_datum
 from Analytics import analytics
 import numpy  as np
-
-
 
 
 external_scripts = [
@@ -778,112 +776,104 @@ def einzelzimmer_durchschnitt_temp_luftfeuchte(date, temp_datenbankspalte, luftf
     [dash.dependencies.Input('Arbeitszimmer', 'n_clicks')])
 def click_az(value):
     if(value == None):
-        return None
-    if value % 2 == 1:
-        analytics.rooms.append('Arbeitszimmer')
-        return { 'color' : '#00B1AC'}
+        return analytics.set_active_room('Arbeitszimmer')
+    if analytics.active_rooms['Arbeitszimmer'] == False:
+        analytics.active_rooms['Arbeitszimmer'] = True
+        return analytics.set_active_room('Arbeitszimmer')
     else:
-        if 'Arbeitszimmer' in analytics.rooms:
-            analytics.rooms.remove('Arbeitszimmer')
-        return { 'color' : '#BFC0BF'}
+        analytics.active_rooms['Arbeitszimmer'] = False
+        return analytics.set_active_room('Arbeitszimmer')
     
 @app.callback(
     dash.dependencies.Output('Badezimmer', 'style'),
     [dash.dependencies.Input('Badezimmer', 'n_clicks')])
 def click_baz(value):
     if(value == None):
-        return None
-    if value % 2 == 1:
-        analytics.rooms.append('Badezimmer')
-        return { 'color' : '#00B1AC'}
+        return analytics.set_active_room('Badezimmer') 
+    if analytics.active_rooms['Badezimmer'] == False:
+        analytics.active_rooms['Badezimmer'] = True
+        return analytics.set_active_room('Badezimmer')
     else:
-        if 'Badezimmer' in analytics.rooms:
-            analytics.rooms.remove('Badezimmer')
-        return { 'color' : '#BFC0BF'}
+        analytics.active_rooms['Badezimmer'] = False
+        return analytics.set_active_room('Badezimmer')
 
 @app.callback(
     dash.dependencies.Output('Bügelzimmer', 'style'),
     [dash.dependencies.Input('Bügelzimmer', 'n_clicks')])
 def click_büz(value):
     if(value == None):
-        return None
-    if value % 2 == 1:
-        analytics.rooms.append('Bügelzimmer')
-        return { 'color' : '#00B1AC'}
+        return analytics.set_active_room('Bügelzimmer')
+    if analytics.active_rooms['Bügelzimmer'] == False:
+        analytics.active_rooms['Bügelzimmer'] = True
+        return analytics.set_active_room('Bügelzimmer')
     else:
-        if 'Bügelzimmer' in analytics.rooms:
-            analytics.rooms.remove('Bügelzimmer')
-        return { 'color' : '#BFC0BF'}
+        analytics.active_rooms['Bügelzimmer'] = False
+        return analytics.set_active_room('Bügelzimmer')
 
 @app.callback(
     dash.dependencies.Output('Kinderzimmer', 'style'),
     [dash.dependencies.Input('Kinderzimmer', 'n_clicks')])
 def click_kz(value):
     if(value == None):
-        return None
-    if value % 2 == 1:
-        analytics.rooms.append('Kinderzimmer')
-        return { 'color' : '#00B1AC'}
+        return analytics.set_active_room('Arbeitszimmer')
+    if analytics.active_rooms['Kinderzimmer'] == False:
+        analytics.active_rooms['Kinderzimmer'] = True
+        return analytics.set_active_room('Kinderzimmer')
     else:
-        if 'Kinderzimmer' in analytics.rooms:
-            analytics.rooms.remove('Kinderzimmer')
-        return { 'color' : '#BFC0BF'}  
+        analytics.active_rooms['Kinderzimmer'] = False
+        return analytics.set_active_room('Kinderzimmer')
 
 @app.callback(
     dash.dependencies.Output('Küche', 'style'),
     [dash.dependencies.Input('Küche', 'n_clicks')])
 def click_kü(value):
     if(value == None):
-        return None
-    if value % 2 == 1:
-        analytics.rooms.append('Küche')
-        return { 'color' : '#00B1AC'}
+        return analytics.set_active_room('Küche')
+    if analytics.active_rooms['Küche'] == False:
+        analytics.active_rooms['Küche'] = True
+        return analytics.set_active_room('Küche')
     else:
-        if 'Küche' in analytics.rooms:
-            analytics.rooms.remove('Küche')
-        return { 'color' : '#BFC0BF'}   
+        analytics.active_rooms['Küche'] = False
+        return analytics.set_active_room('Küche') 
 
 @app.callback(
     dash.dependencies.Output('Schlafzimmer', 'style'),
     [dash.dependencies.Input('Schlafzimmer', 'n_clicks')])
 def click_sz(value):
     if(value == None):
-        return None
-    if value % 2 == 1:
-        analytics.rooms.append('Schlafzimmer')
-        return { 'color' : '#00B1AC'}
+        return analytics.set_active_room('Schlafzimmer')
+    if analytics.active_rooms['Schlafzimmer'] == False:
+        analytics.active_rooms['Schlafzimmer'] = True
+        return analytics.set_active_room('Schlafzimmer')
     else:
-        if 'Schlafzimmer' in analytics.rooms:
-            analytics.rooms.remove('Schlafzimmer')
-        return { 'color' : '#BFC0BF'} 
+        analytics.active_rooms['Schlafzimmer'] = False
+        return analytics.set_active_room('Schlafzimmer') 
     
 @app.callback(
     dash.dependencies.Output('Waschküche', 'style'),
     [dash.dependencies.Input('Waschküche', 'n_clicks')])
 def click_wk(value):
     if(value == None):
-        return None
-    if value % 2 == 1:
-        analytics.rooms.append('Waschküche')
-        return { 'color' : '#00B1AC'}
+        return analytics.set_active_room('Waschküche')
+    if analytics.active_rooms['Waschküche'] == False:
+        analytics.active_rooms['Waschküche'] = True
+        return analytics.set_active_room('Waschküche')
     else:
-        if 'Waschküche' in analytics.rooms:
-            analytics.rooms.remove('Waschküche')
-        return { 'color' : '#BFC0BF'} 
+        analytics.active_rooms['Waschküche'] = False
+        return analytics.set_active_room('Waschküche') 
 
 @app.callback(
     dash.dependencies.Output('Wohnzimmer', 'style'),
     [dash.dependencies.Input('Wohnzimmer', 'n_clicks')])
 def click_wz(value):
     if(value == None):
-        return None
-    if value % 2 == 1:
-        analytics.rooms.append('Wohnzimmer')
-        return { 'color' : '#00B1AC'}
+        return analytics.set_active_room('Wohnzimmer')
+    if analytics.active_rooms['Wohnzimmer'] == False:
+        analytics.active_rooms['Wohnzimmer'] = True
+        return analytics.set_active_room('Wohnzimmer')
     else:
-        if 'Wohnzimmer' in analytics.rooms:
-            analytics.rooms.remove('Wohnzimmer')
-        return { 'color' : '#BFC0BF'} 
+        analytics.active_rooms['Wohnzimmer'] = False
+        return analytics.set_active_room('Wohnzimmer') 
  
 @app.callback(
     dash.dependencies.Output('analytics_graph', 'children'),  
@@ -904,11 +894,19 @@ def graph_cb(value1, value2, value3, value4, value5, value6, value7, value8, sta
     DB_conn = postgre_connector()
     retDiv = html.Div(children = [])
     #graph = dcc.Graph(config = {'responsible' : True})
-    start_date = dt.datetime.strptime(start_date, '%Y-%m-%d')
-    end_date = dt.datetime.strptime(end_date, '%Y-%m-%d')
+    start_date = dt.datetime.strptime(start_date[:10], '%Y-%m-%d')
+    end_date = dt.datetime.strptime(end_date[:10], '%Y-%m-%d')
+                      
+    
+    analytics.start_date = start_date
+    analytics.end_date = end_date
+    analytics.data = mode_data
+    analytics.mode = mode_time
 
     room_list = []
     gath = []
+    
+    analytics.rooms = [k for k in analytics.active_rooms.keys() if analytics.active_rooms[k] == True]
     
     if mode_data == 'temp':
         room_list += [room_dict[x][0] for x in analytics.rooms]
@@ -935,7 +933,7 @@ def graph_cb(value1, value2, value3, value4, value5, value6, value7, value8, sta
         
     for col,name in zip(data_col, analytics.rooms):
         if col != 'datum':
-            fig_data = {'x' : result['datum'], 'y' : result[col], 'type' : 'bar', 'name' : name}
+            fig_data = {'x' : result['datum'], 'y' : result[col], 'type' : 'line', 'name' : name}
             gath.append(fig_data)
     
 
@@ -947,14 +945,60 @@ def graph_cb(value1, value2, value3, value4, value5, value6, value7, value8, sta
     
     fig = { 'data' : gath, 'layout': {'title': 'Analytics Graph'}}
     graph = dcc.Graph(figure=fig)
-
-    #checkstring += str(fig)
     
     retDiv.children = graph
     
+    analytics.graph.children = graph
+    
     return retDiv                                           
                           
-                    
+ # <------------------------------------------> Optimazation Callback
+
+@app.callback(
+    dash.dependencies.Output('url', 'pathname'),
+    [dash.dependencies.Input('datepicker-optimization', 'date')])
+def date_callback(date):
+    optimization.set_date(dt.datetime.strptime(date[:10], '%Y-%m-%d'))
+    uhrzeit_datum.datum[0] = str(optimization.date.year)
+    uhrzeit_datum.datum[1] = str(optimization.date.month)
+    uhrzeit_datum.datum[2] = str(optimization.date.day)
+    return '/optimization'
+    
+@app.callback(
+    dash.dependencies.Output('lightstext', 'children'),
+    [dash.dependencies.Input('lightsbt', 'n_clicks')]) 
+def lights_inf(click):
+    if click != None:
+        return 'Haben Sie letzte Nacht eventuell vergessen das Licht in einem der Räume auszuschalten?'
+    
+@app.callback(
+    dash.dependencies.Output('appliancestext', 'children'),
+    [dash.dependencies.Input('appliancesbt', 'n_clicks')]) 
+def appliances_inf(click):
+    if click != None:
+        return 'Haben Sie letzte Nacht eventuell vergessen laufende Elektrische Geräte wie z.B. den Fernseher auszuschalten?'
+
+@app.callback(
+    dash.dependencies.Output('windspeedtext', 'children'),
+    [dash.dependencies.Input('windspeedbt', 'n_clicks')]) 
+def windspeed_inf(click):
+    if click != None:
+        return 'Heute war es besonders windig, in zukunft könnte sich ein Windrad lohnen!'
+
+@app.callback(
+    dash.dependencies.Output('visibilitytext', 'children'),
+    [dash.dependencies.Input('visibilitybt', 'n_clicks')]) 
+def visibility_inf(click):
+    if click != None:
+        return 'Heute war es kaum bewölkt und man konnte weit sehen, gehen Sie doch morgen spatzieren!'
+
+@app.callback(
+    dash.dependencies.Output('schimmeltext', 'children'),
+    [dash.dependencies.Input('schimmelbt', 'n_clicks')]) 
+def schimmel_inf(click):
+    if click != None:
+        return 'Temperaturen an Wänden oder Bauteilen die unter dem angegebenen Taupunkt liegen, sind Schimmel gefährdet!'    
+                   
                     
 if __name__ == '__main__':
     app.run_server(debug=False)

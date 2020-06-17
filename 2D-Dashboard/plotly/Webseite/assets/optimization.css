@@ -1,6 +1,6 @@
 .head-optimization{
     font-size: 2vw;
-    padding-top: 1.7vw;
+    padding-top: 1.2vw;
     padding-bottom: 1.7vw;
     margin-bottom: -0px;
 }
@@ -8,7 +8,7 @@
 .card-graph-optimization{
    margin-left: 20px;
    margin-right: 20px;
-   margin-bottom: 120px;
+   margin-bottom: 60px;
 }
 
 .nav-abstand{
@@ -49,7 +49,7 @@
 }
 
 .card-text-optimization{
-    margin-top: 1vw;
+    margin-top: 0.2vw;
 }
 
 .card-btn-optimization{
@@ -61,4 +61,8 @@
 .card-btn:hover{
     color: #737373;
     background-color: #BFC0BF;
+}
+
+.datepicker-opti{
+   margin-top: 200 px;
 }
