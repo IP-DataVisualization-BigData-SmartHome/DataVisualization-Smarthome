@@ -1,0 +1,75 @@
+
+body {
+    color: black;
+    height: 100%;
+    width: 100%;
+}
+.maindiv {    
+    margin-top: 3rem;
+  text-align: center;
+    
+}
+.h1main {
+    font-size: 3.5rem;
+}
+.abs{
+    margin-top: 3%;
+    font-size: 1.2rem;
+    text-align:center;
+}
+.abs3{
+    margin-top: 6%;
+}
+.foot{
+    position: absolute;
+    bottom: 8%;
+    width: 100%;
+    text-align: center;
+    background-color: #C4C4C4;
+    height: 5%;
+}
+.imp-link{
+    width: 100%;
+    text-align: center;
+    vertical-align: middle;
+}
+a {
+    text-align: center;
+    color: #00B1AC;
+}
+a:hover {
+    color: #1F897C;
+}
+ul {
+    list-style-type: none;
+    margin-top: 1rem;
+}
+.logo {
+    position: absolute;
+    width: 5%;
+    top: 1%;
+    left: 94%
+}
+p{
+    margin-bottom: 0.2rem;;
+}
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) { 
+   
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) { 
+
+
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) { 
+     
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) { 
+   
+}
