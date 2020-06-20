@@ -200,15 +200,19 @@ optimazation_dict = {'lights' : html.Div(className='card',
                                                                                                                                                                     children=
                                                                                                                                                                                 html.Div(className='col-12',
                                                                                                                                                                                          children=
-                                                                                                                                                                                                     html.Div(className='card-graph-optimization',
+                                                                                                                                                                                                     html.Div(
                                                                                                                                                                                                               children='Plotly Diagramm'
                                                                                                                                                                                                               )
                                                                                                                                                                                          )
                                                                                                                                                                     ),
+                                                                                                                                                           
+                                                                                                                                                                    
                                                                                                                                                            html.P(className='card-text-optimization', id = 'schimmeltext',
                                                                                                                                                                   children='Schönes Wetter, gehen Sie spazieren!'
                                                                                                                                                                   ),
                                                                                                                                                            html.Button('Mehr Dazu', id='schimmelbt')
+                                                                                                                                                           
+                                                                                                                                                           
                                                                                                                                                            ]
                                                                                                                                                )
                                                                                                                           )

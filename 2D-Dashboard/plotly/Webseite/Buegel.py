@@ -127,12 +127,13 @@ class Buegel:
                                                                                                                              id='Graph_Temperatur_Buegel',
                                                                                                                              figure = {
                                                                                                                                  'data': [
-                                                                                                                                             {'x': result['datum'], 'y': result['t7'], 'type': 'scatter', 'name': 'SF'},
+                                                                                                                                             {'x': result['datum'], 'y': result['t7'], 'type': 'scatter', 'name': 'Temperatur [°C]', 'textposition' : 'bottom center' ,'marker' : { 'color' : '#33C1B1'}},
                                                                                                                                          ],
                                                                                                                                   'layout': {
-                                                                                                                                              'title': 'Temperatur'
+                                                                                                                                              'title': 'Temperatur',
+																              'yaxis' : { 'title' : 'Temperatur [°C]' }
                                                                                                                                             }
-                                                                                                                                     }
+                                                                                                                                     }, config = {'responsible' : True}
                                                                                                                              ),
                                                                                                                      ),
                                                                                                    
@@ -142,12 +143,13 @@ class Buegel:
                                                                                                                               id='Graph_Luftfeucht_Buegel',
                                                                                                                               figure = {
                                                                                                                                   'data': [
-                                                                                                                                              {'x': result['datum'], 'y': result['rh_7'], 'type': 'scatter', 'name': 'SF'},
+                                                                                                                                              {'x': result['datum'], 'y': result['rh_7'], 'type': 'scatter', 'name': 'Luftfeuchte [%]', 'textposition' : 'bottom center' ,'marker' : { 'color' : '#33C1B1'}},
                                                                                                                                           ],
                                                                                                                                    'layout': {
-                                                                                                                                               'title': 'Luftfeuchtigkeit'
+                                                                                                                                               'title': 'Luftfeuchtigkeit',
+																               'yaxis' : { 'title' : 'Luftfeuchte [%]' }
                                                                                                                                              }
-                                                                                                                                      }
+                                                                                                                                      }, config = {'responsible' : True}
                                                                                                                               ),
                                                                                                                       ),
                                                                                           ]

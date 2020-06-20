@@ -126,12 +126,13 @@ class Kinder:
                                                                                                                              id='Graph_Temperatur_Kinder',
                                                                                                                              figure = {
                                                                                                                                  'data': [
-                                                                                                                                             {'x': result['datum'], 'y': result['t8'], 'type': 'scatter', 'name': 'SF'},
+                                                                                                                                             {'x': result['datum'], 'y': result['t8'], 'type': 'scatter', 'name': 'Temperatur [°C]', 'textposition' : 'bottom center' ,'marker' : { 'color' : '#33C1B1'}},
                                                                                                                                          ],
                                                                                                                                   'layout': {
-                                                                                                                                              'title': 'Temperatur'
+                                                                                                                                              'title': 'Temperatur',
+																	      'yaxis' : { 'title' : 'Temperatur [°C]' }
                                                                                                                                             }
-                                                                                                                                     }
+                                                                                                                                     }, config = {'responsible' : True}
                                                                                                                              ),
                                                                                                                      ),
                                                                                                    
@@ -141,12 +142,13 @@ class Kinder:
                                                                                                                               id='Graph_Luftfeucht_Kinder',
                                                                                                                               figure = {
                                                                                                                                   'data': [
-                                                                                                                                              {'x': result['datum'], 'y': result['rh_8'], 'type': 'scatter', 'name': 'SF'},
+                                                                                                                                              {'x': result['datum'], 'y': result['rh_8'], 'type': 'scatter', 'name': 'Luftfeuchte [%]', 'textposition' : 'bottom center' ,'marker' : { 'color' : '#33C1B1'}},
                                                                                                                                           ],
                                                                                                                                    'layout': {
-                                                                                                                                               'title': 'Luftfeuchtigkeit'
+                                                                                                                                               'title': 'Luftfeuchtigkeit',
+																	       'yaxis' : { 'title' : 'luftfeuchte [%]' }
                                                                                                                                              }
-                                                                                                                                      }
+                                                                                                                                      }, config = {'responsible' : True}
                                                                                                                               ),
                                                                                                                       ),
                                                                                           ]

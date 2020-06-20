@@ -66,7 +66,8 @@ class Dashboard:
                                                                                                                                         date=str(self.__letzter_eintrag_timestamp)
                                                                                                                                     )                                                            
                                                                                                     ),                                                                                           
-                                                                                           html.Div(id='luftfeuchte_wind_draussen'),                                                                                           
+                                                                                           html.Div(className='col-3 text-right logo', id = 'mydiv',
+                                                                                                    children = html.Img(src='assets/logo.png', height=80, width=20))                                                                                          
                                                                                        ]
                                                                                ),
                                                                       html.Div(className='row',

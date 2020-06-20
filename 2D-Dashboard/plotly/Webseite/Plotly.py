@@ -80,6 +80,11 @@ uhrzeiten = erzeuge_uhrzeiten()
 
 uhrzeit_datum = Uhrzeit_datum()
 
+color_dict = ['#33C1B1', '#000000', '#093D40', '#CECFD1', '#65666D', '#28988E', '#9B9C9F', '#192331', '#1A6C68' ]
+
+def get_color(i):
+    return color_dict[i]
+    
 
 app = dash.Dash(external_stylesheets=external_stylesheets, external_scripts=external_scripts)
 app.title = 'Dashboard'
@@ -635,6 +640,12 @@ def einzelzimmer_graph_tagesverlauf(date, datenbankspalte, ueberschrift):
                 
                 DB_connector = postgre_connector()
                 
+                if ueberschrift == 'Temperatur':
+                    title = 'Temperatur [°C]'
+                
+                else:
+                    title = 'Luftfeuchte [%]'
+                
             
                 day1 = [int(dashboard_datum_liste[0]),int(dashboard_datum_liste[1]),int(dashboard_datum_liste[2]),00,00]
                 day2 = [int(dashboard_datum_liste[0]),int(dashboard_datum_liste[1]),int(dashboard_datum_liste[2]),23,50]
@@ -642,12 +653,14 @@ def einzelzimmer_graph_tagesverlauf(date, datenbankspalte, ueberschrift):
                 
                 return {
                         'data': [
-                                    {'x': result['datum'], 'y': result[datenbankspalte], 'type': 'scatter', 'name': 'SF'},
+                                    {'x': result['datum'], 'y': result[datenbankspalte], 'type': 'scatter', 'name': title, 'textposition' : 'bottom center' ,'marker' : { 'color' : '#33C1B1'}},
                                 ],
                         'layout': {
-                                    'title': ueberschrift
+                                    'title': ueberschrift,
+                                    'yaxis' : {'title' : title}
                            }
-                        }                                                   
+                        }           
+                                        
 
 @app.callback(
     dash.dependencies.Output('Durchschnitt_Temp_Luftfeuchte_Arbeitszimmer', 'children'),
@@ -893,10 +906,11 @@ def graph_cb(value1, value2, value3, value4, value5, value6, value7, value8, sta
     
     DB_conn = postgre_connector()
     retDiv = html.Div(children = [])
-    #graph = dcc.Graph(config = {'responsible' : True})
+    graph = dcc.Graph(config = {'responsible' : False})
     start_date = dt.datetime.strptime(start_date[:10], '%Y-%m-%d')
     end_date = dt.datetime.strptime(end_date[:10], '%Y-%m-%d')
                       
+    unit = None
     
     analytics.start_date = start_date
     analytics.end_date = end_date
@@ -910,40 +924,52 @@ def graph_cb(value1, value2, value3, value4, value5, value6, value7, value8, sta
     
     if mode_data == 'temp':
         room_list += [room_dict[x][0] for x in analytics.rooms]
-        result = DB_conn.get_data(start_date, end_date, mode_time, room_list)  
+        result = DB_conn.get_data(start_date, end_date, mode_time, room_list)
+        unit = '[°C]'
     
     elif mode_data == 'tempd':
         room_list += [room_dict[x][0] for x in analytics.rooms] 
         room_list += ['t_out']
         analytics.rooms += ['Temperatur Draußen']
         result = DB_conn.get_data(start_date, end_date, mode_time, room_list)
+        unit = '[°C]'
         
     elif mode_data == 'hum':
         room_list += [room_dict[x][1] for x in analytics.rooms]
         result = DB_conn.get_data(start_date, end_date, mode_time, room_list)
+        unit = '[%]'
     
     elif mode_data == 'humd':
         room_list += [room_dict[x][1] for x in analytics.rooms]
         room_list += ['rh_out']
         analytics.rooms += ['Luftfeuchtigkeit Draußen']
         result = DB_conn.get_data(start_date, end_date, mode_time, room_list)
+        unit = '[%]'
         
     data_col = list(result.columns).copy()
     data_col.remove('datum')
+    
+    col_n = 0
         
     for col,name in zip(data_col, analytics.rooms):
         if col != 'datum':
-            fig_data = {'x' : result['datum'], 'y' : result[col], 'type' : 'line', 'name' : name}
+            fig_data = {'x' : result['datum'], 'y' : result[col], 'type' : 'line', 'textposition' : 'bottom center' , 'name' : name + ' ' + unit, 'marker' : { 'color' : get_color(col_n)}}
             gath.append(fig_data)
+            col_n += 1
     
-
+    
     
     if mode_data == 'tempd':
         analytics.rooms.remove('Temperatur Draußen')
     elif mode_data == 'humd':
         analytics.rooms.remove('Luftfeuchtigkeit Draußen')
+        
+    if mode_data == 'temp' or mode_data == 'tempd':
+        unit = 'Temperatur ' + unit
+    else:
+        unit = 'Luftfeuchte ' + unit
     
-    fig = { 'data' : gath, 'layout': {'title': 'Analytics Graph'}}
+    fig = { 'data' : gath, 'layout': {'title': 'Analytics Graph', 'height' : '600', 'yaxis' : {'title' : unit}}}
     graph = dcc.Graph(figure=fig)
     
     retDiv.children = graph

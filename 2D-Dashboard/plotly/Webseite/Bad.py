@@ -130,12 +130,13 @@ class Bad:
                                                                                                                              id='Graph_Temperatur_Bad',
                                                                                                                              figure = {
                                                                                                                                  'data': [
-                                                                                                                                             {'x': result['datum'], 'y': result['t5'], 'type': 'scatter', 'name': 'SF'},
+                                                                                                                                             {'x': result['datum'], 'y': result['t5'], 'type': 'scatter', 'name': 'Temperatur [°C]', 'textposition' : 'bottom center' ,'marker' : { 'color' : '#33C1B1'}},
                                                                                                                                          ],
                                                                                                                                   'layout': {
-                                                                                                                                              'title': 'Temperatur'
+                                                                                                                                              'title': 'Temperatur',
+																	      'yaxis' : { 'title' : 'Temperatur [°C]' }
                                                                                                                                             }
-                                                                                                                                     }
+                                                                                                                                     }, config = {'responsible' : True}
                                                                                                                              ),
                                                                                                                      ),
                                                                                                    
@@ -145,12 +146,13 @@ class Bad:
                                                                                                                               id='Graph_Luftfeucht_Bad',
                                                                                                                               figure = {
                                                                                                                                   'data': [
-                                                                                                                                              {'x': result['datum'], 'y': result['rh_5'], 'type': 'scatter', 'name': 'SF'},
+                                                                                                                                              {'x': result['datum'], 'y': result['rh_5'], 'type': 'scatter', 'name': 'Luftfeuchte [°C]', 'textposition' : 'bottom center' ,'marker' : { 'color' : '#33C1B1'}},
                                                                                                                                           ],
                                                                                                                                    'layout': {
-                                                                                                                                               'title': 'Luftfeuchtigkeit'
+                                                                                                                                               'title': 'Luftfeuchtigkeit',
+																	       'yaxis' : { 'title' : 'Luftfeuchte [°C]' }
                                                                                                                                              }
-                                                                                                                                      }
+                                                                                                                                      }, config = {'responsible' : True}
                                                                                                                               ),
                                                                                                                       ),
                                                                                           ]

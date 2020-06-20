@@ -49,14 +49,14 @@ class Optimization:
        div = copy.deepcopy(optimazation_dict['schimmel'])
        tag = div.children
        graphtag = self.ref_finder(tag)                   
-       data.append({'x' : list(result['datum']), 'y' : list(result['t1']), 'type' : 'line', 'name' : 'Temperatur'})
-       data.append({'x' : list(result['datum']), 'y' : list(result['rh_1']), 'type' : 'line', 'name' : 'Luftfeuchte'})
-       data.append({'x' : list(result['datum']), 'y' : tdewlist, 'type' : 'line', 'name' : 'Taupunkt'})
-       data.append({'x' : list(result['datum']), 'y' : list(result['t_out']), 'type' : 'line', 'name' : 'Temperatur Draußen'})
-       data.append({'x' : list(result['datum']), 'y' : list(test), 'type' : 'line', 'name' : 'gemittelter Oberflächentemepraturwert'})
+       data.append({'x' : list(result['datum']), 'y' : list(result['t1']), 'type' : 'line', 'name' : 'Temperatur [°C]', 'marker' : { 'color' : '#33C1B1'}, 'textposition' : 'bottom center'})
+       data.append({'x' : list(result['datum']), 'y' : list(result['rh_1']), 'type' : 'line', 'name' : 'Luftfeuchte [%]', 'marker' : { 'color' : '#000000'},'textposition' : 'bottom center'})
+       data.append({'x' : list(result['datum']), 'y' : tdewlist, 'type' : 'line', 'name' : 'Taupunkt [°C]', 'marker' : { 'color' : '#093D40'},'textposition' : 'bottom center'})
+       data.append({'x' : list(result['datum']), 'y' : list(result['t_out']), 'type' : 'line', 'name' : 'Temperatur Draußen [°C]', 'marker' : { 'color' : '#9B9C9F'},'textposition' : 'bottom center'})
+       data.append({'x' : list(result['datum']), 'y' : list(test), 'type' : 'line', 'name' : 'gemittelter Oberflächentemepraturwert [°C]', 'marker' : { 'color' : '#33C1B1'},'textposition' : 'bottom center'})
        
-       fig = { 'data' : data, 'layout' : {'title' : 'Schimmel_Test'}}
-       graph = dcc.Graph(figure = fig)
+       fig = { 'data' : data, 'layout' : {'title' : 'Schimmel_Test', 'yaxis' : {'title' : 'Temperatur [°C]'}}}
+       graph = dcc.Graph(figure = fig, config = {'responsible' : True})
        graphtag.children = graph
        graphtag.className = 'card-graph-optimization'
 
@@ -76,12 +76,12 @@ class Optimization:
             tag = div.children
             graphtag = self.ref_finder(tag) 
             
-            data.append({'x' : list(self.result['datum']), 'y' : list(self.result['visibility']), 'type' : 'line', 'name' : 'Sichtbarkeit', 'marker' : { 'color' : '#33C1B1'}})
-            data.append({'x' : list(filt_result['datum']), 'y' : list(filt_result['visibility']), 'type' : 'bar', 'name' : 'Gute Sichtbarkeit', 'marker' : { 'color' : '#EE0000' }})
+            data.append({'x' : list(self.result['datum']), 'y' : list(self.result['visibility']), 'type' : 'line', 'name' : 'Sichtbarkeit [km]', 'marker' : { 'color' : '#33C1B1'},'textposition' : 'bottom center'})
+            data.append({'x' : list(filt_result['datum']), 'y' : list(filt_result['visibility']), 'type' : 'bar', 'name' : 'Gute Sichtbarkeit [km]', 'marker' : { 'color' : '#000000' }, 'textposition' : 'bottom center'})
 
-            fig = { 'data' : data, 'layout' : {'title' : 'Schöner Tag heute!'}}
+            fig = { 'data' : data, 'layout' : {'title' : 'Schöner Tag heute!', 'yaxis' : {'title' : 'Weite [km]'}}}
             
-            graph = dcc.Graph(figure = fig)
+            graph = dcc.Graph(figure = fig, config = {'responsible' : True})
             graphtag.children = graph
             graphtag.className = 'card-graph-optimization'
             
@@ -110,12 +110,12 @@ class Optimization:
             tag = div.children
             graphtag = self.ref_finder(tag) 
             
-            data.append({'x' : list(self.result['datum']), 'y' : list(self.result['windspeed']), 'type' : 'line', 'name' : 'Windgeschwindigkeit', 'marker' : { 'color' : '#33C1B1'}})
-            data.append({'x' : list(time_filt['datum']), 'y' : list(time_filt['windspeed']), 'type' : 'bar', 'name' : 'Starke Windgeschwindigkeiten', 'marker' : { 'color' : '#EE0000' }})
+            data.append({'x' : list(self.result['datum']), 'y' : list(self.result['windspeed']), 'type' : 'line', 'name' : 'Windgeschwindigkeit [m/s]', 'textposition' : 'bottom center' ,'marker' : { 'color' : '#33C1B1'}})
+            data.append({'x' : list(time_filt['datum']), 'y' : list(time_filt['windspeed']), 'type' : 'bar', 'name' : 'Starke Windgeschwindigkeiten [m/s]', 'textposition' : 'bottom center' ,'marker' : { 'color' : '#000000' }})
 
-            fig = { 'data' : data, 'layout' : {'title' : 'Wäsche aufhängen oder Windrad lohnt sich!'}}
+            fig = { 'data' : data, 'x' : 'Test', 'layout' : {'title' : 'Wäsche aufhängen oder Windrad lohnt sich!', 'yaxis' : {'title' : 'Geschwindigkeit [m/s]'}}}
             
-            graph = dcc.Graph(figure = fig)
+            graph = dcc.Graph(figure = fig, config = {'responsible' : True})
             graphtag.children = graph
             graphtag.className = 'card-graph-optimization'
             
@@ -146,12 +146,12 @@ class Optimization:
             tag = div.children
             graphtag = self.ref_finder(tag) 
             
-            data.append({'x' : list(self.result['datum']), 'y' : list(self.result['appliances']), 'type' : 'line', 'name' : 'Stromverbrauch durch Geräte', 'marker' : { 'color' : '#33C1B1'}})
-            data.append({'x' : list(time_filt['datum']), 'y' : list(time_filt['appliances']), 'type' : 'bar', 'name' : 'Unnötiger Stromverbrauch', 'marker' : { 'color' : '#EE0000' }})
+            data.append({'x' : list(self.result['datum']), 'y' : list(self.result['appliances']), 'type' : 'line', 'name' : 'Stromverbrauch durch Geräte [W/h]', 'marker' : { 'color' : '#33C1B1'}, 'textposition' : 'bottom center'})
+            data.append({'x' : list(time_filt['datum']), 'y' : list(time_filt['appliances']), 'type' : 'bar', 'name' : 'Unnötiger Stromverbrauch [W/h]', 'marker' : { 'color' : '#000000' }, 'textposition' : 'bottom center'})
 
-            fig = { 'data' : data, 'layout' : {'title' : 'Lief der Fernseher in der Nacht?'}}
+            fig = { 'data' : data, 'layout' : {'title' : 'Lief der Fernseher in der Nacht?', 'yaxis' : {'title' : 'Leistung [W/h]'}}}
             
-            graph = dcc.Graph(figure = fig)
+            graph = dcc.Graph(figure = fig, config = {'responsible' : False})
             graphtag.children = graph
             graphtag.className = 'card-graph-optimization'
             
@@ -182,12 +182,12 @@ class Optimization:
             tag = div.children
             graphtag = self.ref_finder(tag) 
             
-            data.append({'x' : list(self.result['datum']), 'y' : list(self.result['lights']), 'type' : 'line', 'name' : 'Stromverbrauch durch Licht', 'marker' : { 'color' : '#33C1B1'}})
-            data.append({'x' : list(time_filt['datum']), 'y' : list(time_filt['lights']), 'type' : 'bar', 'name' : 'Unnötiger Stromverbrauch', 'marker' : { 'color' : '#EE0000' }})
+            data.append({'x' : list(self.result['datum']), 'y' : list(self.result['lights']), 'type' : 'line', 'name' : 'Stromverbrauch durch Licht [W/h]', 'marker' : { 'color' : '#33C1B1'}, 'textposition' : 'bottom center'})
+            data.append({'x' : list(time_filt['datum']), 'y' : list(time_filt['lights']), 'type' : 'bar', 'name' : 'Unnötiger Stromverbrauch [W/h]', 'marker' : { 'color' : '#000000' }, 'textposition' : 'bottom center'})
 
-            fig = { 'data' : data, 'layout' : {'title' : 'Licht vielleicht angelassen?'}}
+            fig = { 'data' : data, 'layout' : {'title' : 'Licht vielleicht angelassen?','yaxis' : {'title' : 'Leistung [W/h]'}}}
             
-            graph = dcc.Graph(figure = fig)
+            graph = dcc.Graph(figure = fig, config = {'responsible' : True})
             graphtag.children = graph
             graphtag.className = 'card-graph-optimization'
             

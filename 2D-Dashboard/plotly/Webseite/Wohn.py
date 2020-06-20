@@ -128,12 +128,13 @@ class Wohn:
                                                                                                                              id='Graph_Temperatur_Wohn',
                                                                                                                              figure = {
                                                                                                                                  'data': [
-                                                                                                                                             {'x': result['datum'], 'y': result['t2'], 'type': 'scatter', 'name': 'SF'},
+                                                                                                                                             {'x': result['datum'], 'y': result['t2'], 'type': 'scatter', 'name': 'Temperatur [°C]', 'textposition' : 'bottom center' ,'marker' : { 'color' : '#33C1B1'}},
                                                                                                                                          ],
                                                                                                                                   'layout': {
-                                                                                                                                              'title': 'Temperatur'
+                                                                                                                                              'title': 'Temperatur',
+																	      'yaxis' : { 'title' : 'Temperatur [°C]' }
                                                                                                                                             }
-                                                                                                                                     }
+                                                                                                                                     }, config = {'responsible' : True}
                                                                                                                              ),
                                                                                                                      ),
                                                                                                    
@@ -143,12 +144,13 @@ class Wohn:
                                                                                                                               id='Graph_Luftfeucht_Wohn',
                                                                                                                               figure = {
                                                                                                                                   'data': [
-                                                                                                                                              {'x': result['datum'], 'y': result['rh_2'], 'type': 'scatter', 'name': 'SF'},
+                                                                                                                                              {'x': result['datum'], 'y': result['rh_2'], 'type': 'scatter', 'name': 'Luftfeuchte [%]', 'textposition' : 'bottom center' ,'marker' : { 'color' : '#33C1B1'}},
                                                                                                                                           ],
                                                                                                                                    'layout': {
-                                                                                                                                               'title': 'Luftfeuchtigkeit'
+                                                                                                                                               'title': 'Luftfeuchtigkeit',
+																	       'yaxis' : { 'title' : 'Luftfeuchte [%]' }
                                                                                                                                              }
-                                                                                                                                      }
+                                                                                                                                      }, config = {'responsible' : True}
                                                                                                                               ),
                                                                                                                       ),
                                                                                           ]
