@@ -120,7 +120,8 @@ class Arbeit:
                                                                                                                                                 )
                                                                                                                                         ]
                                                                                                                             )
-                                                                                                      ),                                                                                                   
+                                                                                                      ),            
+                                                                                            
                                                                                                html.Div(children=dcc.Graph(
                                                                                                                               id='Graph_Temperatur_Arbeitzimmer',
                                                                                                                               figure = {
@@ -135,9 +136,9 @@ class Arbeit:
                                                                                                                               ),
                                                                                                                       ),
                                                                                                    
-                                                                                             
-                                                                                                html.Div(style={'margin-top': '50px'},
-                                                                                                         children=dcc.Graph(
+                                                                                            
+                                                                                               html.Div(style={'margin-top': '50px'},
+                                                                                                        children=dcc.Graph(
                                                                                                                                id='Graph_Luftfeucht_Arbeitzimmer',
                                                                                                                                figure = {
                                                                                                                                    'data': [

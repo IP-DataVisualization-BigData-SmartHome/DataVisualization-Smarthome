@@ -22,11 +22,13 @@ from Arbeit import Arbeit
 from Wohn import Wohn
 import psycopg2
 from postgre import postgre_connector, pd
-#from datetime import datetime as dt',
+#from datetime import datetime as dt2
 import datetime as dt
 from Uhrzeit_datum import Uhrzeit_datum
 from Analytics import analytics
 import numpy  as np
+
+
 
 
 external_scripts = [
@@ -139,7 +141,7 @@ analytics = analytics()
 def display_page(pathname):
     
     if pathname == '/dashboard.html':
-        return dashboard.dashboard_seite(uhrzeiten)
+        return dashboard.dashboard_seite(uhrzeiten, uhrzeit_datum.uhrzeit)
     elif pathname == '/analytics':
         return analytics.get_site()
     elif pathname == '/optimization':
@@ -163,7 +165,8 @@ def display_page(pathname):
     elif pathname == '/wohn':
         return wohn.wohn_seite(uhrzeiten, uhrzeit_datum.datum, uhrzeit_datum.uhrzeit)
     else:
-        return Dashboard().dashboard_seite(uhrzeiten)
+        print(uhrzeit_datum.uhrzeit)
+        return Dashboard().dashboard_seite(uhrzeiten, uhrzeit_datum.uhrzeit)
     
 @app.callback(
     dash.dependencies.Output('variablen_abspeichern','children'),
@@ -185,12 +188,13 @@ def dashboard_uhrzeit_tage_abspeichern(date, value):
 
 def kugel_zimmer1(date, value):
             if date == None or value == None:
-                return None
-            else:
+                datum_liste = uhrzeit_datum.datum
+                uhrzeit = uhrzeit_datum.uhrzeit
+            else:                
                 datum_liste = dashboard_datum_gesplittet(date)
                 uhrzeit = dashboard_uhrzeit_gesplittet(value)
                 
-                return dashboard_erstellung_zimmer_kugeln(datum_liste, uhrzeit, 't1', 'rh_1')
+            return dashboard_erstellung_zimmer_kugeln(datum_liste, uhrzeit, 't1', 'rh_1')
                 
            
 
@@ -202,13 +206,13 @@ def kugel_zimmer1(date, value):
 
 def dashboard_kugel_zimmer2(date, value):
             if date == None or value == None:
-                return None
-            else:
-                
+                datum_liste = uhrzeit_datum.datum
+                uhrzeit = uhrzeit_datum.uhrzeit
+            else:            
                 datum_liste = dashboard_datum_gesplittet(date)
                 uhrzeit = dashboard_uhrzeit_gesplittet(value)
                 
-                return dashboard_erstellung_zimmer_kugeln(datum_liste, uhrzeit, 't2', 'rh_2')
+            return dashboard_erstellung_zimmer_kugeln(datum_liste, uhrzeit, 't2', 'rh_2')
             
 @app.callback(
     dash.dependencies.Output('zimmer3', 'children'),
@@ -217,13 +221,13 @@ def dashboard_kugel_zimmer2(date, value):
 
 def dashboard_kugel_zimmer3(date, value):
             if date == None or value == None:
-                return None
-            else:
-                
+                datum_liste = uhrzeit_datum.datum
+                uhrzeit = uhrzeit_datum.uhrzeit
+            else:            
                 datum_liste = dashboard_datum_gesplittet(date)
                 uhrzeit = dashboard_uhrzeit_gesplittet(value)
                 
-                return dashboard_erstellung_zimmer_kugeln(datum_liste, uhrzeit, 't3', 'rh_3')
+            return dashboard_erstellung_zimmer_kugeln(datum_liste, uhrzeit, 't3', 'rh_3')
 
 @app.callback(
     dash.dependencies.Output('zimmer4', 'children'),
@@ -232,13 +236,14 @@ def dashboard_kugel_zimmer3(date, value):
 
 def dashboard_kugel_zimmer4(date, value):
             if date == None or value == None:
-                return None
+                datum_liste = uhrzeit_datum.datum
+                uhrzeit = uhrzeit_datum.uhrzeit
             else:
-                
+            
                 datum_liste = dashboard_datum_gesplittet(date)
                 uhrzeit = dashboard_uhrzeit_gesplittet(value)
                 
-                return dashboard_erstellung_zimmer_kugeln(datum_liste, uhrzeit, 't4', 'rh_4')
+            return dashboard_erstellung_zimmer_kugeln(datum_liste, uhrzeit, 't4', 'rh_4')
 
 @app.callback(
     dash.dependencies.Output('zimmer5', 'children'),
@@ -247,13 +252,13 @@ def dashboard_kugel_zimmer4(date, value):
 
 def dashboard_kugel_zimmer5(date, value):
             if date == None or value == None:
-                return None
-            else:
-                
+                datum_liste = uhrzeit_datum.datum
+                uhrzeit = uhrzeit_datum.uhrzeit
+            else:            
                 datum_liste = dashboard_datum_gesplittet(date)
                 uhrzeit = dashboard_uhrzeit_gesplittet(value)
                 
-                return dashboard_erstellung_zimmer_kugeln(datum_liste, uhrzeit, 't5', 'rh_5')
+            return dashboard_erstellung_zimmer_kugeln(datum_liste, uhrzeit, 't5', 'rh_5')
 
 @app.callback(
     dash.dependencies.Output('zimmer6', 'children'),
@@ -262,13 +267,13 @@ def dashboard_kugel_zimmer5(date, value):
 
 def dashboard_kugel_zimmer6(date, value):
             if date == None or value == None:
-                return None
-            else:
-                
+                datum_liste = uhrzeit_datum.datum
+                uhrzeit = uhrzeit_datum.uhrzeit
+            else:            
                 datum_liste = dashboard_datum_gesplittet(date)
                 uhrzeit = dashboard_uhrzeit_gesplittet(value)
                 
-                return dashboard_erstellung_zimmer_kugeln(datum_liste, uhrzeit, 't6', 'rh_6')
+            return dashboard_erstellung_zimmer_kugeln(datum_liste, uhrzeit, 't6', 'rh_6')
 
 @app.callback(
     dash.dependencies.Output('zimmer7', 'children'),
@@ -277,13 +282,14 @@ def dashboard_kugel_zimmer6(date, value):
 
 def dashboard_kugel_zimmer7(date, value):
             if date == None or value == None:
-                return None
+                datum_liste = uhrzeit_datum.datum
+                uhrzeit = uhrzeit_datum.uhrzeit
             else:
-                
+            
                 datum_liste = dashboard_datum_gesplittet(date)
                 uhrzeit = dashboard_uhrzeit_gesplittet(value)
                 
-                return dashboard_erstellung_zimmer_kugeln(datum_liste, uhrzeit, 't7', 'rh_7')
+            return dashboard_erstellung_zimmer_kugeln(datum_liste, uhrzeit, 't7', 'rh_7')
 
 @app.callback(
     dash.dependencies.Output('zimmer8', 'children'),
@@ -292,13 +298,15 @@ def dashboard_kugel_zimmer7(date, value):
 
 def dashboard_kugel_zimmer8(date, value):
             if date == None or value == None:
-                return None
+                datum_liste = uhrzeit_datum.datum
+                uhrzeit = uhrzeit_datum.uhrzeit
+
             else:
-                
+
                 datum_liste = dashboard_datum_gesplittet(date)
                 uhrzeit = dashboard_uhrzeit_gesplittet(value)
                 
-                return dashboard_erstellung_zimmer_kugeln(datum_liste, uhrzeit, 't8', 'rh_8')
+            return dashboard_erstellung_zimmer_kugeln(datum_liste, uhrzeit, 't8', 'rh_8')
 
 @app.callback(
     dash.dependencies.Output('zimmer9', 'children'),
@@ -307,15 +315,15 @@ def dashboard_kugel_zimmer8(date, value):
 
 def dashboard_kugel_zimmer9(date, value):
             if date == None or value == None:
-                return None
-            else:
-                
+                datum_liste = uhrzeit_datum.datum
+                uhrzeit = uhrzeit_datum.uhrzeit
+            else:            
                 datum_liste = dashboard_datum_gesplittet(date)
                 uhrzeit = dashboard_uhrzeit_gesplittet(value)
                 
-                return dashboard_erstellung_zimmer_kugeln(datum_liste, uhrzeit, 't9', 'rh_9')
+            return dashboard_erstellung_zimmer_kugeln(datum_liste, uhrzeit, 't9', 'rh_9')
 
-def dashboard_datum_gesplittet(date):
+def dashboard_datum_gesplittet(date):    
     date_gesplittet = date.split('-',3)
     jahr = date_gesplittet[0]
     monat = date_gesplittet[1]                
@@ -359,33 +367,34 @@ def dashboard_erstellung_zimmer_kugeln(datum_liste, uhrzeit, temp_zimmer, luftfe
 
 def dashboard_luftfeuchte_wind_draussen(date, value):
             if date == None or value == None:
-                return None
-            else:
-                DB_connector = postgre_connector()
+                datum_liste = uhrzeit_datum.datum
+                uhrzeit = uhrzeit_datum.uhrzeit
+            else:                
                 datum_liste = dashboard_datum_gesplittet(date)
                 uhrzeit = dashboard_uhrzeit_gesplittet(value)
-                
-                day1 = [int(datum_liste[0]),int(datum_liste[1]),int(datum_liste[2]),int(uhrzeit[0]),int(uhrzeit[1])]
-                day2 = [int(datum_liste[0]),int(datum_liste[1]),int(datum_liste[2]),int(uhrzeit[0]),int(uhrzeit[1])]
-                result = DB_connector.get_data(day1, day2, 'a', ['windspeed', 'rh_out'])
-                
-                windspeed_gesplittet = result['windspeed'].get(0).astype(str).split('.',2)
-                rh_out_gesplittet = result['rh_out'].get(0).astype(str).split('.',2)
-                
-    
-                return html.Div(className='col-12 text-center luft-wind',
-                                children=[
-                                           
-                                            html.Div(children='Luftfeuchte: ' + rh_out_gesplittet[0] + '%' #result['rh_out'].astype(str)
-                                                                        #<!-- Datensatz: Luftfeuchte draußen 'Luftfeuchte: '-->
-                                                    ),
-                                                     
-                                                     
-                                            html.Div('Wind: ' + windspeed_gesplittet[0] + ' m/s' #result['windspeed'].astype(str)
-                                                     #<!-- Datensatz: Wind draußen 'Wind: 10 km/h'-->
-                                                     )
-                                            ]
-                                )
+
+            DB_connector = postgre_connector()                
+            day1 = [int(datum_liste[0]),int(datum_liste[1]),int(datum_liste[2]),int(uhrzeit[0]),int(uhrzeit[1])]
+            day2 = [int(datum_liste[0]),int(datum_liste[1]),int(datum_liste[2]),int(uhrzeit[0]),int(uhrzeit[1])]
+            result = DB_connector.get_data(day1, day2, 'a', ['windspeed', 'rh_out'])
+            
+            windspeed_gesplittet = result['windspeed'].get(0).astype(str).split('.',2)
+            rh_out_gesplittet = result['rh_out'].get(0).astype(str).split('.',2)
+            
+
+            return html.Div(className='col-12 text-center luft-wind',
+                            children=[
+                                       
+                                        html.Div(children='Luftfeuchte: ' + rh_out_gesplittet[0] + '%' #result['rh_out'].astype(str)
+                                                                    #<!-- Datensatz: Luftfeuchte draußen 'Luftfeuchte: '-->
+                                                ),
+                                                 
+                                                 
+                                        html.Div('Wind: ' + windspeed_gesplittet[0] + ' m/s' #result['windspeed'].astype(str)
+                                                 #<!-- Datensatz: Wind draußen 'Wind: 10 km/h'-->
+                                                 )
+                                        ]
+                            )
 
 @app.callback(
     dash.dependencies.Output('temp_draussen', 'children'),
@@ -394,26 +403,27 @@ def dashboard_luftfeuchte_wind_draussen(date, value):
 
 def dashboard_temp_draussen(date, value):
             if date == None or value == None:
-                return None
-            else:
-                DB_connector = postgre_connector()
+                datum_liste = uhrzeit_datum.datum
+                uhrzeit = uhrzeit_datum.uhrzeit
+            else:                
                 datum_liste = dashboard_datum_gesplittet(date)
                 uhrzeit = dashboard_uhrzeit_gesplittet(value)
-                
-                day1 = [int(datum_liste[0]),int(datum_liste[1]),int(datum_liste[2]),int(uhrzeit[0]),int(uhrzeit[1])]
-                day2 = [int(datum_liste[0]),int(datum_liste[1]),int(datum_liste[2]),int(uhrzeit[0]),int(uhrzeit[1])]
-                result = DB_connector.get_data(day1, day2, 'a', ['t_out'])                
-                
-                temp_draussen_gesplittet = result['t_out'].get(0).astype(str).split('.',2)
-                
-    
-                
-                return  html.Div(
-                                 children=
-                                             html.Div(children= temp_draussen_gesplittet[0] + '°C' 
-                                                      #<!-- Datensatz: Temperatur draußen -->
-                                                      )
-                                 ),          
+
+            DB_connector = postgre_connector()                
+            day1 = [int(datum_liste[0]),int(datum_liste[1]),int(datum_liste[2]),int(uhrzeit[0]),int(uhrzeit[1])]
+            day2 = [int(datum_liste[0]),int(datum_liste[1]),int(datum_liste[2]),int(uhrzeit[0]),int(uhrzeit[1])]
+            result = DB_connector.get_data(day1, day2, 'a', ['t_out'])                
+            
+            temp_draussen_gesplittet = result['t_out'].get(0).astype(str).split('.',2)
+            
+
+            
+            return  html.Div(
+                             children=
+                                         html.Div(children= temp_draussen_gesplittet[0] + '°C' 
+                                                  #<!-- Datensatz: Temperatur draußen -->
+                                                  )
+                             ),          
 
 @app.callback(
     dash.dependencies.Output('stromverbrauch_lichtverbrauch', 'children'),
@@ -422,54 +432,55 @@ def dashboard_temp_draussen(date, value):
 
 def dashboard_stromverbrauch_lichtverbrauch(date, value):
             if date == None or value == None:
-                return None
-            else:
-                DB_connector = postgre_connector()
+                datum_liste = uhrzeit_datum.datum
+                uhrzeit = uhrzeit_datum.uhrzeit
+            else:                
                 datum_liste = dashboard_datum_gesplittet(date)
                 uhrzeit = dashboard_uhrzeit_gesplittet(value)
-                
-                day1 = [int(datum_liste[0]),int(datum_liste[1]),int(datum_liste[2]),int(uhrzeit[0]),int(uhrzeit[1])]
-                day2 = [int(datum_liste[0]),int(datum_liste[1]),int(datum_liste[2]),int(uhrzeit[0]),int(uhrzeit[1])]
-                result = DB_connector.get_data(day1, day2, 'a', ['appliances', 'lights'])
-                
-                appliances_gesplittet = result['appliances'].get(0).astype(str).split('.',2)
-                licht_gesplittet = result['lights'].get(0).astype(str).split('.',2)
-    
-                
-                return  html.Div(className='sidecard',
-                                children=[
-                                            html.Div(className='strom',
-                                                     #<!-- Strom-Fläche -->
-                                                     children=[
-                                                                 html.Div(className='verbrauch-text',
-                                                                          children='Stromverbrauch'
-                                                                          ),
-                                                                 html.Div(children=
-                                                                                  html.I(className='mdi mdi-48px mdi-flash icons-verbrauch')
-                                                                          ),
-                                                                 html.Div(className='stromverbrauch verbrauch-zahl',
-                                                                          children=appliances_gesplittet[0] + 'W' 
-                                                                          #<!-- Stromverbrauch eintragen -->
-                                                                          )
-                                                                ] 
-                                                                 
-                                                     ),
-                                            html.Div(className='licht',
-                                                     #<!-- Licht-Fläche -->
-                                                     children=[
-                                                                 html.Div(className='verbrauch-text',
-                                                                          children='Lichtverbrauch'
-                                                                          ),
-                                                                 html.Div(children=
-                                                                                      html.I(className='mdi mdi-48px mdi-lightbulb-on icons-verbrauch')
-                                                                          ),
-                                                                 html.Div(className='stromverbrauch verbrauch-zahl',
-                                                                          children=licht_gesplittet[0] + 'W' 
-                                                                          #<!-- Lichtverbrauch eintragen -->
-                                                                          )
-                                                                 ]
-                                                     )
-                                    ])
+
+            DB_connector = postgre_connector()                
+            day1 = [int(datum_liste[0]),int(datum_liste[1]),int(datum_liste[2]),int(uhrzeit[0]),int(uhrzeit[1])]
+            day2 = [int(datum_liste[0]),int(datum_liste[1]),int(datum_liste[2]),int(uhrzeit[0]),int(uhrzeit[1])]
+            result = DB_connector.get_data(day1, day2, 'a', ['appliances', 'lights'])
+            
+            appliances_gesplittet = result['appliances'].get(0).astype(str).split('.',2)
+            licht_gesplittet = result['lights'].get(0).astype(str).split('.',2)
+        
+            
+            return  html.Div(className='sidecard',
+                            children=[
+                                        html.Div(className='strom',
+                                                 #<!-- Strom-Fläche -->
+                                                 children=[
+                                                             html.Div(className='verbrauch-text',
+                                                                      children='Stromverbrauch'
+                                                                      ),
+                                                             html.Div(children=
+                                                                              html.I(className='mdi mdi-48px mdi-flash icons-verbrauch')
+                                                                      ),
+                                                             html.Div(className='stromverbrauch verbrauch-zahl',
+                                                                      children=appliances_gesplittet[0] + 'W' 
+                                                                      #<!-- Stromverbrauch eintragen -->
+                                                                      )
+                                                            ] 
+                                                             
+                                                 ),
+                                        html.Div(className='licht',
+                                                 #<!-- Licht-Fläche -->
+                                                 children=[
+                                                             html.Div(className='verbrauch-text',
+                                                                      children='Lichtverbrauch'
+                                                                      ),
+                                                             html.Div(children=
+                                                                                  html.I(className='mdi mdi-48px mdi-lightbulb-on icons-verbrauch')
+                                                                      ),
+                                                             html.Div(className='stromverbrauch verbrauch-zahl',
+                                                                      children=licht_gesplittet[0] + 'W' 
+                                                                      #<!-- Lichtverbrauch eintragen -->
+                                                                      )
+                                                             ]
+                                                 )
+                                ])
 @app.callback(
     dash.dependencies.Output('Graph_Temperatur_Wohn', 'figure'),
    [dash.dependencies.Input('DatePickerWohn', 'date')])
@@ -1023,8 +1034,9 @@ def visibility_inf(click):
     [dash.dependencies.Input('schimmelbt', 'n_clicks')]) 
 def schimmel_inf(click):
     if click != None:
-        return 'Temperaturen an Wänden oder Bauteilen die unter dem angegebenen Taupunkt liegen, sind Schimmel gefährdet!'    
-                   
+        return 'Temperaturen an Wänden oder Bauteilen die unter dem angegebenen Taupunkt liegen, sind Schimmel gefährdet!'                               
+                          
+                    
                     
 if __name__ == '__main__':
     app.run_server(debug=False)
