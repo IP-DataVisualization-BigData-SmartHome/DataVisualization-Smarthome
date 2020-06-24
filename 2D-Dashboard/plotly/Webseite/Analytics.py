@@ -13,13 +13,22 @@ from postgre import postgre_connector, pd
 class analytics:
     
     def __init__(self):
-        self.rooms = []
-        self.mode = 'd'
-        self.data = 'temp'
+        self.active_rooms = {'Arbeitszimmer' : False, 'Badezimmer' : True, 'Bügelzimmer' : False,
+                             'Kinderzimmer' : False, 'Küche' : False, 'Schlafzimmer' : False,
+                             'Waschküche' : False, 'Wohnzimmer' : False }
+        self.start_date = dt.date(2016, 2 , 16)
+        self.end_date = dt.date(2016, 2 , 24)
+        self.mode = 'a'
+        self.data = 'tempd'
+        self.graph = html.Div(className='graph-analytics')
+    
+    def set_active_room(self, room):
+        if self.active_rooms[room] == False:
+            return { 'color' : '#BFC0BF'}
+        else: 
+            return { 'color' : '#00B1AC'} 
     
     def get_site(self):
-        print('aufgerufen')
-        DB_conn = postgre_connector()
         return html.Div([   
                             html.Nav(className='fixed-top', 
                                      children= 
@@ -31,7 +40,8 @@ class analytics:
                                                                                             html.Div(className='col-4 text-center head-analytics', 
                                                                                                      children= html.A('Analytics')
                                                                                                      ),
-                                                                                            html.Div(className='col-4')
+                                                                                            html.Div(className='col-4 text-right logo', id = 'mydiv',
+                                                                                                    children = html.Img(src='assets/logo.png', height=80, width=20))
                                                                                           ]
                                                                                 )
                                                          )
@@ -41,64 +51,72 @@ class analytics:
                                               children=
                                                  html.Div(className='container-fluid main', 
                                                           children= [
-                                                                                            html.Div(className='row', 
+                                                                                            html.Div(className='row', style = {'padding-top' : '30px'}, 
                                                                                                      children= [ 
                                                                                                                  html.Div(className='col-3',
                                                                                                                           children= [
                                                                                                                                      
                                                                                                                                       html.Div(className='frame', 
                                                                                                                                                children= [
-                                                                                                                                                           html.Button(className='checkbox', name='room', type='checkbox', value='2', id = 'Az'),
-                                                                                                                                                           html.Label(className='room-selection', children='Arbeitszimmer', htmlFor='Az', id='Arbeitszimmer')
+                                                                                                                                                           html.Button(className='checkbox',  name='room', type='checkbox', value='2', id = 'Az'),
+                                                                                                                                                           html.Label(className='room-selection', children='Arbeitszimmer', htmlFor='Az', id='Arbeitszimmer',
+                                                                                                                                                                      style = self.set_active_room('Arbeitszimmer'))
                                                                                                                                                          ]
                                                                                                                                                ),
                                                                                                                                       html.Div(className='frame', 
                                                                                                                                                children= [
                                                                                                                                                            html.Button(className='checkbox', name='room', type='checkbox', value='3', id = 'Baz'),
-                                                                                                                                                           html.Label(className='room-selection', htmlFor = 'Baz', children='Badezimmer', id = 'Badezimmer')
+                                                                                                                                                           html.Label(className='room-selection', htmlFor = 'Baz', children='Badezimmer', id = 'Badezimmer',
+                                                                                                                                                                      style = self.set_active_room('Badezimmer'))
                                                                                                                                                          ]
                                                                                                                                                ),
                                                                                                                                       html.Div(className='frame', 
                                                                                                                                                children= [
                                                                                                                                                            html.Button(className='checkbox', name='room', type='checkbox', value='4', id = 'Büz'),
-                                                                                                                                                           html.Label(className='room-selection', htmlFor = 'Büz', children='Bügelzimmer', id = 'Bügelzimmer')
+                                                                                                                                                           html.Label(className='room-selection', htmlFor = 'Büz', children='Bügelzimmer', id = 'Bügelzimmer',
+                                                                                                                                                                      style = self.set_active_room('Bügelzimmer'))
                                                                                                                                                          ]
                                                                                                                                                ),
                                                                                                                                       html.Div(className='frame', 
                                                                                                                                                children= [
                                                                                                                                                            html.Button(className='checkbox', name='room', type='checkbox', value='5', id = 'Kz'),
-                                                                                                                                                           html.Label(className='room-selection', htmlFor = 'Kz', children='Kinderzimmer', id = 'Kinderzimmer')
+                                                                                                                                                           html.Label(className='room-selection', htmlFor = 'Kz', children='Kinderzimmer', id = 'Kinderzimmer',
+                                                                                                                                                                      style = self.set_active_room('Kinderzimmer'))
                                                                                                                                                          ]
                                                                                                                                                ),                                                                   
                                                                                                                                       html.Div(className='frame', 
                                                                                                                                                children= [
                                                                                                                                                            html.Button(className='checkbox', name='room', type='checkbox', value='6', id = 'Kü'),
-                                                                                                                                                           html.Label(className='room-selection', htmlFor = 'Kü', children='Küchenzimmer', id = 'Küche')
+                                                                                                                                                           html.Label(className='room-selection', htmlFor = 'Kü', children='Küche', id = 'Küche',
+                                                                                                                                                                      style = self.set_active_room('Küche'))
                                                                                                                                                          ]
                                                                                                                                                ),                  
                                                                                                                                       html.Div(className='frame', 
                                                                                                                                                children= [
                                                                                                                                                            html.Button(className='checkbox', name='room', type='checkbox', value='7', id = 'Sz'),
-                                                                                                                                                           html.Label(className='room-selection', htmlFor = 'Sz', children='Schlafzimmer', id = 'Schlafzimmer')
+                                                                                                                                                           html.Label(className='room-selection', htmlFor = 'Sz', children='Schlafzimmer', id = 'Schlafzimmer',
+                                                                                                                                                                      style = self.set_active_room('Schlafzimmer'))
                                                                                                                                                          ]
                                                                                                                                                ),
                                                                                                                                       html.Div(className='frame', 
                                                                                                                                                children= [
                                                                                                                                                            html.Button(className='checkbox', name='room', type='checkbox', value='8', id = 'Wk'),
-                                                                                                                                                           html.Label(className='room-selection', htmlFor = 'Wk', children='Waschküche', id = 'Waschküche')
+                                                                                                                                                           html.Label(className='room-selection', htmlFor = 'Wk', children='Waschküche', id = 'Waschküche',
+                                                                                                                                                                      style = self.set_active_room('Waschküche'))
                                                                                                                                                          ]
                                                                                                                                                ),         
                                                                                                                                       html.Div(className='frame', 
                                                                                                                                                children= [
                                                                                                                                                            html.Button(className='checkbox', name='room', type='checkbox', value='9', id = 'Wz'),
-                                                                                                                                                           html.Label(className='room-selection', htmlFor = 'Wz', children='Wohnzimmer', id = 'Wohnzimmer')
+                                                                                                                                                           html.Label(className='room-selection', htmlFor = 'Wz', children='Wohnzimmer', id = 'Wohnzimmer',
+                                                                                                                                                                      style = self.set_active_room('Wohnzimmer'))
                                                                                                                                                          ]
                                                                                                                                                )
                                                                                                                                     ]
                                                                                                                         ),
                                                                                                                 html.Div(className='col-9',
                                                                                                                           children= 
-                                                                                                                                     html.Div(className='graph', children= [], id = 'analytics_graph')
+                                                                                                                                     html.Div(className='graph', children= [self.graph], id = 'analytics_graph')
                                                                                                                                               
                                                                                                                                               
                                                                                                                         )
@@ -121,7 +139,7 @@ class analytics:
                                                                                                                                                                                  {'label': ' Temperatur draußen', 'value': 'tempd'},
                                                                                                                                                                                  {'label': ' Luftfeuchtigkeit draußen', 'value': 'humd'}
                                                                                                                                                                          ],
-                                                                                                                                                                value='temp',
+                                                                                                                                                                value= self.data,
                                                                                                                                                                 labelStyle={'display': 'inline-block'},
                                                                                                                                                                 labelClassName = 'time',
                                                                                                                                                                 id = 'mode_data'
@@ -136,8 +154,10 @@ class analytics:
                                                                                                                                                                  min_date_allowed=dt.datetime(2016, 1, 12),
                                                                                                                                                                  max_date_allowed=dt.datetime(2016, 5, 26),
                                                                                                                                                                  initial_visible_month=dt.datetime(2016, 1, 13),
-                                                                                                                                                                 end_date= pd.to_datetime(DB_conn.get_last_date()['datum'][0]).date(),
-                                                                                                                                                                 start_date= pd.to_datetime(DB_conn.get_first_date()['datum'][0]).date(),
+                                                                                                                                                                 #end_date= pd.to_datetime(DB_conn.get_last_date()['datum'][0]).date(),
+                                                                                                                                                                 #start_date= pd.to_datetime(DB_conn.get_first_date()['datum'][0]).date(),
+                                                                                                                                                                 start_date = self.start_date,
+                                                                                                                                                                 end_date = self.end_date,
                                                                                                                                                                  className='daterange',
                                                                                                                                                                  with_portal = True
                                                                                                                                                                              )                
@@ -153,7 +173,7 @@ class analytics:
                                                                                                                                                                                  {'label': ' Tage', 'value': 'd'},
                                                                                                                                                                                  {'label': ' Monate', 'value': 'm'}
                                                                                                                                                                          ],
-                                                                                                                                                                value='a',
+                                                                                                                                                                value= self.mode,
                                                                                                                                                                 labelStyle={'display': 'inline-block'},
                                                                                                                                                                 labelClassName = 'time',
                                                                                                                                                                 id = 'mode_time'
@@ -215,3 +235,4 @@ class analytics:
                                                                                                                                      
                         ]
                     )
+       

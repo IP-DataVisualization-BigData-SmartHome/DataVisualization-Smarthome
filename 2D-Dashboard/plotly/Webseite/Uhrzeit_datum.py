@@ -13,6 +13,9 @@ class Uhrzeit_datum:
     datum = None
     
     def __init__(self):
+        self.aktuelleUhrzeit()
+
+    def aktuelleUhrzeit(self):
         aktuelleUhrzeit = dt2.now()
 
         aktuelle_stunde = aktuelleUhrzeit.hour
@@ -57,5 +60,3 @@ class Uhrzeit_datum:
         else:
             self.uhrzeit = [str(aktuelle_stunde), str(aktuelle_minute)]
             self.datum = [str(letzter_eintrag_timestamp.year), str(letzter_eintrag_timestamp.month), str(letzter_eintrag_timestamp.day)]
-
-    
