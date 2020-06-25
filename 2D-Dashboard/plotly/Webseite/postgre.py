@@ -14,10 +14,10 @@ import time
 class postgre_connector:
     
     def __init__(self):
-        self.__host = '81.169.248.223'
+        self.__host = '85.214.235.99'
         self.__dbname = 'ip_datavisualization'
         self.__user = 'dev'
-        self.__password = 'dev'
+        self.__password = 'ungeFah3'
         self.__connection = None
     
     def connect(self):
