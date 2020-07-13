@@ -21,7 +21,9 @@ class Dashboard:
         self.__erster_eintrag_timestamp = erster_eintrag['datum'][0]
         self.__letzter_eintrag_timestamp = letzter_eintrag['datum'][0]
  
-    def dashboard_seite(self, uhrzeiten):
+    def dashboard_seite(self, uhrzeiten, ausgewaehlteUhrzeit):
+        
+        
         return html.Div([
                             html.Div(hidden='true', id='variablen_abspeichern'),
                             html.Nav(className='fixed-top',
@@ -40,12 +42,13 @@ class Dashboard:
                                                                                                     ),
                                                                                            html.Div(
                                                                                                     style={'margin-top': '32px', 'position':'relative', 'z-index':'3'},
-                                                                                                    className='col-1,5 text-center text-head2',
+                                                                                                    className='col-1,5  text-head2',
                                                                                                     children=
                                                                                                                 dcc.Dropdown(id='dropdown-uhrzeit',
                                                                                                                              #style={ 'position':'absolute', 'z-index':'3'},
-                                                                                                                             placeholder='Uhrzeit',
-                                                                                                                             options=[{'label': i.strftime("%H:%M") + ' Uhr', 'value': i} for i in uhrzeiten],
+                                                                                                                             placeholder=ausgewaehlteUhrzeit[0] + ':' + ausgewaehlteUhrzeit[1] + ' Uhr',#'Uhrzeit',
+                                                                                                                             options=[{'label': i.strftime("%H:%M") + ' Uhr', 'value': i} for i in uhrzeiten]
+                                                                                                                             
                                                                                                                              )
                                                                                                                 
                                                                                                     ),
@@ -63,7 +66,7 @@ class Dashboard:
                                                                                                                                         initial_visible_month=self.__erster_eintrag_timestamp,
                                                                                                                                         #initial_visible_month=dt(2016, 1, 11),
                                                                                                                                         #date=str(dt(2016, 1, 11))
-                                                                                                                                        date=str(self.__letzter_eintrag_timestamp)
+                                                                                                                                        date=str(self.__letzter_eintrag_timestamp)                                                                                                                                        
                                                                                                                                     )                                                            
                                                                                                     ),                                                                                           
                                                                                            html.Div(id='luftfeuchte_wind_draussen'),                                                                                           
@@ -92,7 +95,7 @@ class Dashboard:
                                                                                                                           children=
                                                                                                                                    html.Div(className='colorwrapper bad',
                                                                                                                                             children=
-                                                                                                                                                        html.Div(id='zimmer5')                                                                                                                                                       
+                                                                                                                                                        html.Div(id='zimmer5')
                                                                                                                                             )
                                                                                                                            ),
                                                                                                                    html.A(className='kreise-link',
@@ -100,56 +103,56 @@ class Dashboard:
                                                                                                                           children=                                                                                                                   
                                                                                                                                    html.Div(className='colorwrapper arbeits',
                                                                                                                                             children=
-                                                                                                                                                        html.Div(id='zimmer4')                                                                                                                                                        
-                                                                                                                                            ),
+                                                                                                                                                        html.Div(id='zimmer4')
+                                                                                                                                            )
                                                                                                                            ),
                                                                                                                    html.A(className='kreise-link',
                                                                                                                           href='schlaf',
                                                                                                                           children=                                                                                                                   
                                                                                                                                    html.Div(className='colorwrapper schlaf',
                                                                                                                                             children=
-                                                                                                                                                        html.Div(id='zimmer9')                                                                                                                                                        
-                                                                                                                                            ),
+                                                                                                                                                        html.Div(id='zimmer9')
+                                                                                                                                            )
                                                                                                                            ),
                                                                                                                    html.A(className='kreise-link',
                                                                                                                           href='wasch',
                                                                                                                           children=
                                                                                                                                    html.Div(className='colorwrapper wasch',
                                                                                                                                             children=
-                                                                                                                                                        html.Div(id='zimmer3')                                                                                                                                                        
-                                                                                                                                            ),
+                                                                                                                                                        html.Div(id='zimmer3')
+                                                                                                                                            )
                                                                                                                            ),
                                                                                                                    html.A(className='kreise-link',
                                                                                                                           href='kinder',
                                                                                                                           children=
                                                                                                                                    html.Div(className='colorwrapper kinder',
                                                                                                                                             children=
-                                                                                                                                                        html.Div(id='zimmer8')                                                                                                                                                        
-                                                                                                                                            ),
+                                                                                                                                                        html.Div(id='zimmer8')
+                                                                                                                                            )
                                                                                                                            ),
                                                                                                                    html.A(className='kreise-link',
                                                                                                                           href='buegel',
                                                                                                                           children=
                                                                                                                                    html.Div(className='colorwrapper buegel',
                                                                                                                                             children=
-                                                                                                                                                        html.Div(id='zimmer7')                                                                                                                                                        
-                                                                                                                                            ),
+                                                                                                                                                        html.Div(id='zimmer7')
+                                                                                                                                            )
                                                                                                                            ),
                                                                                                                    html.A(className='kreise-link',
                                                                                                                           href='kueche',
                                                                                                                           children=
                                                                                                                                    html.Div(className='colorwrapper kueche',
                                                                                                                                             children=
-                                                                                                                                                        html.Div(id='zimmer1')                                                                                                                                    
-                                                                                                                                            ),
+                                                                                                                                                        html.Div(id='zimmer1')
+                                                                                                                                            )
                                                                                                                            ),
                                                                                                                    html.A(className='kreise-link',
                                                                                                                           href='wohn',
                                                                                                                           children=
                                                                                                                                    html.Div(className='colorwrapper wohn',
                                                                                                                                             children=
-                                                                                                                                                        html.Div(id='zimmer2')                                                                                                                                                       
-                                                                                                                                            ),
+                                                                                                                                                        html.Div(id='zimmer2')
+                                                                                                                                            )
                                                                                                                            ),
                                                                                                                    html.Div(className='align-self-center',
                                                                                                                             children=

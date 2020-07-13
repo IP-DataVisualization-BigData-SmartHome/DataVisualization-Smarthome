@@ -27,7 +27,7 @@
 .licht {
     background-color: #595A59;
     border-radius: 10px;
-    color: #C4C4C4;
+    color: #1F897C;
     text-align: center;
     width: 110px;
     font-weight: 600;
@@ -36,7 +36,7 @@
 .strom {
     background-color: #595A59;
     border-radius: 5px;
-    color: #C4C4C4;
+    color: #1F897C;
     text-align: center;
     margin-bottom: 1rem;
     width: 110px;
@@ -388,9 +388,11 @@
 @media (min-width: 1200px) { 
    .licht {
         margin-top: 80px;
+		color: #1F897C;
     }
     .strom {
         margin-top: 30px;
+		color: #1F897C;
     }
     .haus {
             width: 850px;
@@ -449,13 +451,13 @@
     }
 	.DateInput_input {
 	background-color: #595A59;
-	border-color: #595A59;
+	border-color: #C4C4C4;
 	font-weight: 200;
 	font-size: 25px;
 	line-height: 24px;
-	color: #C4C4C4;
-	width: 150%;
-	padding: 11px 11px 9px;
+	color: #1F897C;
+	width: 100%;
+	padding: 11px 3px 9px;
 	border: 0;
 	border-top: 0;
 	border-right: 0;
@@ -464,14 +466,14 @@
 	border-radius: 0;
 	}
 	.SingleDatePickerInput__withBorder {
-		border: 0px solid #595A59;
+		border: 2px solid #1F897C;
 	}
 	.Select-control {
 		width: 150px;
 		background-color: #595A59;
 		border-radius: 4px;
 		border: 0px solid #595A59;
-		color: #C4C4C4;
+		color: #1F897C;
 		display: table;
 		border-spacing: 0;
 		border-collapse: separate;
@@ -479,5 +481,28 @@
 		overflow: hidden;
 	}
 	.has-value.Select--single>.Select-control .Select-value .Select-value-label, .has-value.is-pseudo-focused.Select--single>.Select-control .Select-value .Select-value-label {
-    color: #C4C4C4;
+    color: #1F897C;
+}
+.Select--single > .Select-control .Select-value, .Select-placeholder {
+    bottom: 0;
+    color: #1F897C;
+    left: 0;
+    line-height: 34px;
+    padding-left: 10px;
+    padding-right: 10px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.Select-arrow {
+    border-color: #1F897C transparent transparent;
+    border-style: solid;
+    border-width: 5px 5px 2.5px;
+    height: 0;
+    width: 0;
+    position: relative;
 }
