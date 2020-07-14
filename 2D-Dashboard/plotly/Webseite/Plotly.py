@@ -141,6 +141,7 @@ analytics = analytics()
 def display_page(pathname):
     
     if pathname == '/dashboard.html':
+        uhrzeit_datum.aktuelleUhrzeit()
         return dashboard.dashboard_seite(uhrzeiten, uhrzeit_datum.uhrzeit)
     elif pathname == '/analytics':
         return analytics.get_site()
@@ -165,8 +166,8 @@ def display_page(pathname):
     elif pathname == '/wohn':
         return wohn.wohn_seite(uhrzeiten, uhrzeit_datum.datum, uhrzeit_datum.uhrzeit)
     else:
-        print(uhrzeit_datum.uhrzeit)
-        return Dashboard().dashboard_seite(uhrzeiten, uhrzeit_datum.uhrzeit)
+        uhrzeit_datum.aktuelleUhrzeit()
+        return dashboard.dashboard_seite(uhrzeiten, uhrzeit_datum.uhrzeit)
     
 @app.callback(
     dash.dependencies.Output('variablen_abspeichern','children'),
