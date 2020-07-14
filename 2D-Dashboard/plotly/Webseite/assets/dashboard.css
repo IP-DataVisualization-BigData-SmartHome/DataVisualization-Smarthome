@@ -15,14 +15,16 @@
 .container.main {    
 /* margin-top hinzugefügt damit obere nav passt */
     margin-top: 6.5vw;
-    text-align: right;
+    text-align: center;
+    transform:scale(2.5,2.0);
 }
 .haus {
     font-family: 'Roboto', sans-serif;
     padding-left: 1rem;
-    width: 350px;
+    width: 5000px;
     height: auto;
-    margin-left: 30px; 
+    margin-left: 30px;
+    /*transform:scale(2.5,1.5);*/ 
 }
 .licht {
     background-color: #595A59;

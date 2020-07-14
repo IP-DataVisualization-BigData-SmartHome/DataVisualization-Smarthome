@@ -1,0 +1,149 @@
+body{
+    background-color: #8A8B8A;
+    font-family: 'Roboto', sans-serif;
+    color: #C4C4C4;
+}
+
+.m-b-10 { margin-bottom: 10px; }
+/* Bootstrap */
+.mdi::before {
+  font-size: 24px;
+  line-height: 14px;
+}
+.btn .mdi::before {
+  position: relative;
+  top: 4px;
+}
+.btn-xs .mdi::before {
+  font-size: 18px;
+  top: 3px;
+}
+.btn-sm .mdi::before {
+  font-size: 18px;
+  top: 3px;
+}
+.dropdown-menu .mdi {
+  width: 18px;
+}
+.dropdown-menu .mdi::before {
+  position: relative;
+  top: 4px;
+  left: -8px;
+}
+.nav .mdi::before {
+  position: relative;
+  top: 4px;
+}
+.navbar .navbar-toggle .mdi::before {
+  position: relative;
+  top: 4px;
+  color: #FFF;
+}
+.breadcrumb .mdi::before {
+  position: relative;
+  top: 4px;
+}
+.breadcrumb a:hover { text-decoration: none; }
+.breadcrumb a:hover span { text-decoration: underline; }
+.alert .mdi::before {
+  position: relative;
+  top: 4px;
+  margin-right: 2px;
+}
+.input-group-addon .mdi::before {
+  position: relative;
+  top: 3px;
+}
+.navbar-brand .mdi::before {
+  position: relative;
+  top: 2px;
+  margin-right: 2px;
+}
+.list-group-item .mdi::before {
+  position: relative;
+  top: 3px;
+  left: -3px
+}
+.navicon::before{
+    font-size: 250%;
+    text-align: center;
+    display: grid;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+.nav-link{
+    color: #C4C4C4;
+}
+.nav-text {
+    display: grid;
+    text-align: center;
+    font-size: 70%;
+    margin-bottom: 0.2rem;
+}
+.nav-link:hover{
+    color: #737373;
+}
+.nav-link-active{
+    color: #00B1AC;
+}
+.nav-link-active:hover{
+    color: #1F897C;
+}
+.navbar {
+    background-color: #595A59;
+    padding-top: 0rem;
+    padding-bottom: 0rem;
+}
+.navdiv {
+    margin-top: 0rem;
+    margin-bottom: 0px;
+}
+
+
+/* Von Simon erstellt */
+.head-design {
+    background-color: #595A59;
+    color: #BFC0BF;
+    padding-top: 0rem;
+    padding-bottom: 0rem;
+    margin-top: -10px;
+    height: 90px;
+}
+
+.text-head{
+    font-size: 350%;
+}
+
+.text-head-detail{
+    font-size: 250%;
+    margin-top: 16px;
+}
+
+.luft-wind{
+    margin-top: 15px;
+    font-size: 110%;
+}
+
+#Datum{
+    font-size: 115%;
+    margin-top: -24px;
+    padding-bottom: 3px;
+}
+
+.nav-head{
+    color: #C4C4C4;
+    text-decoration: inherit;
+}
+
+.nav-head:hover{
+    color: #737373;
+    text-decoration: none; 
+}
+
+.headicon::before{
+    font-size: 100%;
+}
+
+
+
+
