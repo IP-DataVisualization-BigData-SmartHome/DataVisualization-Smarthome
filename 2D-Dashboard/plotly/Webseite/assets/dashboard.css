@@ -6,6 +6,13 @@
     padding-right: 0.2rem;
     
 }
+
+body {
+  overflow: hidden; /* Hide scrollbars */
+  transform:scale(2,1.5);
+  margin-top: 530px;
+}
+
 .helpdiv {
     position: fixed;
     left: 95%;
@@ -14,8 +21,8 @@
 
 .container.main {    
 /* margin-top hinzugefügt damit obere nav passt */
-    margin-top: 6.5vw;
-    text-align: right;
+   /* margin-top: 600px;
+*/    text-align: right;
 }
 .haus {
     font-family: 'Roboto', sans-serif;

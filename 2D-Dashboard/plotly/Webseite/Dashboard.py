@@ -82,7 +82,7 @@ class Dashboard:
                                                  ),       
                                 html.Div(className='container main',
                                          children=[                                                                
-                                                    html.Div(className='row',
+                                                    html.Div(className='row', style = {'margin-bottom' : '-400px'},
                                                              children=[
                                                                          html.Div(className='col-2 main-div relative d-flex justify-content-center',
                                                                                   children=
@@ -166,7 +166,7 @@ class Dashboard:
                                                                          html.Div(className='col-2 main-div')
                                                                          ]
                                                              ),
-                                                    html.Nav(style={'margin-top': '50px'},
+                                                    html.Nav(style={'margin-bottom': '-520px'},
                                                              className='navbar fixed-bottom',
                                                              children=
                                                                          html.Div(className='container-fluid navdiv',
