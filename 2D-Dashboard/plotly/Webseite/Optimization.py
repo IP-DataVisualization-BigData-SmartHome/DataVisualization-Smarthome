@@ -55,7 +55,7 @@ class Optimization:
        data.append({'x' : list(result['datum']), 'y' : list(result['t_out']), 'type' : 'line', 'name' : 'Temperatur Draußen [°C]', 'marker' : { 'color' : '#9B9C9F'},'textposition' : 'bottom center'})
        data.append({'x' : list(result['datum']), 'y' : list(test), 'type' : 'line', 'name' : 'gemittelter Oberflächentemepraturwert [°C]', 'marker' : { 'color' : '#33C1B1'},'textposition' : 'bottom center'})
        
-       fig = { 'data' : data, 'layout' : {'title' : 'Schimmel_Test', 'yaxis' : {'title' : 'Temperatur [°C]'}}}
+       fig = { 'data' : data, 'layout' : {'title' : 'Schimmel Test', 'yaxis' : {'title' : 'Temperatur [°C]'}}}
        graph = dcc.Graph(figure = fig, config = {'responsible' : True})
        graphtag.children = graph
        graphtag.className = 'card-graph-optimization'
@@ -241,7 +241,7 @@ class Optimization:
                                                           children=
                                                                       html.Div(className='row',
                                                                                children=[
-                                                                                           html.Div(className='col-4',
+                                                                                           html.Div(className='col-4 head-date',
                                                                                                     children=   
                                                                                                                 dcc.DatePickerSingle(                                                                                                                                                                                                                                                                                
                                                                                                                                         id='datepicker-optimization',
@@ -260,7 +260,7 @@ class Optimization:
                                                                                                                 html.A(children='Optimization')
                                                                                                     ),
                                                                                            html.Div(className='col-4 text-right logo', id = 'mydiv',
-                                                                                                    children = html.Img(src='assets/logo.png', height=80, width=20))
+                                                                                                    children = html.A(children = html.Img(src='assets/logo.png', height=70, width='auto'), href='start'))
                                                                                        ]
                                                                                )
                                                           )
@@ -270,16 +270,7 @@ class Optimization:
                                                            children=
                                                                        html.Div(className='row',
                                                                                 children=[
-                                                                                            html.Div(className='col-1',
-                                                                                                     children=[
-                                                                                                                 html.I(className='mdi mdi-weather-sunny'),
-                                                                                                                 html.I(className='mdi mdi-wind-turbine'),
-                                                                                                                 html.I(className='mdi mdi-solar-power'),
-                                                                                                                 html.I(className='mdi mdi-water-percent'),
-                                                                                                                 html.I(className='mdi mdi-home-thermometer'),
-                                                                                                                 html.I(className='mdi mdi-home-thermometer-outline'),
-                                                                                                                 html.I(className='mdi mdi-weather-pouring')
-                                                                                                             ]
+                                                                                            html.Div(className='col-1'
                                                                                                      ),
                                                                                             html.Div(className='col-10', children = self.case_check()),
                                                                                             

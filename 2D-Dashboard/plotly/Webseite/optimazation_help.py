@@ -70,7 +70,7 @@ optimazation_dict = {'lights' : html.Div(className='card',
                                                                                                                                                            html.P(className='card-text-optimization', id = 'lightstext',
                                                                                                                                                                   children='Mögliche Ursachen: Dämmung / Heizung'
                                                                                                                                                                   ),
-                                                                                                                                                           html.Button('Mehr Dazu', id='lightsbt')
+                                                                                                                                                           html.Button('Mehr Dazu', id='lightsbt', className = 'opti-button')
                                                                                                                                                            ]
                                                                                                                                                )
                                                                                                                           ),
@@ -104,7 +104,7 @@ optimazation_dict = {'lights' : html.Div(className='card',
                                                                                                                                                            html.P(className='card-text-optimization', id = 'appliancestext',
                                                                                                                                                                   children='Der Bau einer Solaranlage würde sich lohnen'
                                                                                                                                                                   ),
-                                                                                                                                                           html.Button('Mehr Dazu', id='appliancesbt',)
+                                                                                                                                                           html.Button('Mehr Dazu', id='appliancesbt',className = 'opti-button')
                                                                                                                                                            ]
                                                                                                                                                )
                                                                                                                           ),
@@ -140,7 +140,7 @@ optimazation_dict = {'lights' : html.Div(className='card',
                                                                                                                                                            html.P(className='card-text-optimization', id = 'windspeedtext',
                                                                                                                                                                   children='Der Bau einer Windkraftanlage würde sich lohnen'
                                                                                                                                                                   ),
-                                                                                                                                                           html.Button('Mehr Dazu', id='windspeedbt')
+                                                                                                                                                           html.Button('Mehr Dazu', id='windspeedbt', className = 'opti-button')
                                                                                                                                                            ]
                                                                                                                                                )
                                                                                                                           ),
@@ -174,7 +174,7 @@ optimazation_dict = {'lights' : html.Div(className='card',
                                                                                                                                                            html.P(className='card-text-optimization', id = 'visibilitytext',
                                                                                                                                                                   children='Schönes Wetter, gehen Sie spazieren!'
                                                                                                                                                                   ),
-                                                                                                                                                           html.Button('Mehr Dazu', id='visibilitybt')
+                                                                                                                                                           html.Button('Mehr Dazu', id='visibilitybt', className = 'opti-button')
                                                                                                                                                            ]
                                                                                                                                                )
                                                                                                                           ),
@@ -210,7 +210,7 @@ optimazation_dict = {'lights' : html.Div(className='card',
                                                                                                                                                            html.P(className='card-text-optimization', id = 'schimmeltext',
                                                                                                                                                                   children='Schönes Wetter, gehen Sie spazieren!'
                                                                                                                                                                   ),
-                                                                                                                                                           html.Button('Mehr Dazu', id='schimmelbt')
+                                                                                                                                                           html.Button('Mehr Dazu', id='schimmelbt', className = 'opti-button')
                                                                                                                                                            
                                                                                                                                                            
                                                                                                                                                            ]

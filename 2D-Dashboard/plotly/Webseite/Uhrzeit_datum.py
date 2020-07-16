@@ -30,7 +30,7 @@ class Uhrzeit_datum:
             day1 = [letzter_eintrag_timestamp.year,letzter_eintrag_timestamp.month,letzter_eintrag_timestamp.day, aktuelle_stunde, aktuelle_minute]
             day2 = [letzter_eintrag_timestamp.year,letzter_eintrag_timestamp.month,letzter_eintrag_timestamp.day, aktuelle_stunde, aktuelle_minute]
             result = DB_connector.get_data(day1, day2, 'a', ['t1'])
-            print(result)
+            
             
             if result['datum'].count() == 0:
                 aktuelle_minute += 1
@@ -40,10 +40,9 @@ class Uhrzeit_datum:
                         aktuelle_stunde += 1
                     else:
                         aktuelle_stunde = 0
-                print(aktuelle_minute)
+                
                 
             else:
-                print(aktuelle_minute)
                 break
         
         if(aktuelle_minute < 10 and aktuelle_stunde < 10):

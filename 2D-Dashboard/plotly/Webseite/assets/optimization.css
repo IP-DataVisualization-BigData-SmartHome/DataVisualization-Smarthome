@@ -1,8 +1,12 @@
 .head-optimization{
-    font-size: 2vw;
-    padding-top: 1.2vw;
+    font-size: 2em;
+    padding-top: 1.4vw;
     padding-bottom: 1.7vw;
-    margin-bottom: -0px;
+}
+
+.head-date {
+    padding-top: 1.4vw;
+    padding-bottom: 1.7vw; 
 }
 
 .card-graph-optimization{
@@ -19,12 +23,15 @@
 }
 
 .card-icon::before{
-    font-size: 6vw;
+    font-size: 4vw;
     margin-top: 1.5vw;
+    margin-bottom: 2.5vw;
+    margin-right: 1.15vw;
 }
 
 .card-title-optimization{
     font-size: 2vw;
+    margin-left: 1.15vw;
 }
 
 .card-optimization{
@@ -41,7 +48,7 @@
 
 
 .card-graph-optimization{
-    background-color: #BFC0BF;
+    background-color: #595A59;
     color: #595A59;
     border-radius: 4px;
     font-size: 150%;
@@ -50,6 +57,12 @@
 
 .card-text-optimization{
     margin-top: 0.2vw;
+    margin-left: 1.15vw;
+    margin-right: 1.15vw;
+}
+
+.opti-button {
+    margin-left: 1.15vw;
 }
 
 .card-btn-optimization{

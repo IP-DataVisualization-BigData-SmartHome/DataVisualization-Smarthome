@@ -4,6 +4,20 @@ body{
     color: #C4C4C4;
 }
 
+.logo {
+    margin-top: 15px;
+}
+
+.start-abstand {
+    margin-top: 100px;
+}
+
+.start-impressum {
+   color: #1F897C;
+   font-size: 1.2em;
+   margin-top: 1.7vw;
+}
+
 .m-b-10 { margin-bottom: 10px; }
 /* Bootstrap */
 .mdi::before {
@@ -120,7 +134,7 @@ body{
 }
 
 .luft-wind{
-    margin-top: 15px;
+    margin-top: 25px;
     font-size: 110%;
 }
 

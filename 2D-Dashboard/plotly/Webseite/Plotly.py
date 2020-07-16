@@ -26,6 +26,8 @@ from postgre import postgre_connector, pd
 import datetime as dt
 from Uhrzeit_datum import Uhrzeit_datum
 from Analytics import analytics
+from impressum import impressum
+from start import start
 import numpy  as np
 
 
@@ -130,6 +132,8 @@ wasch = Wasch()
 arbeit = Arbeit()
 wohn = Wohn()
 analytics = analytics()
+start = start()
+impressum = impressum()
 
 
 #erzeugt die Unterseiten
@@ -137,10 +141,9 @@ analytics = analytics()
               [dash.dependencies.Input('url', 'pathname'),
                ])
 
-
 def display_page(pathname):
     
-    if pathname == '/dashboard.html':
+    if pathname == '/dashboard':
         uhrzeit_datum.aktuelleUhrzeit()
         return dashboard.dashboard_seite(uhrzeiten, uhrzeit_datum.uhrzeit)
     elif pathname == '/analytics':
@@ -165,9 +168,14 @@ def display_page(pathname):
         return arbeit.arbeit_seite(uhrzeiten,  uhrzeit_datum.datum, uhrzeit_datum.uhrzeit)
     elif pathname == '/wohn':
         return wohn.wohn_seite(uhrzeiten, uhrzeit_datum.datum, uhrzeit_datum.uhrzeit)
+    elif pathname == '/impressum':
+        return impressum.impressum_seite()
+    elif pathname == '/start':
+        return start.start_seite()
     else:
-        uhrzeit_datum.aktuelleUhrzeit()
-        return dashboard.dashboard_seite(uhrzeiten, uhrzeit_datum.uhrzeit)
+        #uhrzeit_datum.aktuelleUhrzeit()
+        return start.start_seite() #dashboard.dashboard_seite(uhrzeiten, uhrzeit_datum.uhrzeit)
+    
     
 @app.callback(
     dash.dependencies.Output('variablen_abspeichern','children'),
@@ -383,15 +391,14 @@ def dashboard_luftfeuchte_wind_draussen(date, value):
             rh_out_gesplittet = result['rh_out'].get(0).astype(str).split('.',2)
             
 
-            return html.Div(className='col-12 text-center luft-wind',
+            return html.Div(className='luft-wind',
                             children=[
-                                       
                                         html.Div(children='Luftfeuchte: ' + rh_out_gesplittet[0] + '%' #result['rh_out'].astype(str)
                                                                     #<!-- Datensatz: Luftfeuchte draußen 'Luftfeuchte: '-->
                                                 ),
                                                  
                                                  
-                                        html.Div('Wind: ' + windspeed_gesplittet[0] + ' m/s' #result['windspeed'].astype(str)
+                                        html.Div(children='Wind: ' + windspeed_gesplittet[0] + ' m/s' #result['windspeed'].astype(str)
                                                  #<!-- Datensatz: Wind draußen 'Wind: 10 km/h'-->
                                                  )
                                         ]
@@ -918,7 +925,7 @@ def graph_cb(value1, value2, value3, value4, value5, value6, value7, value8, sta
     
     DB_conn = postgre_connector()
     retDiv = html.Div(children = [])
-    graph = dcc.Graph(config = {'responsible' : False})
+    graph = dcc.Graph(config = {'responsible' : True})
     start_date = dt.datetime.strptime(start_date[:10], '%Y-%m-%d')
     end_date = dt.datetime.strptime(end_date[:10], '%Y-%m-%d')
                       
@@ -968,9 +975,7 @@ def graph_cb(value1, value2, value3, value4, value5, value6, value7, value8, sta
             fig_data = {'x' : result['datum'], 'y' : result[col], 'type' : 'line', 'textposition' : 'bottom center' , 'name' : name + ' ' + unit, 'marker' : { 'color' : get_color(col_n)}}
             gath.append(fig_data)
             col_n += 1
-    
-    
-    
+        
     if mode_data == 'tempd':
         analytics.rooms.remove('Temperatur Draußen')
     elif mode_data == 'humd':
@@ -987,6 +992,7 @@ def graph_cb(value1, value2, value3, value4, value5, value6, value7, value8, sta
     retDiv.children = graph
     
     analytics.graph.children = graph
+    retDiv.className = 'graph'
     
     return retDiv                                           
                           
@@ -1039,5 +1045,4 @@ def schimmel_inf(click):
                           
                     
                     
-if __name__ == '__main__':
-    app.run_server(debug=True)
+if __name__ == '__main__':    app.run_server(debug=False)

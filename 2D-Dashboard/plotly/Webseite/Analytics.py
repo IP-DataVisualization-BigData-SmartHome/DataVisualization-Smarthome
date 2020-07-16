@@ -41,12 +41,12 @@ class analytics:
                                                                                                      children= html.A('Analytics')
                                                                                                      ),
                                                                                             html.Div(className='col-4 text-right logo', id = 'mydiv',
-                                                                                                    children = html.Img(src='assets/logo.png', height=80, width=20))
+                                                                                                    children = html.A(children = html.Img(src='assets/logo.png', height=70, width='auto'), href='start'))
                                                                                           ]
                                                                                 )
                                                          )
                                      ),
-                            html.Main(                                                    
+                            html.Main(className='analyticsbody', children =                                                    
                                     html.Div(
                                               children=
                                                  html.Div(className='container-fluid main', 
@@ -128,7 +128,7 @@ class analytics:
                                                                                                                html.Div(className='col-3',
                                                                                                                         
                                                                                                                         ),
-                                                                                                               html.Div(className='col-9',
+                                                                                                               html.Div(className='col-9 dataselect',
                                                                                                                         children = [
                                                                                                                                     html.Div(className='select form-check-inline',
                                                                                                                                              children= [

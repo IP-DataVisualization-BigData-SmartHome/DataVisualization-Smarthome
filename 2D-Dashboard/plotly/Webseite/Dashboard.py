@@ -24,25 +24,25 @@ class Dashboard:
     def dashboard_seite(self, uhrzeiten, ausgewaehlteUhrzeit):
         
         
-        return html.Div([
+        return html.Div(className = 'bodyDash',children = [
                             html.Div(hidden='true', id='variablen_abspeichern'),
                             html.Nav(className='fixed-top',
                                      children=
                                                  html.Div(className='container-fluid head-design',
                                                           children=[
                                                                       html.Div(className='row',
-                                                                               children=[                                                                                           
-                                                                                            html.Div(className='col-2 text-right text-head',
+                                                                               children=[                              
+                                                                                            html.Div(className='col-1'),
+                                                                                            html.Div(className='col-3 text-center text-head',
                                                                                                      children=
                                                                                                                  html.Div(id='temp_draussen'
                                                                                                                           #<!-- Datensatz: Temperatur draußen -->
                                                                                                                           )
                                                                                                      ),
-                                                                                           html.Div(className='col-2',                                                                                                                                                                                                                             
-                                                                                                    ),
+      
                                                                                            html.Div(
                                                                                                     style={'margin-top': '32px', 'position':'relative', 'z-index':'3'},
-                                                                                                    className='col-1,5  text-head2',
+                                                                                                    className='col-2 text-head2',
                                                                                                     children=
                                                                                                                 dcc.Dropdown(id='dropdown-uhrzeit',
                                                                                                                              #style={ 'position':'absolute', 'z-index':'3'},
@@ -53,7 +53,7 @@ class Dashboard:
                                                                                                                 
                                                                                                     ),
                                                                                             html.Div(style={'margin-top': '25px', 'position':'relative', 'z-index':'3'},
-                                                                                                    className='col-4',                                
+                                                                                                    className='col-2',                                
                                                                                                     id='Datum',
                                                                                                     children=   
                                                                                                                 dcc.DatePickerSingle(                                                                                                                                                                                                                                                                                
@@ -69,9 +69,9 @@ class Dashboard:
                                                                                                                                         date=str(self.__letzter_eintrag_timestamp)                                                                                                                                        
                                                                                                                                     )                                                            
                                                                                                     ),
-                                                                                           html.Div(id='luftfeuchte_wind_draussen'),                                                                                           
-                                                                                           html.Div(className='col-3 text-right logo', id = 'mydiv',
-                                                                                                    children = html.Img(src='assets/logo.png', height=80, width=20))                                                                                          
+                                                                                           html.Div(id='luftfeuchte_wind_draussen', className = 'col-3'),                                                                                           
+                                                                                           html.Div(className='col-1 text-center logo', id = 'mydiv',
+                                                                                                    children = html.A(children = html.Img(src='assets/logo.png', height=70, width='auto'), href='start'))                                                                                          
                                                                                        ]
                                                                                ),
                                                                       html.Div(className='row',
@@ -82,7 +82,7 @@ class Dashboard:
                                                  ),       
                                 html.Div(className='container main',
                                          children=[                                                                
-                                                    html.Div(className='row', style = {'margin-bottom' : '-400px'},
+                                                    html.Div(className='row',
                                                              children=[
                                                                          html.Div(className='col-2 main-div relative d-flex justify-content-center',
                                                                                   children=
@@ -166,7 +166,7 @@ class Dashboard:
                                                                          html.Div(className='col-2 main-div')
                                                                          ]
                                                              ),
-                                                    html.Nav(style={'margin-bottom': '-520px'},
+                                                    html.Nav(
                                                              className='navbar fixed-bottom',
                                                              children=
                                                                          html.Div(className='container-fluid navdiv',

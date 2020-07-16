@@ -6,13 +6,6 @@
     padding-right: 0.2rem;
     
 }
-
-body {
-  overflow: hidden; /* Hide scrollbars */
-  transform:scale(2,1.5);
-  margin-top: 530px;
-}
-
 .helpdiv {
     position: fixed;
     left: 95%;
@@ -23,13 +16,15 @@ body {
 /* margin-top hinzugefügt damit obere nav passt */
    /* margin-top: 600px;
 */    text-align: right;
+       
 }
 .haus {
     font-family: 'Roboto', sans-serif;
     padding-left: 1rem;
     width: 350px;
     height: auto;
-    margin-left: 30px; 
+    margin-left: 30px;
+    margin-bottom: -100px; 
 }
 .licht {
     background-color: #595A59;
@@ -187,6 +182,10 @@ body {
 
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) { 
+    .strom .licht {
+	color: #1F897C;
+    }
+
     .haus {
         width: 420px;
         margin-left: 35px;
@@ -245,7 +244,7 @@ body {
 .licht {
     background-color: #595A59;
     border-radius: 10px;
-    color: #C4C4C4;
+    color: #1F897C;
     text-align: center;
     width: 120px;
     font-weight: 600;
@@ -253,12 +252,13 @@ body {
 .strom {
     background-color: #595A59;
     border-radius: 5px;
-    color: #C4C4C4;
+    color: #1F897C;
     text-align: center;
     margin-bottom: 1rem;
     width: 120px;
     vertical-align: middle;
     font-weight: 600;
+    margin-top: 20px;
 }
 .verbrauch-text {
     padding-top: 10px;
@@ -278,46 +278,46 @@ body {
         width: 520px;
     }
     .colorcircle {
-        width: 65px;
-        height: 65px;
+        width: 45px;
+        height: 45px;
    }
     .colorwrapper.bad {
-        left: 100px;
-        top: 30px;
+        left: 120px;
+        top: 60px;
     }
     .colorwrapper.wasch {
-        left: 205px;
-        top: 50px;
+        left: 195px;
+        top: 60px;
     }
     .colorwrapper.kinder {
-        left: 310px;
-        top: 50px;
+        left: 265px;
+        top: 60px;
     }
     .colorwrapper.buegel {
-        left: 430px;
-        top: 28px;
+        left: 345px;
+        top: 60px;
     }
     .colorwrapper.arbeits {
-        left: 70px;
-        top: 132px;
+        left: 103px;
+        top: 127px;
     }        
     .colorwrapper.kueche {
-        left: 450px;
-        top: 128px;
+        left: 362px;
+        top: 127px;
     }
     .colorwrapper.wohn {
-        left: 260px;
-        top: 260px;
+        left: 233px;
+        top: 222px;
     }
     .colorwrapper.schlaf {
-    left: 100px;
-    top: 260px;
+    left: 120px;
+    top: 222px;
     }
     .colorcircle p {
-    line-height: 0.4rem;
+    line-height: 0.1rem;
     font-weight: 500;
-    top: 18px;
-    font-size: 1.2rem;
+    top: 15px;
+    font-size: 0.8rem;
     }
     .kreis-icon:before {
     font-weight: 500;
@@ -332,6 +332,11 @@ body {
 @media (min-width: 992px) and (max-width: 1199.98px) { 
      .licht {
         margin-top: 80px;
+        color: #1F897C;
+    }
+
+    .strom {
+	color: #1F897C;
     }
     
     .haus {
@@ -342,35 +347,35 @@ body {
         height: 80px;
    }
     .colorwrapper.bad {
-        left: 130px;
-        top: 45px;
+        left: 145px;
+        top: 75px;
     }
     .colorwrapper.wasch {
-        left: 265px;
+        left: 283px;
         top: 75px;
     }
     .colorwrapper.kinder {
-        left: 410px;
+        left: 415px;
         top: 75px;
     }
     .colorwrapper.buegel {
-        left: 565px;
-        top: 42px;
+        left: 555px;
+        top: 70px;
     }
     .colorwrapper.arbeits {
-        left: 80px;
-        top: 185px;
+        left: 115px;
+        top: 200px;
     }        
     .colorwrapper.kueche {
-        left: 590px;
-        top: 178px;
+        left: 580px;
+        top: 200px;
     }
     .colorwrapper.wohn {
         left: 360px;
         top: 360px;
     }
     .colorwrapper.schlaf {
-    left: 120px;
+    left: 145px;
     top: 360px;
     }
      .colorcircle p {
@@ -409,35 +414,35 @@ body {
         height: 100px;
    }
     .colorwrapper.bad {
-        left: 150px;
-        top: 55px;
+        left: 165px;
+        top: 90px;
     }
     .colorwrapper.wasch {
-        left: 310px;
-        top: 80px;
+        left: 320px;
+        top: 90px;
     }
     .colorwrapper.kinder {
-        left: 480px;
-        top: 80px;
+        left: 475px;
+        top: 90px;
     }
     .colorwrapper.buegel {
-        left: 675px;
-        top: 50px;
+        left: 640px;
+        top: 80px;
     }
     .colorwrapper.arbeits {
-        left: 85px;
-        top: 220px;
+        left: 115px;
+        top: 230px;
     }        
     .colorwrapper.kueche {
-        left: 700px;
-        top: 210px;
+        left: 670px;
+        top: 230px;
     }
     .colorwrapper.wohn {
         left: 400px;
         top: 440px;
     }
     .colorwrapper.schlaf {
-    left: 130px;
+    left: 155px;
     top: 440px;
     }
      .colorcircle p {
@@ -456,6 +461,7 @@ body {
     padding-top: 1rem;
     padding-right: 0.2rem;
     }
+}
 	.DateInput_input {
 	background-color: #595A59;
 	border-color: #C4C4C4;
@@ -513,3 +519,4 @@ body {
     width: 0;
     position: relative;
 }
+

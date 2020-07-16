@@ -156,7 +156,7 @@ class Kueche:
                                                                                  ),
                                                                         html.Div(className='col-lg-5 right',
                                                                                  children=
-                                                                                             html.A(href='dashboard.html',
+                                                                                             html.A(href='dashboard',
                                                                                                     children=
                                                                                                                 html.Img(className='haus',
                                                                                                                          src='/assets/Grundriss2D-kueche.svg'
