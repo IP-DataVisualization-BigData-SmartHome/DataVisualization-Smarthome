@@ -20,11 +20,13 @@ class Dashboard:
         letzter_eintrag = DB_connector.get_last_date()
         self.__erster_eintrag_timestamp = erster_eintrag['datum'][0]
         self.__letzter_eintrag_timestamp = letzter_eintrag['datum'][0]
- 
+        self.__store = dcc.Store(id='test-abspeichern', data='nichts', storage_type='local')
+    
     def dashboard_seite(self, uhrzeiten, ausgewaehlteUhrzeit):
         
         
         return html.Div([
+                            self.__store,
                             html.Div(hidden='true', id='variablen_abspeichern'),
                             html.Nav(className='fixed-top',
                                      children=
@@ -77,9 +79,10 @@ class Dashboard:
                                                                                            html.Div(className='col-4 text-right text-head')                                                                                                                                                                                    
                                                                                )
                                                               ])
-                                                 ),       
+                                                 ),                                       
                                 html.Div(className='container main',
-                                         children=[                                                                
+                                         children=[                                              
+                                                    html.Div(id='abspeichern-ausgabe', ),
                                                     html.Div(className='row',
                                                              children=[
                                                                          html.Div(className='col-2 main-div relative d-flex justify-content-center',

@@ -27,6 +27,9 @@ import datetime as dt
 from Uhrzeit_datum import Uhrzeit_datum
 from Analytics import analytics
 import numpy  as np
+from dash.exceptions import PreventUpdate
+
+
 
 
 external_scripts = [
@@ -161,6 +164,32 @@ def display_page(pathname):
     else:
         uhrzeit_datum.aktuelleUhrzeit()
         return Dashboard().dashboard_seite(uhrzeiten, uhrzeit_datum.uhrzeit)
+    
+######################### store Callback Funktionen  ##############################
+    
+@app.callback(
+    dash.dependencies.Output('test-abspeichern', 'data'),
+    [dash.dependencies.Input('dropdown-uhrzeit', 'value')],
+    [dash.dependencies.State('test-abspeichern', 'data')]
+    )
+
+def abspeichern(value, data):
+        if value == None:            
+            return data
+        else:            
+            return value
+
+@app.callback(
+    dash.dependencies.Output('abspeichern-ausgabe', 'children'),
+    [dash.dependencies.Input('test-abspeichern', 'data')]
+    )
+
+def abspeichernAusgabe(data):
+    
+    return html.Div(children=data)
+
+
+############################################################################
     
 @app.callback(
     dash.dependencies.Output('variablen_abspeichern','children'),
@@ -781,6 +810,7 @@ def einzelzimmer_durchschnitt_temp_luftfeuchte(date, temp_datenbankspalte, luftf
                                 ) 
                          #)                                      
 #----------------------------------------------------------------- Analytics
+
 @app.callback(
     dash.dependencies.Output('Arbeitszimmer', 'style'),
     [dash.dependencies.Input('Arbeitszimmer', 'n_clicks')])
@@ -1010,5 +1040,6 @@ def schimmel_inf(click):
         return 'Temperaturen an Wänden oder Bauteilen die unter dem angegebenen Taupunkt liegen, sind Schimmel gefährdet!'                               
                           
                     
+                    
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server(debug=False)
