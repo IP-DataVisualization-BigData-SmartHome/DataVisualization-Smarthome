@@ -22,6 +22,7 @@ class analytics:
         self.data = 'tempd'
         self.graph = html.Div(className='graph-analytics')
     
+    
     def set_active_room(self, room):
         if self.active_rooms[room] == False:
             return { 'color' : '#BFC0BF'}
