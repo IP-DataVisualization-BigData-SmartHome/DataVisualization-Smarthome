@@ -3,6 +3,8 @@
 Created on Wed May 27 16:44:24 2020
 
 @author: Mues
+Diese Klasse speichert die gewählte Uhrzeit ab. Default-Uhrzeit ist die aktuelle Uhrzeit,
+falls diese nicht im Datensatz enthalten ist wird die nächst höhere Uhrzeit gewählt.
 """
 from datetime import datetime as dt2
 import psycopg2
@@ -15,6 +17,7 @@ class Uhrzeit_datum:
     def __init__(self):
         self.aktuelleUhrzeit()
 
+    #prüft ob die aktuelle Uhrzeit im Datensatz enthalten ist. Falls diese nicht enthalten ist wird die nächste höhere Uhrzeit gewählt.
     def aktuelleUhrzeit(self):
         aktuelleUhrzeit = dt2.now()
 

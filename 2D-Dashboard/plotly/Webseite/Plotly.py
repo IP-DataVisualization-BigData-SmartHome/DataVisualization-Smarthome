@@ -3,6 +3,8 @@
 
 
 @author: Mues
+Diese Datei beinhaltet alle Plotly Callback-Funktionen und ihre Hilffunktionen. 
+Außerdem werden hier die einzelen Objekte der Webseiten-Klassen erstellt und aufgerufen. 
 """
 
 
@@ -55,6 +57,8 @@ external_stylesheets = [
         'https://cdn.materialdesignicons.com/5.1.45/css/materialdesignicons.min.css'
 ]
 
+#Diese Funktion erstellt eine Liste, die alle Uhrzeiten des Datensatzes enthält.
+#Diese Liste wird wird für die Uhrzeiten-Dropdown-Leiste der Dashboard-Webseite genutzt.
 def erzeuge_uhrzeiten():
     DB_connector = postgre_connector()
     uhrzeiten_liste = []
@@ -94,6 +98,7 @@ def get_color(i):
 app = dash.Dash(external_stylesheets=external_stylesheets, external_scripts=external_scripts)
 app.title = 'Dashboard'
 
+#Meta-Tags der Webseite
 app.index_string = '''
 <!DOCTYPE html>
 <html>
@@ -122,6 +127,7 @@ app.layout = html.Div([
     html.Div(id='page-content')
 ])
 
+#Erstellung der Webseiten-Objekte
 dashboard = Dashboard()
 optimization = Optimization()
 bad = Bad()
@@ -173,11 +179,11 @@ def display_page(pathname):
         return impressum.impressum_seite()
     elif pathname == '/start':
         return start.start_seite()
-    else:
-        #uhrzeit_datum.aktuelleUhrzeit()
-        return start.start_seite() #dashboard.dashboard_seite(uhrzeiten, uhrzeit_datum.uhrzeit)
+    else:        
+        return start.start_seite() 
     
     
+#Callback-Funktion, um die Uhrzeit, die auf der Dashboard-Webseite gewählt wurde abzuspeichern.
 @app.callback(
     dash.dependencies.Output('variablen_abspeichern','children'),
    [dash.dependencies.Input('my-date-picker-single', 'date'),
@@ -191,6 +197,8 @@ def dashboard_uhrzeit_tage_abspeichern(date, value):
                 uhrzeit_datum.datum = dashboard_datum_gesplittet(date)
             
     
+#Callback-Funktion des Dashboards, die mit Hilfe der "dashboard_erstellung_zimmer_kugeln" Funktion die Temperatur/Luftfeuchtigkeitskugel
+#des ersten Zimmers erstellt.
 @app.callback(
     dash.dependencies.Output('zimmer1', 'children'),
    [dash.dependencies.Input('my-date-picker-single', 'date'),
@@ -208,7 +216,8 @@ def kugel_zimmer1(date, value):
                 
            
 
-
+#Callback-Funktion des Dashboards, die mit Hilfe der "dashboard_erstellung_zimmer_kugeln" Funktion die Temperatur/Luftfeuchtigkeitskugel
+#des zweiten Zimmers erstellt.
 @app.callback(
     dash.dependencies.Output('zimmer2', 'children'),
    [dash.dependencies.Input('my-date-picker-single', 'date'),
@@ -224,6 +233,8 @@ def dashboard_kugel_zimmer2(date, value):
                 
             return dashboard_erstellung_zimmer_kugeln(datum_liste, uhrzeit, 't2', 'rh_2')
             
+#Callback-Funktion des Dashboards, die mit Hilfe der "dashboard_erstellung_zimmer_kugeln" Funktion die Temperatur/Luftfeuchtigkeitskugel
+#des dritten Zimmers erstellt.        
 @app.callback(
     dash.dependencies.Output('zimmer3', 'children'),
    [dash.dependencies.Input('my-date-picker-single', 'date'),
@@ -239,6 +250,8 @@ def dashboard_kugel_zimmer3(date, value):
                 
             return dashboard_erstellung_zimmer_kugeln(datum_liste, uhrzeit, 't3', 'rh_3')
 
+#Callback-Funktion des Dashboards, die mit Hilfe der "dashboard_erstellung_zimmer_kugeln" Funktion die Temperatur/Luftfeuchtigkeitskugel
+#des vierten Zimmers erstellt.
 @app.callback(
     dash.dependencies.Output('zimmer4', 'children'),
    [dash.dependencies.Input('my-date-picker-single', 'date'),
@@ -255,6 +268,8 @@ def dashboard_kugel_zimmer4(date, value):
                 
             return dashboard_erstellung_zimmer_kugeln(datum_liste, uhrzeit, 't4', 'rh_4')
 
+#Callback-Funktion des Dashboards, die mit Hilfe der "dashboard_erstellung_zimmer_kugeln" Funktion die Temperatur/Luftfeuchtigkeitskugel
+#des fünften Zimmers erstellt.
 @app.callback(
     dash.dependencies.Output('zimmer5', 'children'),
    [dash.dependencies.Input('my-date-picker-single', 'date'),
@@ -270,6 +285,8 @@ def dashboard_kugel_zimmer5(date, value):
                 
             return dashboard_erstellung_zimmer_kugeln(datum_liste, uhrzeit, 't5', 'rh_5')
 
+#Callback-Funktion des Dashboards, die mit Hilfe der "dashboard_erstellung_zimmer_kugeln" Funktion die Temperatur/Luftfeuchtigkeitskugel
+#des sechsten Zimmers erstellt.
 @app.callback(
     dash.dependencies.Output('zimmer6', 'children'),
    [dash.dependencies.Input('my-date-picker-single', 'date'),
@@ -285,6 +302,8 @@ def dashboard_kugel_zimmer6(date, value):
                 
             return dashboard_erstellung_zimmer_kugeln(datum_liste, uhrzeit, 't6', 'rh_6')
 
+#Callback-Funktion des Dashboards, die mit Hilfe der "dashboard_erstellung_zimmer_kugeln" Funktion die Temperatur/Luftfeuchtigkeitskugel
+#des siebten Zimmers erstellt.
 @app.callback(
     dash.dependencies.Output('zimmer7', 'children'),
    [dash.dependencies.Input('my-date-picker-single', 'date'),
@@ -301,6 +320,8 @@ def dashboard_kugel_zimmer7(date, value):
                 
             return dashboard_erstellung_zimmer_kugeln(datum_liste, uhrzeit, 't7', 'rh_7')
 
+#Callback-Funktion des Dashboards, die mit Hilfe der "dashboard_erstellung_zimmer_kugeln" Funktion die Temperatur/Luftfeuchtigkeitskugel
+#des achten Zimmers erstellt.
 @app.callback(
     dash.dependencies.Output('zimmer8', 'children'),
    [dash.dependencies.Input('my-date-picker-single', 'date'),
@@ -318,6 +339,8 @@ def dashboard_kugel_zimmer8(date, value):
                 
             return dashboard_erstellung_zimmer_kugeln(datum_liste, uhrzeit, 't8', 'rh_8')
 
+#Callback-Funktion des Dashboards, die mit Hilfe der "dashboard_erstellung_zimmer_kugeln" Funktion die Temperatur/Luftfeuchtigkeitskugel
+#des neunten Zimmers erstellt.
 @app.callback(
     dash.dependencies.Output('zimmer9', 'children'),
    [dash.dependencies.Input('my-date-picker-single', 'date'),
@@ -333,6 +356,7 @@ def dashboard_kugel_zimmer9(date, value):
                 
             return dashboard_erstellung_zimmer_kugeln(datum_liste, uhrzeit, 't9', 'rh_9')
 
+#Funktion die den Datums-String, den der Date-Picker zurückgibt in Jahr, Monat und Tag splittet
 def dashboard_datum_gesplittet(date):    
     date_gesplittet = date.split('-',3)
     jahr = date_gesplittet[0]
@@ -347,11 +371,13 @@ def dashboard_datum_gesplittet(date):
 
     return liste
                 
+#Funktion die den Uhrzeit-String, die die Uhrzeit-Dropdown-Leiste zurückgibt in Stunden und Minuten splittet
 def dashboard_uhrzeit_gesplittet(uhrzeit):
      uhrzeit_gesplittet = uhrzeit.split('T', 2)
      uhrzeit_gesplittet_gesplittet = uhrzeit_gesplittet[1].split(':',3)
      return uhrzeit_gesplittet_gesplittet
  
+#erstellt den Plotly-HTML-Code für die Kugeln der einzelnen Zimmer der Dashboard-Webseite.
 def dashboard_erstellung_zimmer_kugeln(datum_liste, uhrzeit, temp_zimmer, luftfeucht_zimmer):
     DB_connector = postgre_connector()
 
@@ -370,6 +396,8 @@ def dashboard_erstellung_zimmer_kugeln(datum_liste, uhrzeit, temp_zimmer, luftfe
                             ]
                     )
 
+#Callback Funktion der Dasboard-Webseite, die den Plotly-HTML-Code erzeugt, um die Luftfeuchte und die Windgeschwindigkeit
+#außerhalb des Hauses dynamisch je nach gewähltem Tageszeitpunkt anzuzeigen.
 @app.callback(
     dash.dependencies.Output('luftfeuchte_wind_draussen', 'children'),
    [dash.dependencies.Input('my-date-picker-single', 'date'),
@@ -394,17 +422,18 @@ def dashboard_luftfeuchte_wind_draussen(date, value):
 
             return html.Div(className='luft-wind',
                             children=[
-                                        html.Div(children='Luftfeuchte: ' + rh_out_gesplittet[0] + '%' #result['rh_out'].astype(str)
-                                                                    #<!-- Datensatz: Luftfeuchte draußen 'Luftfeuchte: '-->
+                                        html.Div(children='Luftfeuchte: ' + rh_out_gesplittet[0] + '%' 
+                                                              
                                                 ),
                                                  
                                                  
-                                        html.Div(children='Wind: ' + windspeed_gesplittet[0] + ' m/s' #result['windspeed'].astype(str)
-                                                 #<!-- Datensatz: Wind draußen 'Wind: 10 km/h'-->
+                                        html.Div(children='Wind: ' + windspeed_gesplittet[0] + ' m/s' 
+                                                 
                                                  )
                                         ]
                             )
-
+#Callback Funktion der Dasboard-Webseite, die den Plotly-HTML-Code erzeugt, um die Temperatur außerhalb des Hauses
+#dynamisch je nach gewähltem Tageszeitpunkt anzuzeigen.
 @app.callback(
     dash.dependencies.Output('temp_draussen', 'children'),
    [dash.dependencies.Input('my-date-picker-single', 'date'),
@@ -429,11 +458,12 @@ def dashboard_temp_draussen(date, value):
             
             return  html.Div(
                              children=
-                                         html.Div(children= temp_draussen_gesplittet[0] + '°C' 
-                                                  #<!-- Datensatz: Temperatur draußen -->
+                                         html.Div(children= temp_draussen_gesplittet[0] + '°C'                                                   
                                                   )
                              ),          
 
+#Callback Funktion der Dasboard-Webseite, die den Plotly-HTML-Code erzeugt, um den Stromverbrauch und Lichtverbrauch
+#dynamisch je nach gewähltem Tageszeitpunkt anzuzeigen.
 @app.callback(
     dash.dependencies.Output('stromverbrauch_lichtverbrauch', 'children'),
    [dash.dependencies.Input('my-date-picker-single', 'date'),
@@ -459,7 +489,6 @@ def dashboard_stromverbrauch_lichtverbrauch(date, value):
             return  html.Div(className='sidecard',
                             children=[
                                         html.Div(className='strom',
-                                                 #<!-- Strom-Fläche -->
                                                  children=[
                                                              html.Div(className='verbrauch-text',
                                                                       children='Stromverbrauch'
@@ -468,14 +497,12 @@ def dashboard_stromverbrauch_lichtverbrauch(date, value):
                                                                               html.I(className='mdi mdi-48px mdi-flash icons-verbrauch')
                                                                       ),
                                                              html.Div(className='stromverbrauch verbrauch-zahl',
-                                                                      children=appliances_gesplittet[0] + 'W' 
-                                                                      #<!-- Stromverbrauch eintragen -->
+                                                                      children=appliances_gesplittet[0] + 'W'                                                                       
                                                                       )
                                                             ] 
                                                              
                                                  ),
                                         html.Div(className='licht',
-                                                 #<!-- Licht-Fläche -->
                                                  children=[
                                                              html.Div(className='verbrauch-text',
                                                                       children='Lichtverbrauch'
@@ -484,12 +511,12 @@ def dashboard_stromverbrauch_lichtverbrauch(date, value):
                                                                                   html.I(className='mdi mdi-48px mdi-lightbulb-on icons-verbrauch')
                                                                       ),
                                                              html.Div(className='stromverbrauch verbrauch-zahl',
-                                                                      children=licht_gesplittet[0] + 'W' 
-                                                                      #<!-- Lichtverbrauch eintragen -->
+                                                                      children=licht_gesplittet[0] + 'W'                                                                       
                                                                       )
                                                              ]
                                                  )
                                 ])
+#Callback-Funktion der Wohnzimmer-Seite, um den Temperatur-Graph dynamisch je nach gewähltem Datum anzuzeigen.
 @app.callback(
     dash.dependencies.Output('Graph_Temperatur_Wohn', 'figure'),
    [dash.dependencies.Input('DatePickerWohn', 'date')])
@@ -499,7 +526,8 @@ def wohn_temperatur_tag(date):
                 return None
             else:
                 return einzelzimmer_graph_tagesverlauf(date, 't2', 'Temperatur')
-            
+
+#Callback-Funktion der Wohnzimmer-Seite, um den Luftfeuchtigkeits-Graph dynamisch je nach gewähltem Datum anzuzeigen.            
 @app.callback(
     dash.dependencies.Output('Graph_Luftfeucht_Wohn', 'figure'),
    [dash.dependencies.Input('DatePickerWohn', 'date')])
@@ -510,6 +538,7 @@ def wohn_luftfeucht_tag(date):
             else:
                 return einzelzimmer_graph_tagesverlauf(date, 'rh_2', 'Luftfeuchtigkeit')            
             
+#Callback-Funktion der Waschraum-Seite, um den Temperatur-Graph dynamisch je nach gewähltem Datum anzuzeigen.            
 @app.callback(
     dash.dependencies.Output('Graph_Temperatur_Wasch', 'figure'),
    [dash.dependencies.Input('DatePickerWasch', 'date')])
@@ -519,7 +548,8 @@ def wasch_temperatur_tag(date):
                 return None
             else:
                 return einzelzimmer_graph_tagesverlauf(date, 't3', 'Temperatur')
-            
+
+#Callback-Funktion der Waschraum-Seite, um den Luftfeuchtigkeits-Graph dynamisch je nach gewähltem Datum anzuzeigen.
 @app.callback(
     dash.dependencies.Output('Graph_Luftfeucht_Wasch', 'figure'),
    [dash.dependencies.Input('DatePickerWasch', 'date')])
@@ -530,6 +560,7 @@ def wasch_luftfeucht_tag(date):
             else:
                 return einzelzimmer_graph_tagesverlauf(date, 'rh_3', 'Luftfeuchtigkeit')            
             
+#Callback-Funktion der Schlafzimmer-Seite, um den Temperatur-Graph dynamisch je nach gewähltem Datum anzuzeigen.            
 @app.callback(
     dash.dependencies.Output('Graph_Temperatur_Schlaf', 'figure'),
    [dash.dependencies.Input('DatePickerSchlaf', 'date')])
@@ -539,7 +570,8 @@ def schlaf_temperatur_tag(date):
                 return None
             else:
                 return einzelzimmer_graph_tagesverlauf(date, 't9', 'Temperatur')
-            
+
+#Callback-Funktion der Schlafzimmer-Seite, um den Luftfeuchtigkeits-Graph dynamisch je nach gewähltem Datum anzuzeigen.            
 @app.callback(
     dash.dependencies.Output('Graph_Luftfeucht_Schlaf', 'figure'),
    [dash.dependencies.Input('DatePickerSchlaf', 'date')])
@@ -549,7 +581,8 @@ def schlaf_luftfeucht_tag(date):
                 return None
             else:
                 return einzelzimmer_graph_tagesverlauf(date, 'rh_9', 'Luftfeuchtigkeit')            
-            
+
+#Callback-Funktion der Küchen-Seite, um den Temperatur-Graph dynamisch je nach gewähltem Datum anzuzeigen.
 @app.callback(
     dash.dependencies.Output('Graph_Temperatur_Kueche', 'figure'),
    [dash.dependencies.Input('DatePickerKueche', 'date')])
@@ -559,7 +592,8 @@ def kueche_temperatur_tag(date):
                 return None
             else:
                 return einzelzimmer_graph_tagesverlauf(date, 't1', 'Temperatur')
-            
+        
+#Callback-Funktion der Küchen-Seite, um den Luftfeuchtigkeits-Graph dynamisch je nach gewähltem Datum anzuzeigen.        
 @app.callback(
     dash.dependencies.Output('Graph_Luftfeucht_Kueche', 'figure'),
    [dash.dependencies.Input('DatePickerKueche', 'date')])
@@ -569,7 +603,8 @@ def kueche_luftfeucht_tag(date):
                 return None
             else:
                 return einzelzimmer_graph_tagesverlauf(date, 'rh_1', 'Luftfeuchtigkeit')            
-            
+
+#Callback-Funktion der Kinderzimmer-Seite, um den Temperatur-Graph dynamisch je nach gewähltem Datum anzuzeigen.
 @app.callback(
     dash.dependencies.Output('Graph_Temperatur_Kinder', 'figure'),
    [dash.dependencies.Input('DatePickerKinder', 'date')])
@@ -579,7 +614,8 @@ def kinder_temperatur_tag(date):
                 return None
             else:
                 return einzelzimmer_graph_tagesverlauf(date, 't8', 'Temperatur')
-            
+
+#Callback-Funktion der Kinderzimmer-Seite, um den Luftfeuchtigkeits-Graph dynamisch je nach gewähltem Datum anzuzeigen.            
 @app.callback(
     dash.dependencies.Output('Graph_Luftfeucht_Kinder', 'figure'),
    [dash.dependencies.Input('DatePickerKinder', 'date')])
@@ -590,6 +626,7 @@ def kinder_luftfeucht_tag(date):
             else:
                 return einzelzimmer_graph_tagesverlauf(date, 'rh_8', 'Luftfeuchtigkeit')
             
+#Callback-Funktion der Bügelzimmer-Seite, um den Temperatur-Graph dynamisch je nach gewähltem Datum anzuzeigen.            
 @app.callback(
     dash.dependencies.Output('Graph_Temperatur_Buegel', 'figure'),
    [dash.dependencies.Input('DatePickerBuegel', 'date')])
@@ -599,7 +636,8 @@ def buegel_temperatur_tag(date):
                 return None
             else:
                 return einzelzimmer_graph_tagesverlauf(date, 't7', 'Temperatur')
-            
+
+#Callback-Funktion der Bügelzimmer-Seite, um den Luftfeuchtigkeits-Graph dynamisch je nach gewähltem Datum anzuzeigen.        
 @app.callback(
     dash.dependencies.Output('Graph_Luftfeucht_Buegel', 'figure'),
    [dash.dependencies.Input('DatePickerBuegel', 'date')])
@@ -610,6 +648,7 @@ def buegel_luftfeucht_tag(date):
             else:
                 return einzelzimmer_graph_tagesverlauf(date, 'rh_7', 'Luftfeuchtigkeit')            
 
+#Callback-Funktion der Badezimmer-Seite, um den Temperatur-Graph dynamisch je nach gewähltem Datum anzuzeigen.
 @app.callback(
     dash.dependencies.Output('Graph_Temperatur_Bad', 'figure'),
    [dash.dependencies.Input('DatePickerBad', 'date')])
@@ -620,6 +659,7 @@ def bad_temperatur_tag(date):
             else:
                 return einzelzimmer_graph_tagesverlauf(date, 't5', 'Temperatur')
             
+#Callback-Funktion der Badezimmer-Seite, um den Luftfeuchtigkeits-Graph dynamisch je nach gewähltem Datum anzuzeigen.
 @app.callback(
     dash.dependencies.Output('Graph_Luftfeucht_Bad', 'figure'),
    [dash.dependencies.Input('DatePickerBad', 'date')])
@@ -630,7 +670,7 @@ def bad_luftfeucht_tag(date):
             else:
                 return einzelzimmer_graph_tagesverlauf(date, 'rh_5', 'Luftfeuchtigkeit')
             
-
+#Callback-Funktion der Arbeitszimmer-Seite, um den Temperatur-Graph dynamisch je nach gewähltem Datum anzuzeigen.
 @app.callback(
     dash.dependencies.Output('Graph_Temperatur_Arbeitzimmer', 'figure'),
    [dash.dependencies.Input('DatePickerArbeit', 'date')])
@@ -641,6 +681,7 @@ def arbeitszimmer_temperatur_tag(date):
             else:
                 return einzelzimmer_graph_tagesverlauf(date, 't4', 'Temperatur')
             
+#Callback-Funktion der Arbeitszimmer-Seite, um den Luftfeuchtigkeits-Graph dynamisch je nach gewähltem Datum anzuzeigen.            
 @app.callback(
     dash.dependencies.Output('Graph_Luftfeucht_Arbeitzimmer', 'figure'),
    [dash.dependencies.Input('DatePickerArbeit', 'date')])
@@ -651,6 +692,7 @@ def arbeitszimmer_luftfeucht_tag(date):
             else:
                 return einzelzimmer_graph_tagesverlauf(date, 'rh_4', 'Luftfeuchtigkeit')            
 
+#Funtion, die Plotly-HTML-Code erzeugt, um die Tagesverlaufgraphen der einzelnen Zimmer anzuzeigen.
 def einzelzimmer_graph_tagesverlauf(date, datenbankspalte, ueberschrift):
             if date == None:
                     return None
@@ -681,7 +723,7 @@ def einzelzimmer_graph_tagesverlauf(date, datenbankspalte, ueberschrift):
                            }
                         }           
                                         
-
+#Callback-Funktion der Arbeitszimmer-Webseite, um die Durchschnitts Luftfeuchtigkeit und Temperatur dynamisch je nach Datum anzuzeigen.
 @app.callback(
     dash.dependencies.Output('Durchschnitt_Temp_Luftfeuchte_Arbeitszimmer', 'children'),
    [dash.dependencies.Input('DatePickerArbeit', 'date')])
@@ -692,6 +734,7 @@ def arbeitszimmer_durchschnitt_temp_luftfeuchte(date):
             else:
                 return einzelzimmer_durchschnitt_temp_luftfeuchte(date, 't4', 'rh_4')   
 
+#Callback-Funktion der Badezimmer-Webseite, um die Durchschnitts Luftfeuchtigkeit und Temperatur dynamisch je nach Datum anzuzeigen.
 @app.callback(
     dash.dependencies.Output('Durchschnitt_Temp_Luftfeuchte_Bad', 'children'),
    [dash.dependencies.Input('DatePickerBad', 'date')])
@@ -701,7 +744,8 @@ def bad_durchschnitt_temp_luftfeuchte(date):
                 return None
             else:
                 return einzelzimmer_durchschnitt_temp_luftfeuchte(date, 't5', 'rh_5')  
-            
+
+#Callback-Funktion der Bügelzimmer-Webseite, um die Durchschnitts Luftfeuchtigkeit und Temperatur dynamisch je nach Datum anzuzeigen.            
 @app.callback(
     dash.dependencies.Output('Durchschnitt_Temp_Luftfeuchte_Buegel', 'children'),
    [dash.dependencies.Input('DatePickerBuegel', 'date')])
@@ -712,6 +756,7 @@ def buegel_durchschnitt_temp_luftfeuchte(date):
             else:
                 return einzelzimmer_durchschnitt_temp_luftfeuchte(date, 't7', 'rh_7')
 
+#Callback-Funktion der Kinderzimmer-Webseite, um die Durchschnitts Luftfeuchtigkeit und Temperatur dynamisch je nach Datum anzuzeigen.            
 @app.callback(
     dash.dependencies.Output('Durchschnitt_Temp_Luftfeuchte_Kinder', 'children'),
    [dash.dependencies.Input('DatePickerKinder', 'date')])
@@ -721,7 +766,8 @@ def kinder_durchschnitt_temp_luftfeuchte(date):
                 return None
             else:
                 return einzelzimmer_durchschnitt_temp_luftfeuchte(date, 't8', 'rh_8')   
-
+            
+#Callback-Funktion der Küchen-Webseite, um die Durchschnitts Luftfeuchtigkeit und Temperatur dynamisch je nach Datum anzuzeigen.            
 @app.callback(
     dash.dependencies.Output('Durchschnitt_Temp_Luftfeuchte_Kueche', 'children'),
    [dash.dependencies.Input('DatePickerKueche', 'date')])
@@ -731,7 +777,8 @@ def kueche_durchschnitt_temp_luftfeuchte(date):
                 return None
             else:
                 return einzelzimmer_durchschnitt_temp_luftfeuchte(date, 't1', 'rh_1')   
-        
+
+#Callback-Funktion der Schlafzimmer-Webseite, um die Durchschnitts Luftfeuchtigkeit und Temperatur dynamisch je nach Datum anzuzeigen.                    
 @app.callback(
     dash.dependencies.Output('Durchschnitt_Temp_Luftfeuchte_Schlaf', 'children'),
    [dash.dependencies.Input('DatePickerSchlaf', 'date')])
@@ -741,7 +788,8 @@ def schlaf_durchschnitt_temp_luftfeuchte(date):
                 return None
             else:
                 return einzelzimmer_durchschnitt_temp_luftfeuchte(date, 't9', 'rh_9')   
-            
+
+#Callback-Funktion der Waschraum-Webseite, um die Durchschnitts Luftfeuchtigkeit und Temperatur dynamisch je nach Datum anzuzeigen.                        
 @app.callback(
     dash.dependencies.Output('Durchschnitt_Temp_Luftfeuchte_Wasch', 'children'),
    [dash.dependencies.Input('DatePickerWasch', 'date')])
@@ -752,6 +800,7 @@ def wasch_durchschnitt_temp_luftfeuchte(date):
             else:
                 return einzelzimmer_durchschnitt_temp_luftfeuchte(date, 't3', 'rh_3')   
             
+#Callback-Funktion der Wohnzimmer-Webseite, um die Durchschnitts Luftfeuchtigkeit und Temperatur dynamisch je nach Datum anzuzeigen.                        
 @app.callback(
     dash.dependencies.Output('Durchschnitt_Temp_Luftfeuchte_Wohn', 'children'),
    [dash.dependencies.Input('DatePickerWohn', 'date')])
@@ -762,9 +811,7 @@ def wohn_durchschnitt_temp_luftfeuchte(date):
             else:
                 return einzelzimmer_durchschnitt_temp_luftfeuchte(date, 't2', 'rh_2')   
             
-            
-            
-            
+#Funktion, die den Plotly-HTML-Code erzeugt, um die durchschnittliche Luftfeuchtigkeit und Temperatur der Einzelzimmer-Webseiten anzuzeigen.
 def einzelzimmer_durchschnitt_temp_luftfeuchte(date, temp_datenbankspalte, luftfeucht_datenbankspalte):
                 dashboard_datum_liste = dashboard_datum_gesplittet(date)
                 
@@ -776,9 +823,7 @@ def einzelzimmer_durchschnitt_temp_luftfeuchte(date, temp_datenbankspalte, luftf
                 result = DB_connector.get_data(day1, day2, 'a', [temp_datenbankspalte, luftfeucht_datenbankspalte])
                 
                 durchschnitt_temp = np.array(result[temp_datenbankspalte]).mean().round(2)
-                durchschnitt_luftfeucht = np.array(result[luftfeucht_datenbankspalte]).mean().round(2)
-                print(durchschnitt_temp)
-                # return html.Div(className='container-fluid data-container',
+                durchschnitt_luftfeucht = np.array(result[luftfeucht_datenbankspalte]).mean().round(2)                                
                 return html.Div(className='row',
                                children=[
                 
@@ -786,7 +831,7 @@ def einzelzimmer_durchschnitt_temp_luftfeuchte(date, temp_datenbankspalte, luftf
                                                      children=
                                                                 html.P(className='data temp',
                                                                        children=[
-                                                                                   durchschnitt_temp,#'20',#Raum Temperatur
+                                                                                   durchschnitt_temp,
                                                                                    html.I(className='mdi mdi-temperature-celsius kreis-icon')
                                                                                ]
                                                                        )
@@ -795,7 +840,7 @@ def einzelzimmer_durchschnitt_temp_luftfeuchte(date, temp_datenbankspalte, luftf
                                                      children=
                                                                 html.P(className='data temp',
                                                                        children=[
-                                                                                   durchschnitt_luftfeucht,#'60',#Raum Temperatur
+                                                                                   durchschnitt_luftfeucht,
                                                                                    html.I(className='mdi mdi-water-percent kreis-icon')
                                                                                ]
                                                                        )

@@ -3,14 +3,9 @@
 Created on Fri May 22 17:14:38 2020
 
 @author: Mues
+Die Klasse repräsentiert die Plotly-Version der Webseite des Kinderzimmers
 """
 
-# -*- coding: utf-8 -*-
-"""
-Created on Fri May 22 16:44:22 2020
-
-@author: Mues
-"""
 import dash_core_components as dcc
 import dash_html_components as html
 import psycopg2
@@ -22,6 +17,10 @@ import numpy  as np
 
 class Kinder:
 
+    #HTML-Seite in Plotly übersetzt, gibt die aktuelle Version als Plotly-Objekt zurück.
+    #Falls diese Seite über die URL-Leiste besucht wird und somit kein Datum auf der Dashboard-Seite
+    #gewählt wurde wird automatisch das letzte Datum des Datensatzes als Default Datum genutzt.
+    #Falls ein Datum auf der Dashboard-Seite gewählt wurde wird dieses Datum genutzt.
     def kinder_seite(self, uhrzeiten, dashboard_datum_liste, dashboard_uhrzeit):
             DB_connector = postgre_connector()
             result = None

@@ -11,6 +11,7 @@ import dash_core_components as dcc
 
 class impressum:
     
+    #HTML-Seite in Plotly übersetzt, gibt die aktuelle Version als Plotly-Objekt zurück
     def impressum_seite(self):
         return html.Div(children = [ html.Div(className='container',
                                               children =      html.Div(className='maindiv', 

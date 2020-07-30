@@ -11,6 +11,7 @@ import dash_core_components as dcc
 
 class start:
     
+    #HTML-Seite in Plotly übersetzt, gibt die aktuelle Version als Plotly-Objekt zurück
     def start_seite(self):
         return html.Div(children = [html.Nav(className = 'nav-abstand',
                                      children=

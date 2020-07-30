@@ -3,6 +3,8 @@
 Created on Wed May  6 15:18:10 2020
 
 @author: Mues
+Die Klasse repräsentiert die Plotly-Version der Dashboard-Webseite 
+
 """
 
 import dash_html_components as html
@@ -14,6 +16,7 @@ from datetime import timedelta
 
 class Dashboard:
 
+    #Es wird das erste und das letzte Datum des Datensatzes abgefragt und in Variablen gespeichert
     def __init__(self):
         DB_connector = postgre_connector()
         erster_eintrag = DB_connector.get_first_date()
@@ -21,6 +24,8 @@ class Dashboard:
         self.__erster_eintrag_timestamp = erster_eintrag['datum'][0]
         self.__letzter_eintrag_timestamp = letzter_eintrag['datum'][0]
  
+    #HTML-Seite in Plotly übersetzt, gibt die aktuelle Version als Plotly-Objekt zurück
+    #Hierbei wird das Date-Picker Objekt so initialisiert, dass es beim ersten Datum des Datensatzes anfängt und beim letzten Datum endet
     def dashboard_seite(self, uhrzeiten, ausgewaehlteUhrzeit):
         
         
@@ -44,9 +49,8 @@ class Dashboard:
                                                                                                     style={'margin-top': '32px', 'position':'relative', 'z-index':'3'},
                                                                                                     className='col-2 text-head2',
                                                                                                     children=
-                                                                                                                dcc.Dropdown(id='dropdown-uhrzeit',
-                                                                                                                             #style={ 'position':'absolute', 'z-index':'3'},
-                                                                                                                             placeholder=ausgewaehlteUhrzeit[0] + ':' + ausgewaehlteUhrzeit[1] + ' Uhr',#'Uhrzeit',
+                                                                                                                dcc.Dropdown(id='dropdown-uhrzeit',                                                                                                                             
+                                                                                                                             placeholder=ausgewaehlteUhrzeit[0] + ':' + ausgewaehlteUhrzeit[1] + ' Uhr',
                                                                                                                              options=[{'label': i.strftime("%H:%M") + ' Uhr', 'value': i} for i in uhrzeiten]
                                                                                                                              
                                                                                                                              )
@@ -60,12 +64,8 @@ class Dashboard:
                                                                                                                                         id='my-date-picker-single',
                                                                                                                                         display_format='DD.MM.YYYY',
                                                                                                                                         min_date_allowed=self.__erster_eintrag_timestamp,
-                                                                                                                                        max_date_allowed=self.__letzter_eintrag_timestamp - timedelta(days=1),
-                                                                                                                                        #min_date_allowed=dt(2016, 1, 11),
-                                                                                                                                        #max_date_allowed=dt(2016, 5, 27),
-                                                                                                                                        initial_visible_month=self.__erster_eintrag_timestamp,
-                                                                                                                                        #initial_visible_month=dt(2016, 1, 11),
-                                                                                                                                        #date=str(dt(2016, 1, 11))
+                                                                                                                                        max_date_allowed=self.__letzter_eintrag_timestamp - timedelta(days=1),                                                                                                                                        
+                                                                                                                                        initial_visible_month=self.__erster_eintrag_timestamp,                                                                                                                                        
                                                                                                                                         date=str(self.__letzter_eintrag_timestamp)                                                                                                                                        
                                                                                                                                     )                                                            
                                                                                                     ),

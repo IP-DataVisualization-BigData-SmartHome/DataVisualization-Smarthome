@@ -3,13 +3,7 @@
 Created on Fri May 22 17:13:22 2020
 
 @author: Mues
-"""
-
-# -*- coding: utf-8 -*-
-"""
-Created on Fri May 22 16:44:22 2020
-
-@author: Mues
+Die Klasse repräsentiert die Plotly-Version der Webseite des Bügelzimmers
 """
 
 import dash_core_components as dcc
@@ -22,6 +16,10 @@ import numpy  as np
 
 class Buegel:
 
+    #HTML-Seite in Plotly übersetzt, gibt die aktuelle Version als Plotly-Objekt zurück.
+    #Falls diese Seite über die URL-Leiste besucht wird und somit kein Datum auf der Dashboard-Seite
+    #gewählt wurde wird automatisch das letzte Datum des Datensatzes als Default Datum genutzt.
+    #Falls ein Datum auf der Dashboard-Seite gewählt wurde wird dieses Datum genutzt.
     def buegel_seite(self, uhrzeiten, dashboard_datum_liste, dashboard_uhrzeit):
             DB_connector = postgre_connector()
             result = None
