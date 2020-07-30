@@ -34,8 +34,8 @@ class Arbeit:
                 
                 result_durchschnitt = DB_connector.get_data(day1, day2, 'a', ['t4', 'rh_4'])
                 
-                durchschnitt_temp = np.array(result_durchschnitt['t4']).mean().round(0)
-                durchschnitt_luftfeucht = np.array(result_durchschnitt['rh_4']).mean().round(0)
+                durchschnitt_temp = np.array(result_durchschnitt['t4']).mean().round(2)
+                durchschnitt_luftfeucht = np.array(result_durchschnitt['rh_4']).mean().round(2)
                                                                                              
                 
             else:                
@@ -46,8 +46,8 @@ class Arbeit:
                 
                 result_durchschnitt = DB_connector.get_data(day1, day2, 'a', ['t4', 'rh_4'])
                 
-                durchschnitt_temp = np.array(result_durchschnitt['t4']).mean().round(0)
-                durchschnitt_luftfeucht = np.array(result_durchschnitt['rh_4']).mean().round(0)
+                durchschnitt_temp = np.array(result_durchschnitt['t4']).mean().round(2)
+                durchschnitt_luftfeucht = np.array(result_durchschnitt['rh_4']).mean().round(2)
         
             return html.Div([
                                 html.Nav(className='fixed-top',

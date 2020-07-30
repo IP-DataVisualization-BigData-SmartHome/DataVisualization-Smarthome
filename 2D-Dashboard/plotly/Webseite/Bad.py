@@ -38,8 +38,8 @@ class Bad:
                 
                 result_durchschnitt = DB_connector.get_data(day1, day2, 'a', ['t5', 'rh_5'])
                 
-                durchschnitt_temp = np.array(result_durchschnitt['t5']).mean().round(0)
-                durchschnitt_luftfeucht = np.array(result_durchschnitt['rh_5']).mean().round(0)
+                durchschnitt_temp = np.array(result_durchschnitt['t5']).mean().round(2)
+                durchschnitt_luftfeucht = np.array(result_durchschnitt['rh_5']).mean().round(2)
                                                                                              
                 
             else:                
@@ -50,8 +50,8 @@ class Bad:
                 
                 result_durchschnitt = DB_connector.get_data(day1, day2, 'a', ['t5', 'rh_5'])
                 
-                durchschnitt_temp = np.array(result_durchschnitt['t5']).mean().round(0)
-                durchschnitt_luftfeucht = np.array(result_durchschnitt['rh_5']).mean().round(0)
+                durchschnitt_temp = np.array(result_durchschnitt['t5']).mean().round(2)
+                durchschnitt_luftfeucht = np.array(result_durchschnitt['rh_5']).mean().round(2)
             
             return html.Div([
                                html.Nav(className='fixed-top',

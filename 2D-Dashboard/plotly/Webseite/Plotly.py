@@ -775,8 +775,8 @@ def einzelzimmer_durchschnitt_temp_luftfeuchte(date, temp_datenbankspalte, luftf
                 day2 = [int(dashboard_datum_liste[0]),int(dashboard_datum_liste[1]),int(dashboard_datum_liste[2]),23,50]
                 result = DB_connector.get_data(day1, day2, 'a', [temp_datenbankspalte, luftfeucht_datenbankspalte])
                 
-                durchschnitt_temp = np.array(result[temp_datenbankspalte]).mean().round(0)
-                durchschnitt_luftfeucht = np.array(result[luftfeucht_datenbankspalte]).mean().round(0)
+                durchschnitt_temp = np.array(result[temp_datenbankspalte]).mean().round(2)
+                durchschnitt_luftfeucht = np.array(result[luftfeucht_datenbankspalte]).mean().round(2)
                 print(durchschnitt_temp)
                 # return html.Div(className='container-fluid data-container',
                 return html.Div(className='row',

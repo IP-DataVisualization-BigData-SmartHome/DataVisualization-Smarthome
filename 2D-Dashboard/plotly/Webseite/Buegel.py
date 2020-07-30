@@ -37,8 +37,8 @@ class Buegel:
                 initial_datum = dt(int(dashboard_datum_liste[0]), int(dashboard_datum_liste[1]), int(dashboard_datum_liste[2]))              
                 result_durchschnitt = DB_connector.get_data(day1, day2, 'a', ['t7', 'rh_7'])
                 
-                durchschnitt_temp = np.array(result_durchschnitt['t7']).mean().round(0)
-                durchschnitt_luftfeucht = np.array(result_durchschnitt['rh_7']).mean().round(0)
+                durchschnitt_temp = np.array(result_durchschnitt['t7']).mean().round(2)
+                durchschnitt_luftfeucht = np.array(result_durchschnitt['rh_7']).mean().round(2)
                                                                                              
                 
             else:                
@@ -48,8 +48,8 @@ class Buegel:
                 result = DB_connector.get_data(day1, day2, 'a', ['t7', 'rh_7'])
                 result_durchschnitt = DB_connector.get_data(day1, day2, 'a', ['t7', 'rh_7'])
                 
-                durchschnitt_temp = np.array(result_durchschnitt['t7']).mean().round(0)
-                durchschnitt_luftfeucht = np.array(result_durchschnitt['rh_7']).mean().round(0)
+                durchschnitt_temp = np.array(result_durchschnitt['t7']).mean().round(2)
+                durchschnitt_luftfeucht = np.array(result_durchschnitt['rh_7']).mean().round(2)
             return html.Div([
                                 html.Nav(className='fixed-top',
                                      children=

@@ -37,8 +37,8 @@ class Schlaf:
                 initial_datum = dt(int(dashboard_datum_liste[0]), int(dashboard_datum_liste[1]), int(dashboard_datum_liste[2]))              
                 result_durchschnitt = DB_connector.get_data(day1, day2, 'a', ['t9', 'rh_9'])
                 
-                durchschnitt_temp = np.array(result_durchschnitt['t9']).mean().round(0)
-                durchschnitt_luftfeucht = np.array(result_durchschnitt['rh_9']).mean().round(0)
+                durchschnitt_temp = np.array(result_durchschnitt['t9']).mean().round(2)
+                durchschnitt_luftfeucht = np.array(result_durchschnitt['rh_9']).mean().round(2)
                                                                                              
                 
             else:                
@@ -48,8 +48,8 @@ class Schlaf:
                 result = DB_connector.get_data(day1, day2, 'a', ['t9', 'rh_9'])
                 result_durchschnitt = DB_connector.get_data(day1, day2, 'a', ['t9', 'rh_9'])
                 
-                durchschnitt_temp = np.array(result_durchschnitt['t9']).mean().round(0)
-                durchschnitt_luftfeucht = np.array(result_durchschnitt['rh_9']).mean().round(0)
+                durchschnitt_temp = np.array(result_durchschnitt['t9']).mean().round(2)
+                durchschnitt_luftfeucht = np.array(result_durchschnitt['rh_9']).mean().round(2)
             return html.Div([
                                html.Nav(className='fixed-top',
                                      children=

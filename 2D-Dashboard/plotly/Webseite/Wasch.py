@@ -38,8 +38,8 @@ class Wasch:
                 initial_datum = dt(int(dashboard_datum_liste[0]), int(dashboard_datum_liste[1]), int(dashboard_datum_liste[2]))              
                 result_durchschnitt = DB_connector.get_data(day1, day2, 'a', ['t3', 'rh_3'])
                 
-                durchschnitt_temp = np.array(result_durchschnitt['t3']).mean().round(0)
-                durchschnitt_luftfeucht = np.array(result_durchschnitt['rh_3']).mean().round(0)                                                                                             
+                durchschnitt_temp = np.array(result_durchschnitt['t3']).mean().round(2)
+                durchschnitt_luftfeucht = np.array(result_durchschnitt['rh_3']).mean().round(2)                                                                                             
                 
             else:                
                 initial_datum = dt(self.__erster_eintrag_timestamp.year,self.__erster_eintrag_timestamp.month,self.__erster_eintrag_timestamp.day)
@@ -48,8 +48,8 @@ class Wasch:
                 result = DB_connector.get_data(day1, day2, 'a', ['t3', 'rh_3'])
                 result_durchschnitt = DB_connector.get_data(day1, day2, 'a', ['t3', 'rh_3'])
                 
-                durchschnitt_temp = np.array(result_durchschnitt['t3']).mean().round(0)
-                durchschnitt_luftfeucht = np.array(result_durchschnitt['rh_3']).mean().round(0)
+                durchschnitt_temp = np.array(result_durchschnitt['t3']).mean().round(2)
+                durchschnitt_luftfeucht = np.array(result_durchschnitt['rh_3']).mean().round(2)
             return html.Div([
                                 html.Nav(className='fixed-top',
                                      children=
