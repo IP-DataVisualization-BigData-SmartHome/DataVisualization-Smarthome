@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-Created on Wed Jun  3 15:41:43 2020
 
-@author: Mues
+@author: Lukas Schnittcher
+
+Die Klasse repräsentiert die Plotly-Version der Analytics-Webseite 
 """
 
 import dash_html_components as html
@@ -12,6 +13,7 @@ from postgre import postgre_connector, pd
 
 class analytics:
     
+    #Initialisierung der Plotly-Seite, bei Erstellung ist alles "aus", Start-/Enddatum, Zeitintervall und Daten sind willkürlich gewählt 
     def __init__(self):
         self.active_rooms = {'Arbeitszimmer' : False, 'Badezimmer' : True, 'Bügelzimmer' : False,
                              'Kinderzimmer' : False, 'Küche' : False, 'Schlafzimmer' : False,
@@ -22,13 +24,14 @@ class analytics:
         self.data = 'tempd'
         self.graph = html.Div(className='graph-analytics')
     
-    
+    #Für jeden Raum wird überprüft, ob dieser aktiv bei der Datenvisualisierung ist, wenn ja wird der Button des jeweiligen Raumes eingefärbt
     def set_active_room(self, room):
         if self.active_rooms[room] == False:
             return { 'color' : '#BFC0BF'}
         else: 
             return { 'color' : '#00B1AC'} 
     
+    #HTML-Seite in Plotly übersetzt, gibt die aktuelle Version als Plotly-Objekt zurück
     def get_site(self):
         return html.Div([   
                             html.Nav(className='fixed-top', 
@@ -42,12 +45,12 @@ class analytics:
                                                                                                      children= html.A('Analytics')
                                                                                                      ),
                                                                                             html.Div(className='col-4 text-right logo', id = 'mydiv',
-                                                                                                    children = html.A(children = html.Img(src='assets/logo.png', height=70, width='auto'), href='start'))
+                                                                                                    children = html.Img(src='assets/logo.png', height=80, width=20))
                                                                                           ]
                                                                                 )
                                                          )
                                      ),
-                            html.Main(className='analyticsbody', children =                                                    
+                            html.Main(                                                    
                                     html.Div(
                                               children=
                                                  html.Div(className='container-fluid main', 
@@ -129,7 +132,7 @@ class analytics:
                                                                                                                html.Div(className='col-3',
                                                                                                                         
                                                                                                                         ),
-                                                                                                               html.Div(className='col-9 dataselect',
+                                                                                                               html.Div(className='col-9',
                                                                                                                         children = [
                                                                                                                                     html.Div(className='select form-check-inline',
                                                                                                                                              children= [
