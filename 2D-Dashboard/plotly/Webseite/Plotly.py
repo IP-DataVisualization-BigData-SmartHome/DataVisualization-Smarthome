@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Wed May  6 15:41:53 2020
+
 
 @author: Mues
 """
@@ -30,9 +30,7 @@ from impressum import impressum
 from start import start
 import numpy  as np
 
-
-
-
+#Sktipt-Einbindung für die Webseite(n)
 external_scripts = [
     {
         'src': 'https://code.jquery.com/jquery-3.2.1.slim.min.js',
@@ -51,6 +49,7 @@ external_scripts = [
     }
 ]
 
+#CSS-Einbindung für die Webseite(n) Bootstrap
 external_stylesheets = [
         dbc.themes.BOOTSTRAP,
         'https://cdn.materialdesignicons.com/5.1.45/css/materialdesignicons.min.css'
@@ -69,6 +68,7 @@ def erzeuge_uhrzeiten():
     
     return uhrzeiten_liste      
 
+#Dictionary-Abbildung der Räume auf die einzelnen Temperatur- und Luftfeuchtesensoren
 room_dict = {
              'Küche' : ('t1','rh_1'),
              'Wohnzimmer' : ('t2','rh_2'),
@@ -84,6 +84,7 @@ uhrzeiten = erzeuge_uhrzeiten()
 
 uhrzeit_datum = Uhrzeit_datum()
 
+#Liste für die Auswahl der FH-Farben
 color_dict = ['#33C1B1', '#000000', '#093D40', '#CECFD1', '#65666D', '#28988E', '#9B9C9F', '#192331', '#1A6C68' ]
 
 def get_color(i):
@@ -140,7 +141,7 @@ impressum = impressum()
 @app.callback(dash.dependencies.Output('page-content', 'children'),
               [dash.dependencies.Input('url', 'pathname'),
                ])
-
+#Call-Back Methode zum Naviǵieren der einzelnen Seiten
 def display_page(pathname):
     
     if pathname == '/dashboard':
@@ -803,6 +804,9 @@ def einzelzimmer_durchschnitt_temp_luftfeuchte(date, temp_datenbankspalte, luftf
                                 ) 
                          #)                                      
 #----------------------------------------------------------------- Analytics
+
+#Callback-Methoden zum handeln der Auswahl der aktuellen Zimmer/Räume in Analytics.py
+
 @app.callback(
     dash.dependencies.Output('Arbeitszimmer', 'style'),
     [dash.dependencies.Input('Arbeitszimmer', 'n_clicks')])
@@ -906,7 +910,9 @@ def click_wz(value):
     else:
         analytics.active_rooms['Wohnzimmer'] = False
         return analytics.set_active_room('Wohnzimmer') 
- 
+
+#Call-Back Methode: Initialisiert den Graphen der ausgewählten Zimmer 
+    
 @app.callback(
     dash.dependencies.Output('analytics_graph', 'children'),  
     [dash.dependencies.Input('Arbeitszimmer', 'n_clicks'),
@@ -998,6 +1004,7 @@ def graph_cb(value1, value2, value3, value4, value5, value6, value7, value8, sta
                           
  # <------------------------------------------> Optimazation Callback
 
+#Ändert das Ausgewählte Datum auf der Optimization.py
 @app.callback(
     dash.dependencies.Output('url', 'pathname'),
     [dash.dependencies.Input('datepicker-optimization', 'date')])
@@ -1007,7 +1014,8 @@ def date_callback(date):
     uhrzeit_datum.datum[1] = str(optimization.date.month)
     uhrzeit_datum.datum[2] = str(optimization.date.day)
     return '/optimization'
-    
+
+#Call-Back Methode, welche den Text des Light-Cases übergibt    
 @app.callback(
     dash.dependencies.Output('lightstext', 'children'),
     [dash.dependencies.Input('lightsbt', 'n_clicks')]) 
@@ -1015,6 +1023,7 @@ def lights_inf(click):
     if click != None:
         return 'Haben Sie letzte Nacht eventuell vergessen das Licht in einem der Räume auszuschalten?'
     
+#Call-Back Methode, welche den Text des Appliances-Cases übergibt       
 @app.callback(
     dash.dependencies.Output('appliancestext', 'children'),
     [dash.dependencies.Input('appliancesbt', 'n_clicks')]) 
@@ -1022,20 +1031,23 @@ def appliances_inf(click):
     if click != None:
         return 'Haben Sie letzte Nacht eventuell vergessen laufende Elektrische Geräte wie z.B. den Fernseher auszuschalten?'
 
+#Call-Back Methode, welche den Text des Windspeed-Cases übergibt    
 @app.callback(
     dash.dependencies.Output('windspeedtext', 'children'),
     [dash.dependencies.Input('windspeedbt', 'n_clicks')]) 
 def windspeed_inf(click):
     if click != None:
-        return 'Heute war es besonders windig, in zukunft könnte sich ein Windrad lohnen!'
+        return 'Heute war es besonders windig, in Zukunft könnte sich ein Windrad lohnen!'
 
+#Call-Back Methode, welche den Text des Sichtbarkeits-Cases übergibt    
 @app.callback(
     dash.dependencies.Output('visibilitytext', 'children'),
     [dash.dependencies.Input('visibilitybt', 'n_clicks')]) 
 def visibility_inf(click):
     if click != None:
-        return 'Heute war es kaum bewölkt und man konnte weit sehen, gehen Sie doch morgen spatzieren!'
+        return 'Heute war es kaum bewölkt, gehen Sie doch Morgen spatzieren!'
 
+#Call-Back Methode, welche den Text des Schimmel-Cases übergibt    
 @app.callback(
     dash.dependencies.Output('schimmeltext', 'children'),
     [dash.dependencies.Input('schimmelbt', 'n_clicks')]) 

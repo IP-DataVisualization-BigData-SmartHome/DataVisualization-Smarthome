@@ -1,18 +1,24 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Wed Jun  3 15:47:16 2020
 
-Formel: https://www.wetterochs.de/wetter/feuchte.html
+Formel-Taupunkt :https://www.wetterochs.de/wetter/feuchte.html
+Formel-Windenergie: https://www.engineeringtoolbox.com/wind-power-d_1214.html
 
-@author: lukas
+@author: Lukas Schnittcher
+
+Helper-File für Optimazation.py
+Die einzelnen Vorlagen für die Optimazations-Cases werden hier verwaltet, ebenso die Formel zur Berechnung des "Schimmel-Risikos"
+Sobald irgendeine Temperatur unter der Grenze der Berechneten Temperatur fällt, ist diese Stelle Schimmelgefährdet
 """
 
 import dash_html_components as html
 import dash_core_components as dcc
 import math
 import pandas as pd
+from math import pi
 
+#Formel zur Berechnung des Taupunktes Formel-Quelle: https://www.wetterochs.de/wetter/feuchte.html
 def Taupunkt(temp, hum):
     if temp >= 0:
         a = 7.5
@@ -30,16 +36,15 @@ def Taupunkt(temp, hum):
     
     return b*v/(a-v)
 
-#Taupunkttabelle = pd.DataFrame(index=list(range(-20,51)), columns=list(range(1,101)))
-# get Data with Taupunkttabelle[hum][temp]
+#Formel zur Berechnung der Energie aus Windgeschwindigkeit
+def energyfromwind(windspeed):
+    p = 1.208
+    d = 3
+    v = windspeed
+    
+    return (0.4*p*pi*d*d*v**3)/8
 
-#for temp in range(-20, 51):
-#    for hum in range(1,101):
-#        tdew = Taupunkt(temp, hum)
-#        Taupunkttabelle[hum][temp] = tdew
-
-
-        
+#Dictionary welches die HTML-Vorlage für die Optimazation-Cases bereit hält        
 optimazation_dict = {'lights' : html.Div(className='card',
                                                                                                                          children=
                                                                                                                                       html.Div(className='card-body',
@@ -49,7 +54,7 @@ optimazation_dict = {'lights' : html.Div(className='card',
                                                                                                                                                                                 html.Div(className='col-8',
                                                                                                                                                                                          children=
                                                                                                                                                                                                      html.H5(className='card-title-optimization',
-                                                                                                                                                                                                             children='Lichtveŕbrauch in der letzten nacht war sehr Hoch'
+                                                                                                                                                                                                             children='Hoher Energieverbrauch durch Licht in der letzten Nacht'
                                                                                                                                                                                                              )
                                                                                                                                                                                          ),
                                                                                                                                                                                 html.Div(className='col-4 text-right',
@@ -83,7 +88,7 @@ optimazation_dict = {'lights' : html.Div(className='card',
                                                                                                                                                                                 html.Div(className='col-8',
                                                                                                                                                                                          children=
                                                                                                                                                                                                      html.H5(className='card-title-optimization',
-                                                                                                                                                                                                             children='Hoher Energieverbrauch ist etwa noch die Playstation an?'
+                                                                                                                                                                                                             children='Hoher Energieverbrauch in der letzten Nacht'
                                                                                                                                                                                                              )
                                                                                                                                                                                          ),
                                                                                                                                                                                 html.Div(className='col-4 text-right',
