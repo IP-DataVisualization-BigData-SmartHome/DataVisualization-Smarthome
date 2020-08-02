@@ -50,9 +50,9 @@ class impressum:
                                                                                                                   )
                                                                                                  ),
                                                                                          html.Div(className='col navdiv', 
-                                                                                                 children = html.A(className='nav-link', href='optimazation', 
+                                                                                                 children = html.A(className='nav-link', href='optimization', 
                                                                                                                    children =   [   html.I(className='mdi mdi-sync navicon'),
-                                                                                                                                    html.P(className='nav-text', children = 'Optimazation')
+                                                                                                                                    html.P(className='nav-text', children = 'Optimization')
                                                                                                                                 ]
                                                                                                                    
                                                                                                                   )

@@ -277,16 +277,16 @@ class Optimization:
             
             visibility = self.visibility_case()
             windspeed = self.windspeed_case()
-            appliances = self.appliances_case()
-            lights = self.appliances_case()
+            #appliances = self.appliances_case()
+            #lights = self.appliances_case()
             schimmel = self.schimmel_case()
             
             
-            if appliances != False:
-                case_list.append(appliances)
+            #if appliances != False:
+                #case_list.append(appliances)
             
-            if lights != False:
-                case_list.append(lights)
+            #if lights != False:
+                #case_list.append(lights)
                 
             case_list.append(schimmel)
                 

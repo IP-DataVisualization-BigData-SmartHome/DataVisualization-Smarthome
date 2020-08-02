@@ -1082,7 +1082,7 @@ def appliances_inf(click):
     [dash.dependencies.Input('windspeedbt', 'n_clicks')]) 
 def windspeed_inf(click):
     if click != None:
-        return 'Heute war es besonders windig, in Zukunft könnte sich ein Windrad lohnen!'
+        return 'Heute war es besonders windig, in Zukunft könnte sich ein Windrad lohnen! Die Energie die erzeugt würde, berechnet sich aus einem Windrad mit 3m Rotorblattlänge und 20% Energieeffizienz.'
 
 #Call-Back Methode, welche den Text des Sichtbarkeits-Cases übergibt    
 @app.callback(
@@ -1098,7 +1098,7 @@ def visibility_inf(click):
     [dash.dependencies.Input('schimmelbt', 'n_clicks')]) 
 def schimmel_inf(click):
     if click != None:
-        return 'Temperaturen an Wänden oder Bauteilen die unter dem angegebenen Taupunkt liegen, sind Schimmel gefährdet!'                               
+        return 'Der Graph zeigt für den ausgewählten Tag, den Raum mit der aus den Daten errechneten höchsten Tauwerttemperatur.\n Temperaturen an Wänden oder Bauteilen die unter dem angegebenen Taupunkt liegen, sind Schimmel gefährdet!'                               
                           
                     
                     

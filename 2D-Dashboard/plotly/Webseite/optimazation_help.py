@@ -42,7 +42,7 @@ def energyfromwind(windspeed):
     d = 3
     v = windspeed
     
-    return (0.4*p*pi*d*d*v**3)/8
+    return (0.2*p*pi*d*d*v**3)/8
 
 #Dictionary welches die HTML-Vorlage für die Optimazation-Cases bereit hält        
 optimazation_dict = {'lights' : html.Div(className='card',
